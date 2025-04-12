@@ -1,0 +1,39 @@
+{
+  "title": "Test for Salmonella",
+  "maintainers": [
+    {"name": "Michal", "url": "http://google.com/"}
+  ],
+  "build_url": "https://github.com/nextstrain/zika-tutorial",
+  "colorings": [
+    {
+      "key": "MLST",
+      "title": "MLST",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "Serovar",
+      "title": "Serovar",
+      "type": "categorical"
+    }
+  ],
+  "geo_resolutions": [
+    "country"
+  ],
+  "panels": [
+     "tree",
+     "map",
+     "entropy"
+  ],
+  "display_defaults": {
+    "map_triplicate": true
+  },
+  "filters": [
+    "country"
+  ]
+}
+
