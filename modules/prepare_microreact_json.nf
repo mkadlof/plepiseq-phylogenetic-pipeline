@@ -1,0 +1,23 @@
+process prepare_microreact_json {
+    tag "${segmentId}"
+    cpus 1
+    memory "20 GB"
+    time "1h"
+
+    input:
+    path(microreact_metadata)
+    tuple val(segmentId), path(tree_regular), path(tree_rescaled)
+
+    output:
+    path("${params.input_prefix}_microreactproject.microreact")
+
+    script:
+    """
+    prepare_json_for_microreact.py --input_json /opt/docker/config/microreact_config_bacteria.microreact \
+                                   --classical_tree ${tree_regular} \
+                                   --rescaled_tree ${tree_rescaled} \
+                                   --metadata ${microreact_metadata} \
+                                   --project_name ${params.input_prefix} \
+                                   --output ${params.input_prefix}_microreactproject.microreact
+    """
+}

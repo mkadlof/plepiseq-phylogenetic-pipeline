@@ -6,8 +6,11 @@ input_fasta_g = file(params.input_fasta) // This var is overloaded (dir or file)
 metadata = file(params.metadata)
 organism = params.organism
 
+params.input_prefix
+
 params.threshold_Ns = 0.02
 params.threshold_ambiguities = 0.0
+params.map_detail = 'country'
 
 src_dir = "${baseDir}/src"
 
@@ -24,10 +27,17 @@ include { insert_duplicates_into_tree } from './modules/insert_duplicates_into_t
 include { insert_duplicates_into_alignment } from './modules/insert_duplicates_into_alignment.nf'
 include { treetime } from './modules/treetime.nf'
 include { augur_export } from './modules/augur_export.nf'
+include { rescale_timetree } from './modules/rescale_timetree.nf'
+include { prepare_microreact_json } from './modules/prepare_microreact_json.nf'
+
+// metadata modules
+include { find_country_coordinates } from './modules/find_country_coordinates.nf'
+include { generate_colors_for_features } from './modules/generate_colors_for_features.nf'
 
 // influenza specific modules
 include { transform_input } from './modules/transform_input.nf'
 include { adjust_metadata } from './modules/adjust_metadata.nf'
+include { metadata_for_microreact } from './modules/metadata_for_microreact.nf'
 
 workflow core {
     take:
@@ -48,7 +58,19 @@ workflow core {
     insert_duplicates_into_alignment(c3)
     c4 = insert_duplicates_into_alignment.out.join(insert_duplicates_into_tree.out)
     treetime(c4, metadata)
+    rescale_timetree(treetime.out)
+
+    c5 = insert_duplicates_into_tree.out.join(rescale_timetree.out)
+
     augur_export(treetime.out, metadata)
+
+    // Transforming metadata and prepare .microreact JSON
+    find_country_coordinates(metadata)
+    generate_colors_for_features(find_country_coordinates.out)
+    metadata_for_microreact(generate_colors_for_features.out, metadata)
+    prepare_microreact_json(metadata_for_microreact.out, c5)
+
+
 }
 
 def transformed

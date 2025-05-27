@@ -15,8 +15,13 @@ RUN python3 -m venv /opt/venv
 
 ENV PATH="/opt/venv/bin:$PATH:/opt/scripts:$PATH"
 
-RUN pip install nextstrain-augur \
-        Biopython
+RUN pip install --trusted-host pypi.org \
+                --trusted-host files.pythonhosted.org \
+                nextstrain-augur \
+                Biopython \
+                click \
+                requests
 
 COPY bin/* /opt/scripts/
 COPY data/auspice_config.json /etc/auspice/auspice_config.json
+COPY data/microreact_config_bacteria.microreact /opt/docker/config/microreact_config_bacteria.microreact
