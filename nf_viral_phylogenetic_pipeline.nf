@@ -11,6 +11,8 @@ params.input_prefix
 params.threshold_Ns = 0.02
 params.threshold_ambiguities = 0.0
 params.map_detail = 'country'
+params.results_dir = "results"
+params.input_prefix = "${workflow.runName}"
 
 src_dir = "${baseDir}/src"
 

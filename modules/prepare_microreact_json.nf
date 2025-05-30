@@ -1,5 +1,8 @@
 process prepare_microreact_json {
     tag "${segmentId}"
+
+    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "project.microreact"
+
     cpus 1
     memory "20 GB"
     time "1h"
@@ -9,7 +12,7 @@ process prepare_microreact_json {
     tuple val(segmentId), path(tree_regular), path(tree_rescaled)
 
     output:
-    path("${params.input_prefix}_microreactproject.microreact")
+    path("project.microreact")
 
     script:
     """
@@ -18,6 +21,6 @@ process prepare_microreact_json {
                                    --rescaled_tree ${tree_rescaled} \
                                    --metadata ${microreact_metadata} \
                                    --project_name ${params.input_prefix} \
-                                   --output ${params.input_prefix}_microreactproject.microreact
+                                   --output project.microreact
     """
 }

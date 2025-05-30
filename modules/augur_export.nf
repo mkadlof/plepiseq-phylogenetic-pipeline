@@ -1,8 +1,12 @@
 process augur_export {
     tag "${segmentId}"
+
+    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "auspice.json"
+
     cpus 1
     memory "30 GB"
     time "1h"
+
     input:
     tuple val(segmentId), path(tree), path(node_data)
     path metadata
