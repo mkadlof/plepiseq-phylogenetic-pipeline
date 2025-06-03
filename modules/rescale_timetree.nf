@@ -1,5 +1,5 @@
 process rescale_timetree {
-    tag "#{segmentId}"
+    tag "${segmentId}"
     cpus 1
     memory "20 GB"
     time "5h"
