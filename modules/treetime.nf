@@ -1,7 +1,7 @@
 process treetime {
     tag "${segmentId}"
 
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "timetree.nwk"
+    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_timetree.nwk"
 
     cpus 1
     memory "30 GB"
@@ -11,7 +11,7 @@ process treetime {
     path metadata
 
     output:
-    tuple val(segmentId), path("timetree.nwk"), path("*.node_data.json")
+    tuple val(segmentId), path("${segmentId}_timetree.nwk"), path("*.node_data.json")
 
     script:
     """
@@ -19,7 +19,7 @@ process treetime {
         --alignment ${alignment} \
         --tree ${tree} \
         --metadata ${metadata} \
-        --output-tree timetree.nwk \
+        --output-tree ${segmentId}_timetree.nwk \
         --keep-polytomies \
         --branch-length-inference joint \
         --keep-root \

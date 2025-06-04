@@ -1,7 +1,7 @@
 process insert_duplicates_into_alignment {
     tag "${segmentId}"
 
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "alignment_with_duplicates.fasta"
+    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_alignment_with_duplicates.fasta"
 
     cpus 1
     memory "30 GB"
@@ -10,7 +10,7 @@ process insert_duplicates_into_alignment {
     tuple val(segmentId), path(alignment), path(ids)
 
     output:
-    tuple val(segmentId), path("alignment_with_duplicates.fasta")
+    tuple val(segmentId), path("${segmentId}_alignment_with_duplicates.fasta")
 
     script:
     """
@@ -18,6 +18,6 @@ process insert_duplicates_into_alignment {
         --alignment ${alignment} \
         --duplicated_ids ${ids} \
         --action insert \
-        --output ./alignment_with_duplicates.fasta
+        --output ./${segmentId}_alignment_with_duplicates.fasta
     """
 }
