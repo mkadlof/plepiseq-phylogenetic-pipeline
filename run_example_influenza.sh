@@ -6,6 +6,7 @@ nextflow run nf_viral_phylogenetic_pipeline.nf \
              --organism influenza \
              --threshold_Ns 0.1 \
              --threshold_ambiguities 1.0 \
+             --segments_to_consensus MP,NA,NP,NS,PA \
              -with-dag nf_viral_phylogenetic_pipeline.png \
              -with-trace trace.tsv \
              -with-report report.html \

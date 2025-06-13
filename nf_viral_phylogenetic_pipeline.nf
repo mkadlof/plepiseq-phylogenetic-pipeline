@@ -14,6 +14,17 @@ params.map_detail = 'country'
 params.results_dir = "results"
 params.input_prefix = "${workflow.runName}"
 
+
+// Consensus tree will be build only for the segments listed in below variable
+// Currently, it is applicable for influenza only.
+params.segments_to_consensus = ['HA', 'NA', 'PB2', 'PB1', 'PA', 'NP', 'M', 'NS']
+
+// How many trees have to share the same topology to be considered as consensus
+// 1.0 cause error in iqtree2, so one can use almost 1.0, e.g. 0.99999999999
+// It is equivalent of building strict consensus tree.
+// If you want to build a standard majority consensus tree, use 0.5
+params.consensus_tree_threshold = 0.99999999999
+
 src_dir = "${baseDir}/src"
 
 // Core modules
@@ -40,11 +51,15 @@ include { generate_colors_for_features } from './modules/generate_colors_for_fea
 include { transform_input } from './modules/transform_input.nf'
 include { adjust_metadata } from './modules/adjust_metadata.nf'
 include { metadata_for_microreact } from './modules/metadata_for_microreact.nf'
+include { consensus_tree } from './modules/consensus_tree.nf'
 
 workflow core {
     take:
     input_fasta
     metadata
+
+    output:
+    emit: trees
 
     main:
     augur_index_sequences(input_fasta)
@@ -55,7 +70,7 @@ workflow core {
     augur_align(find_identical_sequences.out.uniq_fasta)
     iqtree(augur_align.out)
     c2 = iqtree.out.join(find_identical_sequences.out.duplicated_ids)
-    insert_duplicates_into_tree(c2)
+    trees = insert_duplicates_into_tree(c2)
     c3 = augur_align.out.join(find_identical_sequences.out.duplicated_ids)
     insert_duplicates_into_alignment(c3)
     c4 = insert_duplicates_into_alignment.out.join(insert_duplicates_into_tree.out)
@@ -71,22 +86,22 @@ workflow core {
     generate_colors_for_features(find_country_coordinates.out)
     metadata_for_microreact(generate_colors_for_features.out, metadata)
     prepare_microreact_json(metadata_for_microreact.out, c5)
-
-
 }
 
 def transformed
 
 workflow {
+
     if (organism.toLowerCase() in ['sars', 'sars2', 'sars-cov-2']) {
         ch = Channel.fromPath(input_fasta_g).map { file -> tuple(file.baseName, file) }
-//        input_fasta_g = input_fasta_g.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
         core(ch, metadata)
     }
     else if (organism.toLowerCase() in ['flu', 'infl','influenza']) {
         transformed = transform_input(input_fasta_g).fastas.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
         adjusted_metadata = adjust_metadata(metadata)
         core(transformed, adjusted_metadata)
+        core.out.trees.map{ segment, path -> path }.collect().set{ all_trees }
+        consensus_tree(all_trees)
     }
     else if (organism.toLowerCase() in ['rsv']) {
         error "RSV is not supported yet. Please use 'sars-cov-2' or 'influenza'."
