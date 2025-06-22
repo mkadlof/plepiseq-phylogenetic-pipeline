@@ -4,6 +4,7 @@ tmp/
 NOTES.md
 
 # NEXTFLOW
+nextflow.config
 .nextflow/
 .nextflow.log.*
 work/

@@ -1,0 +1,41 @@
+report.overwrite = true
+dag.overwrite = true
+docker.enabled = true
+docker.image = "pzh-phylogenetic:latest"
+
+process {
+  beforeScript = """
+    export PATH=$PATH:${baseDir}/src
+  """
+
+  executor = 'local'
+  container = 'pzh-phylogenetic:latest'
+  containerEngine = 'docker'
+
+}
+
+profiles {
+    local {
+        process.executor = 'local'
+        process.errorStrategy = 'retry'
+        process.maxRetries = 2
+    }
+
+    slurm {
+        process.executor = 'slurm'
+        process.clusterOptions = '--nodelist=a100-1'
+        process.errorStrategy = 'retry'
+        process.maxRetries = 2
+    }
+}
+
+executor {
+    $local {
+        cpus = 12
+        memory = '30 GB'
+    }
+    $slurm {
+        queueSize = 500
+    }
+}
+
