@@ -1,17 +1,11 @@
 report.overwrite = true
 dag.overwrite = true
 docker.enabled = true
-docker.image = "pzh-phylogenetic:latest"
 
 process {
-  beforeScript = """
-    export PATH=$PATH:${baseDir}/src
-  """
-
   executor = 'local'
   container = 'pzh-phylogenetic:latest'
   containerEngine = 'docker'
-
 }
 
 profiles {
