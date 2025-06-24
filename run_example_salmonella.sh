@@ -162,23 +162,28 @@ if [[ "${map_detail}" != "country" && "${map_detail}" != "city" ]]; then
 fi
 
 nextflow run ${projectDir}/nf_pipeline_bacterial_phylo.nf \
-	     --input_dir ${inputDir} \
-             --input_type ${inputType} \
-	     --metadata ${metadata}  \
-	     --genus ${genus} \
-             --input_prefix ${results_prefix} \
-             --clockRate "${clockRate}" \
-	     --model ${model} \
-	     --starting_trees ${startingTrees} \
-	     --bootstrap ${bootstrap} \
-	     --min_support ${minSupport} \
-	     --threshold_Ns ${thresholdN} \
-	     --threshold_ambiguities ${thresholdAmbigous} \
-	     --main_image ${main_image} \
-	     --prokka_image ${prokka_image} \
-	     --results_dir ${results_dir} \
-	     --threads ${threads} \
-	     --map_detail ${map_detail} \
-	     -profile ${profile} \
-	     -with-trace
+       --input_dir ${inputDir} \
+       --input_type ${inputType} \
+       --metadata ${metadata}  \
+       --genus ${genus} \
+       --input_prefix ${results_prefix} \
+       --clockRate "${clockRate}" \
+       --model ${model} \
+       --starting_trees ${startingTrees} \
+       --bootstrap ${bootstrap} \
+       --min_support ${minSupport} \
+       --threshold_Ns ${thresholdN} \
+       --threshold_ambiguities ${thresholdAmbigous} \
+       --main_image ${main_image} \
+       --prokka_image ${prokka_image} \
+       --results_dir ${results_dir} \
+       --threads ${threads} \
+       --map_detail ${map_detail} \
+       -profile ${profile} \
+       -with-dag dag_png/nf_bacteria_phylogenetic_pipeline.png \
+       -with-trace trace.tsv \
+       -with-report report.html \
+       -resume
 
+# Remove logs from previous runs
+rm \.nextflow.log\.*
