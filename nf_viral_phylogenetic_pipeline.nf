@@ -1,116 +1,97 @@
-input_fasta = file(params.input_fasta)
+// input can be one of the following:
+// 1. A single FASTA file containing sequences - for single segment viruses like SARS-CoV-2
+// 2. A directory containing multiple FASTA files - for multi-segment viruses like Influenza
+
+input_fasta_g = file(params.input_fasta) // This var is overloaded (dir or file)
 metadata = file(params.metadata)
+organism = params.organism
+
+params.input_prefix
+
+params.threshold_Ns = 0.02
+params.threshold_ambiguities = 0.0
+params.map_detail = 'country'
+params.results_dir = "results"
+params.input_prefix = "${workflow.runName}"
 
 src_dir = "${baseDir}/src"
+
+// Core modules
 
 include { augur_index_sequences } from './modules/augur_index_sequences.nf'
 include { identify_low_quality_sequences } from './modules/identify_low_quality_sequences.nf'
 include { augur_filter_sequences } from './modules/augur_filter_sequences.nf'
+include { find_identical_sequences } from './modules/find_identical_sequences.nf'
+include { augur_align } from './modules/augur_align.nf'
+include { remove_duplicates_from_alignment } from './modules/remove_duplicates_from_alignment.nf'
+include { iqtree } from './modules/iqtree.nf'
+include { insert_duplicates_into_tree } from './modules/insert_duplicates_into_tree.nf'
+include { insert_duplicates_into_alignment } from './modules/insert_duplicates_into_alignment.nf'
+include { treetime } from './modules/treetime.nf'
+include { augur_export } from './modules/augur_export.nf'
+include { rescale_timetree } from './modules/rescale_timetree.nf'
+include { prepare_microreact_json } from './modules/prepare_microreact_json.nf'
 
-workflow {
+// metadata modules
+include { find_country_coordinates } from './modules/find_country_coordinates.nf'
+include { generate_colors_for_features } from './modules/generate_colors_for_features.nf'
+
+// influenza specific modules
+include { transform_input } from './modules/transform_input.nf'
+include { adjust_metadata } from './modules/adjust_metadata.nf'
+include { metadata_for_microreact } from './modules/metadata_for_microreact.nf'
+
+workflow core {
+    take:
+    input_fasta
+    metadata
+
+    main:
     augur_index_sequences(input_fasta)
     identify_low_quality_sequences(augur_index_sequences.out)
-    augur_filter_sequences(input_fasta, augur_index_sequences.out, metadata, identify_low_quality_sequences.out)
-//     find_identical_sequences(filter_sequences.out, params.output_dir)
-//     align_no_dups(find_identical_sequences.out, params.output_dir)
-//     align_with_dups(filter_sequences.out, params.output_dir)
-//     build_tree(align_no_dups.out, params.metadata, params.output_dir)
-//     insert_duplicates(build_tree.out, find_identical_sequences.ids, params.output_dir)
+    c1 = input_fasta.join(augur_index_sequences.out.sequence_index).join(identify_low_quality_sequences.out)
+    augur_filter_sequences(c1, metadata)
+    find_identical_sequences(augur_filter_sequences.out)
+    augur_align(find_identical_sequences.out.uniq_fasta)
+    iqtree(augur_align.out)
+    c2 = iqtree.out.join(find_identical_sequences.out.duplicated_ids)
+    insert_duplicates_into_tree(c2)
+    c3 = augur_align.out.join(find_identical_sequences.out.duplicated_ids)
+    insert_duplicates_into_alignment(c3)
+    c4 = insert_duplicates_into_alignment.out.join(insert_duplicates_into_tree.out)
+    treetime(c4, metadata)
+    rescale_timetree(treetime.out)
+
+    c5 = insert_duplicates_into_tree.out.join(rescale_timetree.out)
+
+    augur_export(treetime.out, metadata)
+
+    // Transforming metadata and prepare .microreact JSON
+    find_country_coordinates(metadata)
+    generate_colors_for_features(find_country_coordinates.out)
+    metadata_for_microreact(generate_colors_for_features.out, metadata)
+    prepare_microreact_json(metadata_for_microreact.out, c5)
+
+
 }
 
+def transformed
 
-//
-// process find_identical_sequences {
-//     input:
-//     path fasta
-//     path outdir
-//
-//     output:
-//     path "${outdir}/valid_strains_unique.fasta", emit: out
-//     path "${outdir}/valid_strains_ident_seq.csv", emit: ids
-//
-//     script:
-//     """
-//     python3 src/find_identical_seqences.py --input ${fasta} --output_dir ${outdir}
-//     """
-// }
-//
-// process align_no_dups {
-//     input:
-//     path fasta
-//     path outdir
-//
-//     output:
-//     path "${outdir}/tree.fasta", emit: out
-//
-//     script:
-//     """
-//     augur align --sequences ${fasta} --output ${outdir}/tree.fasta
-//     """
-// }
-//
-// process align_with_dups {
-//     input:
-//     path fasta
-//     path outdir
-//
-//     output:
-//     path "${outdir}/tree_dups.fasta", emit: out
-//
-//     script:
-//     """
-//     augur align --sequences ${fasta} --output ${outdir}/tree_dups.fasta
-//     """
-// }
-//
-// process build_tree {
-//     input:
-//     path aln
-//     path metadata
-//     path outdir
-//
-//     output:
-//     path "${outdir}/tree.fasta.contree", emit: out
-//
-//     script:
-//     """
-//     iqtree2 -nt AUTO \
-//         -s ${aln} \
-//         -m GTR+G \
-//         -B 1000 \
-//         -con \
-//         -minsup 0.75 \
-//         -redo \
-//         --dating LSD \
-//         --date ${metadata}
-//     """
-// }
-//
-// process insert_duplicates {
-//     input:
-//     path tree
-//     path ids
-//     path outdir
-//
-//     output:
-//     path "${outdir}/consensus_tree.nwk"
-//
-//     script:
-//     """
-//     python src/insert_missing_dupliated_sequences.py \
-//         --tree ${tree} \
-//         --ids ${ids} > ${outdir}/consensus_tree.nwk
-//     """
-// }
-//
-// nextflow.config
-//
-// params.i = null
-// params.m = null
-// params.o = "results"
-//
-// process {
-//     withLabel: 'local' {
-//         executor = 'local'
-//     }
-// }
+workflow {
+    if (organism.toLowerCase() in ['sars', 'sars2', 'sars-cov-2']) {
+        ch = Channel.fromPath(input_fasta_g).map { file -> tuple(file.baseName, file) }
+//        input_fasta_g = input_fasta_g.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
+        core(ch, metadata)
+    }
+    else if (organism.toLowerCase() in ['flu', 'infl','influenza']) {
+        transformed = transform_input(input_fasta_g).fastas.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
+        adjusted_metadata = adjust_metadata(metadata)
+        core(transformed, adjusted_metadata)
+    }
+    else if (organism.toLowerCase() in ['rsv']) {
+        error "RSV is not supported yet. Please use 'sars-cov-2' or 'influenza'."
+    }
+    else {
+        error "Organism not supported. Please use 'sars-cov-2', 'influenza' or 'rsv'."
+    }
+}

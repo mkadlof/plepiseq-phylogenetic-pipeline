@@ -1,5 +1,6 @@
 .idea/
 results
+tmp/
 NOTES.md
 
 # NEXTFLOW
@@ -8,6 +9,7 @@ nextflow.config
 .nextflow.log.*
 work/
 report.html
+trace.tsv
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
