@@ -159,7 +159,7 @@ process prepare_SNPs_alignment {
     container  = params.main_image
     tag "Preparing SNPs alignment"
     cpus params.threads
-    memory "50 GB"
+    memory "10 GB"
     time "2h"
 
     input:
@@ -185,11 +185,11 @@ process prepare_SNPs_alignment {
     """
 }
 
-process identify_identical_seqences {
+process identify_identical_sequences {
     container  = params.main_image
     tag "Preparing SNPs alignment"
     cpus params.threads
-    memory "50 GB"
+    memory "10 GB"
     time "2h"
 
     input:
@@ -199,7 +199,7 @@ process identify_identical_seqences {
     path("alignment_SNPs_ident_seq.csv"), emit: identical_sequences_mapping 
     script:
     """
-    python /opt/docker/custom_scripts/find_identical_seqences.py -i ${fasta} -o .
+    python /opt/docker/custom_scripts/find_identical_sequences.py -i ${fasta} -o .
     """
 
 }
@@ -208,7 +208,7 @@ process run_raxml {
     container  = params.main_image
     tag "Calculating SNPs tree"
     cpus params.threads
-    memory "50 GB"
+    memory "10 GB"
     time "8h"
     input:
     tuple path(fasta), path(partition)
@@ -595,11 +595,11 @@ augur_filter_sequences_out = augur_filter_sequences(augur_index_sequences_out, m
 
 prepare_SNPs_alignment_and_partition_out = prepare_SNPs_alignment(augur_filter_sequences_out.to_SNPs_alignment)
 
-identify_identical_seqences_out = identify_identical_seqences(prepare_SNPs_alignment_and_partition_out)
+identify_identical_sequences_out = identify_identical_sequences(prepare_SNPs_alignment_and_partition_out)
 
-run_raxml_out = run_raxml(identify_identical_seqences_out.to_raxml)
+run_raxml_out = run_raxml(identify_identical_sequences_out.to_raxml)
 
-restore_identical_sequences_out = restore_identical_sequences(run_raxml_out.tree, identify_identical_seqences_out.identical_sequences_mapping)
+restore_identical_sequences_out = restore_identical_sequences(run_raxml_out.tree, identify_identical_sequences_out.identical_sequences_mapping)
 
 add_temporal_data_out = add_temporal_data(restore_identical_sequences_out.tree, augur_filter_sequences_out.alignment_and_metadata)
 

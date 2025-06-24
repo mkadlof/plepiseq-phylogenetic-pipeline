@@ -6,7 +6,7 @@
 projectDir="/home/michall/git/pzh-phylogenetic-pipeline" # location of main project
 
 # docker images required to execute this pipeline
-main_image="pzh_pipeline_phylogenetic:latest" # main image used by phylogenetic pipeline
+main_image="pzh_pipeline_phylogenetic-bacterial:latest" # main image used by phylogenetic pipeline
 prokka_image="staphb/prokka:latest" # name of the image with prokka software
 
 ## Nextflow executor (local or slurm)
@@ -32,8 +32,8 @@ minSupport=70 # Minimum support for a branch to keep it in a tree
 clockRate="" # User can still overrride any built-in and estimated values fron the alignment. If empty data derived
 threads=36 # ilosc watkow uzywanych maksymalnie przez pipeline
 # QC params
-thresholdN=100 # maksymalna ilosc N w genomie
-thresholdAmbigous=100 # maksymalna ilosc znakow ambigous w genomie
+thresholdN=1.0 # maksymalna ilosc N w genomie
+thresholdAmbigous=1.0 # maksymalna ilosc znakow ambigous w genomie
 # Visualization
 map_detail="city"  #  poziom hierarchi na mapie przypisany probce. Mozliwe wartosci to country lub city. 
 
@@ -60,8 +60,8 @@ usage() {
     echo "  --bootstrap LICZBA                Liczba replikacji bootstrap dla RAxML (domyślnie: 200)"
     echo "  --minSupport LICZBA               Minimalne wsparcie gałęzi, by pozostała w końcowym drzewie (domyslnie: 70)"
     echo "  --threads LICZBA                  Liczba rdzeni CPU do wykorzystania (domyślnie: 36, wielkosc musi byc iloczynem 12)"
-    echo "  --thresholdN LICZBA               Maksymalna liczba znaków 'N' w genomie (domyślnie: 100)"
-    echo "  --thresholdAmbigous LICZBA        Maksymalna liczba niejednoznacznych znaków w genomie (domyślnie: 100)"
+    echo "  --thresholdN LICZBA               Maksymalna liczba znaków 'N' w genomie (domyślnie: 1.0)"
+    echo "  --thresholdAmbigous LICZBA        Maksymalna liczba niejednoznacznych znaków w genomie (domyślnie: 1.0)"
     echo "  --main_image NAZWA:TAG            Obraz Docker zawierający narzędzia używane przez pipeline"
     echo "  --prokka_image NAZWA:TAG          Obraz Docker z oprogramowaniem Prokka"
     echo "  --map_detail STR                  Informacja czy na mapie probka przypisana jest do poziomu kraju czy miasta"
