@@ -161,7 +161,7 @@ if [[ "${map_detail}" != "country" && "${map_detail}" != "city" ]]; then
     echo "Błąd: nieprawidłowy typ danych wejściowych: '${map_detail}'. Dozwolone: city, country."; exit 1
 fi
 
-nextflow run ${projectDir}/nf_pipeline_bacterial_phylo.nf \
+nextflow run ${projectDir}/nf_bacterial_phylogenetic_pipeline.nf \
        --input_dir ${inputDir} \
        --input_type ${inputType} \
        --metadata ${metadata}  \
