@@ -30,10 +30,11 @@ Quick start
    cp nextflow.config.template nextflow.config
    ```
    **Important**: adjust the content of this file to you particular environment and needs.
-7. [Optional] Run the pipeline on one examples:
+7. [Optional] Run one or more example scripts to test the pipeline:
    ```bash
    ./run_example_sars-cov-2.sh
    ./run_example_influenza.sh
+   ./run_example_salmonella.sh
     ```
 
 Related projects
