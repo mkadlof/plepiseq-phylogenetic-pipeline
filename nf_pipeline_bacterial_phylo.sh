@@ -16,26 +16,26 @@ profile="local"
 metadata=""
 inputDir=""
 inputType=""
-genus="" # analyzed genus only Salmonella Escherichi and Campylobacter are currently supported
+genus="" # analyzed genus only Salmonella Escherichia and Campylobacter are currently supported
 
 # output - localization of output + prefix added to all results
 # as we aggregate multiple files we cannot "guess" it as e.g. we do for NGS pipeline
 results_dir="./results"
 results_prefix=""
 
-# Pipeline-specific parameteres with defaults
-# Defaults are hardcoded in this scrupt NOT in the .nf file 
+# Pipeline-specific parameters with defaults
+# Defaults are hardcoded in this script NOT in the .nf file
 model="GTR+G" # Model for raxml
 startingTrees=10 # Number of random initial trees
 bootstrap=200 # Number of bootstraps
 minSupport=70 # Minimum support for a branch to keep it in a tree
-clockRate="" # User can still overrride any built-in and estimated values fron the alignment. If empty data derived
-threads=36 # ilosc watkow uzywanych maksymalnie przez pipeline
+clockRate="" # User can still override any built-in and estimated values fron the alignment. If empty data derived
+threads=36 # ilość wątków używanych maksymalnie przez pipeline
 # QC params
-thresholdN=1.0 # maksymalna ilosc N w genomie
-thresholdAmbigous=1.0 # maksymalna ilosc znakow ambigous w genomie
+thresholdN=1.0 # Maksymalny odsetek N w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
+thresholdAmbiguous=1.0 # Maksymalny odsetek symboli niejednoznacznych w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
 # Visualization
-map_detail="city"  #  poziom hierarchi na mapie przypisany probce. Mozliwe wartosci to country lub city. 
+map_detail="city"  #  poziom hierarchii na mapie przypisany próbce. Możliwe wartości to country lub city.
 
 # Usage function to display help
 usage() {
@@ -58,21 +58,21 @@ usage() {
     echo "  --model MODEL                     Model substytucji dla RAxML (domyślnie: GTR+G)"
     echo "  --startingTrees LICZBA            Liczba drzew startowych dla RAxML (domyślnie: 10)"
     echo "  --bootstrap LICZBA                Liczba replikacji bootstrap dla RAxML (domyślnie: 200)"
-    echo "  --minSupport LICZBA               Minimalne wsparcie gałęzi, by pozostała w końcowym drzewie (domyslnie: 70)"
-    echo "  --threads LICZBA                  Liczba rdzeni CPU do wykorzystania (domyślnie: 36, wielkosc musi byc iloczynem 12)"
-    echo "  --thresholdN LICZBA               Maksymalna liczba znaków 'N' w genomie (domyślnie: 1.0)"
-    echo "  --thresholdAmbigous LICZBA        Maksymalna liczba niejednoznacznych znaków w genomie (domyślnie: 1.0)"
+    echo "  --minSupport LICZBA               Minimalne wsparcie gałęzi, by pozostała w końcowym drzewie (domyślnie: 70)"
+    echo "  --threads LICZBA                  Liczba rdzeni CPU do wykorzystania (domyślnie: 36, wielkość musi byc iloczynem 12)"
+    echo "  --thresholdN LICZBA               Maksymalny odsetek N w genomie (float z przedziału [0, 1]) (domyślnie: 1.0)"
+    echo "  --thresholdAmbiguous LICZBA       Maksymalny odsetek symboli niejednoznacznych w genomie (float z przedziału [0, 1]) (domyślnie: 1.0)"
     echo "  --main_image NAZWA:TAG            Obraz Docker zawierający narzędzia używane przez pipeline"
     echo "  --prokka_image NAZWA:TAG          Obraz Docker z oprogramowaniem Prokka"
-    echo "  --map_detail STR                  Informacja czy na mapie probka przypisana jest do poziomu kraju czy miasta"
-    echo "                                    (dozwolone wartosci 'country' lub 'city', domyslnie city)"
+    echo "  --map_detail STR                  Informacja czy na mapie próbka przypisana jest do poziomu kraju czy miasta"
+    echo "                                    (dozwolone wartości 'country' lub 'city', domyślnie city)"
     echo "  -h, --help                        Show this help message"
     exit 1
 }
 
 # Parse arguments using GNU getopt
 TEMP=$(getopt -o hm:i:t:g:p:d:o:x:r: \
---long metadata:,inputDir:,inputType:,genus:,results_prefix:,projectDir:,results_dir:,profile:,clockRate:,model:,startingTrees:,bootstrap:,minSupport:,threads:,thresholdN:,thresholdAmbigous:,main_image:,prokka_image:,map_detail:,help \
+--long metadata:,inputDir:,inputType:,genus:,results_prefix:,projectDir:,results_dir:,profile:,clockRate:,model:,startingTrees:,bootstrap:,minSupport:,threads:,thresholdN:,thresholdAmbiguous:,main_image:,prokka_image:,map_detail:,help \
 -n "$0" -- "$@")
 
 if [ $? != 0 ]; then usage; fi
@@ -96,7 +96,7 @@ while true; do
     --minSupport) minSupport="$2"; shift 2 ;;
     --threads) threads="$2"; shift 2 ;;
     --thresholdN) thresholdN="$2"; shift 2 ;;
-    --thresholdAmbigous) thresholdAmbigous="$2"; shift 2 ;;
+    --thresholdAmbiguous) thresholdAmbiguous="$2"; shift 2 ;;
     --main_image) main_image="$2"; shift 2 ;;
     --prokka_image) prokka_image="$2"; shift 2 ;;
     --map_detail) map_detail="$2"; shift 2 ;;
@@ -173,7 +173,7 @@ nextflow run ${projectDir}/nf_bacterial_phylogenetic_pipeline.nf \
        --bootstrap ${bootstrap} \
        --min_support ${minSupport} \
        --threshold_Ns ${thresholdN} \
-       --threshold_ambiguities ${thresholdAmbigous} \
+       --threshold_ambiguities ${thresholdAmbiguous} \
        --main_image ${main_image} \
        --prokka_image ${prokka_image} \
        --results_dir ${results_dir} \
