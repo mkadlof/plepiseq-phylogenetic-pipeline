@@ -2,11 +2,11 @@
 def hostname = "hostname".execute().text.trim() // We need that to overwrite a default "container" options from config, used by the alphafold
 ExecutionDir = new File('.').absolutePath
 
-// ALL parameters are setup usomg bash wrapper except enterobase_api_token that MUST be part of nextflow config
+// ALL parameters are setup using bash wrapper except enterobase_api_token that MUST be part of nextflow config
 // Comments were preserved in the  nf file for a local executor
 params.input_dir = ""
 params.input_type = ""
-params.input_prefix = "" // Used only to 1. create subdirectory in params.results_dir and 2. as a prefix for auspice files. These prefix is used by auspice as part of an adress e..g "flu_ha_h1n1_timestamp" or "sarscov2_timestamp" or "salmonella_poland_timestamp"
+params.input_prefix = "" // Used only to 1. create subdirectory in params.results_dir and 2. as a prefix for auspice files. These prefix is used by auspice as part of an address e..g "flu_ha_h1n1_timestamp" or "sarscov2_timestamp" or "salmonella_poland_timestamp"
 params.main_image = "" 
 params.results_dir = ""
 params.prokka_image = ""
@@ -16,12 +16,12 @@ params.model = "GTR+G" // Model for raxml
 params.starting_trees = 10 // Number of random initial trees
 params.bootstrap = 200 // Number of bootstraps
 params.min_support = 70 // Minimum support for a branch to keep it in a tree
-params.genus = "" // We will supplement pipeline with clock rates for relevant genus if temporal singal in the alignment is week
-params.clockrate = "" // User can still overrride any built-in and estimated values fron the alignment
+params.genus = "" // We will supplement pipeline with clock rates for relevant genus if temporal signal in the alignment is week
+params.clockrate = "" // User can still override any built-in and estimated values fron the alignment
 params.gen_per_year = ""
 
-// Visulazation
-params.map_detail = "" // Czy probce przypisujemy koordynaty kraju czy miasta pochodzenia. Wymagane dla microreacta
+// Visualization
+params.map_detail = "" // Czy próbce przypisujemy koordynaty kraju czy miasta pochodzenia. Wymagane dla microreact'a.
 
 // User must use our config that has two profiles slurm and local, nextflow must be initialized with one of them
 
@@ -62,7 +62,7 @@ process run_prokka {
   echo -e "{\\"status\\": \\"tak\\", \
             \\"prokka_gff\\": \\"${params.results_dir}/${x}/${x}_prokka.gff\\", \
             \\"prokka_ffn\\": \\"${params.results_dir}/${x}/${x}_prokka.ffn\\"}" >> prokka.json
-  # Following files are usefull for phylogenetic analyis
+  # Following files are useful for phylogenetic analysis
   mv prokka_out/prokka_out.gff ${x}.gff
   mv prokka_out/prokka_out.ffn ${x}.ffn
 
@@ -81,7 +81,7 @@ process run_roary {
   tuple path("core_genes_alignment.fasta"), path("core_genes_alignment.embl")
   script:
   """
-  # -f to nazwa katalogu z outputem
+  # -f to nazwa katalogu z wynikiem
   # -e create a multiFASTA alignment
   # -n fast core gene alignment with MAFFT, use with -e
   # -v verbose
@@ -130,12 +130,12 @@ process augur_filter_sequences {
     script:
     """
     # For NOW we are liberal when it comes to sequences quality
-    # the script only checks columns 5 and 6 in $index i.e. Ns and abigous
+    # the script only checks columns 5 and 6 in $index i.e. Ns and ambiguous
     python /opt/docker/custom_scripts/identify_low_quality_sequences.py --output_dir . \
                                                                         --threshold_Ns ${params.threshold_Ns} \
                                                                         --threshold_ambiguities ${params.threshold_ambiguities} \
                                                                         $index
-    # TO DO add a script that can retain only biologicall valid entries from a set of sequences
+    # TO DO add a script that can retain only biologically valid entries from a set of sequences
     # This should be based on specific REQUIRED column in metadata file ( our NGS pipeline return this info)
     # Salmonella - predicted serovar level (e.g. only Montevideo)
     # Campylobacter - TO DO 
@@ -144,8 +144,8 @@ process augur_filter_sequences {
     # SARS-Cov-2 no filters 
     # RSV type level (only A ot only B) 
     
-    # For now we use augur filter to preprare fasta file without invalid_strains.txt prepared with filter_low_quality_sequences script 
-    # Other usefull options --min-length --max-length  --group-by which we do not use for now
+    # For now we use augur filter to prepare fasta file without invalid_strains.txt prepared with filter_low_quality_sequences script
+    # Other useful options --min-length --max-length  --group-by which we do not use for now
     augur filter \
         --sequences ${fasta} \
         --sequence-index ${index} \
@@ -159,7 +159,7 @@ process prepare_SNPs_alignment {
     container  = params.main_image
     tag "Preparing SNPs alignment"
     cpus params.threads
-    memory "50 GB"
+    memory "10 GB"
     time "2h"
 
     input:
@@ -169,8 +169,8 @@ process prepare_SNPs_alignment {
 
     script:
     """
-    # --max_gap exxlude from the analysis genes for which at least one sample missing more than 30% of sequence
-    # --merge_genes partiotin file wont have many entries, one for each gene, but rather a signle entry 
+    # --max_gap exclude from the analysis genes for which at least one sample missing more than 30% of sequence
+    # --merge_genes partition file wont have many entries, one for each gene, but rather a single entry
     # for an entire genome + total number of constant sites observed in the initial alignment
     # this significantly speeds up the calculations by raxml as there are no partitions
     python /opt/docker/custom_scripts/prep_SNPs_alignment_and_partition.py --input_fasta ${fasta} \
@@ -185,11 +185,11 @@ process prepare_SNPs_alignment {
     """
 }
 
-process identify_identical_seqences {
+process identify_identical_sequences {
     container  = params.main_image
     tag "Preparing SNPs alignment"
     cpus params.threads
-    memory "50 GB"
+    memory "10 GB"
     time "2h"
 
     input:
@@ -199,7 +199,7 @@ process identify_identical_seqences {
     path("alignment_SNPs_ident_seq.csv"), emit: identical_sequences_mapping 
     script:
     """
-    python /opt/docker/custom_scripts/find_identical_seqences.py -i ${fasta} -o .
+    python /opt/docker/custom_scripts/find_identical_sequences.py -i ${fasta} -o .
     """
 
 }
@@ -208,7 +208,7 @@ process run_raxml {
     container  = params.main_image
     tag "Calculating SNPs tree"
     cpus params.threads
-    memory "50 GB"
+    memory "10 GB"
     time "8h"
     input:
     tuple path(fasta), path(partition)
@@ -272,7 +272,7 @@ process restore_identical_sequences {
 process add_temporal_data {
     // adjust branch lengths in tree to position tips by their sample date and infer the most likely time of their ancestors
     // augur refine seems to be a wrapper around treetime
-    // Be awere that poor data with poor temporal signal might result in an incorrect tree
+    // Be aware that poor data with poor temporal signal might result in an incorrect tree
     container  = params.main_image
     tag "Adding temporal data to tree"
     cpus 1
@@ -307,7 +307,7 @@ process add_temporal_data {
    }
 
     if [ -n "${params.clockrate}"  ]; then
-       # use user provede parameters for treetime overwrites all safeguards
+       # use user provided parameters for treetime overwrites all safeguards
        run_augur ${params.clockrate}
 
     else
@@ -327,7 +327,7 @@ process add_temporal_data {
         fi
         run_augur \${clockrate}
       else
-        # we run treetime without specifyng clock rate, alignment is ok
+        # we run treetime without specifying clock rate, alignment is ok
          
         augur refine --tree ${tree} \\
                     --alignment ${alignment} \\
@@ -361,8 +361,8 @@ process add_temporal_data {
 }
 
 process run_dummy_refine {
-    // This process runs augur refine without tree time. It goal is to produce valif branch_lengths.json file for oryginal nwk trre from raxml-ng
-    // So it can visualized alongside actual timetrr 
+    // This process runs augur refine without tree time. It goal is to produce valid branch_lengths.json file for original nwk tree from raxml-ng
+    // So it can visualized alongside actual timetree
     container  = params.main_image
     tag "Adding temporal data to tree"
     cpus 1
@@ -395,9 +395,9 @@ process run_dummy_refine {
 }
 
 process find_country_coordinates {
-    // use openstretmap api to request geographical objects cordinates
+    // use Open Street Map api to request geographical objects coordinates
     container  = params.main_image
-    tag "Preparaing geo data for analyzed data"
+    tag "Preparing geo data for analyzed data"
     cpus 1
     memory "20 GB"
     time "2h"
@@ -411,7 +411,7 @@ process find_country_coordinates {
                                                           --output_metadata tmp.txt \
                                                           --features country \
                                                           --features city
-    # sort file usong feature name
+    # sort file using feature name
     cat tmp.txt | sort -k1 > longlang.txt
     """
 
@@ -419,7 +419,7 @@ process find_country_coordinates {
 
 process generate_colors_for_features {
     container  = params.main_image
-    tag "Preparaing colors for analyzed data"
+    tag "Preparing colors for analyzed data"
     cpus 1
     memory "20 GB"
     time "2h"
@@ -447,7 +447,7 @@ process visualize_tree_1 {
     tuple path(tree), path(branch_lengths), path(traits)
     tuple path(longlat), path(colors)
     path(metadata)
-    val(suffix) // either timetree or regulartree
+    val(suffix) // either timetree or regular tree
     output:
     path("${params.input_prefix}_${suffix}.json")
     script:
@@ -477,7 +477,7 @@ process visualize_tree_2 {
     tuple path(tree), path(branch_lengths)
     tuple path(longlat), path(colors)
     path(metadata)
-    val(suffix) // either timetree or regulartree
+    val(suffix) // either timetree or regular tree
     output:
     path("${params.input_prefix}_${suffix}.json")
     script:
@@ -495,7 +495,7 @@ process visualize_tree_2 {
 process metadata_for_microreact {
     container  = params.main_image
     publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${params.input_prefix}_metadata_microreact.tsv"
-    tag "Preperaning metadata for microreact"
+    tag "Preparing metadata for microreact"
     cpus 1
     memory "20 GB"
     time "1h"
@@ -518,7 +518,7 @@ process metadata_for_microreact {
 process prepare_microreact_json {
     container  = params.main_image 
     publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${params.input_prefix}_microreactproject.microreact"
-    tag "Preperaning .microreact file"
+    tag "Preparing .microreact file"
     cpus 1
     memory "20 GB"
     time "1h"
@@ -595,11 +595,11 @@ augur_filter_sequences_out = augur_filter_sequences(augur_index_sequences_out, m
 
 prepare_SNPs_alignment_and_partition_out = prepare_SNPs_alignment(augur_filter_sequences_out.to_SNPs_alignment)
 
-identify_identical_seqences_out = identify_identical_seqences(prepare_SNPs_alignment_and_partition_out)
+identify_identical_sequences_out = identify_identical_sequences(prepare_SNPs_alignment_and_partition_out)
 
-run_raxml_out = run_raxml(identify_identical_seqences_out.to_raxml)
+run_raxml_out = run_raxml(identify_identical_sequences_out.to_raxml)
 
-restore_identical_sequences_out = restore_identical_sequences(run_raxml_out.tree, identify_identical_seqences_out.identical_sequences_mapping)
+restore_identical_sequences_out = restore_identical_sequences(run_raxml_out.tree, identify_identical_sequences_out.identical_sequences_mapping)
 
 add_temporal_data_out = add_temporal_data(restore_identical_sequences_out.tree, augur_filter_sequences_out.alignment_and_metadata)
 
