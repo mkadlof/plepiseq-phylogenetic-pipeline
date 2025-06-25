@@ -5,7 +5,10 @@ This project is part of [PleEpiSeq](https://www.pzh.gov.pl/projekty-i-programy/p
 
 Pipeline overview
 -----------------
-![nf_viral_phylogenetic_pipeline.png](nf_viral_phylogenetic_pipeline.png "Pipeline Overview")
+Following links provide to PNG files with DAG overview of the pipeline:
+- [Sars pipeline](dag_png/nf_sars_phylogenetic_pipeline.png)
+- [Influenza pipeline](dag_png/nf_influenza_phylogenetic_pipeline.png)
+- [Bacterial pipeline](dag_png/nf_bacterial_phylogenetic_pipeline.png)
 
 Quick start
 -----------
@@ -13,15 +16,25 @@ Quick start
 1. Install [Nextflow](https://www.nextflow.io/docs/latest/install.html)
 2. Install [Docker](https://docs.docker.com/engine/install/)
 3. Clone this repository
-4. Build docker image
+4. Build docker pipeline images:
    ```bash
-   docker build -t pzh_pzh-phylogenetic .
+   docker build -t pzh_pipeline_viral-phylo -f Dockerfiles/Dockerfile-viral .
+   docker build -t pzh_pipeline_bacterial-phylo -f Dockerfiles/Dockerfile-bacterial .
    ```
-5. Run the pipeline on example data:
+5. Pull [staphb/prokka image](https://hub.docker.com/r/staphb/prokka) image from DockerHub using:
    ```bash
-   ./run_viral_pipeline.sh
+   docker pull staphb/prokka:latest
+   ```
+6. Set up your Nextflow configuration file. Recommended way is to copy the example configuration file in the repository root.
+   ```bash
+   cp nextflow.config.template nextflow.config
+   ```
+   **Important**: adjust the content of this file to you particular environment and needs.
+7. [Optional] Run the pipeline on one examples:
+   ```bash
+   ./run_example_sars-cov-2.sh
+   ./run_example_influenza.sh
     ```
-
 
 Related projects
 ----------------
@@ -32,65 +45,11 @@ Another project related to PleEpiSeq is [Sequnecing pipline](https://github.com/
 
 To execute bacterial pipeline type
 
+-----------------------------------------------------------------
+
 # Bacterial Phylogenetic Pipeline
 
 This pipeline constructs bacterial phylogenies using annotated assemblies or raw FASTA files.
-
-## Prerequisites
-
-Before running the pipeline, ensure the following requirements are met:
-
-### 1. Docker Images
-
-You must have the following Docker images available on your machine:
-
-- [`staphb/prokka:latest`](https://hub.docker.com/r/staphb/prokka):  
-  Pull from DockerHub using:
-  ```bash
-  docker pull staphb/prokka:latest
-  ```
-
-- `pzh_pipeline_phylogenetic:latest`:  
-  Build locally from the repository:
-  ```bash
-  docker build -t pzh_pipeline_phylogenetic:latest -f Dockerfile-phylogenetic .
-  ```
-
-### 2. Nextflow Configuration
-
-Ensure your `~/.nextflow/config` includes the appropriate executor profiles. You can copy and paste the following configuration.  
-**Important**: Update the `--nodelist` value under the `slurm` profile to match the hostname of your cluster.
-
-```
-profiles {
-    local {
-        process.executor = 'local'
-        process.errorStrategy = 'retry'
-        process.maxRetries = 2
-    }
-
-    slurm {
-        process.executor = 'slurm'
-        process.clusterOptions = '--nodelist=a100-1'
-        process.errorStrategy = 'retry'
-        process.maxRetries = 2
-    }
-}
-
-executor {
-    $local {
-        cpus = 256
-        memory = '2000 GB'
-    }
-    $slurm {
-        queueSize = 500
-    }
-}
-
-docker.enabled = true
-```
-
----
 
 ## Minimal Execution
 
