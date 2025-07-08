@@ -18,8 +18,7 @@ Quick start
 3. Clone this repository
 4. Build docker pipeline images:
    ```bash
-   docker build -t pzh_pipeline_viral-phylo -f Dockerfiles/Dockerfile-viral .
-   docker build -t pzh_pipeline_bacterial-phylo -f Dockerfiles/Dockerfile-bacterial .
+   docker build -t pzh_pipeline-phylo -f Dockerfiles/Dockerfile.
    ```
 5. Pull [staphb/prokka image](https://hub.docker.com/r/staphb/prokka) image from DockerHub using:
    ```bash
