@@ -6,7 +6,7 @@
 projectDir="/home/michall/git/pzh-phylogenetic-pipeline" # location of main project
 
 # docker images required to execute this pipeline
-main_image="pzh_pipeline_phylogenetic-bacterial:latest" # main image used by phylogenetic pipeline
+main_image="pzh_pipeline-phylo:latest" # main image used by phylogenetic pipeline
 prokka_image="staphb/prokka:latest" # name of the image with prokka software
 
 ## Nextflow executor (local or slurm)
@@ -179,11 +179,4 @@ nextflow run ${projectDir}/nf_bacterial_phylogenetic_pipeline.nf \
        --results_dir ${results_dir} \
        --threads ${threads} \
        --map_detail ${map_detail} \
-       -profile ${profile} \
-       -with-dag dag_png/nf_bacteria_phylogenetic_pipeline.png \
-       -with-trace trace.tsv \
-       -with-report report.html \
-       -resume
-
-# Remove logs from previous runs
-rm \.nextflow.log\.*
+       -profile ${profile} 
