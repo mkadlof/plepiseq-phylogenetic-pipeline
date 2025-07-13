@@ -3,7 +3,7 @@
 # Simplified script to run bacterial phylogenetic pipeline using SNP data
 
 # required to run .nf script + "modules" should be a subdirectory
-projectDir="/home/michall/git/pzh-phylogenetic-pipeline" # location of main project
+projectDir="" # location of main project
 
 # docker images required to execute this pipeline
 main_image="pzh_pipeline-phylo:latest" # main image used by phylogenetic pipeline
@@ -49,7 +49,7 @@ usage() {
     echo "  -t, --inputType TYP               Typ danych wejściowych: gff lub fasta (WYMAGANE)"
     echo "  -g, --genus NAZWA                 Rodzaj bakterii: Salmonella, Escherichia lub Campylobacter (WYMAGANE)"
     echo "  -p, --results_prefix PREFIKS      Prefiks dodawany do wszystkich plików wynikowych (WYMAGANE)"
-    echo "  -d, --projectDir ŚCIEŻKA          Ścieżka do lokalnej wersji repozytorium"
+    echo "  -d, --projectDir ŚCIEŻKA          Ścieżka do lokalnej wersji repozytorium (WYMAGANE)"
     echo
     echo "Opcjonalne parametry:"
     echo "  -o, --results_dir ŚCIEŻKA         Katalog wynikowy (domyślnie: ./results)"
