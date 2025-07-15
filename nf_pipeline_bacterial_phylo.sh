@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# A function used to determine which column in metadatafile has a specific header
+get_col_idx() {
+    local col_name=$1
+    local header_line=$2
+    echo "$header_line" | awk -v name="$col_name" -F'\t' '{
+        for (i=1; i<=NF; i++) {
+            if ($i == name) {
+                print i;
+                exit
+            }
+        }
+    }'
+}
+
 # Simplified script to run bacterial phylogenetic pipeline using SNP data
 
 # required to run .nf script + "modules" should be a subdirectory
@@ -115,7 +129,10 @@ fi
 # 1. Check if input paths exist
 if [ ! -f "$metadata" ]; then
     echo "Błąd: plik metadata '$metadata' nie istnieje."; exit 1
+else
+    header=$(head -n 1 "$metadata")
 fi
+
 if [ ! -d "$inputDir" ]; then
     echo "Błąd: katalog wejściowy '$inputDir' nie istnieje."; exit 1
 fi
@@ -159,6 +176,43 @@ fi
 # 7. Validate map_detail
 if [[ "${map_detail}" != "country" && "${map_detail}" != "city" ]]; then
     echo "Błąd: nieprawidłowy typ danych wejściowych: '${map_detail}'. Dozwolone: city, country."; exit 1
+fi
+
+# 8 Safegurads 
+# Restrict the analysis to samples belonging to the same serovar or ST.
+# Analysis of samples from different serovars/ST makes no sense
+
+# Determine the safeguard level
+safeguard_level="Serovar" # ST for sequence type, None to skip safegurads
+
+# Find Serovar column
+serovar_col=$(get_col_idx "Serovar" "$header")
+if [ -z "$serovar_col" ]; then
+    echo "Błąd: Kolumna 'Serovar' nie znaleziona w metadanych."; exit 1
+fi
+
+# Find MLST column
+mlst_col=$(get_col_idx "MLST" "$header")
+if [ -z "$mlst_col" ]; then
+    echo "Błąd: Kolumna 'MLST' nie znaleziona w metadanych."; exit 1
+fi
+
+# Checks depending on safeguard_level
+
+if [ "$safeguard_level" = "Serovar" ]; then
+    unique_serovars=$(awk -v col="$serovar_col" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+    if [ "$unique_serovars" -gt 1 ]; then
+        echo "Błąd: Wykryto wiele serowarow (Serovar) w metadanych. Program sluzy do analizy probek nalezacych do jednolitego serotypu."; exit 1
+    fi
+elif [ "$safeguard_level" = "ST" ]; then
+    unique_mlst=$(awk -v col="$mlst_col" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+    if [ "$unique_mlst" -gt 1 ]; then
+        echo "Błąd: Wykryto wiele typów sekwencyjnych w metadanych. Program sluzy do analizy probek z jednego typu ST wedlug schematu MLST."; exit 1
+    fi
+elif  [ "$safeguard_level" = "None" ]; then
+    echo 'Warning: safeguard_level is set to None, diverse samples not suitable for phylogenetic analysis might be analyzed together '
+else
+    echo "Błąd: Nieznany poziom zabezpieczeń: $safeguard_level."; exit 1
 fi
 
 nextflow run ${projectDir}/nf_bacterial_phylogenetic_pipeline.nf \
