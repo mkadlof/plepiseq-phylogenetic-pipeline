@@ -99,6 +99,10 @@ The metadata file must be a tab-separated file with the following required colum
 - `HC5` – HierCC cluster ID at threshold 5 (e.g., `13`)
 - `HC10` – HierCC cluster ID at threshold 10 (e.g., `13`)
 
+The pipeline includes strict safeguards to ensure homogeneity of input data. The pipeline will not execute if:
+
+- Different **serotypes** (`Serovar` column in the metadata file) are provided together.
+
 ---
 
 ## Input File Naming
