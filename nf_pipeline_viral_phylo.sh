@@ -85,7 +85,7 @@ fi
 if [ ! -f "$metadata" ]; then
     echo "Błąd: plik metadata '$metadata' nie istnieje."; exit 1
 fi
-if [ ! -d "$input_fasta" ]; then
+if [ ! -f "$input_fasta" ]; then
     echo "Błąd: katalog wejściowy '$input_fasta' nie istnieje."; exit 1
 fi
 
@@ -100,9 +100,12 @@ if [[ "$profile" != "local" && "$profile" != "slurm" ]]; then
 fi
 
 # 4. Validate genus
-if [[ "$organism" != "Salmonella" && "$organism" != "Escherichia" && "$organism" != "Campylobacter" ]]; then
-    echo "Błąd: nieprawidłowy rodzaj bakterii: '$organism'. Dozwolone: Salmonella, Escherichia, Campylobacter."; exit 1
+shopt -s nocasematch
+if [[ ! "$organism" =~ ^(sars(-cov-2)?|influenza|influ|rsv)$ ]]; then
+    echo "Błąd: nieprawidłowy organizm: '$organism'. Dozwolone: sars-cov-2, influenza, rsv."
+    exit 1
 fi
+shopt -u nocasematch
 
 # 7. Validate map_detail
 if [[ "${map_detail}" != "country" && "${map_detail}" != "city" ]]; then

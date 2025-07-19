@@ -183,4 +183,13 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,python
