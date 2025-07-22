@@ -20,8 +20,7 @@ Quick start
 3. Clone this repository
 4. Build docker pipeline images:
    ```bash
-   docker build -t pzh_pipeline_viral-phylo -f Dockerfiles/Dockerfile-viral .
-   docker build -t pzh_pipeline_bacterial-phylo -f Dockerfiles/Dockerfile-bacterial .
+   docker build -t pzh_pipeline-phylo -f Dockerfiles/Dockerfile .
    ```
 5. Pull [staphb/prokka image](https://hub.docker.com/r/staphb/prokka) image from DockerHub using:
    ```bash
@@ -50,6 +49,35 @@ To execute bacterial pipeline type
 
 -----------------------------------------------------------------
 
+# Viral Phylogenetic Pipeline
+
+This pipeline constructs viral phylogenies using raw FASTA files only.
+
+## Minimal Execution
+
+See the `run_example_[VIRUS].sh` scripts in the repository root for examples of how to run the pipeline with minimal setup. One may also use the bash wrapper script `nf_pipeline_viral_phylo.sh` directly, as shown below.
+
+```bash
+
+./nf_pipeline_viral_phylo.sh -i data/example_data/sars-cov-2/sars-cov-2.fasta \
+                             -m data/example_data/sars-cov-2/sars-cov-2_metadata.tsv \
+                             --organism sars-cov-2
+```
+
+## Metadata Format
+
+The metadata file must be a tab-separated file with the following required columns:
+
+- `strain` – Sample identifier (must match the filename, excluding extension)
+- `virus` - Virus name (sars-cov-2, influenza, or rsv)
+- `date` – Collection date in `YYYY-MM-DD` format
+- `country` – Country name (e.g., `France`)
+- `city` – City name (e.g., `Paris`)
+
+Other columns are optional and can be used for additional metadata.
+
+-----------------------------------------------------------------
+
 # Bacterial Phylogenetic Pipeline
 
 This pipeline constructs bacterial phylogenies using annotated assemblies or raw FASTA files.
@@ -60,7 +88,7 @@ Follow these steps to run the pipeline with minimal setup:
 
 1. Create a working directory where you want to store the results.
 2. Copy the `nf_pipeline_bacterial_phylo.sh` script from the repository’s root directory into your working directory.
-3. (Optional) Copy a valid metadata file e.g. `metadata_salmonella.txt` file and a `fastas/` directory with uncompressed genome FASTA files into the working directory.  Example files are available in the `data/example_data/salmonella` directory of the repository..
+3. (Optional) Copy a valid metadata file e.g. `metadata_salmonella.txt` file and a `fastas/` directory with uncompressed genome FASTA files into the working directory.  Example files are available in the `data/example_data/salmonella` directory of the repository.
 
 Assuming your working directory contains `metadata_salmonella.txt` and a `fastas/` directory, and you’ve built/pulled the required Docker images as described above, run:
 
@@ -101,6 +129,10 @@ The metadata file must be a tab-separated file with the following required colum
 - `cgMLST` – cgMLST ID (e.g., `110234`)
 - `HC5` – HierCC cluster ID at threshold 5 (e.g., `13`)
 - `HC10` – HierCC cluster ID at threshold 10 (e.g., `13`)
+
+The pipeline includes strict safeguards to ensure homogeneity of input data. The pipeline will not execute if:
+
+- Different **serotypes** (`Serovar` column in the metadata file) are provided together.
 
 ---
 
