@@ -38,7 +38,8 @@ RUN pip install ete3==3.1.3 \
                 nextstrain-augur==30.0.0 \
                 click==8.1.8 \
                 requests==2.32.3 \
-                Biopython==1.85
+                Biopython==1.85 \
+                pandas==2.3.0
 
 WORKDIR /usr/bin
 RUN ln -s python3 python
