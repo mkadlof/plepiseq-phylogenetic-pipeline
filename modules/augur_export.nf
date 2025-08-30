@@ -1,11 +1,10 @@
 process augur_export {
-    tag "${segmentId}"
-
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_auspice.json"
-
+    container  = params.main_image
+    tag "Creating json for auspice for ${segmentId}"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${segmentId}_auspice.json"
     cpus 1
     memory "30 GB"
-    time "1h"
+    time "10m"
 
     input:
     tuple val(segmentId), path(tree), path(node_data)
@@ -20,7 +19,7 @@ process augur_export {
         --tree ${tree} \
         --metadata ${metadata} \
         --auspice-config /etc/auspice/auspice_config.json \
-        --title "PZH viral phylogenetic pipeline" \
+        --title ${params.results_prefix} \
         --node-data ${node_data} \
         --output ${segmentId}_auspice.json
     """

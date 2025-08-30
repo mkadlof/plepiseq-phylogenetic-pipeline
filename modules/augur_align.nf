@@ -1,6 +1,8 @@
 process augur_align {
+    container  = params.main_image
+    tag "Creating multiple sequence alignment with mafft"
     tag "${segmentId}"
-    cpus 1
+    cpus { params.threads > 25 ? 25 : params.threads }
     memory "30 GB"
     time "1h"
     input:
@@ -11,6 +13,8 @@ process augur_align {
 
     script:
     """
-    augur align --sequences ${fasta} --output aligned.fasta
+    augur align --sequences ${fasta} \
+                --output aligned.fasta \
+                --nthreads ${task.cpus}
     """
 }

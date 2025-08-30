@@ -1,8 +1,9 @@
 process iqtree {
+    container  = params.main_image
     tag "${segmentId}"
-    cpus 1
-    memory "30 GB"
-    time "1h"
+    cpus params.threads
+    memory "50 GB"
+    time "2h"
     input:
     tuple val(segmentId), path(aln)
 
@@ -11,12 +12,19 @@ process iqtree {
 
     script:
     """
-    iqtree2 -nt AUTO \
+    # Updated iqtree execution with fo;;owing parameters
+    # -bb Performs ultrafast bootstrap (UFBoot2)
+    # -alrt Runs the SH-aLRT test to improve branch support calculations
+    # -wsr Runs weighted Shimodaira–Hasegawa-like to improve final tree topology
+    # -ninit Sets the number of starting trees
+    iqtree2 -nt  ${task.cpus} \
         -s ${aln} \
-        -m GTR+G \
-        -B 1000 \
+        -m ${params.model} \
+        -bb ${params.bootstrap} \
+        -alrt ${params.bootstrap} \
         -con \
-        -minsup 0.75 \
-        -redo
+        -bnni \
+        -minsup ${params.min_support} \
+        -ninit ${params.starting_trees}
     """
 }

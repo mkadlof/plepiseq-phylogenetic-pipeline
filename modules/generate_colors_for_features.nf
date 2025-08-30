@@ -1,4 +1,5 @@
 process generate_colors_for_features {
+    container  = params.main_image
     cpus 1
     memory "20 GB"
     time "2h"

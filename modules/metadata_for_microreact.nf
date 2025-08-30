@@ -1,4 +1,5 @@
 process metadata_for_microreact {
+    container  = params.main_image
     cpus 1
     memory "20 GB"
     time "1h"

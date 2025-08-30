@@ -1,7 +1,7 @@
 process insert_duplicates_into_alignment {
     tag "${segmentId}"
-
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_alignment_with_duplicates.fasta"
+    container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${segmentId}_alignment_with_duplicates.fasta"
 
     cpus 1
     memory "30 GB"

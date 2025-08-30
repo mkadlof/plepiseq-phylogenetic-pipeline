@@ -1,7 +1,7 @@
 process prepare_microreact_json {
     tag "${segmentId}"
-
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_project.microreact"
+    container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${segmentId}_project.microreact"
 
     cpus 1
     memory "20 GB"

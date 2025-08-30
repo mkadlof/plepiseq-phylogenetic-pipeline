@@ -1,4 +1,5 @@
 process rescale_timetree {
+    container  = params.main_image
     tag "${segmentId}"
     cpus 1
     memory "20 GB"

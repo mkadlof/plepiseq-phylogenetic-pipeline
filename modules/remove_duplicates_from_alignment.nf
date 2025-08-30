@@ -1,4 +1,5 @@
 process remove_duplicates_from_alignment {
+    container  = params.main_image
     tag "${segmentId}"
     cpus 1
     memory "30 GB"
