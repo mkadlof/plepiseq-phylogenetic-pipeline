@@ -99,10 +99,12 @@ bash nf_pipeline_bacterial_phylo.sh -m metadata_salmonella.txt \
                                     -g Salmonella \
                                     -p Salmonella_dummy \
                                     -d PATH_TO_CLONED_REPO \
+                                    -z RESULTS_PREFIX
                                     --threads 48
 ```
 
 Replace `PATH_TO_CLONED_REPO` with the absolute path to your cloned copy of this repository.
+Replace `RESULTS_PREFIX` with any string. All pipeline produced files will start with this string
 
 To see all available options and customize your run, use:
 
