@@ -18,7 +18,7 @@ organism="" # analyzed genus only Salmonella Escherichia and Campylobacter are c
 # output - localization of output + prefix added to all results
 # as we aggregate multiple files we cannot "guess" it as e.g. we do for NGS pipeline
 results_dir="./results"
-results_prefix=""
+results_prefix="unnamed_run"
 
 # Pipeline-specific parameters with defaults
 # Defaults are hardcoded in this script NOT in the .nf file
@@ -29,9 +29,9 @@ map_detail="city"  #  poziom hierarchii na mapie przypisany próbce. Możliwe wa
 
 # Usage function to display help
 usage() {
-    echo "Użycie: $0 --input_dir ŚCIEŻKA --input_type TYP --results_dir ŚCIEŻKA --profile TYP --metadata metadata.txt --genus Salmonella --results_prefix prefiks"
+    echo "Użycie: $0 --input_dir ŚCIEŻKA --results_dir ŚCIEŻKA --profile TYP --metadata metadata.txt --genus Salmonella --results_prefix prefiks"
     echo
-    echo "Skrypt uruchamia bakteryjny pipeline filogenetyczny oparty na danych SNP."
+    echo "Skrypt uruchamia wirusowy pipeline filogenetyczny oparty na danych FASTA."
     echo
     echo "Wymagane parametry:"
     echo "  -i, --input_fasta ŚCIEŻKA       Ścieżka do katalogu z danymi wejściowymi Fasta (WYMAGANE)"
@@ -111,14 +111,23 @@ if [[ "${map_detail}" != "country" && "${map_detail}" != "city" ]]; then
     echo "Błąd: nieprawidłowy typ danych wejściowych: '${map_detail}'. Dozwolone: city, country."; exit 1
 fi
 
+# Transform paths to absolute
+input_fasta=$(readlink -f "${input_fasta}")
+metadata=$(readlink -f "${metadata}")
+results_dir=$(readlink -f "${results_dir}")
+
+mkdir -p "${results_dir}" || { echo "Błąd: nie można utworzyć katalogu wynikowego."; exit 1; }
+
+cd $(dirname "$0") || { echo "Błąd: nie można zmienić katalogu roboczego."; exit 1; }
+
 nextflow run nf_viral_phylogenetic_pipeline.nf \
        --input_fasta ${input_fasta} \
-       --input_type ${inputType} \
        --metadata ${metadata}  \
        --organism ${organism} \
        --input_prefix ${results_prefix} \
-       --threshold_Ns ${thresholdN} \
-       --threshold_ambiguities ${thresholdAmbiguous} \
+       --threshold_Ns ${threshold_Ns} \
+       --threshold_ambiguities ${threshold_ambiguities} \
        --main_image ${main_image} \
        --map_detail ${map_detail} \
+       --results_dir ${results_dir} \
        -profile ${profile} 
