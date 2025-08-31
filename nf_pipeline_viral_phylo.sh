@@ -40,7 +40,6 @@ usage() {
     echo
     echo "Opcjonalne parametry:"
     echo "  -x, --profile NAZWA             Profil wykonania Nextflow (dozwolone: 'local' lub 'slurm', domyślnie: local)"
-    echo "  --threads LICZBA                Liczba rdzeni CPU do wykorzystania (domyślnie: 36, wielkość musi byc iloczynem 12)"
     echo "  --threshold_Ns LICZBA           Maksymalny odsetek N w genomie (float z przedziału [0, 1]) (domyślnie: 1.0)"
     echo "  --threshold_ambiguities LICZBA  Maksymalny odsetek symboli niejednoznacznych w genomie (float z przedziału [0, 1]) (domyślnie: 1.0)"
     echo "  --main_image NAZWA:TAG          Obraz Docker zawierający narzędzia używane przez pipeline"
