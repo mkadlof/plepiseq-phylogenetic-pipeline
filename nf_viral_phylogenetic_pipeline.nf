@@ -47,7 +47,7 @@ include { identify_low_quality_sequences } from "${modules}/identify_low_quality
 include { augur_filter_sequences } from "${modules}/augur_filter_sequences.nf"
 include { find_identical_sequences } from "${modules}/find_identical_sequences.nf"
 include { augur_align } from "${modules}/augur_align.nf"
-include { remove_duplicates_from_alignment } from "${modules}remove_duplicates_from_alignment.nf"
+include { remove_duplicates_from_alignment } from "${modules}/remove_duplicates_from_alignment.nf"
 include { iqtree } from "${modules}/iqtree.nf"
 include { insert_duplicates_into_tree } from "${modules}/insert_duplicates_into_tree.nf"
 include { insert_duplicates_into_alignment } from "${modules}/insert_duplicates_into_alignment.nf"

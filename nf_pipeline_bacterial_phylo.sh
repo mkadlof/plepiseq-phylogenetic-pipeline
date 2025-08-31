@@ -14,6 +14,16 @@ get_col_idx() {
     }'
 }
 
+err() {
+  # Print error to stderr, show usage if available, and exit non-zero
+  echo "Error: $*" >&2
+  if type usage >/dev/null 2>&1; then
+    echo >&2
+    usage >&2
+  fi
+  exit 1
+}
+
 # Simplified script to run bacterial phylogenetic pipeline using SNP data
 
 # required to run .nf script + "modules" should be a subdirectory
@@ -220,9 +230,9 @@ else
 fi
 
 # clockrate
-if [ -n "clockrate" ]; then
-  [[ "clockrate" =~ ^[0-9]*\.?[0-9]+$ ]] || err "--clockRate must be a positive float"
-  awk "BEGIN{exit !(clockrate>0)}" >/dev/null 2>&1 || err "--clockrate must be > 0"
+if [ -n "$clockrate" ]; then
+  [[ "$clockrate" =~ ^[0-9]*\.?[0-9]+$ ]] || err "--clockRate must be a positive float"
+  awk "BEGIN{exit !($clockrate>0)}" >/dev/null 2>&1 || err "--clockrate must be > 0"
 fi
 
 nextflow run ${projectDir}/nf_bacterial_phylogenetic_pipeline.nf \

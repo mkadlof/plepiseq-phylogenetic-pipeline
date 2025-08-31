@@ -16,7 +16,15 @@ get_col_idx() {
     }'
 }
 
-
+err() {
+  # Print error to stderr, show usage if available, and exit non-zero
+  echo "Error: $*" >&2
+  if type usage >/dev/null 2>&1; then
+    echo >&2
+    usage >&2
+  fi
+  exit 1
+}
 
 # required to run .nf script + "modules" should be a subdirectory
 
@@ -90,11 +98,17 @@ usage() {
     exit 1
 }
 
+if [[ $# -eq 0 ]]; then
+  usage
+fi
+
 # Parse arguments using GNU getopt
 TEMP=$(getopt -o hi:m:g:o:x:p:d: \
   --long help,input_fasta:,metadata:,organism:,results_dir:,profile:,results_prefix:,projectDir:,\
 model:,bootstrap:,min_support:,starting_trees:,threads:,threshold_Ns:,threshold_ambiguities:,\
 main_image:,map_detail:,clockrate: -n "$0" -- "$@") || { usage; exit 1; }
+
+if [ $? != 0 ]; then usage; fi
 eval set -- "$TEMP"
 
 while true; do
@@ -156,6 +170,7 @@ shopt -u nocasematch
 # 5) Integers
 [[ "$bootstrap" =~ ^[0-9]+$ ]]     || err "--bootstrap must be integer"
 [[ "$min_support" =~ ^[0-9]+$ ]]    || err "--min_support must be integer"
+min_support=`echo ${min_support} | awk '{print $0/100}'` # iq-tree want float for support
 [[ "$starting_trees" =~ ^[0-9]+$ ]] || err "--starting_trees must be integer"
 [[ "$threads" =~ ^[0-9]+$ ]]       || err "--threads must be integer"
 
@@ -175,9 +190,9 @@ case "$map_detail" in
 esac
 
 # 8) Optional clockRate if provided: float >0
-if [ -n "clockrate" ]; then
-  [[ "clockrate" =~ ^[0-9]*\.?[0-9]+$ ]] || err "--clockrate must be a positive float"
-  awk "BEGIN{exit !(clockrate>0)}" >/dev/null 2>&1 || err "--clockRate must be > 0"
+if [ -n "$clockrate" ]; then
+  [[ "$clockrate" =~ ^[0-9]*\.?[0-9]+$ ]] || err "--clockrate must be a positive float"
+  awk "BEGIN{exit !($clockrate>0)}" >/dev/null 2>&1 || err "--clockRate must be > 0"
 fi
 
 # Safegurads

@@ -20,7 +20,7 @@ process prepare_microreact_json {
                                    --classical_tree ${tree_regular} \
                                    --rescaled_tree ${tree_rescaled} \
                                    --metadata ${microreact_metadata} \
-                                   --project_name ${params.input_prefix} \
+                                   --project_name ${params.results_prefix} \
                                    --output ${segmentId}_project.microreact
     """
 }
