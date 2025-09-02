@@ -235,22 +235,30 @@ if [ -n "$clockrate" ]; then
   awk "BEGIN{exit !($clockrate>0)}" >/dev/null 2>&1 || err "--clockrate must be > 0"
 fi
 
-nextflow run ${projectDir}/nf_bacterial_phylogenetic_pipeline.nf \
-       --input_dir ${inputDir} \
-       --input_type ${inputType} \
-       --metadata ${metadata}  \
-       --genus ${genus} \
-       --results_prefix ${results_prefix} \
-       --clockrate "${clockrate}" \
-       --model ${model} \
-       --starting_trees ${starting_trees} \
-       --bootstrap ${bootstrap} \
-       --min_support ${min_support} \
-       --threshold_Ns ${thresholdN} \
-       --threshold_ambiguities ${thresholdAmbiguous} \
-       --main_image ${main_image} \
-       --prokka_image ${prokka_image} \
-       --results_dir ${results_dir} \
-       --threads ${threads} \
-       --map_detail ${map_detail} \
-       -profile ${profile} 
+# ---------- Run Nextflow ----------
+args=(
+  "--input_dir"             "$inputDir"
+  "--metadata"              "$metadata"
+  "--input_type"            "$inputType"
+  "--genus"                 "$genus"
+  "--results_prefix"        "$results_prefix"
+  "--model"                 "$model"
+  "--starting_trees"        "$starting_trees"
+  "--bootstrap"             "$bootstrap"
+  "--min_support"           "$min_support"
+  "--threshold_Ns"          "$thresholdN"
+  "--threshold_ambiguities" "$thresholdAmbiguous"
+  "--main_image"            "$main_image"
+  "--prokka_image"          "$prokka_image"
+  "--results_dir"           "$results_dir"
+  "--threads"               "$threads"
+  "--map_detail"            "${map_detail}"
+
+)
+
+# Append optional clockrate only if set
+[ -n "${clockrate:-}" ] && args+=( "--clockrate" "$clockrate" )
+
+set -x
+nextflow run "${projectDir}/nf_bacterial_phylogenetic_pipeline.nf" -profile "$profile" "${args[@]}"
+
