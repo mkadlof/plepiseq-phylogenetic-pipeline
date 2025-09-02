@@ -31,7 +31,7 @@ Quick start
    cp nextflow.config.template nextflow.config
    ```
    **Important**: adjust the content of this file to you particular environment and needs.
-7. [Optional] Run one or more example scripts to test the pipeline:
+7. [Obsolete] Run one or more example scripts to test the pipeline:
    ```bash
    ./run_example_sars-cov-2.sh
    ./run_example_influenza.sh
@@ -55,13 +55,34 @@ This pipeline constructs viral phylogenies using raw FASTA files only.
 
 ## Minimal Execution
 
-See the `run_example_[VIRUS].sh` scripts in the repository root for examples of how to run the pipeline with minimal setup. One may also use the bash wrapper script `nf_pipeline_viral_phylo.sh` directly, as shown below.
+1. Create a working directory where you want to store the results.
+2. Copy the `nf_pipeline_viral_phylo.sh` script from the repository’s root directory into your working directory.
+3. (Optional) Copy valid metadata anf fasta file from `/data/example_data/SPECIES/` into the working directory. Use data from viral species.
+
+Call the wrapper script
 
 ```bash
+bash nf_pipeline_viral_phylo.sh -i PATH_TO_FASTA_FILE \ 
+                                -m PATH_TO_METADATA_FILE 
+                                -g SELECTED_SPECIES 
+                                -p MY_AWSOME_PROJECT 
+                                -f PATH_TO_REPOSITORY
+```
 
-./nf_pipeline_viral_phylo.sh -i data/example_data/sars-cov-2/sars-cov-2.fasta \
-                             -m data/example_data/sars-cov-2/sars-cov-2_metadata.tsv \
-                             --organism sars-cov-2
+e.g. if one downloaded data from `/data/example_data/sars-cov-2` to a working dorectory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
+
+```bash
+bash nf_pipeline_viral_phylo.sh -i sars-cov-2.fasta \
+                                -m sars-cov-2_metadata.tsv \
+                                -g sars-cov-2 \
+                                -p sars_example \
+                                -f /home/my_user/plepiseq-phylogenetic-pipeline
+```
+
+To see all available options and customize your run, use:
+
+```bash
+bash nf_pipeline_viral_phylo.sh -h
 ```
 
 ## Metadata Format
@@ -75,6 +96,12 @@ The metadata file must be a tab-separated file with the following required colum
 - `city` – City name (e.g., `Paris`)
 
 Other columns are optional and can be used for additional metadata.
+
+The pipeline includes strict safeguards to ensure homogeneity of input data. The pipeline will not execute if:
+
+- Different **`viruses** (`virus` column in the metadata file) are provided together.
+
+---
 
 -----------------------------------------------------------------
 
