@@ -10,11 +10,11 @@ params.results_prefix = "" // Used only to 1. create subdirectory in params.resu
 params.main_image = "" 
 params.results_dir = ""
 params.prokka_image = ""
-params.threads = 1 
+params.threads = ""
 params.metadata = "" // Path to a file with metadata
 params.model = "" // Model for raxml
-params.starting_trees = 10 // Number of random initial trees
-params.bootstrap = 200 // Number of bootstraps
+params.starting_trees = "" // Number of random initial trees
+params.bootstrap = "" // Number of bootstraps
 params.min_support = "" // Minimum support for a branch to keep it in a tree
 params.genus = "" // We will supplement pipeline with clock rates for relevant genus if temporal signal in the alignment is week
 params.clockrate = "" // User can still override any built-in and estimated values fron the alignment
@@ -39,8 +39,8 @@ if ( !workflow.profile || ( workflow.profile != "slurm" && workflow.profile != "
 }
 
 // QC params
-params.threshold_Ns = 100
-params.threshold_ambiguities = 100
+params.threshold_Ns = ""
+params.threshold_ambiguities = ""
 
 
 // Processes 
