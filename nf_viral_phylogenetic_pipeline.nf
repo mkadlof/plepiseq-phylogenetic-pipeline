@@ -1,3 +1,8 @@
+def hostname = "hostname".execute().text.trim() // in case we want to overwrite clusterOptions directive for a specific module we still need to "stay" on the same host
+ExecutionDir = new File('.').absolutePath
+
+// All defaults are included in a shell wrapper
+
 // input can be one of the following:
 // 1. A single FASTA file containing sequences - for single segment viruses like SARS-CoV-2
 // 2. A directory containing multiple FASTA files - for multi-segment viruses like Influenza
@@ -6,40 +11,59 @@ input_fasta_g = file(params.input_fasta) // This var is overloaded (dir or file)
 metadata = file(params.metadata)
 organism = params.organism
 
-params.input_prefix
 
-params.threshold_Ns = 0.02
-params.threshold_ambiguities = 0.0
-params.map_detail = 'country'
-params.results_dir = "results"
-params.input_prefix = "${workflow.runName}"
+params.threshold_Ns = ""
+params.threshold_ambiguities = ""
+params.map_detail = ""
+params.results_dir = ""
+params.results_prefix = ""
+
+// Image with main program
+params.main_image = ""
+
+// Loaction of modules
+params.projectDir = ""
+modules = "${params.projectDir}/modules"
+
+// IQ-tree relared parameter
+params.model = "" // Model for iq-tree
+params.bootstrap = "" // Number of bootstraps for iq-tree
+params.min_support = "" // Minimum support for a branch to keep it in a tree
+params.starting_trees = "" // Numer of random starting tress
+
+// Timetree parameters
+params.clockrate = "" // User can still override any built-ins and values estimated from the alignment
+
+// Maximal number of CPUS allocated to a module
+params.threads = ""
 
 src_dir = "${baseDir}/src"
 
-// Core modules
 
-include { augur_index_sequences } from './modules/augur_index_sequences.nf'
-include { identify_low_quality_sequences } from './modules/identify_low_quality_sequences.nf'
-include { augur_filter_sequences } from './modules/augur_filter_sequences.nf'
-include { find_identical_sequences } from './modules/find_identical_sequences.nf'
-include { augur_align } from './modules/augur_align.nf'
-include { remove_duplicates_from_alignment } from './modules/remove_duplicates_from_alignment.nf'
-include { iqtree } from './modules/iqtree.nf'
-include { insert_duplicates_into_tree } from './modules/insert_duplicates_into_tree.nf'
-include { insert_duplicates_into_alignment } from './modules/insert_duplicates_into_alignment.nf'
-include { treetime } from './modules/treetime.nf'
-include { augur_export } from './modules/augur_export.nf'
-include { rescale_timetree } from './modules/rescale_timetree.nf'
-include { prepare_microreact_json } from './modules/prepare_microreact_json.nf'
+// Core modules imports
+
+include { augur_index_sequences } from "${modules}/augur_index_sequences.nf"
+include { identify_low_quality_sequences } from "${modules}/identify_low_quality_sequences.nf"
+include { augur_filter_sequences } from "${modules}/augur_filter_sequences.nf"
+include { find_identical_sequences } from "${modules}/find_identical_sequences.nf"
+include { augur_align } from "${modules}/augur_align.nf"
+include { remove_duplicates_from_alignment } from "${modules}/remove_duplicates_from_alignment.nf"
+include { iqtree } from "${modules}/iqtree.nf"
+include { insert_duplicates_into_tree } from "${modules}/insert_duplicates_into_tree.nf"
+include { insert_duplicates_into_alignment } from "${modules}/insert_duplicates_into_alignment.nf"
+include { treetime } from "${modules}/treetime.nf"
+include { augur_export } from "${modules}/augur_export.nf"
+include { rescale_timetree } from "${modules}/rescale_timetree.nf"
+include { prepare_microreact_json } from "${modules}/prepare_microreact_json.nf"
 
 // metadata modules
-include { find_country_coordinates } from './modules/find_country_coordinates.nf'
-include { generate_colors_for_features } from './modules/generate_colors_for_features.nf'
+include { find_country_coordinates } from "${modules}/find_country_coordinates.nf"
+include { generate_colors_for_features } from "${modules}/generate_colors_for_features.nf"
 
 // influenza specific modules
-include { transform_input } from './modules/transform_input.nf'
-include { adjust_metadata } from './modules/adjust_metadata.nf'
-include { metadata_for_microreact } from './modules/metadata_for_microreact.nf'
+include { transform_input } from "${modules}/transform_input.nf"
+include { adjust_metadata } from "${modules}/adjust_metadata.nf"
+include { metadata_for_microreact } from "${modules}/metadata_for_microreact.nf"
 
 workflow core {
     take:

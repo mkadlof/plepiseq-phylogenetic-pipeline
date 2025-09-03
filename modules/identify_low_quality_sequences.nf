@@ -1,5 +1,6 @@
 process identify_low_quality_sequences {
     tag "${segmentId}"
+    container  = params.main_image
     cpus 1
     memory "30 GB"
     time "1h"

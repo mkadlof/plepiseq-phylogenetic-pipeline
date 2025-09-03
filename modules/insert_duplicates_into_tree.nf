@@ -1,7 +1,7 @@
 process insert_duplicates_into_tree {
     tag "${segmentId}"
-
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_consensus_tree.nwk"
+    container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${segmentId}_consensus_tree.nwk"
 
     cpus 1
     memory "30 GB"

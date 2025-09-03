@@ -1,7 +1,7 @@
 process prepare_microreact_json {
     tag "${segmentId}"
-
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_project.microreact"
+    container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${segmentId}_project.microreact"
 
     cpus 1
     memory "20 GB"
@@ -20,7 +20,7 @@ process prepare_microreact_json {
                                    --classical_tree ${tree_regular} \
                                    --rescaled_tree ${tree_rescaled} \
                                    --metadata ${microreact_metadata} \
-                                   --project_name ${params.input_prefix} \
+                                   --project_name ${params.results_prefix} \
                                    --output ${segmentId}_project.microreact
     """
 }

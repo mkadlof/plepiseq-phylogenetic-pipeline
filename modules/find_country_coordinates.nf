@@ -1,5 +1,7 @@
 process find_country_coordinates {
     // use OpenStreetMap API to request geographical objects coordinates
+    container  = params.main_image
+    tag "Preparing geo data for analyzed samples"
     cpus 1
     memory "20 GB"
     time "2h"

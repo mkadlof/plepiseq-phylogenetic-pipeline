@@ -1,5 +1,6 @@
 process find_identical_sequences {
-    tag "${segmentId}"
+    container  = params.main_image
+    tag "Identyfing samples with identical sequences for ${segmentId}"
     cpus 1
     memory "30 GB"
     time "1h"

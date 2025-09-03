@@ -1,7 +1,7 @@
 process treetime {
     tag "${segmentId}"
-
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${segmentId}_timetree.nwk"
+    container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${segmentId}_timetree.nwk"
 
     cpus 1
     memory "30 GB"

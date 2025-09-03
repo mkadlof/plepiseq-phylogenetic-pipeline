@@ -1,5 +1,6 @@
 process augur_filter_sequences {
-    tag "${segmentId}"
+    container  = params.main_image
+    tag "Removing low quality sequences with augur filter for ${segmentId}"
     cpus 1
     memory "30 GB"
     time "1h"

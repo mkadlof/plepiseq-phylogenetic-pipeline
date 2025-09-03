@@ -6,16 +6,16 @@ ExecutionDir = new File('.').absolutePath
 // Comments were preserved in the  nf file for a local executor
 params.input_dir = ""
 params.input_type = ""
-params.input_prefix = "" // Used only to 1. create subdirectory in params.results_dir and 2. as a prefix for auspice files. These prefix is used by auspice as part of an address e..g "flu_ha_h1n1_timestamp" or "sarscov2_timestamp" or "salmonella_poland_timestamp"
+params.results_prefix = "" // Used only to 1. create subdirectory in params.results_dir and 2. as a prefix for auspice files. These prefix is used by auspice as part of an address e..g "flu_ha_h1n1_timestamp" or "sarscov2_timestamp" or "salmonella_poland_timestamp"
 params.main_image = "" 
 params.results_dir = ""
 params.prokka_image = ""
-params.threads = 1 
+params.threads = ""
 params.metadata = "" // Path to a file with metadata
 params.model = "" // Model for raxml
-params.starting_trees = 10 // Number of random initial trees
-params.bootstrap = 200 // Number of bootstraps
-params.min_support = 70 // Minimum support for a branch to keep it in a tree
+params.starting_trees = "" // Number of random initial trees
+params.bootstrap = "" // Number of bootstraps
+params.min_support = "" // Minimum support for a branch to keep it in a tree
 params.genus = "" // We will supplement pipeline with clock rates for relevant genus if temporal signal in the alignment is week
 params.clockrate = "" // User can still override any built-in and estimated values fron the alignment
 params.gen_per_year = ""
@@ -39,8 +39,8 @@ if ( !workflow.profile || ( workflow.profile != "slurm" && workflow.profile != "
 }
 
 // QC params
-params.threshold_Ns = 100
-params.threshold_ambiguities = 100
+params.threshold_Ns = ""
+params.threshold_ambiguities = ""
 
 
 // Processes 
@@ -251,7 +251,7 @@ process run_raxml {
 process restore_identical_sequences {
     // Reroot initial tree, collapse poorly supported nodes
     // Reintroduce identical sequences that were removed prior to tree calculation
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${params.input_prefix}_classical_tree.nwk"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_classical_tree.nwk"
     container  = params.main_image
     tag "Refining initial tree"
     cpus 1
@@ -262,7 +262,7 @@ process restore_identical_sequences {
     path(identical_sequences_mapping) 
     output:
     path("tree2_reintroduced_identical_sequences.nwk"), emit: tree
-    path("${params.input_prefix}_classical_tree.nwk"), emit: to_publishdir
+    path("${params.results_prefix}_classical_tree.nwk"), emit: to_publishdir
     script:
     """
     python /opt/docker/custom_scripts/root_collapse_and_add_identical_seq_to_tree.py --input_mapping ${identical_sequences_mapping} \\
@@ -271,7 +271,7 @@ process restore_identical_sequences {
                                                                                      --root \\
                                                                                      --collapse \\
                                                                                      --output_prefix tree2
-    cp tree2_reintroduced_identical_sequences.nwk ${params.input_prefix}_classical_tree.nwk 
+    cp tree2_reintroduced_identical_sequences.nwk ${params.results_prefix}_classical_tree.nwk
     """
     
 }
@@ -445,7 +445,7 @@ process generate_colors_for_features {
 
 process visualize_tree_1 {
     container  = params.main_image
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${params.input_prefix}_${suffix}.json"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_${suffix}.json"
     tag "Visualizing the data"
     cpus 1
     memory "20 GB"
@@ -456,7 +456,7 @@ process visualize_tree_1 {
     path(metadata)
     val(suffix) // either timetree or regular tree
     output:
-    path("${params.input_prefix}_${suffix}.json")
+    path("${params.results_prefix}_${suffix}.json")
     script:
     """
 
@@ -466,7 +466,7 @@ process visualize_tree_1 {
             --auspice-config /opt/docker/config/auspice_config_${params.genus}.json \
             --colors ${colors} \
             --lat-longs ${longlat} \
-            --output ${params.input_prefix}_${suffix}.json \
+            --output ${params.results_prefix}_${suffix}.json \
             """
 
 }
@@ -475,7 +475,7 @@ process visualize_tree_1 {
 
 process visualize_tree_2 {
     container  = params.main_image
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${params.input_prefix}_${suffix}.json"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_${suffix}.json"
     tag "Visualizing the data"
     cpus 1
     memory "20 GB"                        
@@ -486,7 +486,7 @@ process visualize_tree_2 {
     path(metadata)
     val(suffix) // either timetree or regular tree
     output:
-    path("${params.input_prefix}_${suffix}.json")
+    path("${params.results_prefix}_${suffix}.json")
     script:
     """
     augur export v2 --tree ${tree} \
@@ -495,13 +495,13 @@ process visualize_tree_2 {
                      --auspice-config /opt/docker/config/auspice_config_${params.genus}.json \
                      --colors ${colors} \
                      --lat-longs ${longlat} \
-                     --output ${params.input_prefix}_${suffix}.json \
+                     --output ${params.results_prefix}_${suffix}.json \
             """
 
 }                                                                                                                                                                                                 
 process metadata_for_microreact {
     container  = params.main_image
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${params.input_prefix}_metadata_microreact.tsv"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_metadata_microreact.tsv"
     tag "Preparing metadata for microreact"
     cpus 1
     memory "20 GB"
@@ -510,12 +510,12 @@ process metadata_for_microreact {
     tuple path(longlat), path(colors)
     path(metadata)      
     output:
-    path("${params.input_prefix}_metadata_microreact.tsv")
+    path("${params.results_prefix}_metadata_microreact.tsv")
     script:
     """ 
     python3 /opt/docker/custom_scripts/prep_metadata_for_microreact.py --metadata ${metadata} \
                                                                        --coordinates ${longlat} \
-                                                                       --output "${params.input_prefix}_metadata_microreact.tsv" \
+                                                                       --output "${params.results_prefix}_metadata_microreact.tsv" \
                                                                        --level ${params.map_detail}
     """
   
@@ -524,25 +524,25 @@ process metadata_for_microreact {
 
 process prepare_microreact_json {
     container  = params.main_image 
-    publishDir "${params.results_dir}/${params.input_prefix}/", mode: 'copy', pattern: "${params.input_prefix}_microreactproject.microreact"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_microreactproject.microreact"
     tag "Preparing .microreact file"
     cpus 1
     memory "20 GB"
     time "1h"
     input:
-    path("${params.input_prefix}_metadata_microreact.tsv")
+    path("${params.results_prefix}_metadata_microreact.tsv")
     tuple path(tree_regular), path("tree_rescaled_branches")
     output:
-    path("${params.input_prefix}_microreactproject.microreact")
+    path("${params.results_prefix}_microreactproject.microreact")
     script:
     """
 
     python3 /opt/docker/custom_scripts/prepare_json_for_microreact.py --input_json /opt/docker/config/microreact_config_bacteria.microreact \
                                                                       --classical_tree ${tree_regular} \
                                                                       --rescaled_tree ${tree_rescaled_branches} \
-                                                                      --metadata ${params.input_prefix}_metadata_microreact.tsv \
-                                                                      --project_name ${params.input_prefix} \
-                                                                      --output ${params.input_prefix}_microreactproject.microreact
+                                                                      --metadata ${params.results_prefix}_metadata_microreact.tsv \
+                                                                      --project_name ${params.results_prefix} \
+                                                                      --output ${params.results_prefix}_microreactproject.microreact
 
     """
 
