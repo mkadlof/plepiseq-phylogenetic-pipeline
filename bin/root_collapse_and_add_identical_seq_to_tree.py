@@ -83,13 +83,13 @@ def reintroduce_identical_sequences_leaf_to_node(tree_file: str, input_mapping: 
         # Create a new intermediate node to replace the original target
         new_internal = Tree()
         new_internal.dist = target.dist
-        new_internal.support = target.support
+        new_internal.support = 100 # hardoced
 
         # Create zero-distance leaves for all sequences
         all_ids = [main_id] + identicals
         for seq_id in all_ids:
             child = new_internal.add_child(name=seq_id)
-            child.dist = 0.0
+            child.dist = 0.0 # make distance to node 0
 
         # Replace original node with new internal node
         new_internal.name = ""  # optional: give it no name
