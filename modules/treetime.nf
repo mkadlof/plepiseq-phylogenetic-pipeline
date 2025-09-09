@@ -55,7 +55,7 @@ process treetime {
           clockrate="1.12e-3"
         elif [ ${params.organism}  == 'influenza' ]; then
           clockrate="2e-5"
-        elif [ ${params.organism} == 'rsv']; then
+        elif [ ${params.organism} == 'rsv' ]; then
           clockrate="1.12e-3"
           ### THIS NEED TO BE FIXED W+ONCE DEFAULT FOR RSV IS FOUND ###
         fi
