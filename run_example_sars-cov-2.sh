@@ -1,13 +1,9 @@
 #!/bin/bash
 
-nextflow run nf_viral_phylogenetic_pipeline.nf \
-             --input_fasta data/example_data/sars-cov-2/sars-cov-2.fasta \
-             --metadata data/example_data/sars-cov-2/sars-cov-2_metadata.tsv \
-             --organism sars-cov-2 \
-             -with-dag dag_png/nf_sars_phylogenetic_pipeline.png \
-             -with-trace trace.tsv \
-             -with-report report.html \
-             -resume
+bash nf_pipeline_viral_phylo.sh -i ./data/example_data/sars-cov-2/sars-cov-2.fasta \
+	                        -m ./data/example_data/sars-cov-2/sars-cov-2_metadata.tsv \
+				-g sars-cov-2 \
+				-p test_sars \
+				-d `pwd` \
+				-x local
 
-# Remove logs from previous runs
-rm \.nextflow.log\.*
