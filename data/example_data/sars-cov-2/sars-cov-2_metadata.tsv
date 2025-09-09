@@ -1,21 +1,21 @@
-strain	virus	date	country	city
-SARS3_01	sars-cov-2	2023-11-29	Polska	Bydgoszcz
-SARS3_02	sars-cov-2	2023-01-01	Polska	Opole
-SARS3_03	sars-cov-2	2023-01-01	Niemcy	Köln
-SARS3_04	sars-cov-2	2023-01-01	Czechy	Pilzno
-SARS3_05	sars-cov-2	-	Polska	Kraków
-SARS3_06	sars-cov-2	2023-01-01	Niemcy	Berlin
-SARS3_07	sars-cov-2	2023-01-03	Polska	Szczecin
-SARS3_08	sars-cov-2	-	Czechy	Brno
-SARS3_09	sars-cov-2	2023-01-01	Czechy	Pardubice
-SARS3_10	sars-cov-2	2021-07-16	Niemcy	Frankfurt
-SARS3_11	sars-cov-2	2023-01-01	Polska	Łódź
-SARS3_12	sars-cov-2	-	Czechy	Praga
-SARS3_13	sars-cov-2	-	Niemcy	Hamburg
-SARS3_14	sars-cov-2	2023-09-20	Polska	Wrocław
-SARS3_15	sars-cov-2	2021-07-16	Polska	Gdańsk
-SARS3_16	sars-cov-2	2021-07-16	Polska	Katowice
-SARS3_17	sars-cov-2	2021-07-16	Niemcy	Drezno
-SARS3_18	sars-cov-2	2021-07-16	Czechy	Ostrawa
-SARS3_19	sars-cov-2	2023-01-01	Niemcy	Monachium
-SARS3_20	sars-cov-2	2023-01-01	Polska	Toruń
+strain	virus	date	country	city	status_A
+SARS3_01	sars-cov-2	2023-11-29	Polska	Bydgoszcz	A
+SARS3_02	sars-cov-2	2023-01-01	Polska	Opole	A
+SARS3_03	sars-cov-2	2023-01-01	Niemcy	Köln	A
+SARS3_04	sars-cov-2	2023-01-01	Czechy	Pilzno	B
+SARS3_05	sars-cov-2	2023-01-01	Polska	Kraków	B
+SARS3_06	sars-cov-2	2023-01-01	Niemcy	Berlin	B
+SARS3_07	sars-cov-2	2023-01-03	Polska	Szczecin	A
+SARS3_08	sars-cov-2	2023-01-11	Czechy	Brno	B
+SARS3_09	sars-cov-2	2023-01-01	Czechy	Pardubice	A
+SARS3_10	sars-cov-2	2021-07-16	Niemcy	Frankfurt	A
+SARS3_11	sars-cov-2	2023-01-01	Polska	Łódź	B
+SARS3_12	sars-cov-2	2023-01-01	Czechy	Praga	A
+SARS3_13	sars-cov-2	2024-01-01	Niemcy	Hamburg	B
+SARS3_14	sars-cov-2	2023-09-20	Polska	Wrocław	A
+SARS3_15	sars-cov-2	2021-07-16	Polska	Gdańsk	A
+SARS3_16	sars-cov-2	2021-07-16	Polska	Katowice	A
+SARS3_17	sars-cov-2	2021-07-16	Niemcy	Drezno	A
+SARS3_18	sars-cov-2	2021-07-16	Czechy	Ostrawa	A
+SARS3_19	sars-cov-2	2023-01-01	Niemcy	Monachium	A
+SARS3_20	sars-cov-2	2023-01-01	Polska	Toruń	A
