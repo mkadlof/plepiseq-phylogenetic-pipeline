@@ -1,6 +1,9 @@
-report.overwrite = true
 dag.overwrite = true
+report.overwrite = true
+timeline.overwrite = true
+trace.overwrite = true
 docker.enabled = true
+docker.fixOwnership = true
 
 process {
   executor = 'local'
