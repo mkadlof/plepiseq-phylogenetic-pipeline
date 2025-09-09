@@ -5,12 +5,6 @@ trace.overwrite = true
 docker.enabled = true
 docker.fixOwnership = true
 
-process {
-  executor = 'local'
-  container = 'pzh-phylogenetic:latest'
-  containerEngine = 'docker'
-}
-
 profiles {
     local {
         process.executor = 'local'
@@ -20,7 +14,7 @@ profiles {
 
     slurm {
         process.executor = 'slurm'
-        process.clusterOptions = '--nodelist=a100-1'
+        process.clusterOptions = '--nodelist=XYZ' # Name of the host avaiable to slurm
         process.errorStrategy = 'retry'
         process.maxRetries = 2
     }
@@ -28,8 +22,8 @@ profiles {
 
 executor {
     $local {
-        cpus = 12
-        memory = '30 GB'
+        cpus = XYX # Number of CPUs available for nextflow
+        memory = 'XYZ GB' # Memory avaialble for nextflow
     }
     $slurm {
         queueSize = 500
