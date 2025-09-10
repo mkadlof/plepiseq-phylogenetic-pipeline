@@ -179,3 +179,18 @@ Input files must be provided in either **FASTA** or **GFF** format.
 **Example**:  
 For a file named `ERRXYZ.fasta`, the corresponding `strain` value in the metadata file must be `ERRXYZ`.
 
+
+-----------
+
+# WGS2phylo
+
+
+A helper script to prepare metadatafile based on the results of our [Sequnecing pipline](https://github.com/mkadlof/plepiseq-wgs-pipeline)
+
+## Example data 
+- [WGS output for bacterial](data/example_data/WGS2phylo/)
+
+## Execution
+```
+python3 WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --id-column id  --output-prefix metadata_out/metadata
+```
