@@ -3,7 +3,7 @@ PZH phylogenetic pipeline
 
 This project is part of [PleEpiSeq](https://www.pzh.gov.pl/projekty-i-programy/plepiseq/) project, co-funded by the European Union.
 
-This repository contains a Nextflow pipeline for phylogenetic analysis of viral sequences. The pipeline is designed to be modular and can be easily extended to include additional steps or tools.
+This repository contains a Nextflow pipeline for phylogenetic analysis of viral and bcterial genomes. The pipeline is designed to be modular and can be easily extended to include additional steps or tools.
 
 Pipeline overview
 -----------------
@@ -31,7 +31,7 @@ Quick start
    cp nextflow.config.template nextflow.config
    ```
    **Important**: adjust the content of this file to you particular environment and needs.
-7. [Obsolete] Run one or more example scripts to test the pipeline:
+7. [Optional] Run one or more example scripts to test the pipeline:
    ```bash
    ./run_example_sars-cov-2.sh
    ./run_example_influenza.sh
@@ -44,8 +44,6 @@ Related projects
 The pipeline loosely originates from [NextStrain Zika Tutorial](https://github.com/nextstrain/zika-tutorial)
 
 Another project related to PleEpiSeq is [Sequnecing pipline](https://github.com/mkadlof/pzh_pipeline_viral)
-
-To execute bacterial pipeline type
 
 -----------------------------------------------------------------
 
