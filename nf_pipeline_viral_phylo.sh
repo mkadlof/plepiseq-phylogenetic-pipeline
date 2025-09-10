@@ -50,7 +50,7 @@ results_prefix=""
 
 # Pipeline-specific parameters with defaults
 # Defaults are hardcoded in this script NOT in the .nf file
-threshold_Ns=0.02 # Maksymalny odsetek N w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
+threshold_Ns="" # Maksymalny odsetek N w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
 threshold_ambiguities=0 # Maksymalny odsetek symboli niejednoznacznych w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
 # Visualization
 map_detail="city"  #  poziom hierarchii na mapie przypisany próbce. Możliwe wartości to country lub city.
@@ -74,7 +74,7 @@ usage() {
     echo "Skrypt uruchamia pipeline filogenetyczny dla pelnogenomowych sekwncji wybrnaych wirusow"
     echo
     echo "Wymagane parametry:"
-    echo "  -i, --input_fasta ŚCIEŻKA       Ścieżka do katalogu z danymi wejściowymi Fasta (WYMAGANE)"
+    echo "  -i, --input_fasta ŚCIEŻKA       Ścieżka do katalogu z danymi wejściowymi w postaci plikow fasta Fasta LUB sciezka do pliku fasta z wielomasekwencjami (WYMAGANE)"
     echo "  -m, --metadata ŚCIEŻKA          Ścieżka do pliku z metadanymi (WYMAGANE)"
     echo "  -g, --organism NAZWA            Rodzaj wirusa: sars-cov-2, influenza, rsv (WYMAGANE)"
     echo "  -p, --results_prefix PREFIX     Prefiks dodawany do wszystkich plików wynikowych (WYMAGANE)"
@@ -157,13 +157,24 @@ case "$profile" in
   *) err "Invalid --profile '$profile' (allowed: local, slurm)";;
 esac
 
-# 4) Organism (case-insensitive)
+# 4) Define organism (case-insensitive) and set up defaults for threshold_Ns 
 shopt -s nocasematch
 case "$organism" in
-  sars-cov-2|sarscov2|sars[-_]?cov[-_]?2) organism="sars-cov-2" ;;
-  influenza|influ)                        organism="influenza"  ;;
-  rsv)                                    organism="rsv"        ;;
-  *) err "Invalid --organism '$organism' (allowed: sars-cov-2, influenza, rsv)";;
+  sars-cov-2|sarscov2|sars[-_]?cov[-_]?2)
+    organism="sars-cov-2"
+    : "${threshold_Ns:=0.02}"
+    ;;
+  influenza|influ)
+    organism="influenza"
+    : "${threshold_Ns:=0.1}"
+    ;;
+  rsv)
+    organism="rsv"
+    : "${threshold_Ns:=0.02}"
+    ;;
+  *)
+    err "Invalid --organism '$organism' (allowed: sars-cov-2, influenza, rsv)"
+    ;;
 esac
 shopt -u nocasematch
 
@@ -180,6 +191,8 @@ is_float_0_1 () {
   [[ "$v" =~ ^([0-1]|0?\.[0-9]+|1\.0+)$ ]] || return 1
   awk "BEGIN{exit !($v>=0 && $v<=1)}" >/dev/null 2>&1
 }
+
+
 is_float_0_1 "$threshold_Ns" || err "--threshold_Ns must be float in [0,1]"
 is_float_0_1 "$threshold_ambiguities" || err "--threshold_ambiguities must be float in [0,1]"
 
@@ -200,11 +213,11 @@ fi
 # Throw an error if entries in a column specified as a safeguard_level are non unique
 
 # Determine the safeguard level
-safeguard_level="virus"
+safeguard_level="type"
 header=$(head -n 1 "$metadata")
 
 # Find virus column
- --- Required metadata columns per README ---
+#  --- Required metadata columns per README ---
 strain_col=$(get_col_idx "strain" "$header")
 if [ -z "$strain_col" ]; then
     echo "Błąd: Kolumna 'strain' nie znaleziona w metadanych."; exit 1
@@ -213,6 +226,11 @@ fi
 virus_col=$(get_col_idx "virus" "$header")
 if [ -z "$virus_col" ]; then
     echo "Błąd: Kolumna 'virus' nie znaleziona w metadanych."; exit 1
+fi
+
+type_col=$(get_col_idx "type" "$header")
+if [ -z "type_col" ]; then
+    echo "Błąd: Kolumna 'type' nie znaleziona w metadanych."; exit 1
 fi
 
 date_col=$(get_col_idx "date" "$header")
@@ -233,10 +251,17 @@ fi
 # Checks depending on safeguard_level
 
 if [ "$safeguard_level" = "virus" ]; then
-    unique_virus=$(awk -v col="virus_col" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
-    if [ "unique_virus" -gt 1 ]; then
-        echo "Błąd: Wykryto wiele identyfikatorow wirusa w metadanych. Program sluzy do analizy probek tego samego wirusa."; exit 1
-    fi
+  unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+  if [ "${unique_virus}" -gt 1 ]; then
+      echo "Błąd: Wykryto wiele identyfikatorow wirusa w metadanych. Program sluzy do analizy probek tego samego wirusa."; exit 1
+  fi
+elif "$safeguard_level" = "type" ]; then
+  unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+  unique_type=$(awk -v col="${type_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+  if [[ "${unique_virus}" -gt 1 || "${unique_type}" -gt 1  ]]; then
+    echo "Błąd: Wykryto wiele identyfikatorow wirusa lub jego typow w metadanych. \
+    Program sluzy do analizy probek tego samego wirusa."; exit 1
+  fi
 fi
 
 

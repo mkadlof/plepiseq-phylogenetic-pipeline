@@ -83,12 +83,12 @@ workflow core {
     c3 = augur_align.out.join(find_identical_sequences.out.duplicated_ids)
     insert_duplicates_into_alignment(c3)
     c4 = insert_duplicates_into_alignment.out.join(insert_duplicates_into_tree.out)
-    treetime(c4, metadata)
-    rescale_timetree(treetime.out)
+    treetime_out = treetime(c4, metadata)
+    rescale_timetree(treetime_out.to_microreact)
 
     c5 = insert_duplicates_into_tree.out.join(rescale_timetree.out)
 
-    augur_export(treetime.out, metadata)
+    augur_export(treetime_out.to_auspice)
 
     // Transforming metadata and prepare .microreact JSON
     find_country_coordinates(metadata)
@@ -102,18 +102,15 @@ workflow core {
 def transformed
 
 workflow {
-    if (organism.toLowerCase() in ['sars', 'sars2', 'sars-cov-2']) {
+    if (organism.toLowerCase() in ['sars-cov-2', 'rsv']) {
         ch = Channel.fromPath(input_fasta_g).map { file -> tuple(file.baseName, file) }
 //        input_fasta_g = input_fasta_g.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
         core(ch, metadata)
     }
-    else if (organism.toLowerCase() in ['flu', 'infl','influenza']) {
+    else if (organism.toLowerCase() in ['influenza']) {
         transformed = transform_input(input_fasta_g).fastas.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
         adjusted_metadata = adjust_metadata(metadata)
         core(transformed, adjusted_metadata)
-    }
-    else if (organism.toLowerCase() in ['rsv']) {
-        error "RSV is not supported yet. Please use 'sars-cov-2' or 'influenza'."
     }
     else {
         error "Organism not supported. Please use 'sars-cov-2', 'influenza' or 'rsv'."

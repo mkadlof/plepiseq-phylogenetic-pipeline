@@ -7,8 +7,7 @@ process augur_export {
     time "10m"
 
     input:
-    tuple val(segmentId), path(tree), path(node_data)
-    path metadata
+    tuple val(segmentId), path(tree), path(branch_lengths), path(traits), path(metadata)
 
     output:
     path "${segmentId}_auspice.json", emit: out
@@ -20,7 +19,7 @@ process augur_export {
         --metadata ${metadata} \
         --auspice-config /etc/auspice/auspice_config.json \
         --title ${params.results_prefix} \
-        --node-data ${node_data} \
+        --node-data ${branch_lengths} ${traits}\
         --output ${segmentId}_auspice.json
     """
 }

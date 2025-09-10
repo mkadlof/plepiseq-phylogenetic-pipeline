@@ -94,13 +94,19 @@ The metadata file must be a tab-separated file with the following required colum
 - `date` – Collection date in `YYYY-MM-DD` format
 - `country` – Country name (e.g., `France`)
 - `city` – City name (e.g., `Paris`)
+- `type` – Additional classification column representing suptype for Influenza (e.g `H1N1` )or type for for RSV (e.g. `A`). For SARS-CoV-2 can be identical with `virus` column
 
 Other columns are optional and can be used for additional metadata.
 
-The pipeline includes strict safeguards to ensure homogeneity of input data. The pipeline will not execute if:
+To ensure homogeneity of input data, the pipeline applies **safeguards**.  
+The default safeguard level is **`type`**, meaning that all samples in one run must share the same `type` value.
 
-- Different **`viruses** (`virus` column in the metadata file) are provided together.
+Depending on the configured safeguard level, the pipeline will not execute if:
 
+- More than one unique **`virus`** is present in the `virus` column.
+- More than one unique **`type`** is present in the `type` column (**default safeguard**).
+
+- This prevents accidental mixing of heterogeneous datasets (e.g., different viruses, types, or geographic origins) in a single phylogenetic analysis run.
 ---
 
 -----------------------------------------------------------------

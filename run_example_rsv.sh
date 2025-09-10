@@ -1,13 +1,12 @@
 #!/bin/bash
 
-nextflow run nf_viral_phylogenetic_pipeline.nf \
-             --input_fasta /home/mkadlof/pzh/data/rsv_a/rsv_a_styczne_luty_2025_renamed.fasta \
-             --metadata /home/mkadlof/pzh/data/rsv_a/rsv_a_styczne_luty_2025_renamed_metadata.txt \
-             --organism sars-cov-2 \
-             -with-dag dag_png/nf_rsv_phylogenetic_pipeline.png \
-             -with-trace trace.tsv \
-             -with-report report.html \
-             -resume
+# Example: Run viral phylogenetic pipeline on RSV type A dataset
+# All genomes are stored in a single FASTA files.
+# Nextflow will use SLURM executor to manage process execution.
 
-# Remove logs from previous runs
-rm \.nextflow.log\.*
+bash nf_pipeline_viral_phylo.sh -i data/example_data/rsv/rsv_a.fasta \
+	                        -m data/example_data/rsv/rsv_a_metadata.tsv \
+			       	-g rsv \
+				-p test_rsv \
+				-d . \
+				-x slurm

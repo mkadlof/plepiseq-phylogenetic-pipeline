@@ -1,15 +1,14 @@
 #!/bin/bash
 
-nextflow run nf_viral_phylogenetic_pipeline.nf \
-             --input_fasta data/example_data/influenza/ \
-             --metadata data/example_data/influenza/influenza_metadata.tsv \
-             --organism influenza \
-             --threshold_Ns 0.1 \
-             --threshold_ambiguities 1.0 \
-             -with-dag dag_png/nf_influenza_phylogenetic_pipeline.png \
-             -with-trace trace.tsv \
-             -with-report report.html \
-             -resume
+# Example: Run viral phylogenetic pipeline on influenza dataset
+# All genomes are stored in a single directory in distinct FASTA files.
+# Nextflow will use SLURM to manage process execution.
 
-# Remove logs from previous runs
-rm \.nextflow.log\.*
+
+bash nf_pipeline_viral_phylo.sh -i ./data/example_data/influenza/ \
+                                -m ~/git/pzh-phylogenetic-pipeline/data/example_data/influenza/influenza_metadata.tsv \ 
+				-g influenza \
+			       	-p test_influenza \
+				-d . \
+				-x slurm 
+
