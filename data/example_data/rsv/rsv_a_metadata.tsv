@@ -1,4 +1,4 @@
-strain	country	city	date	virus	subtype
+strain	country	city	date	virus	type
 EPI_ISL_19685832	Spain	Barcelona	2025-01-12	RSV	A
 EPI_ISL_19685833	Spain	Barcelona	2025-01-11	RSV	A
 EPI_ISL_19685836	Spain	Barcelona	2025-01-06	RSV	A

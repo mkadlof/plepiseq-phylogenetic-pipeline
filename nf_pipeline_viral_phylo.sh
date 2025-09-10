@@ -213,7 +213,7 @@ fi
 # Throw an error if entries in a column specified as a safeguard_level are non unique
 
 # Determine the safeguard level
-safeguard_level="virus"
+safeguard_level="type"
 header=$(head -n 1 "$metadata")
 
 # Find virus column
@@ -226,6 +226,11 @@ fi
 virus_col=$(get_col_idx "virus" "$header")
 if [ -z "$virus_col" ]; then
     echo "Błąd: Kolumna 'virus' nie znaleziona w metadanych."; exit 1
+fi
+
+type_col=$(get_col_idx "type" "$header")
+if [ -z "type_col" ]; then
+    echo "Błąd: Kolumna 'type' nie znaleziona w metadanych."; exit 1
 fi
 
 date_col=$(get_col_idx "date" "$header")
@@ -246,10 +251,17 @@ fi
 # Checks depending on safeguard_level
 
 if [ "$safeguard_level" = "virus" ]; then
-    unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
-    if [ "${unique_virus}" -gt 1 ]; then
-        echo "Błąd: Wykryto wiele identyfikatorow wirusa w metadanych. Program sluzy do analizy probek tego samego wirusa."; exit 1
-    fi
+  unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+  if [ "${unique_virus}" -gt 1 ]; then
+      echo "Błąd: Wykryto wiele identyfikatorow wirusa w metadanych. Program sluzy do analizy probek tego samego wirusa."; exit 1
+  fi
+elif "$safeguard_level" = "type" ]; then
+  unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+  unique_type=$(awk -v col="${type_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+  if [[ "${unique_virus}" -gt 1 || "${unique_type}" -gt 1  ]]; then
+    echo "Błąd: Wykryto wiele identyfikatorow wirusa lub jego typow w metadanych. \
+    Program sluzy do analizy probek tego samego wirusa."; exit 1
+  fi
 fi
 
 
@@ -277,4 +289,4 @@ args=(
 
 # ---------- Run Nextflow ----------
 set -x
-nextflow run "${projectDir}/nf_viral_phylogenetic_pipeline.nf" -with-trace -profile "$profile" "${args[@]}"
+nextflow run "${projectDir}/nf_viral_phylogenetic_pipeline.nf" -profile "$profile" "${args[@]}"
