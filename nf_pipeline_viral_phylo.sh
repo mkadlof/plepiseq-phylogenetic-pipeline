@@ -246,7 +246,7 @@ fi
 # Checks depending on safeguard_level
 
 if [ "$safeguard_level" = "virus" ]; then
-    unique_virus=$(awk -v col="virus_col" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
+    unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
     if [ "${unique_virus}" -gt 1 ]; then
         echo "Błąd: Wykryto wiele identyfikatorow wirusa w metadanych. Program sluzy do analizy probek tego samego wirusa."; exit 1
     fi
