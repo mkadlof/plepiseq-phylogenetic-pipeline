@@ -192,5 +192,6 @@ A helper script to prepare metadatafile based on the results of our [Sequnecing 
 
 ## Execution
 ```
-python3 WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --id-column id  --output-prefix metadata_out/metadata
+python3 WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --output-prefix metadata_out/metadata_required
+python3 WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --extra-fields --output-prefix metadata_out/metadata_expanded
 ```

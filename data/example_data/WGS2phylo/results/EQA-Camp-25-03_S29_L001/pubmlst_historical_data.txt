@@ -1,0 +1,4 @@
+Strain_id	Country	Year	ST
+28564	United Kingdom	2013	unk
+28617	United Kingdom	2013	unk
+47298	United Kingdom	2016	unk

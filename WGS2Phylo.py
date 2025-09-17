@@ -3,6 +3,106 @@ import json
 import csv
 import click
 
+### Helper functions to extract specific info from JSON files ###
+
+# Sections of bacterial related data
+def get_sequencing_summary_bacteria(json_data):
+    """Extract assembly summary stats (post-filtering) for bacterial genomes."""
+    data_list = json_data.get("output", {}).get("bacterial_genome_data", [])
+    for entry in data_list:
+        if entry.get("step_name") == "post-filtering":
+            # Return a dict of key assembly metrics (with safe defaults if missing)
+            return {
+                'genome_length': entry.get('total_length_value', 0),
+                'contigs_number': entry.get('number_of_contigs_value', 0),
+                'average_coverage': entry.get('average_coverage_value', 0),
+                'N50': entry.get('N50_value', 0),
+                'L50': entry.get('L50_value', 0),
+                'Ns_value': entry.get('number_of_Ns_value', 0)
+            }
+    return {}
+
+def get_amr_bacteria(json_data):
+    """Extract antibiotic resistance results for key antibiotics (EQA panel)."""
+    # List of antibiotics of interest (for EQA 2025 Campylobacter/Salmonella)
+    KNOWN_ANTIBIOTICS = [
+        'Azithromycin', 'Ciprofloxacin', 'Clindamycin', 'Erythromycin',
+        'Chloramphenicol', 'Tetracycline', 'Gentamicin', 'Nalidixic Acid'
+    ]
+    output = {}
+    # Initialize defaults for all known antibiotics: susceptible (wrażliwy) with no resistance factor
+    for ab in KNOWN_ANTIBIOTICS:
+        output[ab] = {
+            'opornos': 'wrazliw',       # susceptible
+            'czynnik_typ': 'brak',      # factor type
+            'czynnik_nazwa': 'brak',    # factor name
+            'czynnik_mutacja': 'brak'   # mutation detail
+        }
+    # Locate drug resistance data in JSON
+    drug_data = json_data.get("output", {}).get("drug_resistance_data", [])
+    for program in drug_data:
+        if program.get("program_name") == "ResFinder/PointFinder" and program.get("status", "").lower() == "tak":
+            for antibiotic in program.get("program_data", []):
+                ab_name = antibiotic.get("antibiotic_name")
+                if ab_name in output:  # only consider the known antibiotics
+                    # Check if resistant
+                    if antibiotic.get("antibiotic_status", "").lower() == "oporny":
+                        # Get the first resistance factor if available (gene or mutation)
+                        factor = {}
+                        factors = antibiotic.get("antibiotic_resistance_data", [])
+                        if factors:
+                            factor = factors[0]
+                        output[ab_name] = {
+                            'opornos': 'oporny',  # resistant
+                            'czynnik_typ': factor.get('factor_type_name', 'brak'),
+                            'czynnik_nazwa': factor.get('factor_name', 'brak'),
+                            'czynnik_mutacja': factor.get('factor_mutation', 'brak')
+                        }
+                    else:
+                        # If not resistant (wrażliwy), ensure it stays marked as susceptible with no factor
+                        output[ab_name] = {
+                            'opornos': 'wrazliw',
+                            'czynnik_typ': 'brak',
+                            'czynnik_nazwa': 'brak',
+                            'czynnik_mutacja': 'brak'
+                        }
+    return output
+
+def get_contaminations_bacteria(json_data):
+    """Extract main and secondary species identification from contamination checks."""
+    output = {}
+    contamination_list = json_data.get("output", {}).get("contamination_data", [])
+    for entry in contamination_list:
+        program = entry.get('program_name')
+        if not program:
+            continue
+        # Primary species and value (percentage or coverage)
+        output[f"{program}_species_main"] = entry.get('main_species_name', 'brak')
+        output[f"{program}_species_secondary"] = entry.get('secondary_species_name', 'brak')
+        output[f"{program}_species_main_value"] = entry.get('main_species_value', entry.get('main_species_coverage', -1))
+        output[f"{program}_species_secondary_value"] = entry.get('secondary_species_value', entry.get('secondary_species_coverage', -1))
+    return output
+
+def get_fastqc_stats(json_data, direction):
+    """Extract FastQC read count and quality stats for forward (R1) or reverse (R2) reads."""
+    output = {}
+    seq_summary = json_data.get("output", {}).get("sequencing_summary_data", [])
+    for entry in seq_summary:
+        fname = entry.get('file_name', '')
+        if direction == "forward" and "R1" in fname:
+            output[f"number_of_reads_{direction}"] = entry.get('number_of_reads_value', -1)
+            output[f"number_of_bases_{direction}"] = entry.get('number_of_bases_value', -1)
+            output[f"reads_median_quality_{direction}"] = entry.get('reads_median_quality_value', -1)
+            output[f"reads_median_length_{direction}"] = entry.get('reads_median_length_value', -1)
+        elif direction == "reverse" and "R2" in fname:
+            output[f"number_of_reads_{direction}"] = entry.get('number_of_reads_value', -1)
+            output[f"number_of_bases_{direction}"] = entry.get('number_of_bases_value', -1)
+            output[f"reads_median_quality_{direction}"] = entry.get('reads_median_quality_value', -1)
+            output[f"reads_median_length_{direction}"] = entry.get('reads_median_length_value', -1)
+    return output
+
+#### CLI and main processing function ####
+
 @click.command()
 @click.option('--json-dir', required=True, type=click.Path(exists=True, file_okay=False),
               help="Directory containing sample subdirectories with JSON outputs.")
@@ -12,257 +112,312 @@ import click
               help="Column name in the supplemental file that identifies the sample ID.")
 @click.option('--output-prefix', default='metadata/metadata', show_default=True,
               help="Prefix for output files (aggregated will be <prefix>.tsv, per-sample will be <Sample>.<prefix>.tsv).")
-@click.option('--extra-fields', multiple=True, default=[],
-              help="Additional JSON fields to include as columns. NOT YET IMPLEMENTED")
-def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, extra_fields):
+@click.option('--extra-fields', is_flag=True, help="If set, include full WGS output fields (AMR, contamination, FastQC stats).")
+@click.option('--organism', type=click.Choice(['sars-cov-2', 'influenza', 'rsv', 'salmonella', 'escherichia', 'campylobacter']), required=True,
+              help="Name of the organism for which WGS sequencing was carried out.")
+def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, extra_fields, organism):
     """
     Generate a phylogenetic metadata TSV from pipeline JSON outputs.
     """
-    # Define possible optional fields from supplemental file
+    # Define optional metadata fields and read supplemental file if provided
     optional_fields = ["date", "region", "country", "division", "city"]
     optional_fields_present = []
     sup_data = {}
-
-    # Read supplemental file if provided
     if supplemental_file:
-        # Determine delimiter (infer from file extension or content)
+        # Determine delimiter from extension or content
         sup_ext = os.path.splitext(supplemental_file)[1].lower()
         if sup_ext in ('.tsv', '.tab'):
             delim = '\t'
         elif sup_ext == '.csv':
             delim = ','
         else:
-            # Fallback: sniff by content
             with open(supplemental_file, 'r') as sf:
                 first_line = sf.readline()
             delim = '\t' if first_line.count('\t') > first_line.count(',') else ','
-
+        # Read the supplemental file into a dictionary
         with open(supplemental_file, 'r') as sf:
             reader = csv.DictReader(sf, delimiter=delim)
-            # Determine which of the optional fields are present (case-insensitive match)
             if reader.fieldnames:
                 lower_fields = [h.lower().strip() for h in reader.fieldnames]
                 for field in optional_fields:
                     if field in lower_fields:
                         optional_fields_present.append(field)
                     else:
-                        # check case variants
+                        # check for case variants of field name
                         for lf in lower_fields:
                             if lf == field:
                                 optional_fields_present.append(field)
                                 break
-                # Preserve the order defined in optional_fields
+                # Preserve the defined order of optional fields
                 optional_fields_present = [f for f in optional_fields if f in optional_fields_present]
-            # Build a dict mapping sample ID to that sample's metadata (for the fields present)
+            # Map sample ID to its supplemental metadata
             for row in reader:
-                # Identify sample ID using the specified id_column
-                sample_id = row.get(id_column) or row.get(id_column.capitalize()) or row.get(id_column.lower())
+                sample_id = (row.get(id_column) or row.get(id_column.capitalize()) or row.get(id_column.lower()))
                 if not sample_id:
                     continue
                 sample_id = str(sample_id)
                 sup_data[sample_id] = {}
                 for field in optional_fields_present:
-                    # find the actual value from the row (case-insensitive key)
                     val = None
+                    # Find value in row (case-insensitive match)
                     for col, value in row.items():
-                        if col.lower() == field:
+                        if col.lower().strip() == field:
                             val = value.strip() if isinstance(value, str) else value
                             break
-                    # Use None for empty values
                     sup_data[sample_id][field] = val if val not in ['', None] else None
 
-    # Prepare output directory (if output_prefix includes a path, create dirs as needed)
+    # Prepare output directory if needed
     out_dir = os.path.dirname(output_prefix)
     base_name = os.path.basename(output_prefix)
     if out_dir and not os.path.exists(out_dir):
         os.makedirs(out_dir, exist_ok=True)
 
-    # Open drop log file
+    # Open drop log for recording samples that are skipped
     drop_log_path = os.path.join(out_dir, "metadata_drop.txt") if out_dir else "metadata_drop.txt"
     drop_log = open(drop_log_path, 'w')
 
-    # Prepare aggregated output file
+    # Prepare aggregated output TSV writer
     agg_path = os.path.join(out_dir, f"{base_name}.tsv") if out_dir else f"{base_name}.tsv"
     agg_file = open(agg_path, 'w', newline='')
     writer = csv.writer(agg_file, delimiter='\t')
 
-    # Construct header: required + optional + extra fields
-    header = ["strain", "Serovar", "MLST", "cgMLST", "HC5", "HC10"]
-    header += optional_fields_present
-    header += list(extra_fields)
-    writer.writerow(header)
+    # Determine base header fields (for bacterial organisms vs viruses)
+    if organism in ['salmonella', 'campylobacter', 'escherichia']:
+        # Base required fields for bacteria
+        header = ["strain", "Serovar", "MLST", "cgMLST", "HC5", "HC10"]
+        # Add any optional metadata fields present in supplemental file
+        header += optional_fields_present
+        # Add extra fields columns if flag is set
+        extra_columns = []
+        if extra_fields:
+            # Antibiotic resistance columns (8 antibiotics * 4 attributes each)
+            antibiotics = ['Azithromycin', 'Ciprofloxacin', 'Clindamycin', 'Erythromycin',
+                           'Chloramphenicol', 'Tetracycline', 'Gentamicin', 'Nalidixic Acid']
+            for ab in antibiotics:
+                extra_columns += [
+                    f"{ab}_opornos", f"{ab}_czynnik_typ",
+                    f"{ab}_czynnik_nazwa", f"{ab}_czynnik_mutacja"
+                ]
+            # Contamination columns for common programs
+            for prog in ["kraken2", "metaphlan", "kmerfinder"]:
+                extra_columns += [
+                    f"{prog}_species_main", f"{prog}_species_secondary",
+                    f"{prog}_species_main_value", f"{prog}_species_secondary_value"
+                ]
+            # FastQC stats columns (forward and reverse)
+            extra_columns += [
+                "number_of_reads_forward", "number_of_bases_forward",
+                "reads_median_quality_forward", "reads_median_length_forward",
+                "number_of_reads_reverse", "number_of_bases_reverse",
+                "reads_median_quality_reverse", "reads_median_length_reverse"
+            ]
+        header += extra_columns
+        # Write header to aggregated TSV
+        writer.writerow(header)
 
-    # Iterate through sample subdirectories
-    for sample in os.listdir(json_dir):
-        sample_dir = os.path.join(json_dir, sample)
-        if not os.path.isdir(sample_dir):
-            continue
-        sample_id = sample
-        json_file = os.path.join(sample_dir, f"{sample}.json")
-        if not os.path.isfile(json_file):
-            drop_log.write(f"{sample_id} - JSON file not found\n")
-            continue
+        # Process each sample directory in json_dir
+        for sample in os.listdir(json_dir):
+            sample_dir = os.path.join(json_dir, sample)
+            if not os.path.isdir(sample_dir):
+                continue
+            sample_id = sample
+            json_file_path = os.path.join(sample_dir, f"{sample}.json")
+            if not os.path.isfile(json_file_path):
+                drop_log.write(f"{sample_id} - JSON file not found\n")
+                continue
 
-        # Load JSON data
-        try:
-            with open(json_file, 'r') as jf:
-                data = json.load(jf)
-        except Exception as e:
-            drop_log.write(f"{sample_id} - JSON parse error: {e}\n")
-            continue
+            # Load the JSON data for this sample
+            try:
+                with open(json_file_path, 'r') as jf:
+                    data = json.load(jf)
+            except Exception as e:
+                drop_log.write(f"{sample_id} - JSON parse error: {e}\n")
+                continue
 
-        output = data.get("output", data)  # if "output" is a top-level key, use it
+            output_data = data.get("output", data)  # If "output" is top-level, use it; otherwise use full data
+            reasons = []  # to collect any drop reasons for this sample
 
-        reasons = []  # accumulate drop reasons
-
-        # Determine Serovar based on genus
-        genus = output.get("pathogen_predicted_genus", "")
-        species = output.get("pathogen_predicted_species", "")
-        serovar = None
-        if genus.lower() == "campylobacter":
-            # Use genus + species as serovar if available
-            if species:
-                serovar = species
-                if not serovar.lower().startswith(genus.lower()):
-                    serovar = f"{genus}_{species}"
-            else:
-                reasons.append("Species not found for Campylobacter")
-        elif genus.lower() == "escherichia":
-            ser = None
-            for entry in output.get("antigenic_data", []):
-                if entry.get("program_name") == "ectyper":
-                    if entry.get("status") and entry.get("status").lower() == "tak":
-                        ser = entry.get("serotype_name")
-                    break
-            if ser:
-                serovar = ser
-            else:
-                reasons.append("E. coli serotype (ECTyper) not found")
-        elif genus.lower() == "salmonella":
-            ser = None
-            for entry in output.get("antigenic_data", []):
-                if entry.get("program_name") == "seqsero": # sistr can be used as an alternative source of serowvar info
-                    if entry.get("status") and entry.get("status").lower() == "tak":
-                        ser = entry.get("serotype_name")
-                    break
-            if ser:
-                serovar = ser
-            else:
-                reasons.append("Salmonella serotype (SeqSero) not found")
-        else:
-            reasons.append(f"Unsupported genus {genus}")
-
-        # Extract MLST and cgMLST entries
-        mlst_id = None
-        cgmlst_id = None
-        hc5 = None
-        hc10 = None
-        mlst_data = output.get("mlst_data")
-        if not mlst_data:
-            reasons.append("MLST data missing")
-        else:
-            # Ensure mlst_data is iterable (could be list or single dict)
-            entries = mlst_data if isinstance(mlst_data, list) else [mlst_data]
-            mlst_entry = None
-            cgmlst_entry = None
-            for entry in entries:
-                scheme = str(entry.get("scheme_name", "")).lower()
-                if scheme.startswith("cgmlst"):
-                    cgmlst_entry = entry
-                elif scheme.startswith("mlst"):
-                    mlst_entry = entry
-            # Classical MLST
-            if not mlst_entry:
-                reasons.append("MLST result not found")
-            else:
-                if mlst_entry.get("status") and mlst_entry["status"].lower() != "tak":
-                    reasons.append("MLST incomplete")
+            # Determine Serovar (species or serotype) based on genus
+            serovar = None
+            genus = output_data.get("pathogen_predicted_genus", "") or output_data.get("Genus", "")
+            species = output_data.get("pathogen_predicted_species", "") or output_data.get("Species", "")
+            if genus and genus.lower() == "campylobacter":
+                # Use species name (prefixed with genus if not already included)
+                if species:
+                    serovar = species
+                    if not serovar.lower().startswith(genus.lower()):
+                        serovar = f"{genus}_{species}"
                 else:
-                    mlst_id_val = mlst_entry.get("profile_id")
-                    if mlst_id_val in [None, "", "null"]:
-                        reasons.append("MLST profile_id missing")
-                    else:
-                        mlst_id = str(mlst_id_val)
-            # cgMLST
-            if not cgmlst_entry:
-                reasons.append("cgMLST result not found")
-            else:
-                if cgmlst_entry.get("status") and cgmlst_entry["status"].lower() != "tak":
-                    reasons.append("cgMLST incomplete")
+                    reasons.append("Species not found for Campylobacter")
+            elif genus and genus.lower() == "escherichia":
+                # Use ECTyper result for E. coli serotype if available
+                ser = None
+                for entry in output_data.get("antigenic_data", []):
+                    if entry.get("program_name") == "ectyper":
+                        if entry.get("status", "").lower() == "tak":
+                            ser = entry.get("serotype_name")
+                        break
+                if ser:
+                    serovar = ser
                 else:
-                    cg_id_val = cgmlst_entry.get("profile_id")
-                    if cg_id_val in [None, "", "null"]:
-                        reasons.append("cgMLST profile_id missing")
+                    reasons.append("E. coli serotype (ECTyper) not found")
+            elif genus and genus.lower() == "salmonella":
+                # Use SeqSero result for Salmonella serotype if available
+                ser = None
+                for entry in output_data.get("antigenic_data", []):
+                    if entry.get("program_name") == "seqsero":
+                        if entry.get("status", "").lower() == "tak":
+                            ser = entry.get("serotype_name")
+                        break
+                if ser:
+                    serovar = ser
+                else:
+                    reasons.append("Salmonella serotype (SeqSero) not found")
+            else:
+                if genus:
+                    reasons.append(f"Unsupported genus {genus}")
+                else:
+                    reasons.append("Genus not predicted")
+
+            # Extract MLST and cgMLST profile IDs and HierCC clusters (HC5, HC10)
+            mlst_id = None
+            cgmlst_id = None
+            hc5 = None
+            hc10 = None
+            mlst_entries = output_data.get("mlst_data")
+            if not mlst_entries:
+                reasons.append("MLST data missing")
+            else:
+                # Ensure mlst_data is iterable (could be a list or a single dict)
+                entries = mlst_entries if isinstance(mlst_entries, list) else [mlst_entries]
+                mlst_entry = None
+                cgmlst_entry = None
+                for entry in entries:
+                    scheme_name = str(entry.get("scheme_name", "")).lower()
+                    if scheme_name.startswith("cgmlst"):
+                        cgmlst_entry = entry
+                    elif scheme_name.startswith("mlst"):
+                        mlst_entry = entry
+                # Check classical MLST
+                if not mlst_entry:
+                    reasons.append("MLST result not found")
+                else:
+                    if mlst_entry.get("status", "").lower() != "tak":
+                        reasons.append("MLST incomplete")
                     else:
-                        cgmlst_id = str(cg_id_val)
-                    # Get HierCC clusters
-                    clusters = cgmlst_entry.get("hiercc_clustering_external_data", [])
-                    hc5_val = hc10_val = None
-                    for cluster in clusters:
-                        if str(cluster.get("level")) == "5":
-                            hc5_val = cluster.get("group_id")
-                        elif str(cluster.get("level")) == "10":
-                            hc10_val = cluster.get("group_id")
-                    if hc5_val is None or hc10_val is None:
-                        # If classification using Enterobase failed try using local classification maintained by PZH
-                        clusters_int = cgmlst_entry.get("hiercc_clustering_internal_data", [])
-                        for cluster in clusters_int:
-                            if str(cluster.get("level")) == "5" and hc5_val is None:
+                        mlst_profile = mlst_entry.get("profile_id")
+                        if mlst_profile in [None, "", "null"]:
+                            reasons.append("MLST profile_id missing")
+                        else:
+                            mlst_id = str(mlst_profile)
+                # Check cgMLST
+                if not cgmlst_entry:
+                    reasons.append("cgMLST result not found")
+                else:
+                    if cgmlst_entry.get("status", "").lower() != "tak":
+                        reasons.append("cgMLST incomplete")
+                    else:
+                        cg_profile = cgmlst_entry.get("profile_id")
+                        if cg_profile in [None, "", "null"]:
+                            reasons.append("cgMLST profile_id missing")
+                        else:
+                            cgmlst_id = str(cg_profile)
+                        # Extract HierCC cluster IDs (levels 5 and 10)
+                        hc5_val = hc10_val = None
+                        for cluster in cgmlst_entry.get("hiercc_clustering_external_data", []):
+                            if str(cluster.get("level")) == "5":
                                 hc5_val = cluster.get("group_id")
-                            if str(cluster.get("level")) == "10" and hc10_val is None:
+                            elif str(cluster.get("level")) == "10":
                                 hc10_val = cluster.get("group_id")
-                    if hc5_val is None or hc10_val is None:
-                        reasons.append("HC5/HC10 cluster IDs missing")
-                    else:
-                        hc5 = str(hc5_val)
-                        hc10 = str(hc10_val)
+                        # If external data missing, try internal HierCC (if available)
+                        if hc5_val is None or hc10_val is None:
+                            for cluster in cgmlst_entry.get("hiercc_clustering_internal_data", []):
+                                if str(cluster.get("level")) == "5" and hc5_val is None:
+                                    hc5_val = cluster.get("group_id")
+                                if str(cluster.get("level")) == "10" and hc10_val is None:
+                                    hc10_val = cluster.get("group_id")
+                        if hc5_val is None or hc10_val is None:
+                            reasons.append("HC5/HC10 cluster IDs missing")
+                        else:
+                            hc5 = str(hc5_val)
+                            hc10 = str(hc10_val)
 
-        # If any required data is missing or invalid, skip this sample
-        if reasons:
-            drop_log.write(f"{sample_id} - {'; '.join(reasons)}\n")
-            continue
+            # If any required data was missing or invalid, log and skip this sample
+            if reasons:
+                drop_log.write(f"{sample_id} - {'; '.join(reasons)}\n")
+                continue
 
-        # Assemble row data for this sample
-        row = {
-            "strain": sample_id,
-            "Serovar": serovar,
-            "MLST": mlst_id,
-            "cgMLST": cgmlst_id,
-            "HC5": hc5,
-            "HC10": hc10
-        }
-        # Add supplemental fields if available
-        for field in optional_fields_present:
-            val = sup_data.get(sample_id, {}).get(field)
-            row[field] = "" if val is None else str(val)
-        # Add extra JSON fields if requested
-        for field in extra_fields:
-            value = output.get(field)
-            # If not found in "output", check top-level (in case field is at root)
-            if value is None and "output" in data:
-                value = data.get(field)
-            if value is None:
-                row[field] = ""
-            elif isinstance(value, (dict, list)):
-                # Convert complex types to JSON string for safe TSV output
-                row[field] = json.dumps(value, separators=(',', ':'))
-            else:
-                row[field] = str(value)
+            # Assemble the row dictionary for this sample
+            row = {
+                "strain": sample_id,
+                "Serovar": serovar,
+                "MLST": mlst_id,
+                "cgMLST": cgmlst_id,
+                "HC5": hc5,
+                "HC10": hc10
+            }
+            # Include any supplemental metadata fields for this sample
+            for field in optional_fields_present:
+                val = sup_data.get(sample_id, {}).get(field)
+                row[field] = "" if val is None else str(val)
 
-        # Write to aggregated TSV
-        writer.writerow([row.get(col, "") for col in header])
-        # Write individual sample TSV
-        sample_out = os.path.join(out_dir, f"{sample_id}.{base_name}.tsv") if out_dir else f"{sample_id}.{base_name}.tsv"
-        with open(sample_out, 'w', newline='') as sf:
-            sw = csv.writer(sf, delimiter='\t')
-            sw.writerow(header)
-            sw.writerow([row.get(col, "") for col in header])
+            # Include extra fields if the flag is set
+            if extra_fields:
+                # AMR data (resistance to known antibiotics)
+                amr_results = get_amr_bacteria(data)
+                for antibiotic, result in amr_results.items():
+                    # Flatten each antibiotic's result into separate columns
+                    row[f"{antibiotic}_opornos"] = result.get('opornos', '')
+                    row[f"{antibiotic}_czynnik_typ"] = result.get('czynnik_typ', '')
+                    row[f"{antibiotic}_czynnik_nazwa"] = result.get('czynnik_nazwa', '')
+                    row[f"{antibiotic}_czynnik_mutacja"] = result.get('czynnik_mutacja', '')
+                # Contamination data
+                contam_results = get_contaminations_bacteria(data)
+                for key, val in contam_results.items():
+                    row[key] = "" if val is None else str(val)
+                # FastQC statistics (forward and reverse if applicable)
+                fastqc_forward = get_fastqc_stats(data, "forward")
+                fastqc_reverse = get_fastqc_stats(data, "reverse")
+                fastqc_stats = {}
+                # Merge forward and reverse stats
+                fastqc_stats.update(fastqc_forward)
+                fastqc_stats.update(fastqc_reverse)
+                # If no R1/R2 entries (e.g., single-end/Nanopore), use first entry as forward
+                if not fastqc_stats:
+                    seq_data = data.get("output", {}).get("sequencing_summary_data", [])
+                    if seq_data:
+                        first_entry = seq_data[0]
+                        fastqc_stats = {
+                            "number_of_reads_forward": first_entry.get('number_of_reads_value', -1),
+                            "number_of_bases_forward": first_entry.get('number_of_bases_value', -1),
+                            "reads_median_quality_forward": first_entry.get('reads_median_quality_value', -1),
+                            "reads_median_length_forward": first_entry.get('reads_median_length_value', -1),
+                            # Leave reverse fields empty in single-end case
+                            "number_of_reads_reverse": "",
+                            "number_of_bases_reverse": "",
+                            "reads_median_quality_reverse": "",
+                            "reads_median_length_reverse": ""
+                        }
+                # Add FastQC stats to the row
+                for key, val in fastqc_stats.items():
+                    row[key] = "" if val == "" else str(val)
 
-    # Close files
+            # Write this sample's data to the aggregated TSV (ensure correct column order)
+            writer.writerow([row.get(col, "") for col in header])
+            # Also write an individual TSV for the sample (with the same columns)
+            sample_out_path = os.path.join(out_dir, f"{sample_id}.{base_name}.tsv") if out_dir else f"{sample_id}.{base_name}.tsv"
+            with open(sample_out_path, 'w', newline='') as sf:
+                sw = csv.writer(sf, delimiter='\t')
+                sw.writerow(header)
+                sw.writerow([row.get(col, "") for col in header])
+
+    elif organism in ['sars-cov-2', 'influenza', 'rsv']:
+        # For viral organisms, implementation would go here (not provided in this context)
+        pass
+
+    # Close output files
     agg_file.close()
     drop_log.close()
 
 if __name__ == '__main__':
     generate_metadata()
-
-
