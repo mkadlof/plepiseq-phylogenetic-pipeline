@@ -13,12 +13,12 @@ def get_sequencing_summary_bacteria(json_data):
         if entry.get("step_name") == "post-filtering":
             # Return a dict of key assembly metrics (with safe defaults if missing)
             return {
-                'genome_length': entry.get('total_length_value', 0),
-                'contigs_number': entry.get('number_of_contigs_value', 0),
-                'average_coverage': entry.get('average_coverage_value', 0),
-                'N50': entry.get('N50_value', 0),
-                'L50': entry.get('L50_value', 0),
-                'Ns_value': entry.get('number_of_Ns_value', 0)
+                'genome_length': entry.get('total_length_value', -1),
+                'contigs_number': entry.get('number_of_contigs_value', -1),
+                'average_coverage': entry.get('average_coverage_value', -1),
+                'N50': entry.get('N50_value', -1),
+                'L50': entry.get('L50_value', -1),
+                'Ns_value': entry.get('number_of_Ns_value', -1)
             }
     return {}
 

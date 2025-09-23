@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -30,7 +30,17 @@ GOLDENS = {
             'kmerfinder_species_main_value': 80.78,
             'kmerfinder_species_secondary_value': 16.59,
 
+        },
+        "test_get_sequencing_summary_bacteria" : {
+            'genome_length':  1744267,
+            'contigs_number': 33,
+            'average_coverage': 57.53,
+            'N50' : 232219,
+            'L50' : 3,
+            'Ns_value' : 257
+
         }
+
 
     },
     'campylo_nanopore.json': {
@@ -51,6 +61,15 @@ GOLDENS = {
             'kmerfinder_species_secondary': 'Campylobacter jejuni',
             'kmerfinder_species_main_value': 36.42,
             'kmerfinder_species_secondary_value': 10.7,
+
+        },
+        "test_get_sequencing_summary_bacteria" : {
+            'genome_length':  1756767,
+            'contigs_number': 3,
+            'average_coverage': 36.91,
+            'N50' : 1751062,
+            'L50' : 1,
+            'Ns_value' : 0
 
         }
     },
@@ -81,6 +100,15 @@ GOLDENS = {
             'kmerfinder_species_main_value': 0.18,
             'kmerfinder_species_secondary_value': 0,
 
+        },
+        "test_get_sequencing_summary_bacteria" : {
+            'genome_length':  5104809,
+            'contigs_number': 238,
+            'average_coverage': 44.98,
+            'N50' : 96543,
+            'L50' : 19,
+            'Ns_value' : 241
+
         }
     },
     'ecoli_nanopore.json': {
@@ -101,6 +129,15 @@ GOLDENS = {
             'kmerfinder_species_secondary': 'Escherichia albertii',
             'kmerfinder_species_main_value': 18.49,
             'kmerfinder_species_secondary_value': 17.29,
+
+        },
+        "test_get_sequencing_summary_bacteria" : {
+            'genome_length':  5267401,
+            'contigs_number': 5,
+            'average_coverage': 95.67,
+            'N50' : 2017328,
+            'L50' : 2,
+            'Ns_value' : 0
 
         }
     },
@@ -131,6 +168,15 @@ GOLDENS = {
             'kmerfinder_species_main_value': 93.96,
             'kmerfinder_species_secondary_value': 5.4,
 
+        },
+        "test_get_sequencing_summary_bacteria" : {
+            'genome_length':  5004068,
+            'contigs_number': 78,
+            'average_coverage': 55.41,
+            'N50' : 225224,
+            'L50' : 7,
+            'Ns_value' : 840
+
         }
     },
     'salmonella_nanopore.json': {
@@ -151,6 +197,15 @@ GOLDENS = {
             'kmerfinder_species_secondary': 'brak',
             'kmerfinder_species_main_value': -1,
             'kmerfinder_species_secondary_value': -1,
+
+        },
+        "test_get_sequencing_summary_bacteria" : {
+            'genome_length':  -1,
+            'contigs_number': -1,
+            'average_coverage': -1,
+            'N50' : -1,
+            'L50' : -1,
+            'Ns_value' : -1
 
         }
 
@@ -183,3 +238,12 @@ def test_get_contaminations_bacteria(json_file):
     expected = GOLDENS[json_file.name]['test_get_contaminations_bacteria']
 
     assert result == expected, f"{json_file.name}: Contamination analysis output mismatch"
+
+def test_get_sequencing_summary_bacteria(json_file):
+    content = load_json_content(json_file)
+    result = get_sequencing_summary_bacteria(content)
+
+    expected = GOLDENS[json_file.name]['test_get_sequencing_summary_bacteria']
+
+    assert result == expected, f"{json_file.name}: Sequencing summary analysis output mismatch"
+
