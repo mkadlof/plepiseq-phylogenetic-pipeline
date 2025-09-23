@@ -31,6 +31,7 @@ def get_amr_bacteria(json_data):
     ]
     output = {}
     # Initialize defaults for all known antibiotics: susceptible (wrażliwy) with no resistance factor
+    # These defaults are kept if Resfinder was actually called
     for ab in KNOWN_ANTIBIOTICS:
         output[ab] = {
             'opornos': 'wrazliw',       # susceptible
@@ -66,6 +67,16 @@ def get_amr_bacteria(json_data):
                             'czynnik_nazwa': 'brak',
                             'czynnik_mutacja': 'brak'
                         }
+        elif program.get("program_name") == "ResFinder/PointFinder" and ( program.get("status", "").lower() == "nie" or program.get("status", "").lower() == "blad" ):
+            # in case pipeline did not produce valid output for resfinde change defaults regarding resistance to "undetermined"
+            for ab in KNOWN_ANTIBIOTICS:
+                output[ab] = {
+                    'opornos': 'brak_danych',  # poor sequencing no data
+                    'czynnik_typ': 'brak',  # factor type
+                    'czynnik_nazwa': 'brak',  # factor name
+                    'czynnik_mutacja': 'brak'  # mutation detail
+                }
+
     return output
 
 def get_contaminations_bacteria(json_data):

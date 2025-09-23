@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -39,8 +39,40 @@ GOLDENS = {
             'L50' : 3,
             'Ns_value' : 257
 
+        },
+        "test_get_amr_bacteria" : {'Azithromycin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': '23S',
+                                                     'czynnik_mutacja': 'r.2075A>G' },
+                                   'Ciprofloxacin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': 'gyrA',
+                                                     'czynnik_mutacja': 'p.T86I' } ,
+                                   'Clindamycin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': '23S',
+                                                     'czynnik_mutacja': 'r.2075A>G' },
+                                   'Erythromycin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': '23S',
+                                                     'czynnik_mutacja': 'r.2075A>G' },
+                                   'Chloramphenicol': {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Tetracycline' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'gen',
+                                                     'czynnik_nazwa': 'tet(O/32/O)',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Gentamicin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'gen',
+                                                     'czynnik_nazwa': "aph(2'')-Ib",
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Nalidixic Acid' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': 'gyrA',
+                                                     'czynnik_mutacja': 'p.T86I' }
         }
-
 
     },
     'campylo_nanopore.json': {
@@ -71,6 +103,39 @@ GOLDENS = {
             'L50' : 1,
             'Ns_value' : 0
 
+        },
+        "test_get_amr_bacteria" : {'Azithromycin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': '23S',
+                                                     'czynnik_mutacja': 'r.2075A>G' },
+                                   'Ciprofloxacin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' } ,
+                                   'Clindamycin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': '23S',
+                                                     'czynnik_mutacja': 'r.2075A>G' },
+                                   'Erythromycin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': '23S',
+                                                     'czynnik_mutacja': 'r.2075A>G' },
+                                   'Chloramphenicol': {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Tetracycline' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'gen',
+                                                     'czynnik_nazwa': 'tet(O)',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Gentamicin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Nalidixic Acid' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' }
         }
     },
     'ecoli_illumina.json': {
@@ -109,6 +174,39 @@ GOLDENS = {
             'L50' : 19,
             'Ns_value' : 241
 
+        },
+        "test_get_amr_bacteria" : {'Azithromycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Ciprofloxacin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': 'gyrA',
+                                                     'czynnik_mutacja': 'p.S83A' } ,
+                                   'Clindamycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Erythromycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Chloramphenicol': {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Tetracycline' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Gentamicin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Nalidixic Acid' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': 'gyrA',
+                                                     'czynnik_mutacja': 'p.S83A' }
         }
     },
     'ecoli_nanopore.json': {
@@ -139,6 +237,39 @@ GOLDENS = {
             'L50' : 2,
             'Ns_value' : 0
 
+        },
+        "test_get_amr_bacteria" : {'Azithromycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Ciprofloxacin' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': 'gyrA',
+                                                     'czynnik_mutacja': 'p.S83A' } ,
+                                   'Clindamycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Erythromycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Chloramphenicol': {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Tetracycline' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Gentamicin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Nalidixic Acid' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'mutacja_punktowa',
+                                                     'czynnik_nazwa': 'gyrA',
+                                                     'czynnik_mutacja': 'p.S83A' }
         }
     },
     'salmonella_illumina.json': {
@@ -177,6 +308,39 @@ GOLDENS = {
             'L50' : 7,
             'Ns_value' : 840
 
+        },
+        "test_get_amr_bacteria" : {'Azithromycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Ciprofloxacin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' } ,
+                                   'Clindamycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Erythromycin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Chloramphenicol': {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Tetracycline' : {'opornos' : 'oporny',
+                                                     'czynnik_typ': 'gen',
+                                                     'czynnik_nazwa': 'tet(B)',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Gentamicin' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Nalidixic Acid' : {'opornos' : 'wrazliw',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' }
         }
     },
     'salmonella_nanopore.json': {
@@ -207,6 +371,39 @@ GOLDENS = {
             'L50' : -1,
             'Ns_value' : -1
 
+        },
+        "test_get_amr_bacteria" : {'Azithromycin' : {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Ciprofloxacin' : {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' } ,
+                                   'Clindamycin' : {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Erythromycin' : {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Chloramphenicol': {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Tetracycline' : {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Gentamicin' : {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' },
+                                   'Nalidixic Acid' : {'opornos' : 'brak_danych',
+                                                     'czynnik_typ': 'brak',
+                                                     'czynnik_nazwa': 'brak',
+                                                     'czynnik_mutacja': 'brak' }
         }
 
     }
@@ -244,6 +441,14 @@ def test_get_sequencing_summary_bacteria(json_file):
     result = get_sequencing_summary_bacteria(content)
 
     expected = GOLDENS[json_file.name]['test_get_sequencing_summary_bacteria']
+
+    assert result == expected, f"{json_file.name}: Sequencing summary analysis output mismatch"
+
+def test_get_amr_bacteria(json_file):
+    content = load_json_content(json_file)
+    result = get_amr_bacteria(content)
+
+    expected = GOLDENS[json_file.name]['test_get_amr_bacteria']
 
     assert result == expected, f"{json_file.name}: Sequencing summary analysis output mismatch"
 
