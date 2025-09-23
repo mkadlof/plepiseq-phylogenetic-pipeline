@@ -2,8 +2,66 @@ import os
 import json
 import csv
 import click
+from typing import Dict
 
 ### Helper functions to extract specific info from JSON files ###
+
+
+def get_serovar_bacteria(json_data:Dict) -> Dict:
+    """
+    Extract serovar (species/serotype) information based on genus.
+    Supports Campylobacter, Escherichia, and Salmonella.
+    Returns (serovar, reasons) where reasons is a list of warnings/errors.
+    """
+    serovar = 'Unknown'
+    reason = []
+
+    output_data = json_data.get("output", {})
+
+    # Extract species from json to determine output of which program (ectype, seqser etc. to access)
+    genus = output_data.get("pathogen_predicted_genus", "") or output_data.get("Genus", "")
+    species = output_data.get("pathogen_predicted_species", "") or output_data.get("Species", "")
+
+    if genus and genus.lower() == "campylobacter":
+        if species:
+            serovar = species
+            if not serovar.lower().startswith(genus.lower()):
+                serovar = f"{genus}_{species}"
+        else:
+            reason.append("Species not found for Campylobacter")
+
+    elif genus and genus.lower() == "escherichia":
+        ser = None
+        for entry in output_data.get("antigenic_data", []):
+            if entry.get("program_name") == "ectyper":
+                if entry.get("status", "").lower() == "tak":
+                    ser = entry.get("serotype_name")
+                break
+        if ser:
+            serovar = ser
+        else:
+            reason.append("E. coli serotype (ECTyper) not found")
+
+    elif genus and genus.lower() == "salmonella":
+        ser = None
+        for entry in output_data.get("antigenic_data", []):
+            if entry.get("program_name") == "seqsero":
+                if entry.get("status", "").lower() == "tak":
+                    ser = entry.get("serotype_name")
+                break
+        if ser:
+            serovar = ser
+        else:
+            reason.append("Salmonella serotype (SeqSero) not found")
+
+    else:
+        if genus:
+            reason.append(f"Unsupported genus {genus}")
+        else:
+            reason.append("Genus not predicted")
+
+    return {"serovar" : serovar,
+            "reasons" : reason}
 
 # Sections of bacterial related data
 def get_sequencing_summary_bacteria(json_data):
@@ -200,11 +258,13 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
 
     # Determine base header fields (for bacterial organisms vs viruses)
     if organism in ['salmonella', 'campylobacter', 'escherichia']:
-        # Base required fields for bacteria
+        # Required field
         header = ["strain", "Serovar", "MLST", "cgMLST", "HC5", "HC10"]
+
         # Add any optional metadata fields present in supplemental file
         header += optional_fields_present
-        # Add extra fields columns if flag is set
+
+        # extra columns were selected from full WGS json
         extra_columns = []
         if extra_fields:
             # Antibiotic resistance columns (8 antibiotics * 4 attributes each)
@@ -232,6 +292,7 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
         # Write header to aggregated TSV
         writer.writerow(header)
 
+
         # Process each sample directory in json_dir
         for sample in os.listdir(json_dir):
             sample_dir = os.path.join(json_dir, sample)
@@ -255,46 +316,10 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
             reasons = []  # to collect any drop reasons for this sample
 
             # Determine Serovar (species or serotype) based on genus
-            serovar = None
-            genus = output_data.get("pathogen_predicted_genus", "") or output_data.get("Genus", "")
-            species = output_data.get("pathogen_predicted_species", "") or output_data.get("Species", "")
-            if genus and genus.lower() == "campylobacter":
-                # Use species name (prefixed with genus if not already included)
-                if species:
-                    serovar = species
-                    if not serovar.lower().startswith(genus.lower()):
-                        serovar = f"{genus}_{species}"
-                else:
-                    reasons.append("Species not found for Campylobacter")
-            elif genus and genus.lower() == "escherichia":
-                # Use ECTyper result for E. coli serotype if available
-                ser = None
-                for entry in output_data.get("antigenic_data", []):
-                    if entry.get("program_name") == "ectyper":
-                        if entry.get("status", "").lower() == "tak":
-                            ser = entry.get("serotype_name")
-                        break
-                if ser:
-                    serovar = ser
-                else:
-                    reasons.append("E. coli serotype (ECTyper) not found")
-            elif genus and genus.lower() == "salmonella":
-                # Use SeqSero result for Salmonella serotype if available
-                ser = None
-                for entry in output_data.get("antigenic_data", []):
-                    if entry.get("program_name") == "seqsero":
-                        if entry.get("status", "").lower() == "tak":
-                            ser = entry.get("serotype_name")
-                        break
-                if ser:
-                    serovar = ser
-                else:
-                    reasons.append("Salmonella serotype (SeqSero) not found")
-            else:
-                if genus:
-                    reasons.append(f"Unsupported genus {genus}")
-                else:
-                    reasons.append("Genus not predicted")
+            serovar_dict = get_serovar_bacteria(data)
+
+            serovar = serovar_dict.get("serovar")
+            reasons.extend(serovar_dict.get("reasons"))
 
             # Extract MLST and cgMLST profile IDs and HierCC clusters (HC5, HC10)
             mlst_id = None

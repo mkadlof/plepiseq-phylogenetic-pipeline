@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -72,7 +72,8 @@ GOLDENS = {
                                                      'czynnik_typ': 'mutacja_punktowa',
                                                      'czynnik_nazwa': 'gyrA',
                                                      'czynnik_mutacja': 'p.T86I' }
-        }
+        },
+        "test_get_serovar_bacteria" : 'Campylobacter_jejuni'
 
     },
     'campylo_nanopore.json': {
@@ -136,7 +137,8 @@ GOLDENS = {
                                                      'czynnik_typ': 'brak',
                                                      'czynnik_nazwa': 'brak',
                                                      'czynnik_mutacja': 'brak' }
-        }
+        },
+        "test_get_serovar_bacteria" : 'Campylobacter_jejuni'
     },
     'ecoli_illumina.json': {
         'test_get_fastqc_stats': {
@@ -207,7 +209,8 @@ GOLDENS = {
                                                      'czynnik_typ': 'mutacja_punktowa',
                                                      'czynnik_nazwa': 'gyrA',
                                                      'czynnik_mutacja': 'p.S83A' }
-        }
+        },
+        "test_get_serovar_bacteria" : 'O104:H4'
     },
     'ecoli_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -270,7 +273,8 @@ GOLDENS = {
                                                      'czynnik_typ': 'mutacja_punktowa',
                                                      'czynnik_nazwa': 'gyrA',
                                                      'czynnik_mutacja': 'p.S83A' }
-        }
+        },
+        "test_get_serovar_bacteria" : 'O104:H4'
     },
     'salmonella_illumina.json': {
         'test_get_fastqc_stats': {
@@ -341,7 +345,8 @@ GOLDENS = {
                                                      'czynnik_typ': 'brak',
                                                      'czynnik_nazwa': 'brak',
                                                      'czynnik_mutacja': 'brak' }
-        }
+        },
+        "test_get_serovar_bacteria" : 'Typhimurium'
     },
     'salmonella_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -404,7 +409,8 @@ GOLDENS = {
                                                      'czynnik_typ': 'brak',
                                                      'czynnik_nazwa': 'brak',
                                                      'czynnik_mutacja': 'brak' }
-        }
+        },
+        "test_get_serovar_bacteria" : 'Unknown'
 
     }
 
@@ -452,3 +458,11 @@ def test_get_amr_bacteria(json_file):
 
     assert result == expected, f"{json_file.name}: Sequencing summary analysis output mismatch"
 
+
+def test_get_serovar_bacteria(json_file):
+    content = load_json_content(json_file)
+    result = get_serovar_bacteria(content)['serovar']
+
+    expected = GOLDENS[json_file.name]['test_get_serovar_bacteria']
+
+    assert result == expected, f"{json_file.name}: Serovar extraction ismatch"
