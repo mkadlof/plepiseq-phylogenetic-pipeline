@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria, get_mlst_cgmlst
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -73,8 +73,14 @@ GOLDENS = {
                                                      'czynnik_nazwa': 'gyrA',
                                                      'czynnik_mutacja': 'p.T86I' }
         },
-        "test_get_serovar_bacteria" : 'Campylobacter_jejuni'
-
+        "test_get_serovar_bacteria" : 'Campylobacter_jejuni',
+        "test_get_mlst_cgmlst" : {'mlst_id' : "828",
+                                  'mlst_public' : "828",
+                                  'cgmlst_id' : "local_41",
+                                  'cgmlst_public' : "23885",
+                                  'hc5': "local_41",
+                                  'hc10' : "local_41",
+                                  "reasons" : []}
     },
     'campylo_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -138,7 +144,14 @@ GOLDENS = {
                                                      'czynnik_nazwa': 'brak',
                                                      'czynnik_mutacja': 'brak' }
         },
-        "test_get_serovar_bacteria" : 'Campylobacter_jejuni'
+        "test_get_serovar_bacteria" : 'Campylobacter_jejuni',
+        "test_get_mlst_cgmlst" : {'mlst_id' : "7125",
+                                  'mlst_public' : "7125",
+                                  'cgmlst_id' : "local_47",
+                                  'cgmlst_public' : "44900",
+                                  'hc5': "local_47",
+                                  'hc10' : "local_47",
+                                  "reasons" : []}
     },
     'ecoli_illumina.json': {
         'test_get_fastqc_stats': {
@@ -210,7 +223,14 @@ GOLDENS = {
                                                      'czynnik_nazwa': 'gyrA',
                                                      'czynnik_mutacja': 'p.S83A' }
         },
-        "test_get_serovar_bacteria" : 'O104:H4'
+        "test_get_serovar_bacteria" : 'O104:H4',
+        "test_get_mlst_cgmlst" : {'mlst_id' : "678",
+                                  'mlst_public' : "678",
+                                  'cgmlst_id' : "231697",
+                                  'cgmlst_public' : "231697",
+                                  'hc5': "231697",
+                                  'hc10' : "231697",
+                                  "reasons" : []}
     },
     'ecoli_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -274,7 +294,14 @@ GOLDENS = {
                                                      'czynnik_nazwa': 'gyrA',
                                                      'czynnik_mutacja': 'p.S83A' }
         },
-        "test_get_serovar_bacteria" : 'O104:H4'
+        "test_get_serovar_bacteria" : 'O104:H4',
+        "test_get_mlst_cgmlst" : {'mlst_id' : "678",
+                                  'mlst_public' : "678",
+                                  'cgmlst_id' : "local_22",
+                                  'cgmlst_public' : "231697",
+                                  'hc5': "231697",
+                                  'hc10' : "231697",
+                                  "reasons" : []}
     },
     'salmonella_illumina.json': {
         'test_get_fastqc_stats': {
@@ -346,7 +373,14 @@ GOLDENS = {
                                                      'czynnik_nazwa': 'brak',
                                                      'czynnik_mutacja': 'brak' }
         },
-        "test_get_serovar_bacteria" : 'Typhimurium'
+        "test_get_serovar_bacteria" : 'Typhimurium',
+        "test_get_mlst_cgmlst" : {'mlst_id' : "34",
+                                  'mlst_public' : "34",
+                                  'cgmlst_id' : "local_241",
+                                  'cgmlst_public' : "337784",
+                                  'hc5': "337784",
+                                  'hc10' : "2",
+                                  "reasons" : []}
     },
     'salmonella_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -410,7 +444,14 @@ GOLDENS = {
                                                      'czynnik_nazwa': 'brak',
                                                      'czynnik_mutacja': 'brak' }
         },
-        "test_get_serovar_bacteria" : 'Unknown'
+        "test_get_serovar_bacteria" : 'Unknown',
+        "test_get_mlst_cgmlst" : {'mlst_id' : "Unknown",
+                                  'mlst_public' : "Unknown",
+                                  'cgmlst_id' : "Unknown",
+                                  'cgmlst_public' : "Unknown",
+                                  'hc5': "Unknown",
+                                  'hc10' : "Unknown",
+                                  "reasons" : ['This module was eneterd with failed QC and poduced no valid output', 'This module was eneterd with failed QC and poduced no valid output']}
 
     }
 
@@ -465,4 +506,13 @@ def test_get_serovar_bacteria(json_file):
 
     expected = GOLDENS[json_file.name]['test_get_serovar_bacteria']
 
-    assert result == expected, f"{json_file.name}: Serovar extraction ismatch"
+    assert result == expected, f"{json_file.name}: Serovar extraction match"
+
+
+def test_get_mlst_cgmlst(json_file):
+    content = load_json_content(json_file)
+    result = get_mlst_cgmlst(content)
+
+    expected = GOLDENS[json_file.name]['test_get_mlst_cgmlst']
+
+    assert result == expected, f"{json_file.name}: chMLST/MLST mismatch"

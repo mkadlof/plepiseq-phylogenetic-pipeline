@@ -192,6 +192,12 @@ A helper script to prepare metadatafile based on the results of our [Sequnecing 
 
 ## Execution
 ```
-python3 WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --output-prefix metadata_out/metadata_required
-python3 WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --extra-fields --output-prefix metadata_out/metadata_expanded
+python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --output-prefix metadata_out/metadata_required
+python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --extra-fields --output-prefix metadata_out/metadata_expanded
 ```
+
+## Tests
+Go to tests/WGS2Phylo and execute:
+```
+pytest test_WGS2Phylo.py --data-dir ../../data/example_data/WGS2phylo/unit_tests/ -v
+``` 

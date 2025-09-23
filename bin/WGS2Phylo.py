@@ -6,6 +6,58 @@ from typing import Dict
 
 ### Helper functions to extract specific info from JSON files ###
 
+def get_mlst_cgmlst(json_data: Dict) -> Dict:
+    """
+    Extract MLST and cgMLST profile IDs.
+    Returns (mlst_id, cgmlst_id, reasons).
+    """
+
+    output_data = json_data.get("output", {})
+    mlst_entries = output_data.get("mlst_data", [])
+
+    reasons = []
+
+    hc5 = 'Unknown'
+    hc10 = 'Unknown'
+    cgmlst_id = 'Unknown'
+    cgmlst_public = "Unknown"
+    mlst_id = 'Unknown'
+    mlst_public = "Unknown"
+
+    for entry in mlst_entries:
+        scheme_name = str(entry.get("scheme_name", "")).lower()
+
+        if scheme_name.startswith("cgmlst"):
+            if entry.get('status').lower() != 'tak':
+                reasons.append(entry.get('error_message'))
+            else:
+                cgmlst_id = entry.get('profile_id')
+                cgmlst_public = entry.get('closest_external_profile_id')
+
+                hiercc = entry.get('hiercc_clustering_internal_data', [])
+                for level in hiercc:
+                    if level.get('level', '') == '5':
+                        hc5 = level.get('group_id')
+                    elif level.get('level', '') == '10':
+                        hc10 = level.get('group_id')
+
+
+        elif scheme_name.startswith("mlst"):
+            if entry.get('status').lower() != 'tak':
+                reasons.append(entry.get('error_message'))
+            else:
+                mlst_id = entry.get('profile_id')
+                mlst_public = entry.get('closest_external_profile_id')
+
+
+    return {'mlst_id' : mlst_id,
+            'cgmlst_id' : cgmlst_id,
+            'mlst_public' : mlst_public,
+            'cgmlst_public' : cgmlst_public,
+            'hc5': hc5,
+            'hc10' : hc10,
+            'reasons': reasons}
+
 
 def get_serovar_bacteria(json_data:Dict) -> Dict:
     """
@@ -286,7 +338,8 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
                 "number_of_reads_forward", "number_of_bases_forward",
                 "reads_median_quality_forward", "reads_median_length_forward",
                 "number_of_reads_reverse", "number_of_bases_reverse",
-                "reads_median_quality_reverse", "reads_median_length_reverse"
+                "reads_median_quality_reverse", "reads_median_length_reverse",
+                "cgMLST_public_id", "MLST_public_id"
             ]
         header += extra_columns
         # Write header to aggregated TSV
@@ -312,7 +365,6 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
                 drop_log.write(f"{sample_id} - JSON parse error: {e}\n")
                 continue
 
-            output_data = data.get("output", data)  # If "output" is top-level, use it; otherwise use full data
             reasons = []  # to collect any drop reasons for this sample
 
             # Determine Serovar (species or serotype) based on genus
@@ -321,68 +373,20 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
             serovar = serovar_dict.get("serovar")
             reasons.extend(serovar_dict.get("reasons"))
 
-            # Extract MLST and cgMLST profile IDs and HierCC clusters (HC5, HC10)
-            mlst_id = None
-            cgmlst_id = None
-            hc5 = None
-            hc10 = None
-            mlst_entries = output_data.get("mlst_data")
-            if not mlst_entries:
-                reasons.append("MLST data missing")
-            else:
-                # Ensure mlst_data is iterable (could be a list or a single dict)
-                entries = mlst_entries if isinstance(mlst_entries, list) else [mlst_entries]
-                mlst_entry = None
-                cgmlst_entry = None
-                for entry in entries:
-                    scheme_name = str(entry.get("scheme_name", "")).lower()
-                    if scheme_name.startswith("cgmlst"):
-                        cgmlst_entry = entry
-                    elif scheme_name.startswith("mlst"):
-                        mlst_entry = entry
-                # Check classical MLST
-                if not mlst_entry:
-                    reasons.append("MLST result not found")
-                else:
-                    if mlst_entry.get("status", "").lower() != "tak":
-                        reasons.append("MLST incomplete")
-                    else:
-                        mlst_profile = mlst_entry.get("profile_id")
-                        if mlst_profile in [None, "", "null"]:
-                            reasons.append("MLST profile_id missing")
-                        else:
-                            mlst_id = str(mlst_profile)
-                # Check cgMLST
-                if not cgmlst_entry:
-                    reasons.append("cgMLST result not found")
-                else:
-                    if cgmlst_entry.get("status", "").lower() != "tak":
-                        reasons.append("cgMLST incomplete")
-                    else:
-                        cg_profile = cgmlst_entry.get("profile_id")
-                        if cg_profile in [None, "", "null"]:
-                            reasons.append("cgMLST profile_id missing")
-                        else:
-                            cgmlst_id = str(cg_profile)
-                        # Extract HierCC cluster IDs (levels 5 and 10)
-                        hc5_val = hc10_val = None
-                        for cluster in cgmlst_entry.get("hiercc_clustering_external_data", []):
-                            if str(cluster.get("level")) == "5":
-                                hc5_val = cluster.get("group_id")
-                            elif str(cluster.get("level")) == "10":
-                                hc10_val = cluster.get("group_id")
-                        # If external data missing, try internal HierCC (if available)
-                        if hc5_val is None or hc10_val is None:
-                            for cluster in cgmlst_entry.get("hiercc_clustering_internal_data", []):
-                                if str(cluster.get("level")) == "5" and hc5_val is None:
-                                    hc5_val = cluster.get("group_id")
-                                if str(cluster.get("level")) == "10" and hc10_val is None:
-                                    hc10_val = cluster.get("group_id")
-                        if hc5_val is None or hc10_val is None:
-                            reasons.append("HC5/HC10 cluster IDs missing")
-                        else:
-                            hc5 = str(hc5_val)
-                            hc10 = str(hc10_val)
+            # Extract MLST, chMLST, HierCC clustering
+
+            extract_mlst_cgmlst_out = get_mlst_cgmlst(data)
+
+            mlst_id = extract_mlst_cgmlst_out.get("mlst_id")
+            cgmlst_id = extract_mlst_cgmlst_out.get('cgmlst_id')
+            cgmlst_public_id = extract_mlst_cgmlst_out.get('cgmlst_public')
+            mlst_public_id = extract_mlst_cgmlst_out.get('mlst_public')
+            hc5 = extract_mlst_cgmlst_out.get('hc5')
+            hc10 = extract_mlst_cgmlst_out.get('hc10')
+
+
+
+            reasons.extend(extract_mlst_cgmlst_out.get('reasons'))
 
             # If any required data was missing or invalid, log and skip this sample
             if reasons:
@@ -406,20 +410,30 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
             # Include extra fields if the flag is set
             if extra_fields:
                 # AMR data (resistance to known antibiotics)
+                # cgmlst / mlst public
+                row['cgMLST_public_id'] = cgmlst_public_id
+                row['MLST_public_id'] = mlst_public_id
+
                 amr_results = get_amr_bacteria(data)
+
                 for antibiotic, result in amr_results.items():
                     # Flatten each antibiotic's result into separate columns
                     row[f"{antibiotic}_opornos"] = result.get('opornos', '')
                     row[f"{antibiotic}_czynnik_typ"] = result.get('czynnik_typ', '')
                     row[f"{antibiotic}_czynnik_nazwa"] = result.get('czynnik_nazwa', '')
                     row[f"{antibiotic}_czynnik_mutacja"] = result.get('czynnik_mutacja', '')
+
+
                 # Contamination data
                 contam_results = get_contaminations_bacteria(data)
                 for key, val in contam_results.items():
                     row[key] = "" if val is None else str(val)
+
+
                 # FastQC statistics (forward and reverse if applicable)
                 fastqc_forward = get_fastqc_stats(data, "forward")
                 fastqc_reverse = get_fastqc_stats(data, "reverse")
+
                 fastqc_stats = {}
                 # Merge forward and reverse stats
                 fastqc_stats.update(fastqc_forward)
