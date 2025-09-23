@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -14,6 +14,24 @@ GOLDENS = {
             'reads_median_quality_reverse': 37.0,
             'reads_median_length_reverse': 150.0,
         },
+        "test_get_contaminations_bacteria" : {
+            'kraken2_species_main' : 'Campylobacter coli',
+            'kraken2_species_secondary' : 'Campylobacter jejuni',
+            'kraken2_species_main_value' : 72.7,
+            'kraken2_species_secondary_value' : 2.04,
+
+            'metaphlan_species_main': 'Campylobacter coli',
+            'metaphlan_species_secondary': 'None',
+            'metaphlan_species_main_value': 100.0,
+            'metaphlan_species_secondary_value': 0,
+
+            'kmerfinder_species_main': 'Campylobacter coli',
+            'kmerfinder_species_secondary': 'Campylobacter jejuni',
+            'kmerfinder_species_main_value': 80.78,
+            'kmerfinder_species_secondary_value': 16.59,
+
+        }
+
     },
     'campylo_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -22,6 +40,19 @@ GOLDENS = {
             'reads_median_quality': 38.0,
             'reads_median_length': 2000.0,
         },
+        "test_get_contaminations_bacteria" : {
+            'kraken2_species_main' : 'Campylobacter coli',
+            'kraken2_species_secondary' : 'Photobacterium leiognathi',
+            'kraken2_species_main_value' : 81.29,
+            'kraken2_species_secondary_value' : 11.05,
+
+
+            'kmerfinder_species_main': 'Campylobacter coli',
+            'kmerfinder_species_secondary': 'Campylobacter jejuni',
+            'kmerfinder_species_main_value': 36.42,
+            'kmerfinder_species_secondary_value': 10.7,
+
+        }
     },
     'ecoli_illumina.json': {
         'test_get_fastqc_stats': {
@@ -34,6 +65,23 @@ GOLDENS = {
             'reads_median_quality_reverse': 36.0,
             'reads_median_length_reverse': 150.0,
         },
+        "test_get_contaminations_bacteria" : {
+            'kraken2_species_main' : 'Escherichia coli',
+            'kraken2_species_secondary' : 'Escherichia albertii',
+            'kraken2_species_main_value' : 11.73,
+            'kraken2_species_secondary_value' : 0.14,
+
+            'metaphlan_species_main': 'Escherichia coli',
+            'metaphlan_species_secondary': 'None',
+            'metaphlan_species_main_value': 100.0,
+            'metaphlan_species_secondary_value': 0,
+
+            'kmerfinder_species_main': 'Escherichia coli',
+            'kmerfinder_species_secondary': 'None',
+            'kmerfinder_species_main_value': 0.18,
+            'kmerfinder_species_secondary_value': 0,
+
+        }
     },
     'ecoli_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -42,6 +90,19 @@ GOLDENS = {
             'reads_median_quality': 41.0,
             'reads_median_length': 0.0,
         },
+        "test_get_contaminations_bacteria" : {
+            'kraken2_species_main' : 'Escherichia coli',
+            'kraken2_species_secondary' : 'Photobacterium leiognathi',
+            'kraken2_species_main_value' : 55.3,
+            'kraken2_species_secondary_value' : 8.76,
+
+
+            'kmerfinder_species_main': 'Escherichia marmotae',
+            'kmerfinder_species_secondary': 'Escherichia albertii',
+            'kmerfinder_species_main_value': 18.49,
+            'kmerfinder_species_secondary_value': 17.29,
+
+        }
     },
     'salmonella_illumina.json': {
         'test_get_fastqc_stats': {
@@ -54,6 +115,23 @@ GOLDENS = {
             'reads_median_quality_reverse': 36.0,
             'reads_median_length_reverse': 150.0,
         },
+        "test_get_contaminations_bacteria" : {
+            'kraken2_species_main' : 'Salmonella enterica',
+            'kraken2_species_secondary' : 'Escherichia coli',
+            'kraken2_species_main_value' : 5.4,
+            'kraken2_species_secondary_value' : 0.22,
+
+            'metaphlan_species_main': 'Salmonella enterica',
+            'metaphlan_species_secondary': 'None',
+            'metaphlan_species_main_value': 100.0,
+            'metaphlan_species_secondary_value': 0,
+
+            'kmerfinder_species_main': 'Salmonella enterica',
+            'kmerfinder_species_secondary': 'Escherichia coli',
+            'kmerfinder_species_main_value': 93.96,
+            'kmerfinder_species_secondary_value': 5.4,
+
+        }
     },
     'salmonella_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -62,6 +140,20 @@ GOLDENS = {
             'reads_median_quality': 40.0,
             'reads_median_length': 0.0,
         },
+        "test_get_contaminations_bacteria" : {
+            'kraken2_species_main' : 'brak',
+            'kraken2_species_secondary' : 'brak',
+            'kraken2_species_main_value' : -1,
+            'kraken2_species_secondary_value' : -1,
+
+
+            'kmerfinder_species_main': 'brak',
+            'kmerfinder_species_secondary': 'brak',
+            'kmerfinder_species_main_value': -1,
+            'kmerfinder_species_secondary_value': -1,
+
+        }
+
     }
 
 
@@ -83,3 +175,11 @@ def test_get_fastqc_stats(json_file):
 
     expected = GOLDENS[json_file.name]['test_get_fastqc_stats']
     assert result == expected, f"{json_file.name}: FastQC stats output mismatch"
+
+def test_get_contaminations_bacteria(json_file):
+    content = load_json_content(json_file)
+    result = get_contaminations_bacteria(content)
+
+    expected = GOLDENS[json_file.name]['test_get_contaminations_bacteria']
+
+    assert result == expected, f"{json_file.name}: Contamination analysis output mismatch"
