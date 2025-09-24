@@ -191,9 +191,19 @@ A helper script to prepare metadatafile based on the results of our [Sequnecing 
 - [WGS output for bacterial](data/example_data/WGS2phylo/)
 
 ## Execution
+
+### Campylobacter 
 ```
-python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --output-prefix metadata_out/metadata_required
-python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input.txt --extra-fields --output-prefix metadata_out/metadata_expanded
+python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --output-prefix metadata_out/metadata_required_Campylobacter
+
+python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --extra-fields --output-prefix metadata_out/metadata_expanded_Campylobacter
+
+```
+
+### RSV
+
+```
+python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --output-prefix metadata_out/metadata_required_rsv
 ```
 
 ## Tests

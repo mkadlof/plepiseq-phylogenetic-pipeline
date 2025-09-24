@@ -6,6 +6,24 @@ from typing import Dict
 
 ### Helper functions to extract specific info from JSON files ###
 
+def get_viral_obligatory_data(json_data: Dict) -> Dict:
+    output_data = json_data.get("output", {})
+
+    strain = output_data.get("sampleId", '') or "Unknown"
+    virus =  output_data.get("pathogen", '') or "Unknown"
+
+    type = "Unknwon"
+
+    if virus == 'influenza':
+        type = output_data.get("infl_data", {}).get('subtype_name', '') or "Unknown"
+    elif virus == 'sars2':
+        type = virus or "Unknown"
+    elif virus == 'rsv':
+        type = output_data.get("rsv_data", {}).get('type', '') or "Unknown"
+
+    return {"strain": strain, "virus": virus, "type": type}
+
+
 def get_mlst_cgmlst(json_data: Dict) -> Dict:
     """
     Extract MLST and cgMLST profile IDs.
@@ -469,7 +487,98 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
 
     elif organism in ['sars-cov-2', 'influenza', 'rsv']:
         # For viral organisms, implementation would go here (not provided in this context)
-        pass
+        # Creating a header
+        header = ["strain", "virus", 'type']
+
+
+        # Add any optional metadata fields present in supplemental file
+        header += optional_fields_present
+        extra_columns = []
+        if extra_fields:
+            # Resistance data (only for influenza)
+            if organism == 'influenza':
+                antivirals = ['Oseltamivir', 'Zanamivir', 'Peramivir', 'Laninamivir', 'Baloxavir']
+
+                for av in antivirals:
+                    extra_columns += [f"{av}_resistance_status", f"{av}_mutation",]
+
+            # Contamination viral species are analyzed only with kraken2
+            for prog in ["kraken2"]:
+                extra_columns += [
+                    f"{prog}_species_main", f"{prog}_species_secondary",
+                    f"{prog}_species_main_value", f"{prog}_species_secondary_value"
+                ]
+            # FastQC stats columns (forward and reverse)
+            extra_columns += [
+                "number_of_reads_forward", "number_of_bases_forward",
+                "reads_median_quality_forward", "reads_median_length_forward",
+                "number_of_reads_reverse", "number_of_bases_reverse",
+                "reads_median_quality_reverse", "reads_median_length_reverse",
+            ]
+
+            # freyja output
+            extra_columns += ['freyja_lineage1_name', 'freyja_lineage2_name', 'freyja_lineage1_abundance', 'freyja_lineage2_abundance']
+
+            # classification pango and/or nextclade species dependent
+            if organism == 'sars-cov-2':
+                extra_columns += ['nextclade_variant_name', 'pangolin_variant_name']
+            elif organism == 'influenza':
+                extra_columns += ['nextclade_variant_name_HA', 'nextclade_variant_name_NA']
+            elif organism == 'rsv':
+                extra_columns += ['nextclade_variant_name']
+            # genome assembly stats
+            extra_columns += ['average_coverage', 'total_length_value', 'number_of_Ns_value']
+
+        header += extra_columns
+        # Write header to aggregated TSV
+        writer.writerow(header)
+
+
+        # Now we iterate over each json in a dir to preapre a valid output
+        for sample in os.listdir(json_dir):
+            sample_dir = os.path.join(json_dir, sample)
+            if not os.path.isdir(sample_dir):
+                continue
+            sample_id = sample
+            json_file_path = os.path.join(sample_dir, f"{sample}.json")
+            if not os.path.isfile(json_file_path):
+                drop_log.write(f"{sample_id} - JSON file not found\n")
+                continue
+                # Load the JSON data for this sample
+            try:
+                with open(json_file_path, 'r') as jf:
+                    data = json.load(jf)
+            except Exception as e:
+                drop_log.write(f"{sample_id} - JSON parse error: {e}\n")
+                continue
+
+            reasons = []  # to collect any drop reasons for this sample
+
+            # Obligatory data
+
+            get_viral_obligatory_data_out = get_viral_obligatory_data(data)
+
+            row = {
+                "strain": get_viral_obligatory_data_out.get('strain'),
+                "virus": get_viral_obligatory_data_out.get('virus'),
+                "type": get_viral_obligatory_data_out.get('type'),
+            }
+
+            # Include any supplemental metadata fields for this sample
+            for field in optional_fields_present:
+                val = sup_data.get(sample_id, {}).get(field)
+                row[field] = "" if val is None else str(val)
+
+            ### Extract additional columns
+
+            # Write this sample's data to the aggregated TSV (ensure correct column order)
+            writer.writerow([row.get(col, "") for col in header])
+            # Also write an individual TSV for the sample (with the same columns)
+            sample_out_path = os.path.join(out_dir, f"{sample_id}.{base_name}.tsv") if out_dir else f"{sample_id}.{base_name}.tsv"
+            with open(sample_out_path, 'w', newline='') as sf:
+                sw = csv.writer(sf, delimiter='\t')
+                sw.writerow(header)
+                sw.writerow([row.get(col, "") for col in header])
 
     # Close output files
     agg_file.close()
