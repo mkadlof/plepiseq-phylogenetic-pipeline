@@ -1,0 +1,87 @@
+{
+    "output": {
+        "pipeline_version": "1.0",
+        "pathogen": "sars2",
+        "sampleId": "ESIB_EQA_2025_SARS2_13",
+        "timestamp": "2025-07-23T21:58:37",
+        "ExecutionDir_dir": "/mnt/raid/michall/EQA2025/SARS/SARS2_polish_msg/",
+        "sequencing_summary_data": [
+            {
+                "status": "blad",
+                "file_name": "ESIB_EQA_2025_SARS2_13_1.fastq.gz",
+                "step_name": "pre-filtering",
+                "error_message": "Podany plik nie jest w formacie fastq"
+            },
+            {
+                "status": "blad",
+                "file_name": "ESIB_EQA_2025_SARS2_13_2.fastq.gz",
+                "step_name": "pre-filtering",
+                "error_message": "Podany plik nie jest w formacie fastq"
+            },
+            {
+                "status": "nie",
+                "file_name": "dummy_forward_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            },
+            {
+                "status": "nie",
+                "file_name": "dummy_reverse_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "dehumanized_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "sars_data": {
+            "coinfection_status": "nie",
+            "coinfetion_error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "freyja_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "structural_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "viral_classification_data": [
+            {
+                "status": "nie",
+                "sequence_source": "full_genome",
+                "database_name": "Pangolin",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            },
+            {
+                "status": "nie",
+                "sequence_source": "full_genome",
+                "database_name": "Nextclade",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "viral_genome_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości.",
+            "total_length_value": 0,
+            "number_of_Ns_value": 0
+        },
+        "genome_files_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "viral_mutation_data": [],
+        "viral_mapping_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        }
+    }
+}

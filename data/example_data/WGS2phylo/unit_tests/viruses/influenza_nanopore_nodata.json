@@ -1,0 +1,77 @@
+{
+    "output": {
+        "pipeline_version": "1.0",
+        "pathogen": "influenza",
+        "sampleId": "ESIB_EQA_2025_INFL1_13",
+        "timestamp": "2025-07-23T14:16:56",
+        "ExecutionDir_dir": "/mnt/raid/michall/EQA2025/INFL/INFL1_polish_msg/",
+        "sequencing_summary_data": [
+            {
+                "status": "blad",
+                "file_name": "ESIB_EQA_2025.INFL1.13.fastq.gz",
+                "step_name": "pre-filtering",
+                "error_message": "Podany plik nie jest w formacie fastq"
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "dehumanized_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "freyja_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "structural_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "viral_classification_data": [
+            {
+                "status": "nie",
+                "sequence_source": "full_genome",
+                "database_name": "Pangolin",
+                "error_message": "Ten moduł jest przeznaczony wylacznie do analizy wirusa SARS-CoV-2."
+            },
+            {
+                "status": "nie",
+                "database_name": "Nextclade",
+                "error_message": "Nextclade został pominięty dla podtypu unk w próbce ESIB_EQA_2025_INFL1_13 dla segmentu HA",
+                "sequence_source": "HA"
+            },
+            {
+                "status": "nie",
+                "database_name": "Nextclade",
+                "error_message": "Nextclade został pominięty dla podtypu unk w próbce ESIB_EQA_2025_INFL1_13 dla segmentu NA",
+                "sequence_source": "NA"
+            }
+        ],
+        "viral_genome_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości.",
+            "total_length_value": 0,
+            "number_of_Ns_value": 0
+        },
+        "genome_files_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "viral_mutation_data": [],
+        "infl_data": {
+            "resistance_status": "nie",
+            "resistance_error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości.",
+            "reference_genome_prediction_status": "nie",
+            "reference_genome_prediction_error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "viral_mapping_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        }
+    }
+}

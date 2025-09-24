@@ -462,57 +462,57 @@ def load_json_content(json_path: Path):
     with open(json_path, 'r') as f:
         return json.load(f)
 
-def test_get_fastqc_stats(json_file):
-    content = load_json_content(json_file)
+def test_get_fastqc_stats(bacterial_json):
+    content = load_json_content(bacterial_json)
 
     result = {}
-    if 'illumina' in str(json_file):
+    if 'illumina' in str(bacterial_json):
         result.update(get_fastqc_stats(content, "forward"))
         result.update(get_fastqc_stats(content, "reverse"))
     else:
         result.update(get_fastqc_stats(content, "forward"))
 
-    expected = GOLDENS[json_file.name]['test_get_fastqc_stats']
-    assert result == expected, f"{json_file.name}: FastQC stats output mismatch"
+    expected = GOLDENS[bacterial_json.name]['test_get_fastqc_stats']
+    assert result == expected, f"{bacterial_json.name}: FastQC stats output mismatch"
 
-def test_get_contaminations_bacteria(json_file):
-    content = load_json_content(json_file)
+def test_get_contaminations_bacteria(bacterial_json):
+    content = load_json_content(bacterial_json)
     result = get_contaminations_bacteria(content)
 
-    expected = GOLDENS[json_file.name]['test_get_contaminations_bacteria']
+    expected = GOLDENS[bacterial_json.name]['test_get_contaminations_bacteria']
 
-    assert result == expected, f"{json_file.name}: Contamination analysis output mismatch"
+    assert result == expected, f"{bacterial_json.name}: Contamination analysis output mismatch"
 
-def test_get_sequencing_summary_bacteria(json_file):
-    content = load_json_content(json_file)
+def test_get_sequencing_summary_bacteria(bacterial_json):
+    content = load_json_content(bacterial_json)
     result = get_sequencing_summary_bacteria(content)
 
-    expected = GOLDENS[json_file.name]['test_get_sequencing_summary_bacteria']
+    expected = GOLDENS[bacterial_json.name]['test_get_sequencing_summary_bacteria']
 
-    assert result == expected, f"{json_file.name}: Sequencing summary analysis output mismatch"
+    assert result == expected, f"{bacterial_json.name}: Sequencing summary analysis output mismatch"
 
-def test_get_amr_bacteria(json_file):
-    content = load_json_content(json_file)
+def test_get_amr_bacteria(bacterial_json):
+    content = load_json_content(bacterial_json)
     result = get_amr_bacteria(content)
 
-    expected = GOLDENS[json_file.name]['test_get_amr_bacteria']
+    expected = GOLDENS[bacterial_json.name]['test_get_amr_bacteria']
 
-    assert result == expected, f"{json_file.name}: Sequencing summary analysis output mismatch"
+    assert result == expected, f"{bacterial_json.name}: Sequencing summary analysis output mismatch"
 
 
-def test_get_serovar_bacteria(json_file):
-    content = load_json_content(json_file)
+def test_get_serovar_bacteria(bacterial_json):
+    content = load_json_content(bacterial_json)
     result = get_serovar_bacteria(content)['serovar']
 
-    expected = GOLDENS[json_file.name]['test_get_serovar_bacteria']
+    expected = GOLDENS[bacterial_json.name]['test_get_serovar_bacteria']
 
-    assert result == expected, f"{json_file.name}: Serovar extraction match"
+    assert result == expected, f"{bacterial_json.name}: Serovar extraction match"
 
 
-def test_get_mlst_cgmlst(json_file):
-    content = load_json_content(json_file)
+def test_get_mlst_cgmlst(bacterial_json):
+    content = load_json_content(bacterial_json)
     result = get_mlst_cgmlst(content)
 
-    expected = GOLDENS[json_file.name]['test_get_mlst_cgmlst']
+    expected = GOLDENS[bacterial_json.name]['test_get_mlst_cgmlst']
 
-    assert result == expected, f"{json_file.name}: chMLST/MLST mismatch"
+    assert result == expected, f"{bacterial_json.name}: chMLST/MLST mismatch"
