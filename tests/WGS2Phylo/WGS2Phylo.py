@@ -23,6 +23,23 @@ def get_viral_obligatory_data(json_data: Dict) -> Dict:
 
     return {"strain": strain, "virus": virus, "type": type}
 
+def get_influenza_antiviral_data(json_data: Dict) -> Dict:
+    output_data = json_data.get("output", {}).get('infl_data', {}).get('resistance_data', [])
+    antivirals = ['Oseltamivir', 'Zanamivir', 'Peramivir', 'Laninamivir', 'Baloxavir']
+    output_dict = {}
+    for av in antivirals:
+        output_dict[f"{av}_resistance_status"] = "Unknown"
+        output_dict[f"{av}_mutation"] = "Unknown"
+
+    for drug_data in output_data:
+        drug_name = drug_data.get("drug_name") or 'Unknown'
+        drug_resistance_status = drug_data.get('drug_resistance_status', '') or "Unknown"
+        drug_resistance_mutations = ",".join(drug_data.get('mutation_list_data_reference_numbering')) or 'Unknown'
+        if drug_name in antivirals:
+            output_dict[f"{drug_name}_resistance_status"] =drug_resistance_status
+            output_dict[f"{drug_name}_mutation"] = drug_resistance_mutations
+
+    return output_dict
 
 def get_mlst_cgmlst(json_data: Dict) -> Dict:
     """
@@ -207,6 +224,8 @@ def get_amr_bacteria(json_data):
 
     return output
 
+
+
 def get_contaminations_bacteria(json_data):
     """Extract main and secondary species identification from contamination checks."""
     output = {}
@@ -228,22 +247,27 @@ def get_fastqc_stats(json_data, direction):
     seq_summary = json_data.get("output", {}).get("sequencing_summary_data", [])
     for entry in seq_summary:
         fname = entry.get('file_name', '')
-        if direction == "forward" and "R1" in fname:
-            output[f"number_of_reads_{direction}"] = entry.get('number_of_reads_value', -1)
-            output[f"number_of_bases_{direction}"] = entry.get('number_of_bases_value', -1)
-            output[f"reads_median_quality_{direction}"] = entry.get('reads_median_quality_value', -1)
-            output[f"reads_median_length_{direction}"] = entry.get('reads_median_length_value', -1)
-        elif direction == "reverse" and "R2" in fname:
-            output[f"number_of_reads_{direction}"] = entry.get('number_of_reads_value', -1)
-            output[f"number_of_bases_{direction}"] = entry.get('number_of_bases_value', -1)
-            output[f"reads_median_quality_{direction}"] = entry.get('reads_median_quality_value', -1)
-            output[f"reads_median_length_{direction}"] = entry.get('reads_median_length_value', -1)
-        elif direction == "forward" and "R1" not in fname and "R2" not in fname:
-            # Placeholder gor nanopo re data that my lack R1/R2 in their filename
-            output[f"number_of_reads"] = entry.get('number_of_reads_value', -1)
-            output[f"number_of_bases"] = entry.get('number_of_bases_value', -1)
-            output[f"reads_median_quality"] = entry.get('reads_median_quality_value', -1)
-            output[f"reads_median_length"] = entry.get('reads_median_length_value', -1)
+        if direction == "forward" and ("R1" in fname or '_1.fastq' in fname):
+            if entry.get("step_name", '') != 'post-filtering':
+                # for viruses we have both pre- and post filtering results we keep pre-filtering for now
+                # this key is not present in bacterial results so get should return ''
+                output[f"number_of_reads_{direction}"] = entry.get('number_of_reads_value', -1)
+                output[f"number_of_bases_{direction}"] = entry.get('number_of_bases_value', -1)
+                output[f"reads_median_quality_{direction}"] = entry.get('reads_median_quality_value', -1)
+                output[f"reads_median_length_{direction}"] = entry.get('reads_median_length_value', -1)
+        elif direction == "reverse" and ("R2" in fname or '_2.fastq' in fname):
+            if entry.get("step_name", '') != 'post-filtering':
+                output[f"number_of_reads_{direction}"] = entry.get('number_of_reads_value', -1)
+                output[f"number_of_bases_{direction}"] = entry.get('number_of_bases_value', -1)
+                output[f"reads_median_quality_{direction}"] = entry.get('reads_median_quality_value', -1)
+                output[f"reads_median_length_{direction}"] = entry.get('reads_median_length_value', -1)
+        elif direction == "forward" and "R1" not in fname and "R2" not in fname and '_1.fastq' not in fname and '_2.fastq' not in fname:
+            if entry.get("step_name", '') != 'post-filtering':
+                # Placeholder gor nanopo re data that my lack R1/R2 in their filename
+                output[f"number_of_reads"] = entry.get('number_of_reads_value', -1)
+                output[f"number_of_bases"] = entry.get('number_of_bases_value', -1)
+                output[f"reads_median_quality"] = entry.get('reads_median_quality_value', -1)
+                output[f"reads_median_length"] = entry.get('reads_median_length_value', -1)
     return output
 
 #### CLI and main processing function ####
@@ -563,6 +587,44 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
                 "virus": get_viral_obligatory_data_out.get('virus'),
                 "type": get_viral_obligatory_data_out.get('type'),
             }
+
+            if extra_fields:
+
+                # Extract FastQC output
+                fastqc_forward = get_fastqc_stats(data, "forward")
+                fastqc_reverse = get_fastqc_stats(data, "reverse")
+                fastqc_stats = {}
+                # Merge forward and reverse stats
+                fastqc_stats.update(fastqc_forward)
+                fastqc_stats.update(fastqc_reverse)
+                # If no R1/R2 entries (e.g., single-end/Nanopore), use first entry as forward
+                if not fastqc_stats:
+                    seq_data = data.get("output", {}).get("sequencing_summary_data", [])
+                    if seq_data:
+                        first_entry = seq_data[0]
+                        fastqc_stats = {
+                            "number_of_reads_forward": first_entry.get('number_of_reads_value', -1),
+                            "number_of_bases_forward": first_entry.get('number_of_bases_value', -1),
+                            "reads_median_quality_forward": first_entry.get('reads_median_quality_value', -1),
+                            "reads_median_length_forward": first_entry.get('reads_median_length_value', -1),
+                            # Leave reverse fields empty in single-end case
+                            "number_of_reads_reverse": "",
+                            "number_of_bases_reverse": "",
+                            "reads_median_quality_reverse": "",
+                            "reads_median_length_reverse": ""
+                        }
+                # Add FastQC stats to the row
+                for key, val in fastqc_stats.items():
+                    row[key] = "" if val == "" else str(val)
+
+                # Add antivirals only for influenza
+                if organism == 'influenza':
+                    get_influenza_antiviral_data_out = get_influenza_antiviral_data(data)
+
+                    for key, val in get_influenza_antiviral_data_out.items():
+                        row[key] = "" if val == "" else str(val)
+
+
 
             # Include any supplemental metadata fields for this sample
             for field in optional_fields_present:

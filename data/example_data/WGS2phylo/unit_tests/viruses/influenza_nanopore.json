@@ -2643,9 +2643,9 @@
                 },
                 {
                     "drug_name": "Zanamivir",
-                    "drug_resistance_status": "S",
+                    "drug_resistance_status": "R",
                     "mutation_list_data_reference_numbering": [],
-                    "mutation_list_data_N2_numbering": [],
+                    "mutation_list_data_N2_numbering": ["A10G", "A11T"],
                     "mutation_list_data": []
                 },
                 {
@@ -2658,7 +2658,7 @@
                 {
                     "drug_name": "Laninamivir",
                     "drug_resistance_status": "S",
-                    "mutation_list_data_reference_numbering": [],
+                    "mutation_list_data_reference_numbering": ["A10G"],
                     "mutation_list_data_N2_numbering": [],
                     "mutation_list_data": []
                 },

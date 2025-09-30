@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria, get_mlst_cgmlst
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria, get_mlst_cgmlst, get_viral_obligatory_data, get_influenza_antiviral_data
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -453,8 +453,266 @@ GOLDENS = {
                                   'hc10' : "Unknown",
                                   "reasons" : ['This module was eneterd with failed QC and poduced no valid output', 'This module was eneterd with failed QC and poduced no valid output']}
 
-    }
+    },
+    'influenza_illumina.json' :{
+        'test_get_fastqc_stats': {
+            'number_of_reads_forward': 2866841,
+            'number_of_bases_forward': 426800000,
+            'reads_median_quality_forward': 33.0,
+            'reads_median_length_forward': 150.0,
+            'number_of_reads_reverse': 2866841,
+            'number_of_bases_reverse': 426800000,
+            'reads_median_quality_reverse': 33.0,
+            'reads_median_length_reverse': 150.0,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "ESIB_EQA_2025.INFL2.05",
+            "virus": "influenza",
+            "type" : "H1N1"
 
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'S',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'S',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'S',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'S',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'S',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    },
+    'influenza_illumina_nodata.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads_forward': -1,
+            'number_of_bases_forward': -1,
+            'reads_median_quality_forward': -1,
+            'reads_median_length_forward': -1,
+            'number_of_reads_reverse': -1,
+            'number_of_bases_reverse': -1,
+            'reads_median_quality_reverse': -1,
+            'reads_median_length_reverse': -1,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "ESIB_EQA_2025.INFL2.13",
+            "virus": "influenza",
+            "type" : "Unknown"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'Unknown',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'Unknown',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'Unknown',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'Unknown',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'Unknown',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    },
+    'influenza_nanopore.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads': 149352,
+            'number_of_bases': 154300000,
+            'reads_median_quality': 28.0,
+            'reads_median_length': 0.0,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "ESIB_EQA_2025_INFL1_01",
+            "virus": "influenza",
+            "type" : "H3N2"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'S',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'R',
+            'Zanamivir_mutation': 'A10G,A11T',
+            'Peramivir_resistance_status': 'S',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'S',
+            'Laninamivir_mutation': 'A10G',
+            'Baloxavir_resistance_status': 'S',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    },
+    'influenza_nanopore_nodata.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads': -1,
+            'number_of_bases': -1,
+            'reads_median_quality': -1,
+            'reads_median_length': -1,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "ESIB_EQA_2025_INFL1_13",
+            "virus": "influenza",
+            "type" : "Unknown"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'Unknown',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'Unknown',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'Unknown',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'Unknown',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'Unknown',
+            'Baloxavir_mutation': 'Unknown'
+        }
+
+    },
+    'rsv_illumina.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads_forward': 978194,
+            'number_of_bases_forward': 114500000,
+            'reads_median_quality_forward': 34.0,
+            'reads_median_length_forward': 2.0,
+            'number_of_reads_reverse': 978194,
+            'number_of_bases_reverse': 114700000,
+            'reads_median_quality_reverse': 33.0,
+            'reads_median_length_reverse': 2.0,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "SRR27383093_pass",
+            "virus": "rsv",
+            "type" : "A"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'Unknown',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'Unknown',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'Unknown',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'Unknown',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'Unknown',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    },
+    'rsv_illumina_nodata.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads_forward': 1070780,
+            'number_of_bases_forward': 120300000,
+            'reads_median_quality_forward': 33.0,
+            'reads_median_length_forward': 2.0,
+            'number_of_reads_reverse': 1070780,
+            'number_of_bases_reverse': 120300000,
+            'reads_median_quality_reverse': 33.0,
+            'reads_median_length_reverse': 2.0,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "SRR27383066_pass",
+            "virus": "rsv",
+            "type" : "unk"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'Unknown',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'Unknown',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'Unknown',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'Unknown',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'Unknown',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    },
+    'sars2_illumina.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads_forward': 80751,
+            'number_of_bases_forward': 9900000,
+            'reads_median_quality_forward': 39.0,
+            'reads_median_length_forward': 150.0,
+            'number_of_reads_reverse': 80751,
+            'number_of_bases_reverse': 9900000,
+            'reads_median_quality_reverse': 39.0,
+            'reads_median_length_reverse': 150.0,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "ESIB_EQA_2025_SARS2_11",
+            "virus": "sars2",
+            "type" : "sars2"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'Unknown',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'Unknown',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'Unknown',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'Unknown',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'Unknown',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    },
+    'sars2_illumina_nodata.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads_forward': -1,
+            'number_of_bases_forward': -1,
+            'reads_median_quality_forward': -1,
+            'reads_median_length_forward': -1,
+            'number_of_reads_reverse': -1,
+            'number_of_bases_reverse': -1,
+            'reads_median_quality_reverse': -1,
+            'reads_median_length_reverse': -1,
+        },
+        'test_get_viral_obligatory_data' : {
+            "strain" : "ESIB_EQA_2025_SARS2_13",
+            "virus": "sars2",
+            "type" : "sars2"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'Unknown',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'Unknown',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'Unknown',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'Unknown',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'Unknown',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    },
+    'sars2_nanopore.json': {
+        'test_get_fastqc_stats': {
+            'number_of_reads': 221267,
+            'number_of_bases': 115700000,
+            'reads_median_quality': 31,
+            'reads_median_length': 400,
+        },
+        "test_get_viral_obligatory_data" : {
+            "strain" : "ESIB_EQA_2025_SARS1_03",
+            "virus": "sars2",
+            "type" : "sars2"
+
+        },
+        "test_get_influenza_antiviral_data" : {
+            'Oseltamivir_resistance_status': 'Unknown',
+            'Oseltamivir_mutation': 'Unknown',
+            'Zanamivir_resistance_status': 'Unknown',
+            'Zanamivir_mutation': 'Unknown',
+            'Peramivir_resistance_status': 'Unknown',
+            'Peramivir_mutation': 'Unknown',
+            'Laninamivir_resistance_status': 'Unknown',
+            'Laninamivir_mutation': 'Unknown',
+            'Baloxavir_resistance_status': 'Unknown',
+            'Baloxavir_mutation': 'Unknown'
+        }
+    }
 
 }
 
@@ -462,18 +720,18 @@ def load_json_content(json_path: Path):
     with open(json_path, 'r') as f:
         return json.load(f)
 
-def test_get_fastqc_stats(bacterial_json):
-    content = load_json_content(bacterial_json)
+def test_get_fastqc_stats(json_file):
+    content = load_json_content(json_file)
 
     result = {}
-    if 'illumina' in str(bacterial_json):
+    if 'illumina' in str(json_file):
         result.update(get_fastqc_stats(content, "forward"))
         result.update(get_fastqc_stats(content, "reverse"))
     else:
         result.update(get_fastqc_stats(content, "forward"))
 
-    expected = GOLDENS[bacterial_json.name]['test_get_fastqc_stats']
-    assert result == expected, f"{bacterial_json.name}: FastQC stats output mismatch"
+    expected = GOLDENS[json_file.name]['test_get_fastqc_stats']
+    assert result == expected, f"{json_file.name}: FastQC stats output mismatch"
 
 def test_get_contaminations_bacteria(bacterial_json):
     content = load_json_content(bacterial_json)
@@ -516,3 +774,19 @@ def test_get_mlst_cgmlst(bacterial_json):
     expected = GOLDENS[bacterial_json.name]['test_get_mlst_cgmlst']
 
     assert result == expected, f"{bacterial_json.name}: chMLST/MLST mismatch"
+
+def test_get_viral_obligatory_data(viral_json):
+    content = load_json_content(viral_json)
+    result = get_viral_obligatory_data(content)
+
+    expected = GOLDENS[viral_json.name]['test_get_viral_obligatory_data']
+
+    assert result == expected, f"{viral_json.name}: viral obligatory columns mismatch"
+
+def test_get_influenza_antiviral_data(viral_json):
+    content = load_json_content(viral_json)
+    result = get_viral_obligatory_data(content)
+
+    expected = GOLDENS[viral_json.name]['test_get_viral_obligatory_data']
+
+    assert result == expected, f"{viral_json.name}: antiviral data columns mismatch"
