@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria, get_mlst_cgmlst, get_viral_obligatory_data, get_influenza_antiviral_data
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria, get_mlst_cgmlst, get_viral_obligatory_data, get_influenza_antiviral_data, get_viral_kraken2_data
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -482,6 +482,12 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'S',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Alphainfluenzavirus influenzae',
+            'kraken2_species_secondary': 'Homo sapiens',
+            'kraken2_species_main_value': 96.45,
+            'kraken2_species_secondary_value': 0.04,
         }
     },
     'influenza_illumina_nodata.json': {
@@ -512,7 +518,15 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'Unknown',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Unknown',
+            'kraken2_species_secondary': 'Unknown',
+            'kraken2_species_main_value': -1,
+            'kraken2_species_secondary_value': -1,
         }
+
+
     },
     'influenza_nanopore.json': {
         'test_get_fastqc_stats': {
@@ -538,7 +552,14 @@ GOLDENS = {
             'Laninamivir_mutation': 'A10G',
             'Baloxavir_resistance_status': 'S',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Alphainfluenzavirus influenzae',
+            'kraken2_species_secondary': 'Schaalia odontolytica',
+            'kraken2_species_main_value': 95.94,
+            'kraken2_species_secondary_value': 2.53,
         }
+
     },
     'influenza_nanopore_nodata.json': {
         'test_get_fastqc_stats': {
@@ -564,6 +585,12 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'Unknown',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data": {
+            'kraken2_species_main': 'Unknown',
+            'kraken2_species_secondary': 'Unknown',
+            'kraken2_species_main_value': -1,
+            'kraken2_species_secondary_value': -1,
         }
 
     },
@@ -595,6 +622,12 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'Unknown',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Orthopneumovirus hominis',
+            'kraken2_species_secondary': 'Homo sapiens',
+            'kraken2_species_main_value': 82.36,
+            'kraken2_species_secondary_value': 1.85,
         }
     },
     'rsv_illumina_nodata.json': {
@@ -625,6 +658,12 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'Unknown',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Homo sapiens',
+            'kraken2_species_secondary': 'Escherichia coli',
+            'kraken2_species_main_value': 95.18,
+            'kraken2_species_secondary_value': 0.03,
         }
     },
     'sars2_illumina.json': {
@@ -655,7 +694,14 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'Unknown',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Severe acute respiratory syndrome-related coronavirus',
+            'kraken2_species_secondary': 'Homo sapiens',
+            'kraken2_species_main_value': 46.07,
+            'kraken2_species_secondary_value': 40.32,
         }
+
     },
     'sars2_illumina_nodata.json': {
         'test_get_fastqc_stats': {
@@ -685,6 +731,12 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'Unknown',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Unknown',
+            'kraken2_species_secondary': 'Unknown',
+            'kraken2_species_main_value': -1,
+            'kraken2_species_secondary_value': -1,
         }
     },
     'sars2_nanopore.json': {
@@ -711,6 +763,12 @@ GOLDENS = {
             'Laninamivir_mutation': 'Unknown',
             'Baloxavir_resistance_status': 'Unknown',
             'Baloxavir_mutation': 'Unknown'
+        },
+        "test_get_viral_kraken2_data" : {
+            'kraken2_species_main': 'Severe acute respiratory syndrome-related coronavirus',
+            'kraken2_species_secondary': 'Serratia liquefaciens',
+            'kraken2_species_main_value': 94.88,
+            'kraken2_species_secondary_value': 0.21,
         }
     }
 
@@ -783,10 +841,20 @@ def test_get_viral_obligatory_data(viral_json):
 
     assert result == expected, f"{viral_json.name}: viral obligatory columns mismatch"
 
-def test_get_influenza_antiviral_data(viral_json):
+def test_get_viral_kraken2_data(viral_json):
     content = load_json_content(viral_json)
-    result = get_viral_obligatory_data(content)
+    result = get_influenza_antiviral_data(content)
 
-    expected = GOLDENS[viral_json.name]['test_get_viral_obligatory_data']
+    expected = GOLDENS[viral_json.name]['test_get_influenza_antiviral_data']
 
     assert result == expected, f"{viral_json.name}: antiviral data columns mismatch"
+
+def test_get_viral_kraken2_data(viral_json):
+    content = load_json_content(viral_json)
+    result = get_viral_kraken2_data(content)
+
+    expected = GOLDENS[viral_json.name]['test_get_viral_kraken2_data']
+
+    assert result == expected, f"{viral_json.name}: kraken2 data columns mismatch"
+
+

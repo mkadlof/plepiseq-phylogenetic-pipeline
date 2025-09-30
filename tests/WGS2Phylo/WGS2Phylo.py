@@ -23,6 +23,7 @@ def get_viral_obligatory_data(json_data: Dict) -> Dict:
 
     return {"strain": strain, "virus": virus, "type": type}
 
+
 def get_influenza_antiviral_data(json_data: Dict) -> Dict:
     output_data = json_data.get("output", {}).get('infl_data', {}).get('resistance_data', [])
     antivirals = ['Oseltamivir', 'Zanamivir', 'Peramivir', 'Laninamivir', 'Baloxavir']
@@ -40,6 +41,31 @@ def get_influenza_antiviral_data(json_data: Dict) -> Dict:
             output_dict[f"{drug_name}_mutation"] = drug_resistance_mutations
 
     return output_dict
+
+def get_viral_kraken2_data(json_data: Dict) -> Dict:
+    output_data = json_data.get("output", {}).get('contamination_data', [])
+    output_dict = {
+        'kraken2_species_main': 'Unknown',
+        'kraken2_species_secondary': 'Unknown',
+        'kraken2_species_main_value': -1,
+        'kraken2_species_secondary_value': -1,
+
+    }
+
+    for program_data in output_data:
+        program_name = program_data.get("program_name") or 'Unknown'
+        status = program_data.get("status") or 'Unknown'
+        if status == 'tak' and program_name == 'kraken2':
+            output_dict = {
+                'kraken2_species_main': program_data.get('main_species_name', '') or 'Unknown',
+                'kraken2_species_secondary': program_data.get('secondary_species_name', '') or 'Unknown',
+                'kraken2_species_main_value': program_data.get('main_species_value', '') or -1,
+                'kraken2_species_secondary_value': program_data.get('secondary_species_value', '') or -1
+
+            }
+
+    return output_dict
+
 
 def get_mlst_cgmlst(json_data: Dict) -> Dict:
     """
@@ -623,6 +649,12 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
 
                     for key, val in get_influenza_antiviral_data_out.items():
                         row[key] = "" if val == "" else str(val)
+
+                # Add kraken2 data and add them to a row
+
+                get_viral_kraken2_data_out = get_viral_kraken2_data(data)
+                for key, val in get_viral_kraken2_data_out.items():
+                    row[key] = "" if val == "" else str(val)
 
 
 
