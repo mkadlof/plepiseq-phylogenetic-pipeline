@@ -59,10 +59,33 @@ def get_viral_kraken2_data(json_data: Dict) -> Dict:
             output_dict = {
                 'kraken2_species_main': program_data.get('main_species_name', '') or 'Unknown',
                 'kraken2_species_secondary': program_data.get('secondary_species_name', '') or 'Unknown',
-                'kraken2_species_main_value': program_data.get('main_species_value', '') or -1,
-                'kraken2_species_secondary_value': program_data.get('secondary_species_value', '') or -1
+                'kraken2_species_main_value': program_data.get('main_species_value', ''),
+                'kraken2_species_secondary_value': program_data.get('secondary_species_value', '')
 
             }
+
+    return output_dict
+
+
+def get_viral_freyja_data(json_data: Dict) -> Dict:
+    output_data = json_data.get("output", {}).get('freyja_data', {})
+    output_dict = {
+        'freyja_lineage_main': 'Unknown',
+        'freyja_lineage_secondary': 'Unknown',
+        'freyja_lineage_main_value': -1,
+        'freyja_lineage_secondary_value': -1,
+
+    }
+
+    status = output_data.get("status") or 'Unknown'
+    if status == 'tak' :
+        output_dict = {
+            'freyja_lineage_main': output_data.get('freyja_lineage1_name', '') or 'Unknown',
+            'freyja_lineage_secondary': output_data.get('freyja_lineage2_name', '') or 'Unknown',
+            'freyja_lineage_main_value': output_data.get('freyja_lineage1_abundance', ''),
+            'freyja_lineage_secondary_value': output_data.get('freyja_lineage2_abundance', '') ,
+
+        }
 
     return output_dict
 
@@ -656,6 +679,10 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
                 for key, val in get_viral_kraken2_data_out.items():
                     row[key] = "" if val == "" else str(val)
 
+                # Add freyja2 lineage abundance
+                get_viral_freyja_data_out = get_viral_freyja_data(data)
+                for key, val in get_viral_freyja_data_out.items():
+                    row[key] = "" if val == "" else str(val)
 
 
             # Include any supplemental metadata fields for this sample

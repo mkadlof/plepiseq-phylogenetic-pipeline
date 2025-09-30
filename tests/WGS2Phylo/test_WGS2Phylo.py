@@ -1,6 +1,14 @@
 import json
 from pathlib import Path
-from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria, get_sequencing_summary_bacteria, get_amr_bacteria, get_serovar_bacteria, get_mlst_cgmlst, get_viral_obligatory_data, get_influenza_antiviral_data, get_viral_kraken2_data
+from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria,  \
+    get_sequencing_summary_bacteria, \
+    get_amr_bacteria, \
+    get_serovar_bacteria, \
+    get_mlst_cgmlst, \
+    get_viral_obligatory_data, \
+    get_influenza_antiviral_data, \
+    get_viral_kraken2_data, \
+    get_viral_freyja_data
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -488,6 +496,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Homo sapiens',
             'kraken2_species_main_value': 96.45,
             'kraken2_species_secondary_value': 0.04,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': '5a.2a',
+            'freyja_lineage_secondary': 'unk',
+            'freyja_lineage_main_value': 1.0,
+            'freyja_lineage_secondary_value': 0,
         }
     },
     'influenza_illumina_nodata.json': {
@@ -524,6 +538,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Unknown',
             'kraken2_species_main_value': -1,
             'kraken2_species_secondary_value': -1,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': 'Unknown',
+            'freyja_lineage_secondary': 'Unknown',
+            'freyja_lineage_main_value': -1,
+            'freyja_lineage_secondary_value': -1,
         }
 
 
@@ -558,6 +578,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Schaalia odontolytica',
             'kraken2_species_main_value': 95.94,
             'kraken2_species_secondary_value': 2.53,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': '2a.3a.1',
+            'freyja_lineage_secondary': '3C.2a1b.2a',
+            'freyja_lineage_main_value': 0.98,
+            'freyja_lineage_secondary_value': 0.01,
         }
 
     },
@@ -591,6 +617,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Unknown',
             'kraken2_species_main_value': -1,
             'kraken2_species_secondary_value': -1,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': 'Unknown',
+            'freyja_lineage_secondary': 'Unknown',
+            'freyja_lineage_main_value': -1,
+            'freyja_lineage_secondary_value': -1,
         }
 
     },
@@ -628,6 +660,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Homo sapiens',
             'kraken2_species_main_value': 82.36,
             'kraken2_species_secondary_value': 1.85,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': 'A.D.5.2',
+            'freyja_lineage_secondary': 'unk',
+            'freyja_lineage_main_value': 1.0,
+            'freyja_lineage_secondary_value': 0,
         }
     },
     'rsv_illumina_nodata.json': {
@@ -664,6 +702,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Escherichia coli',
             'kraken2_species_main_value': 95.18,
             'kraken2_species_secondary_value': 0.03,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': 'Unknown',
+            'freyja_lineage_secondary': 'Unknown',
+            'freyja_lineage_main_value': -1,
+            'freyja_lineage_secondary_value': -1,
         }
     },
     'sars2_illumina.json': {
@@ -700,6 +744,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Homo sapiens',
             'kraken2_species_main_value': 46.07,
             'kraken2_species_secondary_value': 40.32,
+        },
+        "test_get_viral_freyja_data": {
+            'freyja_lineage_main': 'NH.3',
+            'freyja_lineage_secondary': 'KP.3.1.1',
+            'freyja_lineage_main_value': 0.01,
+            'freyja_lineage_secondary_value': 0.01,
         }
 
     },
@@ -737,6 +787,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Unknown',
             'kraken2_species_main_value': -1,
             'kraken2_species_secondary_value': -1,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': 'Unknown',
+            'freyja_lineage_secondary': 'Unknown',
+            'freyja_lineage_main_value': -1,
+            'freyja_lineage_secondary_value': -1,
         }
     },
     'sars2_nanopore.json': {
@@ -769,6 +825,12 @@ GOLDENS = {
             'kraken2_species_secondary': 'Serratia liquefaciens',
             'kraken2_species_main_value': 94.88,
             'kraken2_species_secondary_value': 0.21,
+        },
+        "test_get_viral_freyja_data" : {
+            'freyja_lineage_main': 'KP.2.3.3',
+            'freyja_lineage_secondary': 'unk',
+            'freyja_lineage_main_value': 0.99,
+            'freyja_lineage_secondary_value': 0,
         }
     }
 
@@ -856,5 +918,13 @@ def test_get_viral_kraken2_data(viral_json):
     expected = GOLDENS[viral_json.name]['test_get_viral_kraken2_data']
 
     assert result == expected, f"{viral_json.name}: kraken2 data columns mismatch"
+
+def test_get_viral_freyja_data(viral_json):
+    content = load_json_content(viral_json)
+    result = get_viral_freyja_data(content)
+
+    expected = GOLDENS[viral_json.name]['test_get_viral_freyja_data']
+
+    assert result == expected, f"{viral_json.name}: freyja data columns mismatch"
 
 
