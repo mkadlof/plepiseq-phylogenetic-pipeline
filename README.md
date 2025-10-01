@@ -204,6 +204,8 @@ python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_Campylob
 
 ```
 python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --output-prefix metadata_out/metadata_required_rsv
+
+python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --extra-fields --output-prefix metadata_out/metadata_expanded_rsv
 ```
 
 ## Tests

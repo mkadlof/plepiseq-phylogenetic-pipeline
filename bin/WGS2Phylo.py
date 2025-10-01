@@ -89,6 +89,54 @@ def get_viral_freyja_data(json_data: Dict) -> Dict:
 
     return output_dict
 
+def get_viral_classification_data(json_data: Dict) -> Dict:
+    output_data = json_data.get("output", {}).get('viral_classification_data', [])
+    virus = json_data.get("output", {}).get("pathogen", '') or "Unknown"
+
+    output_dict = {}
+
+    # classification pango and/or nextclade species dependent
+    if virus == 'sars2':
+        output_dict['nextclade_variant_name'] = 'Unknown'
+        output_dict['pangolin_variant_name'] = 'Unknown'
+        for program_out in output_data:
+            if program_out.get('status') == 'tak':
+                if program_out.get('program_name') == 'scorpion':
+                    output_dict['pangolin_variant_name'] = program_out.get('variant_name')
+                elif program_out.get('program_name') == 'Nextclade':
+                    output_dict['nextclade_variant_name'] = program_out.get('variant_name')
+    elif virus == 'influenza':
+        output_dict['nextclade_variant_name_HA'] = 'Unknown'
+        output_dict['nextclade_variant_name_NA'] = 'Unknown'
+        for program_out in output_data:
+            if program_out.get('status')  == 'tak':
+                if program_out.get('program_name')  == 'Nextclade' and program_out.get('sequence_source') == 'HA':
+                    output_dict['nextclade_variant_name_HA'] = program_out.get('variant_name')
+                elif program_out.get('program_name')  == 'Nextclade' and program_out.get('sequence_source') == 'NA':
+                    output_dict['nextclade_variant_name_NA'] = program_out.get('variant_name')
+
+    elif virus == 'rsv':
+        output_dict['nextclade_variant_name'] = 'Unknown'
+        for program_out in output_data:
+            if program_out.get('status') == 'tak' and program_out.get('program_name') == 'Nextclade':
+                    output_dict['nextclade_variant_name'] = program_out.get('variant_name')
+
+    return output_dict
+
+def get_viral_genome_data(json_data: Dict) -> Dict:
+    output_data = json_data.get("output", {}).get('viral_genome_data', {})
+
+    output_dict = {}
+    output_dict['average_coverage'] = -1
+    output_dict['total_length'] = -1
+    output_dict['number_of_Ns'] = -1
+
+    if output_data.get("status", '') == 'tak':
+        output_dict['average_coverage'] = output_data.get('average_coverage_value', -1)
+        output_dict['total_length'] = output_data.get('total_length_value', -1)
+        output_dict['number_of_Ns'] = output_data.get('number_of_Ns_value', -1)
+
+    return output_dict
 
 def get_mlst_cgmlst(json_data: Dict) -> Dict:
     """
@@ -590,7 +638,7 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
             ]
 
             # freyja output
-            extra_columns += ['freyja_lineage1_name', 'freyja_lineage2_name', 'freyja_lineage1_abundance', 'freyja_lineage2_abundance']
+            extra_columns += ['freyja_lineage_main', 'freyja_lineage_secondary', 'freyja_lineage_main_value', 'freyja_lineage_secondary_value']
 
             # classification pango and/or nextclade species dependent
             if organism == 'sars-cov-2':
@@ -600,7 +648,7 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
             elif organism == 'rsv':
                 extra_columns += ['nextclade_variant_name']
             # genome assembly stats
-            extra_columns += ['average_coverage', 'total_length_value', 'number_of_Ns_value']
+            extra_columns += ['average_coverage', 'total_length', 'number_of_Ns']
 
         header += extra_columns
         # Write header to aggregated TSV
@@ -609,6 +657,7 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
 
         # Now we iterate over each json in a dir to preapre a valid output
         for sample in os.listdir(json_dir):
+
             sample_dir = os.path.join(json_dir, sample)
             if not os.path.isdir(sample_dir):
                 continue
@@ -624,8 +673,6 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
             except Exception as e:
                 drop_log.write(f"{sample_id} - JSON parse error: {e}\n")
                 continue
-
-            reasons = []  # to collect any drop reasons for this sample
 
             # Obligatory data
 
@@ -684,13 +731,31 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
                 for key, val in get_viral_freyja_data_out.items():
                     row[key] = "" if val == "" else str(val)
 
+                get_viral_classification_data_out = get_viral_classification_data(data)
+                for key, val in get_viral_classification_data_out.items():
+                    row[key] = "" if val == "" else str(val)
+
+                get_viral_genome_data_out = get_viral_genome_data(data)
+                for key, val in get_viral_genome_data_out.items():
+                    row[key] = "" if val == "" else str(val)
+
 
             # Include any supplemental metadata fields for this sample
             for field in optional_fields_present:
                 val = sup_data.get(sample_id, {}).get(field)
                 row[field] = "" if val is None else str(val)
 
-            ### Extract additional columns
+            # Determine if sample should be dropped
+            # Any field is Unknown or -1 (defualts for error when parsing json)
+            valid_sample = True
+            error_msg = ''
+            for klucz, wartosc in row.items():
+                if wartosc == -1 or wartosc == 'Unknwon':
+                    error_msg += f'For column {klucz} the value is incorrect {wartosc}'
+                    valid_sample = False
+            if not valid_sample:
+                drop_log.write(f"{sample_id} -  {error_msg}\n")
+                continue
 
             # Write this sample's data to the aggregated TSV (ensure correct column order)
             writer.writerow([row.get(col, "") for col in header])

@@ -8,7 +8,9 @@ from WGS2Phylo import get_fastqc_stats, get_contaminations_bacteria,  \
     get_viral_obligatory_data, \
     get_influenza_antiviral_data, \
     get_viral_kraken2_data, \
-    get_viral_freyja_data
+    get_viral_freyja_data, \
+    get_viral_classification_data, \
+    get_viral_genome_data
 
 GOLDENS = {
     'campylo_illumina.json': {
@@ -502,6 +504,15 @@ GOLDENS = {
             'freyja_lineage_secondary': 'unk',
             'freyja_lineage_main_value': 1.0,
             'freyja_lineage_secondary_value': 0,
+        },
+        'test_get_viral_classification_data' : {
+            'nextclade_variant_name_HA': '6B.1A.5a.2a',
+            'nextclade_variant_name_NA': 'C.5.3.1'
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' : 246.33,
+            'total_length' : 13632,
+            'number_of_Ns' : 200,
         }
     },
     'influenza_illumina_nodata.json': {
@@ -544,6 +555,15 @@ GOLDENS = {
             'freyja_lineage_secondary': 'Unknown',
             'freyja_lineage_main_value': -1,
             'freyja_lineage_secondary_value': -1,
+        },
+        'test_get_viral_classification_data' : {
+            'nextclade_variant_name_HA' : 'Unknown',
+            'nextclade_variant_name_NA' : 'Unknown'
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' : -1,
+            'total_length' : -1,
+            'number_of_Ns' : -1,
         }
 
 
@@ -584,6 +604,15 @@ GOLDENS = {
             'freyja_lineage_secondary': '3C.2a1b.2a',
             'freyja_lineage_main_value': 0.98,
             'freyja_lineage_secondary_value': 0.01,
+        },
+        'test_get_viral_classification_data' : {
+            'nextclade_variant_name_HA' : '3C.2a1b.2a.2a.3a.1',
+            'nextclade_variant_name_NA' : 'B.4.2'
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' :246.27,
+            'total_length' : 13627,
+            'number_of_Ns' : 198,
         }
 
     },
@@ -623,6 +652,15 @@ GOLDENS = {
             'freyja_lineage_secondary': 'Unknown',
             'freyja_lineage_main_value': -1,
             'freyja_lineage_secondary_value': -1,
+        },
+        'test_get_viral_classification_data' : {
+            'nextclade_variant_name_HA' : 'Unknown',
+            'nextclade_variant_name_NA' : 'Unknown'
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' : -1,
+            'total_length' : -1,
+            'number_of_Ns' : -1,
         }
 
     },
@@ -666,6 +704,14 @@ GOLDENS = {
             'freyja_lineage_secondary': 'unk',
             'freyja_lineage_main_value': 1.0,
             'freyja_lineage_secondary_value': 0,
+        },
+        'test_get_viral_classification_data' : {
+            'nextclade_variant_name' : 'A.D.5.2',
+        },
+'test_get_viral_genome_data' : {
+            'average_coverage' : 245.26,
+            'total_length' : 15233,
+            'number_of_Ns' : 207,
         }
     },
     'rsv_illumina_nodata.json': {
@@ -708,6 +754,14 @@ GOLDENS = {
             'freyja_lineage_secondary': 'Unknown',
             'freyja_lineage_main_value': -1,
             'freyja_lineage_secondary_value': -1,
+        },
+        'test_get_viral_classification_data' : {
+            'nextclade_variant_name' : 'Unknown',
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' : -1,
+            'total_length' : -1,
+            'number_of_Ns' : -1,
         }
     },
     'sars2_illumina.json': {
@@ -750,6 +804,15 @@ GOLDENS = {
             'freyja_lineage_secondary': 'KP.3.1.1',
             'freyja_lineage_main_value': 0.01,
             'freyja_lineage_secondary_value': 0.01,
+        },
+        'test_get_viral_classification_data' : {
+            'pangolin_variant_name' : 'Unassigned',
+            'nextclade_variant_name' : '24A',
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' : 22.09,
+            'total_length' : 29871,
+            'number_of_Ns' : 26313,
         }
 
     },
@@ -793,6 +856,15 @@ GOLDENS = {
             'freyja_lineage_secondary': 'Unknown',
             'freyja_lineage_main_value': -1,
             'freyja_lineage_secondary_value': -1,
+        },
+        'test_get_viral_classification_data': {
+            'pangolin_variant_name': 'Unknown',
+            'nextclade_variant_name': 'Unknown',
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' : -1,
+            'total_length' : -1,
+            'number_of_Ns' : -1,
         }
     },
     'sars2_nanopore.json': {
@@ -831,6 +903,15 @@ GOLDENS = {
             'freyja_lineage_secondary': 'unk',
             'freyja_lineage_main_value': 0.99,
             'freyja_lineage_secondary_value': 0,
+        },
+        'test_get_viral_classification_data': {
+            'pangolin_variant_name': 'KP.2.3.3',
+            'nextclade_variant_name': '24G',
+        },
+        'test_get_viral_genome_data' : {
+            'average_coverage' :  225.18,
+            'total_length' : 29845,
+            'number_of_Ns' : 1482,
         }
     }
 
@@ -928,3 +1009,18 @@ def test_get_viral_freyja_data(viral_json):
     assert result == expected, f"{viral_json.name}: freyja data columns mismatch"
 
 
+def test_get_viral_classification_data(viral_json):
+    content = load_json_content(viral_json)
+    result = get_viral_classification_data(content)
+
+    expected = GOLDENS[viral_json.name]['test_get_viral_classification_data']
+
+    assert result == expected, f"{viral_json.name}: viral classification data columns mismatch"
+
+def test_get_viral_genome_data(viral_json):
+    content = load_json_content(viral_json)
+    result = get_viral_genome_data(content)
+
+    expected = GOLDENS[viral_json.name]['test_get_viral_genome_data']
+
+    assert result == expected, f"{viral_json.name}: viral genome data columns mismatch"
