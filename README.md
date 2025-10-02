@@ -185,7 +185,7 @@ For a file named `ERRXYZ.fasta`, the corresponding `strain` value in the metadat
 # WGS2phylo
 
 
-A helper script to prepare metadatafile based on the results of our [Sequnecing pipline](https://github.com/mkadlof/plepiseq-wgs-pipeline)
+A helper script to prepare metadata file based on the results of our [Sequnecing pipline](https://github.com/mkadlof/plepiseq-wgs-pipeline). With `--with-fasta` a phylogentic pipeline ready fasta input can also be repared. Use `--without-fasta` to skip fasta file processing.
 
 ## Example data 
 - [WGS output for bacterial](data/example_data/WGS2phylo/)
@@ -194,18 +194,18 @@ A helper script to prepare metadatafile based on the results of our [Sequnecing 
 
 ### Campylobacter 
 ```
-python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --output-prefix metadata_out/metadata_required_Campylobacter
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --with-fasta --output-prefix metadata_out/metadata_required_Campylobacter
 
-python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --extra-fields --output-prefix metadata_out/metadata_expanded_Campylobacter
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --with-fasta --extra-fields --output-prefix metadata_out/metadata_expanded_Campylobacter
 
 ```
 
 ### RSV
 
 ```
-python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --output-prefix metadata_out/metadata_required_rsv
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --with-fasta --output-prefix metadata_out/metadata_required_rsv
 
-python3 bin/WGS2Phylo.py --json-dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --extra-fields --output-prefix metadata_out/metadata_expanded_rsv
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --with-fasta --extra-fields --output-prefix metadata_out/metadata_expanded_rsv
 ```
 
 ## Tests

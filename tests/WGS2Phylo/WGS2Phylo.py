@@ -3,6 +3,9 @@ import json
 import csv
 import click
 from typing import Dict
+import glob
+from pathlib import Path
+import gzip
 
 ### Helper functions to extract specific info from JSON files ###
 
@@ -370,8 +373,8 @@ def get_fastqc_stats(json_data, direction):
 #### CLI and main processing function ####
 
 @click.command()
-@click.option('--json-dir', required=True, type=click.Path(exists=True, file_okay=False),
-              help="Directory containing sample subdirectories with JSON outputs.")
+@click.option('--output_dir', required=True, type=click.Path(exists=True, file_okay=False),
+              help="Directory containing sample subdirectories with JSON/FASTA outputs.")
 @click.option('--supplemental-file', type=click.Path(exists=True, readable=True), default=None,
               help="Optional TSV/CSV file with extra metadata (columns: date, region, country, division, city).")
 @click.option('--id-column', default='id', show_default=True,
@@ -381,7 +384,10 @@ def get_fastqc_stats(json_data, direction):
 @click.option('--extra-fields', is_flag=True, help="If set, include full WGS output fields (AMR, contamination, FastQC stats).")
 @click.option('--organism', type=click.Choice(['sars-cov-2', 'influenza', 'rsv', 'salmonella', 'escherichia', 'campylobacter']), required=True,
               help="Name of the organism for which WGS sequencing was carried out.")
-def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, extra_fields, organism):
+@click.option("--with-fasta/--without-fasta", default=True,
+              help="Create fasta file directory used as an input for phylogentic pipline. Use --without-fasta to skip fasta creation"
+)
+def generate_metadata(output_dir, supplemental_file, id_column, output_prefix, extra_fields, organism, with_fasta):
     """
     Generate a phylogenetic metadata TSV from pipeline JSON outputs.
     """
@@ -447,6 +453,8 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
     agg_file = open(agg_path, 'w', newline='')
     writer = csv.writer(agg_file, delimiter='\t')
 
+
+
     # Determine base header fields (for bacterial organisms vs viruses)
     if organism in ['salmonella', 'campylobacter', 'escherichia']:
         # Required field
@@ -485,9 +493,9 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
         writer.writerow(header)
 
 
-        # Process each sample directory in json_dir
-        for sample in os.listdir(json_dir):
-            sample_dir = os.path.join(json_dir, sample)
+        # Process each sample directory in output_dir
+        for sample in os.listdir(output_dir):
+            sample_dir = os.path.join(output_dir, sample)
             if not os.path.isdir(sample_dir):
                 continue
             sample_id = sample
@@ -503,6 +511,7 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
             except Exception as e:
                 drop_log.write(f"{sample_id} - JSON parse error: {e}\n")
                 continue
+
 
             reasons = []  # to collect any drop reasons for this sample
 
@@ -606,6 +615,22 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
                 sw.writerow(header)
                 sw.writerow([row.get(col, "") for col in header])
 
+            if with_fasta:
+                # collect all .fasta files for the sample
+                fasta_files = glob.glob(os.path.join(sample_dir, "fastas", "*.fasta"))
+
+                # ensure output dir exists
+                out_dir_for_fastas = Path(out_dir) / "fastas"
+                out_dir_for_fastas.mkdir(parents=True, exist_ok=True)
+
+                # open compressed output file
+                out_file = out_dir_for_fastas / f"{sample_id}.fasta.gz"
+                with gzip.open(out_file, "wt") as sf:
+                    for fasta_file in fasta_files:
+                        with open(fasta_file, "r") as f:
+                            sf.write(f.read())
+
+
     elif organism in ['sars-cov-2', 'influenza', 'rsv']:
         # For viral organisms, implementation would go here (not provided in this context)
         # Creating a header
@@ -656,13 +681,14 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
 
 
         # Now we iterate over each json in a dir to preapre a valid output
-        for sample in os.listdir(json_dir):
+        for sample in os.listdir(output_dir):
 
-            sample_dir = os.path.join(json_dir, sample)
+            sample_dir = os.path.join(output_dir, sample)
             if not os.path.isdir(sample_dir):
                 continue
             sample_id = sample
             json_file_path = os.path.join(sample_dir, f"{sample}.json")
+
             if not os.path.isfile(json_file_path):
                 drop_log.write(f"{sample_id} - JSON file not found\n")
                 continue
@@ -765,6 +791,39 @@ def generate_metadata(json_dir, supplemental_file, id_column, output_prefix, ext
                 sw = csv.writer(sf, delimiter='\t')
                 sw.writerow(header)
                 sw.writerow([row.get(col, "") for col in header])
+
+            if with_fasta:
+                # for viruses there might be one or many fasta files (depending on number of segments)
+                fasta_files = glob.glob(os.path.join(sample_dir, "*.fasta"))
+
+                # ensure output dir exists
+                if organism == "influenza":
+                    out_dir_for_fastas = Path(out_dir) / sample_id
+                    out_dir_for_fastas.mkdir(parents=True, exist_ok=True)
+
+                    # Copy each fasta into the sample's subfolder
+                    for fasta_file in fasta_files:
+                        fasta_name = Path(fasta_file).name  # just "file.fasta"
+                        out_file = out_dir_for_fastas / fasta_name
+                        with open(fasta_file, "r") as f_in, open(out_file, "w") as f_out:
+                            for line in f_in:
+                                if ">" in line:
+                                    line = ">" + line.split('|')[-1]
+                                f_out.write(line)
+
+                else:
+                    out_dir_for_fastas = Path(out_dir)
+                    out_dir_for_fastas.mkdir(parents=True, exist_ok=True)
+
+                    merged_file = out_dir_for_fastas / "merged_fastas.fasta"
+                    with open(merged_file, "a") as f_out:
+                        for fasta_file in fasta_files:
+                            with open(fasta_file, "r") as f_in:
+                                for line in f_in:
+                                    if ">" in line:
+                                        line = ">" + line.split('|')[-1]
+                                    f_out.write(line)
+
 
     # Close output files
     agg_file.close()
