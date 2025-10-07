@@ -105,11 +105,7 @@ def transformed
 workflow {
     input_fasta_path = file(params.input_fasta) // create path like object
 
-    if (organism.toLowerCase() in ['sars-cov-2', 'rsv']) {
-        ch = Channel.fromPath(input_fasta_path).map { file -> tuple(file.baseName, file) }
-        core(ch, metadata)
-    }
-    else if (organism.toLowerCase() in ['influenza']) {
+    if (organism.toLowerCase() in ['influenza' , ['sars-cov-2', 'rsv' ]) {
 
         transformed = transform_input_novel(input_fasta_path)
                       .fastas

@@ -60,7 +60,7 @@ process transform_input_novel {
 
     # Initialize empty FASTA files for each segment
     for seg in \$segments; do
-        seg_name=\$(echo \$seg | sed 's/^chr[0-9]_//')
+        seg_name=\$(echo \$seg | cut -d "|" -f1 | tr -d ">")
         touch \${seg_name}.fasta
     done
 
@@ -69,19 +69,17 @@ process transform_input_novel {
         sample_id=\$(basename "\$f" .fasta)
 
         awk -v sid="\$sample_id" '
-    /^>/ {
-        seg=\$0
-        sub("^>chr[0-9]_","",seg)
-        sub("\\|.*","",seg)
-        out=seg ".fasta"
-        print \$0 >> out
-        next
-    }
-    { print >> out }
-' "\$f"
+            /^>/ {
+                split(\$0, parts, "|")
+                seg = substr(parts[1], 2)
+                out = seg ".fasta"
+                print ">" sid >> out
+                next
+            }
+            {  print >> out }
+        ' "\$f"
 
     done
-
     rm -rf samples
 
     """
