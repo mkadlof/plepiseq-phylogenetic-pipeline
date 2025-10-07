@@ -1,0 +1,2732 @@
+{
+    "output": {
+        "pipeline_version": "1.0",
+        "pathogen": "influenza",
+        "sampleId": "ESIB_EQA_2025_INFL1_01",
+        "timestamp": "2025-07-23T14:29:55",
+        "ExecutionDir_dir": "/mnt/raid/michall/EQA2025/INFL/INFL1_polish_msg/",
+        "sequencing_summary_data": [
+            {
+                "status": "tak",
+                "file_name": "ESIB_EQA_2025.INFL1.01.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 149352,
+                "number_of_bases_value": 154300000,
+                "reads_median_length_value": 0.0,
+                "reads_min_length_value": 69,
+                "reads_max_length_value": 55476,
+                "reads_median_quality_value": 28.0,
+                "reads_quality_histogram_file": "results/ESIB_EQA_2025_INFL1_01/QC/ESIB_EQA_2025.INFL1.01_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/ESIB_EQA_2025_INFL1_01/QC/ESIB_EQA_2025.INFL1.01_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/ESIB_EQA_2025_INFL1_01/QC/ESIB_EQA_2025.INFL1.01_fastqc_position_quality_plot.csv",
+                "gc_content_value": 43.0
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "tak",
+                "main_genus_name": "Alphainfluenzavirus",
+                "secondary_genus_name": "Schaalia",
+                "main_species_name": "Alphainfluenzavirus influenzae",
+                "secondary_species_name": "Schaalia odontolytica",
+                "main_genus_value": 95.94,
+                "secondary_genus_value": 2.85,
+                "main_species_value": 95.94,
+                "secondary_species_value": 2.53
+            }
+        ],
+        "dehumanized_data": {
+            "status": "tak",
+            "dehumanized_fastq_file_list": [
+                "results/ESIB_EQA_2025_INFL1_01/./ESIB_EQA_2025_INFL1_01_nohuman.fastq.gz"
+            ]
+        },
+        "freyja_data": {
+            "status": "tak",
+            "freyja_lineage1_name": "2a.3a.1",
+            "freyja_lineage2_name": "3C.2a1b.2a",
+            "freyja_lineage1_abundance": 0.98,
+            "freyja_lineage2_abundance": 0.01
+        },
+        "structural_data": {
+            "status": "tak",
+            "protein_structure_data": [
+                {
+                    "protein_name": "HA",
+                    "pdb_file": "results/ESIB_EQA_2025_INFL1_01/ESIB_EQA_2025_INFL1_01_HA.pdb"
+                },
+                {
+                    "protein_name": "NA",
+                    "pdb_file": "results/ESIB_EQA_2025_INFL1_01/ESIB_EQA_2025_INFL1_01_NA.pdb"
+                }
+            ]
+        },
+        "viral_classification_data": [
+            {
+                "status": "nie",
+                "sequence_source": "full_genome",
+                "database_name": "Pangolin",
+                "error_message": "Ten moduł jest przeznaczony wylacznie do analizy wirusa SARS-CoV-2."
+            },
+            {
+                "status": "tak",
+                "database_name": "Nextclade",
+                "database_version": "2025-01-19",
+                "program_name": "Nextclade",
+                "program_version": "3.9.1",
+                "variant_name": "3C.2a1b.2a.2a.3a.1",
+                "variant_qc_status": "pass",
+                "sequence_source": "HA"
+            },
+            {
+                "status": "tak",
+                "database_name": "Nextclade",
+                "database_version": "2025-01-19",
+                "program_name": "Nextclade",
+                "program_version": "3.9.1",
+                "variant_name": "B.4.2",
+                "variant_qc_status": "pass",
+                "sequence_source": "NA"
+            }
+        ],
+        "viral_genome_data": {
+            "status": "tak",
+            "average_coverage_value": 246.27,
+            "coverage_histogram_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_histogram.csv",
+            "coverage_barplot_data": [
+                {
+                    "segment_name": "chr1_PB2",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr1_PB2.csv"
+                },
+                {
+                    "segment_name": "chr2_PB1",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr2_PB1.csv"
+                },
+                {
+                    "segment_name": "chr3_PA",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr3_PA.csv"
+                },
+                {
+                    "segment_name": "chr4_HA",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr4_HA.csv"
+                },
+                {
+                    "segment_name": "chr5_NP",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr5_NP.csv"
+                },
+                {
+                    "segment_name": "chr6_NA",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr6_NA.csv"
+                },
+                {
+                    "segment_name": "chr7_MP",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr7_MP.csv"
+                },
+                {
+                    "segment_name": "chr8_NS",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01//ESIB_EQA_2025_INFL1_01_coverage_barplot_chr8_NS.csv"
+                }
+            ],
+            "primer_usage_data": [
+                {
+                    "segment_name": "chr1_PB2",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 6887
+                        }
+                    ]
+                },
+                {
+                    "segment_name": "chr2_PB1",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 2430
+                        }
+                    ]
+                },
+                {
+                    "segment_name": "chr3_PA",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 57428
+                        }
+                    ]
+                },
+                {
+                    "segment_name": "chr4_HA",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 9667
+                        }
+                    ]
+                },
+                {
+                    "segment_name": "chr5_NP",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 16100
+                        }
+                    ]
+                },
+                {
+                    "segment_name": "chr6_NA",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 9253
+                        }
+                    ]
+                },
+                {
+                    "segment_name": "chr7_MP",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 66306
+                        }
+                    ]
+                },
+                {
+                    "segment_name": "chr8_NS",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 48316
+                        }
+                    ]
+                }
+            ],
+            "total_length_value": 13627,
+            "number_of_Ns_value": 198
+        },
+        "genome_files_data": {
+            "status": "tak",
+            "file_data": [
+                {
+                    "segment_name": "chr1_PB2",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr1_PB2.fasta"
+                },
+                {
+                    "segment_name": "chr2_PB1",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr2_PB1.fasta"
+                },
+                {
+                    "segment_name": "chr3_PA",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr3_PA.fasta"
+                },
+                {
+                    "segment_name": "chr4_HA",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr4_HA.fasta"
+                },
+                {
+                    "segment_name": "chr5_NP",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr5_NP.fasta"
+                },
+                {
+                    "segment_name": "chr6_NA",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr6_NA.fasta"
+                },
+                {
+                    "segment_name": "chr7_MP",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr7_MP.fasta"
+                },
+                {
+                    "segment_name": "chr8_NS",
+                    "segment_file": "results/ESIB_EQA_2025_INFL1_01/output_chr8_NS.fasta"
+                }
+            ]
+        },
+        "viral_mutation_data": [
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 69,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser14Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 938,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 75,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Thr16Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 983,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 165,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Arg46Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 982,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 255,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Thr76Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1040,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 282,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly85Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1015,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 288,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp87Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 992,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 336,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly103Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 879,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 346,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asp107Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 880,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 384,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe119Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 931,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 402,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Leu125Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 963,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 423,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro132Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 984,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 438,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn137Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 936,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 453,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Arg142Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 949,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 467,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile147Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 964,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 471,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn148Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 992,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 495,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ala156Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 917,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 546,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly173Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 969,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 585,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Thr186Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 923,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 624,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser199Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 971,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 705,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser226Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 958,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 790,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Val255Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 924,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 828,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val267Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 881,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 858,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu277Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 914,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 924,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Arg299Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 931,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 945,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gln306Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 953,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1011,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe328Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 943,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1041,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Val338Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 800,
+                "mutation_usage_value": 0.92
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1068,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Gly347Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 915,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1077,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gln350Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 944,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1113,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu362Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 947,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1215,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu396Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 924,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1236,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val403Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 930,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1242,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser405Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 872,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1255,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Val410Met",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 932,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1269,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Val414Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 950,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1437,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser470Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 990,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1473,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys482Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 988,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1479,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Gly484Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 995,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1525,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg500Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1013,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1551,
+                "gene_name": "PB2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Arg508Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 929,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1563,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Leu512Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 990,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1578,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu517Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1024,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1593,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gln522Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1027,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1647,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn540Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1016,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1650,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Gly541Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1009,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1677,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Tyr550Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1031,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1716,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln563Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1024,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 1905,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Pro626Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1136,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 2124,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys699Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 5485,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 2136,
+                "gene_name": "PB2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg703Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 5446,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 2200,
+                "gene_name": "PB2",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu725Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 5747,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 2284,
+                "gene_name": "PB2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Arg753Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 5573,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr1_PB2",
+                "position_value": 2310,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 5590,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr2_PB1",
+                "position_value": 132,
+                "gene_name": "PB1",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr36Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 883,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr2_PB1",
+                "position_value": 861,
+                "gene_name": "PB1",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys279Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 887,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr2_PB1",
+                "position_value": 1033,
+                "gene_name": "PB1",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu337Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 833,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr2_PB1",
+                "position_value": 1449,
+                "gene_name": "PB1",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ile475Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 974,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr2_PB1",
+                "position_value": 2043,
+                "gene_name": "PB1",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser673Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1008,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr2_PB1",
+                "position_value": 2064,
+                "gene_name": "PB1",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg680Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1066,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr2_PB1",
+                "position_value": 2220,
+                "gene_name": "PB1",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ser732Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1372,
+                "mutation_usage_value": 0.95
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 99,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly25Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 542,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 326,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly101Glu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 371,
+                "mutation_usage_value": 0.96
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 333,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro103Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 345,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 342,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Leu106Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 366,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 349,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu109Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 377,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 366,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu114Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 364,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 435,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys137Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 377,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 444,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser140Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 372,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 449,
+                "gene_name": "PA",
+                "reference_allele_name": "ACA",
+                "sample_allele_name": "AAG",
+                "mutation_effect": "p.AsnThr142LysAla",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 367,
+                "mutation_usage_value": 0.66
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 516,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp164Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 351,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 522,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu166Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 363,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 537,
+                "gene_name": "PA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile171Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 365,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 549,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Leu175Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 373,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 603,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln193Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 347,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 651,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly209Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 361,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 774,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser250Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 344,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 807,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu261Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 332,
+                "mutation_usage_value": 0.91
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 951,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys309Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 378,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 957,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ile311Met",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 367,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1026,
+                "gene_name": "PA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Tyr334Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 384,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1095,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr357Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 357,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1170,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu382Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 353,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1204,
+                "gene_name": "PA",
+                "reference_allele_name": "GAC",
+                "sample_allele_name": "AAT",
+                "mutation_effect": "p.Asp394Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 375,
+                "mutation_usage_value": 0.65
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1221,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu399Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 376,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1228,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr402Ser",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 391,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1233,
+                "gene_name": "PA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu403Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 382,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1248,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln408Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 388,
+                "mutation_usage_value": 0.97
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1296,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu424Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 373,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1359,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Tyr445Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 416,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1377,
+                "gene_name": "PA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser451Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 405,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1383,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Cys453Cys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 406,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1449,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala475Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 429,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1473,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ile483Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 425,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1481,
+                "gene_name": "PA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile486Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 427,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1554,
+                "gene_name": "PA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.His510His",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 414,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1572,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp516Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 434,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1614,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro530Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 394,
+                "mutation_usage_value": 0.97
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1704,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Pro560Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 485,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1740,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys572Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 487,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1797,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gln591Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 496,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1835,
+                "gene_name": "PA",
+                "reference_allele_name": "AG",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asp606fs",
+                "mutation_type_name": "frameshift_variant",
+                "mutation_coverage_value": 492,
+                "mutation_usage_value": 0.02
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1838,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "AG",
+                "mutation_effect": "p.Asp606fs",
+                "mutation_type_name": "frameshift_variant",
+                "mutation_coverage_value": 489,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1893,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu623Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7710,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 1971,
+                "gene_name": "PA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu649Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7970,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 2064,
+                "gene_name": "PA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr680Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7779,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 2136,
+                "gene_name": "PA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ala704Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7694,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 2167,
+                "gene_name": "PA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu715Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 8015,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr3_PA",
+                "position_value": 2198,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7820,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 36,
+                "gene_name": "HA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Thr3Ala",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4561,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 88,
+                "gene_name": "HA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.His20Pro",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4494,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 317,
+                "gene_name": "HA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln96Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4514,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 441,
+                "gene_name": "HA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asn138Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4571,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 491,
+                "gene_name": "HA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala154Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4573,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 496,
+                "gene_name": "HA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ile156Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4652,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 626,
+                "gene_name": "HA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.His199His",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4563,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 629,
+                "gene_name": "HA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.His200His",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4411,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 662,
+                "gene_name": "HA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe211Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4675,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 792,
+                "gene_name": "HA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro255Ser",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4263,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 903,
+                "gene_name": "HA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys292Glu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4698,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 968,
+                "gene_name": "HA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val313Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4760,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 1076,
+                "gene_name": "HA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Gly349Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4929,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 1116,
+                "gene_name": "HA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Val363Met",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4885,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 1139,
+                "gene_name": "HA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg370Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4810,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 1202,
+                "gene_name": "HA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asp391Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4704,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr4_HA",
+                "position_value": 1415,
+                "gene_name": "HA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys462Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 5041,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 40,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 7671,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 129,
+                "gene_name": "NP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ser28Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7517,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 222,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn59Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7919,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 246,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val67Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7889,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 249,
+                "gene_name": "NP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu68Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7761,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 339,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Arg98Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7491,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 351,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly102Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7689,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 387,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu114Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7763,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 451,
+                "gene_name": "NP",
+                "reference_allele_name": "ATG",
+                "sample_allele_name": "CTA",
+                "mutation_effect": "p.Met136Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7514,
+                "mutation_usage_value": 0.66
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 472,
+                "gene_name": "NP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu143Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7869,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 483,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala146Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7912,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 492,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gln149Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7819,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 525,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asp160Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7049,
+                "mutation_usage_value": 0.94
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 552,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Gly169Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7494,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 582,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ala179Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7816,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 630,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg195Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7846,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 705,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asp220Glu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 6902,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 723,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu226Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7183,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 729,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly228Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7900,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 752,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg236Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7964,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 780,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser245Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7056,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 786,
+                "gene_name": "NP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn247Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 6859,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 822,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu259Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7202,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1044,
+                "gene_name": "NP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Cys333Cys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7704,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1080,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser345Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7681,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1092,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly349Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7378,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1221,
+                "gene_name": "NP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser392Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7384,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1239,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln398Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7443,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1275,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Pro410Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7612,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1278,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Thr411Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7610,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1287,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val414Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7329,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1290,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln415Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7179,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1297,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile418Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7583,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1347,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu434Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7494,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1377,
+                "gene_name": "NP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ile444Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7327,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1446,
+                "gene_name": "NP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser467Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 6699,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1530,
+                "gene_name": "NP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu495Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7444,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1533,
+                "gene_name": "NP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Tyr496Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7379,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr5_NP",
+                "position_value": 1544,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7260,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 76,
+                "gene_name": "NA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Thr19Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4440,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 112,
+                "gene_name": "NA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Thr31Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4565,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 289,
+                "gene_name": "NA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Pro90Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4645,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 361,
+                "gene_name": "NA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ile114Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4626,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 468,
+                "gene_name": "NA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg150His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4631,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 948,
+                "gene_name": "NA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.His310Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4703,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 1156,
+                "gene_name": "NA",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val379Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4664,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 1161,
+                "gene_name": "NA",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu381Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4470,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 1218,
+                "gene_name": "NA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg400Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4617,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 1243,
+                "gene_name": "NA",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Gly408Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4461,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 1354,
+                "gene_name": "NA",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Val445Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4560,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr6_NA",
+                "position_value": 1445,
+                "gene_name": ".",
+                "reference_allele_name": "G",
+                "sample_allele_name": "GA",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 3947,
+                "mutation_usage_value": 0.74
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 37,
+                "gene_name": "MP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu4Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7382,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 161,
+                "gene_name": "MP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu46Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7854,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 241,
+                "gene_name": "MP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Arg72Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7346,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 298,
+                "gene_name": "MP",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn91Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7971,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 355,
+                "gene_name": "MP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.His110His",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7489,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 433,
+                "gene_name": "MP",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly136Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7862,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 607,
+                "gene_name": "MP",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly194Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7717,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 619,
+                "gene_name": "MP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln198Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 8013,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 625,
+                "gene_name": "MP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ala200Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7875,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 783,
+                "gene_name": "MP",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ter253Ter",
+                "mutation_type_name": "splice_region_variant&stop_retained_variant",
+                "mutation_coverage_value": 7848,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 787,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 8067,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 818,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7904,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 833,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7761,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 869,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7844,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 873,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7679,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 899,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7479,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 914,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7715,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 917,
+                "gene_name": ".",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 6913,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 941,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 6884,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 958,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7963,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr7_MP",
+                "position_value": 977,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7772,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 53,
+                "gene_name": "NS",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe9Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7809,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 95,
+                "gene_name": "NS",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Val23Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7702,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 104,
+                "gene_name": "NS",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Lys26Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7953,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 116,
+                "gene_name": "NS",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala30Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7915,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 123,
+                "gene_name": "NS",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu33Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7832,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 205,
+                "gene_name": "NS",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Val60Ala",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7891,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 248,
+                "gene_name": "NS",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asp74Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7791,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 271,
+                "gene_name": "NS",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Val82Ala",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7978,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 356,
+                "gene_name": "NS",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys110Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 8007,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 398,
+                "gene_name": "NS",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Met124Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 6560,
+                "mutation_usage_value": 0.97
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 446,
+                "gene_name": "NS",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg140Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7649,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 470,
+                "gene_name": "NS",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Arg148Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 8040,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 513,
+                "gene_name": "NS",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu163Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7621,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 537,
+                "gene_name": "NS",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ile171Val",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7913,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 645,
+                "gene_name": "NS",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.His207Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7797,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 660,
+                "gene_name": "NS",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro212Ser",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7720,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 735,
+                "gene_name": "NS",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asp237Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7974,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 761,
+                "gene_name": ".",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7763,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 786,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7769,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "chr8_NS",
+                "position_value": 807,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 7913,
+                "mutation_usage_value": 1.0
+            }
+        ],
+        "infl_data": {
+            "resistance_status": "tak",
+            "resistance_data": [
+                {
+                    "drug_name": "Oseltamivir",
+                    "drug_resistance_status": "S",
+                    "mutation_list_data_reference_numbering": [],
+                    "mutation_list_data_N2_numbering": [],
+                    "mutation_list_data": []
+                },
+                {
+                    "drug_name": "Zanamivir",
+                    "drug_resistance_status": "R",
+                    "mutation_list_data_reference_numbering":  ["A10G", "A11T"],
+                    "mutation_list_data_N2_numbering": [],
+                    "mutation_list_data": []
+                },
+                {
+                    "drug_name": "Peramivir",
+                    "drug_resistance_status": "S",
+                    "mutation_list_data_reference_numbering": [],
+                    "mutation_list_data_N2_numbering": [],
+                    "mutation_list_data": []
+                },
+                {
+                    "drug_name": "Laninamivir",
+                    "drug_resistance_status": "S",
+                    "mutation_list_data_reference_numbering": ["A10G"],
+                    "mutation_list_data_N2_numbering": [],
+                    "mutation_list_data": []
+                },
+                {
+                    "drug_name": "Baloxavir",
+                    "drug_resistance_status": "S",
+                    "mutation_list_data_reference_numbering": [],
+                    "mutation_list_data": []
+                }
+            ],
+            "reference_genome_prediction_status": "tak",
+            "reasortment_result": "nie",
+            "reference_genome_prediction_data": [
+                {
+                    "segment_name": "PB2",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                },
+                {
+                    "segment_name": "PB1",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                },
+                {
+                    "segment_name": "PA",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                },
+                {
+                    "segment_name": "HA",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                },
+                {
+                    "segment_name": "NP",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                },
+                {
+                    "segment_name": "NA",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                },
+                {
+                    "segment_name": "MP",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                },
+                {
+                    "segment_name": "NS",
+                    "reference_subtype_name": "H3N2",
+                    "reference_strain_name": "A/Denmark/65/2021",
+                    "reference_strain_id": "EPI_ISL_9009478"
+                }
+            ],
+            "type_name": "A",
+            "subtype_name": "H3N2"
+        },
+        "viral_mapping_data": {
+            "status": "tak",
+            "mapped_reads_number": 143335
+        }
+    }
+}

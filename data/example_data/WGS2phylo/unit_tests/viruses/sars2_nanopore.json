@@ -1,0 +1,1863 @@
+{
+    "output": {
+        "pipeline_version": "unknown",
+        "pathogen": "sars2",
+        "sampleId": "ESIB_EQA_2025_SARS1_03",
+        "timestamp": "2025-03-13T01:26:15",
+        "ExecutionDir_dir": "/mnt/raid/michall/EQA2025/SARS/SARS1_r1041_e82_400bps_sup_v5/",
+        "sequencing_summary_data": [
+            {
+                "status": "tak",
+                "file_name": "ESIB_EQA_2025_SARS1_03.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 221267,
+                "number_of_bases_value": 115700000,
+                "reads_median_length_value": 400.0,
+                "reads_min_length_value": 65,
+                "reads_max_length_value": 9784,
+                "reads_median_quality_value": 31.0,
+                "reads_quality_histogram_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03/QC/ESIB_EQA_2025_SARS1_03_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03/QC/ESIB_EQA_2025_SARS1_03_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03/QC/ESIB_EQA_2025_SARS1_03_fastqc_position_quality_plot.csv",
+                "gc_content_value": 40.0
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "tak",
+                "main_genus_name": "Betacoronavirus",
+                "secondary_genus_name": "Enterobacter",
+                "main_species_name": "Severe acute respiratory syndrome-related coronavirus",
+                "secondary_species_name": "Serratia liquefaciens",
+                "main_genus_value": 94.88,
+                "secondary_genus_value": 0.44,
+                "main_species_value": 94.88,
+                "secondary_species_value": 0.21
+            }
+        ],
+        "dehumanized_data": {
+            "status": "tak",
+            "dehumanized_fastq_file_list": [
+                "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03/./ESIB_EQA_2025_SARS1_03_nohuman.fastq.gz"
+            ]
+        },
+        "sars_data": {
+            "coinfection_status": "tak",
+            "coinfection_result": "nie",
+            "coinfection_pvalue": 0.0,
+            "coinfection_histogram_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03/ESIB_EQA_2025_SARS1_03_allele_usage_histogram.txt"
+        },
+        "freyja_data": {
+            "status": "tak",
+            "freyja_lineage1_name": "KP.2.3.3",
+            "freyja_lineage2_name": "unk",
+            "freyja_lineage1_abundance": 0.99,
+            "freyja_lineage2_abundance": 0
+        },
+        "structural_data": {
+            "status": "tak",
+            "protein_structure_data": [
+                {
+                    "protein_name": "Spike",
+                    "pdb_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03/ESIB_EQA_2025_SARS1_03_spike.pdb"
+                }
+            ]
+        },
+        "viral_classification_data": [
+            {
+                "status": "tak",
+                "database_name": "Pangolin",
+                "database_version": "4.3.1",
+                "program_name": "scorpion",
+                "program_version": "0.3.19",
+                "variant_name": "KP.2.3.3",
+                "variant_qc_status": "pass",
+                "sequence_source": "full_genome"
+            },
+            {
+                "status": "tak",
+                "database_name": "Nextclade",
+                "database_version": "2025-03-04",
+                "program_name": "Nextclade",
+                "program_version": "3.9.1",
+                "variant_name": "24G",
+                "variant_qc_status": "warning",
+                "sequence_source": "full_genome"
+            }
+        ],
+        "viral_genome_data": {
+            "status": "tak",
+            "average_coverage_value": 225.18,
+            "coverage_histogram_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03//ESIB_EQA_2025_SARS1_03_coverage_histogram.csv",
+            "coverage_barplot_data": [
+                {
+                    "segment_name": "MN908947.3",
+                    "segment_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03//ESIB_EQA_2025_SARS1_03_coverage_barplot_MN908947_3.csv"
+                }
+            ],
+            "primer_usage_data": [
+                {
+                    "segment_name": "MN908947.3",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 6
+                        },
+                        {
+                            "primer_name": "2",
+                            "primer_usage": 1976
+                        },
+                        {
+                            "primer_name": "3",
+                            "primer_usage": 4210
+                        },
+                        {
+                            "primer_name": "4",
+                            "primer_usage": 5354
+                        },
+                        {
+                            "primer_name": "5",
+                            "primer_usage": 2732
+                        },
+                        {
+                            "primer_name": "6",
+                            "primer_usage": 6472
+                        },
+                        {
+                            "primer_name": "7",
+                            "primer_usage": 22250
+                        },
+                        {
+                            "primer_name": "8",
+                            "primer_usage": 664
+                        },
+                        {
+                            "primer_name": "9",
+                            "primer_usage": 6624
+                        },
+                        {
+                            "primer_name": "10",
+                            "primer_usage": 4426
+                        },
+                        {
+                            "primer_name": "11",
+                            "primer_usage": 3890
+                        },
+                        {
+                            "primer_name": "12",
+                            "primer_usage": 1094
+                        },
+                        {
+                            "primer_name": "13",
+                            "primer_usage": 264
+                        },
+                        {
+                            "primer_name": "14",
+                            "primer_usage": 1142
+                        },
+                        {
+                            "primer_name": "15",
+                            "primer_usage": 706
+                        },
+                        {
+                            "primer_name": "16",
+                            "primer_usage": 3352
+                        },
+                        {
+                            "primer_name": "17",
+                            "primer_usage": 928
+                        },
+                        {
+                            "primer_name": "18",
+                            "primer_usage": 1554
+                        },
+                        {
+                            "primer_name": "19",
+                            "primer_usage": 5994
+                        },
+                        {
+                            "primer_name": "20",
+                            "primer_usage": 552
+                        },
+                        {
+                            "primer_name": "21",
+                            "primer_usage": 18
+                        },
+                        {
+                            "primer_name": "22",
+                            "primer_usage": 104
+                        },
+                        {
+                            "primer_name": "23",
+                            "primer_usage": 260
+                        },
+                        {
+                            "primer_name": "24",
+                            "primer_usage": 930
+                        },
+                        {
+                            "primer_name": "25",
+                            "primer_usage": 7510
+                        },
+                        {
+                            "primer_name": "26",
+                            "primer_usage": 718
+                        },
+                        {
+                            "primer_name": "27",
+                            "primer_usage": 1608
+                        },
+                        {
+                            "primer_name": "28",
+                            "primer_usage": 2402
+                        },
+                        {
+                            "primer_name": "29",
+                            "primer_usage": 21
+                        },
+                        {
+                            "primer_name": "30",
+                            "primer_usage": 1110
+                        },
+                        {
+                            "primer_name": "31",
+                            "primer_usage": 1362
+                        },
+                        {
+                            "primer_name": "32",
+                            "primer_usage": 4948
+                        },
+                        {
+                            "primer_name": "33",
+                            "primer_usage": 8320
+                        },
+                        {
+                            "primer_name": "34",
+                            "primer_usage": 3002
+                        },
+                        {
+                            "primer_name": "35",
+                            "primer_usage": 3892
+                        },
+                        {
+                            "primer_name": "36",
+                            "primer_usage": 1380
+                        },
+                        {
+                            "primer_name": "37",
+                            "primer_usage": 7724
+                        },
+                        {
+                            "primer_name": "38",
+                            "primer_usage": 12480
+                        },
+                        {
+                            "primer_name": "39",
+                            "primer_usage": 368
+                        },
+                        {
+                            "primer_name": "40",
+                            "primer_usage": 2318
+                        },
+                        {
+                            "primer_name": "41",
+                            "primer_usage": 3710
+                        },
+                        {
+                            "primer_name": "42",
+                            "primer_usage": 1448
+                        },
+                        {
+                            "primer_name": "43",
+                            "primer_usage": 15356
+                        },
+                        {
+                            "primer_name": "44",
+                            "primer_usage": 5466
+                        },
+                        {
+                            "primer_name": "45",
+                            "primer_usage": 1408
+                        },
+                        {
+                            "primer_name": "46",
+                            "primer_usage": 2200
+                        },
+                        {
+                            "primer_name": "47",
+                            "primer_usage": 4210
+                        },
+                        {
+                            "primer_name": "48",
+                            "primer_usage": 4200
+                        },
+                        {
+                            "primer_name": "49",
+                            "primer_usage": 53
+                        },
+                        {
+                            "primer_name": "50",
+                            "primer_usage": 1352
+                        },
+                        {
+                            "primer_name": "51",
+                            "primer_usage": 110
+                        },
+                        {
+                            "primer_name": "52",
+                            "primer_usage": 10950
+                        },
+                        {
+                            "primer_name": "53",
+                            "primer_usage": 3976
+                        },
+                        {
+                            "primer_name": "54",
+                            "primer_usage": 3494
+                        },
+                        {
+                            "primer_name": "55",
+                            "primer_usage": 5008
+                        },
+                        {
+                            "primer_name": "56",
+                            "primer_usage": 5152
+                        },
+                        {
+                            "primer_name": "57",
+                            "primer_usage": 1036
+                        },
+                        {
+                            "primer_name": "58",
+                            "primer_usage": 7028
+                        },
+                        {
+                            "primer_name": "59",
+                            "primer_usage": 2512
+                        },
+                        {
+                            "primer_name": "60",
+                            "primer_usage": 26
+                        },
+                        {
+                            "primer_name": "61",
+                            "primer_usage": 7770
+                        },
+                        {
+                            "primer_name": "62",
+                            "primer_usage": 2428
+                        },
+                        {
+                            "primer_name": "63",
+                            "primer_usage": 3002
+                        },
+                        {
+                            "primer_name": "64",
+                            "primer_usage": 96
+                        },
+                        {
+                            "primer_name": "65",
+                            "primer_usage": 1850
+                        },
+                        {
+                            "primer_name": "66",
+                            "primer_usage": 910
+                        },
+                        {
+                            "primer_name": "67",
+                            "primer_usage": 5070
+                        },
+                        {
+                            "primer_name": "68",
+                            "primer_usage": 504
+                        },
+                        {
+                            "primer_name": "69",
+                            "primer_usage": 5318
+                        },
+                        {
+                            "primer_name": "70",
+                            "primer_usage": 1392
+                        },
+                        {
+                            "primer_name": "71",
+                            "primer_usage": 892
+                        },
+                        {
+                            "primer_name": "72",
+                            "primer_usage": 6004
+                        },
+                        {
+                            "primer_name": "73",
+                            "primer_usage": 930
+                        },
+                        {
+                            "primer_name": "74",
+                            "primer_usage": 4258
+                        },
+                        {
+                            "primer_name": "75",
+                            "primer_usage": 11270
+                        },
+                        {
+                            "primer_name": "76",
+                            "primer_usage": 3654
+                        },
+                        {
+                            "primer_name": "77",
+                            "primer_usage": 2650
+                        },
+                        {
+                            "primer_name": "78",
+                            "primer_usage": 4514
+                        },
+                        {
+                            "primer_name": "79",
+                            "primer_usage": 194
+                        },
+                        {
+                            "primer_name": "80",
+                            "primer_usage": 550
+                        },
+                        {
+                            "primer_name": "81",
+                            "primer_usage": 1962
+                        },
+                        {
+                            "primer_name": "82",
+                            "primer_usage": 3944
+                        },
+                        {
+                            "primer_name": "83",
+                            "primer_usage": 2946
+                        },
+                        {
+                            "primer_name": "84",
+                            "primer_usage": 4650
+                        },
+                        {
+                            "primer_name": "85",
+                            "primer_usage": 1408
+                        },
+                        {
+                            "primer_name": "86",
+                            "primer_usage": 392
+                        },
+                        {
+                            "primer_name": "87",
+                            "primer_usage": 8044
+                        },
+                        {
+                            "primer_name": "88",
+                            "primer_usage": 3120
+                        },
+                        {
+                            "primer_name": "89",
+                            "primer_usage": 8372
+                        },
+                        {
+                            "primer_name": "90",
+                            "primer_usage": 518
+                        },
+                        {
+                            "primer_name": "91",
+                            "primer_usage": 4344
+                        },
+                        {
+                            "primer_name": "92",
+                            "primer_usage": 470
+                        },
+                        {
+                            "primer_name": "93",
+                            "primer_usage": 18
+                        },
+                        {
+                            "primer_name": "94",
+                            "primer_usage": 114
+                        },
+                        {
+                            "primer_name": "95",
+                            "primer_usage": 15558
+                        },
+                        {
+                            "primer_name": "96",
+                            "primer_usage": 3002
+                        },
+                        {
+                            "primer_name": "97",
+                            "primer_usage": 4514
+                        },
+                        {
+                            "primer_name": "98",
+                            "primer_usage": 2462
+                        },
+                        {
+                            "primer_name": "99",
+                            "primer_usage": 1718
+                        }
+                    ]
+                }
+            ],
+            "total_length_value": 29845,
+            "number_of_Ns_value": 1482
+        },
+        "genome_files_data": {
+            "status": "tak",
+            "file_data": [
+                {
+                    "segment_name": "MN908947.3",
+                    "segment_file": "./results_pval_0_3_and_0_1/ESIB_EQA_2025_SARS1_03/output_MN908947_3.fasta"
+                }
+            ]
+        },
+        "viral_mutation_data": [
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 670,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ser135Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2641,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 897,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala211Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2137,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 2721,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala819Val",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3267,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 2790,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr842Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3204,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 3037,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe924Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 2074,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 3431,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val1056Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2984,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 3565,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Gly1100Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 644,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 4184,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly1307Ser",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 607,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 4321,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala1352Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 914,
+                "mutation_usage_value": 0.64
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 6183,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys1973Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 287,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 7113,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr2283Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 636,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 7842,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asn2526Ser",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 464,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 8293,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr2676Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 890,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 8393,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala2710Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1999,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 9344,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu3027Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 791,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 9424,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val3053Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 868,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 9534,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr3090Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3380,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 10029,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr3255Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4159,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 10198,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp3311Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 2610,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 10447,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "GCC",
+                "sample_allele_name": "ACA",
+                "mutation_effect": "p.Pro3395His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4504,
+                "mutation_usage_value": 0.67
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 11042,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val3593Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4740,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 11287,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "GTCTGGTTTT",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ser3675_Phe3677del",
+                "mutation_type_name": "conservative_inframe_deletion",
+                "mutation_coverage_value": 3663,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 11727,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg3821Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 185,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 12789,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr4175Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 722,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 12815,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu4184Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 850,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 12880,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ile4205Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 7407,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 13339,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn4358Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 813,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 14408,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro4715Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4446,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 15543,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr5093Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4695,
+                "mutation_usage_value": 0.02
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 15714,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu5150Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 5154,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 15756,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ser5164Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 5296,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 16626,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu5454Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 2533,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 17334,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr5690Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 3323,
+                "mutation_usage_value": 0.16
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 17410,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Arg5716Cys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3495,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 18492,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro6076Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 3996,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 18894,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Cys6210Cys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 3636,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 19333,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asp6357Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 58,
+                "mutation_usage_value": 0.9
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 19955,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr6564Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 478,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 20055,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu6597Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 473,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21608,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "GTCATGCCGCTGT",
+                "mutation_effect": "p.Val16_Asn17insMetProLeuPhe",
+                "mutation_type_name": "disruptive_inframe_insertion",
+                "mutation_coverage_value": 5279,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21618,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr19Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5148,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21622,
+                "gene_name": "S",
+                "reference_allele_name": "CAG",
+                "sample_allele_name": "TAC",
+                "mutation_effect": "p.Arg21Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5182,
+                "mutation_usage_value": 0.66
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21632,
+                "gene_name": "S",
+                "reference_allele_name": "TTACCCCCTG",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu24_Ala27delinsSer",
+                "mutation_type_name": "disruptive_inframe_deletion",
+                "mutation_coverage_value": 5195,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21651,
+                "gene_name": "S",
+                "reference_allele_name": "ATTC",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ser31del",
+                "mutation_type_name": "disruptive_inframe_deletion",
+                "mutation_coverage_value": 5215,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21711,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser50Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3009,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21764,
+                "gene_name": "S",
+                "reference_allele_name": "ATACATG",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.His69_Val70del",
+                "mutation_type_name": "disruptive_inframe_deletion",
+                "mutation_coverage_value": 3025,
+                "mutation_usage_value": 0.97
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21941,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val127Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 491,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21987,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly142Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 484,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21990,
+                "gene_name": "S",
+                "reference_allele_name": "TTTA",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Tyr145del",
+                "mutation_type_name": "disruptive_inframe_deletion",
+                "mutation_coverage_value": 494,
+                "mutation_usage_value": 0.97
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22000,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.His146Gln",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 478,
+                "mutation_usage_value": 0.97
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22032,
+                "gene_name": "S",
+                "reference_allele_name": "TCA",
+                "sample_allele_name": "CAG",
+                "mutation_effect": "p.PheArg157SerGly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 451,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22116,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn185Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2681,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22193,
+                "gene_name": "S",
+                "reference_allele_name": "AATT",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asn211_Leu212delinsIle",
+                "mutation_type_name": "disruptive_inframe_deletion",
+                "mutation_coverage_value": 2670,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22200,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val213Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2602,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22208,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu216Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2670,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22295,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.His245Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2195,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22353,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala264Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2199,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22556,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ile332Val",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5218,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22577,
+                "gene_name": "S",
+                "reference_allele_name": "GG",
+                "sample_allele_name": "CA",
+                "mutation_effect": "p.Gly339His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5064,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22599,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Arg346Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4914,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22629,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Lys356Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4051,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22674,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser371Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5982,
+                "mutation_usage_value": 0.96
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22679,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser373Pro",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5983,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22686,
+                "gene_name": "S",
+                "reference_allele_name": "CCA",
+                "sample_allele_name": "TCG",
+                "mutation_effect": "p.SerThr375PheAla",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 6261,
+                "mutation_usage_value": 0.66
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22770,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg403Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 6724,
+                "mutation_usage_value": 0.8
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22775,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asp405Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 6701,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22786,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Arg408Ser",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 6038,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22813,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Lys417Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1949,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22882,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asn440Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1879,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22895,
+                "gene_name": "S",
+                "reference_allele_name": "GTTG",
+                "sample_allele_name": "CATA",
+                "mutation_effect": "p.ValGly445HisSer",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1920,
+                "mutation_usage_value": 0.75
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22910,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asn450Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1899,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22916,
+                "gene_name": "S",
+                "reference_allele_name": "CT",
+                "sample_allele_name": "TG",
+                "mutation_effect": "p.Leu452Trp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1779,
+                "mutation_usage_value": 0.8
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22926,
+                "gene_name": "S",
+                "reference_allele_name": "TGT",
+                "sample_allele_name": "CGC",
+                "mutation_effect": "p.LeuPhe455SerLeu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 0,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22942,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asn460Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1735,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22992,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ser477Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2946,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22995,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr478Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3191,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23005,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asn481Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3174,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23007,
+                "gene_name": "S",
+                "reference_allele_name": "GTGTTG",
+                "sample_allele_name": "GTA",
+                "mutation_effect": "p.Val483_Glu484delinsLys",
+                "mutation_type_name": "missense_variant&disruptive_inframe_deletion",
+                "mutation_coverage_value": 3100,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23018,
+                "gene_name": "S",
+                "reference_allele_name": "TT",
+                "sample_allele_name": "CC",
+                "mutation_effect": "p.Phe486Pro",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3060,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23055,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln498Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1355,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23063,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn501Tyr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1350,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23075,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Tyr505His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1366,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23222,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu554Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1254,
+                "mutation_usage_value": 0.93
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23271,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala570Val",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3434,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23403,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asp614Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2229,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23423,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro621Ser",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2221,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23525,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.His655Tyr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2171,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23599,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asn679Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1932,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23604,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro681Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1961,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23854,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asn764Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 107,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 23948,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp796Tyr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 340,
+                "mutation_usage_value": 0.87
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 24378,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser939Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 995,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 24424,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Gln954His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1048,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 24445,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr961Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 2911,
+                "mutation_usage_value": 0.35
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 24469,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Asn969Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2966,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 24872,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val1104Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1536,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 24990,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro1143Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1462,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 25000,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp1146Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1497,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 25207,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Tyr1215Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 2370,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 25584,
+                "gene_name": "ORF3a",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr64Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 719,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 25593,
+                "gene_name": "ORF3a",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Lys67Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 732,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26060,
+                "gene_name": "ORF3a",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr223Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 3828,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26270,
+                "gene_name": "E",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr9Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5645,
+                "mutation_usage_value": 0.82
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26529,
+                "gene_name": "M",
+                "reference_allele_name": "G",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asp3His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1657,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26577,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln19Glu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 5622,
+                "mutation_usage_value": 0.29
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26681,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe53Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4126,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26709,
+                "gene_name": "M",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala63Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4689,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26833,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala104Val",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4377,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26858,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe112Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 4460,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 27259,
+                "gene_name": "ORF6",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Arg20Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 2440,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 27382,
+                "gene_name": "ORF6",
+                "reference_allele_name": "GAT",
+                "sample_allele_name": "CTC",
+                "mutation_effect": "p.Asp61Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2313,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 27795,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 259,
+                "mutation_usage_value": 0.95
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 27807,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 269,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 27810,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 262,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28271,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 7586,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28311,
+                "gene_name": "N",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro13Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 7706,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28362,
+                "gene_name": "N",
+                "reference_allele_name": "GAGAACGCA",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu31fs",
+                "mutation_type_name": "frameshift_variant",
+                "mutation_coverage_value": 7370,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28714,
+                "gene_name": "N",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Gly147Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 2692,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28881,
+                "gene_name": "N",
+                "reference_allele_name": "GGG",
+                "sample_allele_name": "AAC",
+                "mutation_effect": "p.ArgGly203LysArg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 4708,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28958,
+                "gene_name": "N",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gln229Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 2358,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 29510,
+                "gene_name": "N",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser413Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1956,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 29733,
+                "gene_name": ".",
+                "reference_allele_name": "CGAGGCCACGCGGAGTACGATCGAGTG",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 927,
+                "mutation_usage_value": 0.99
+            }
+        ],
+        "viral_mapping_data": {
+            "status": "tak",
+            "mapped_reads_number": 209695
+        }
+    }
+}

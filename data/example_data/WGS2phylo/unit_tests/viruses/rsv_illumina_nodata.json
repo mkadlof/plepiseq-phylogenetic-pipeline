@@ -1,0 +1,132 @@
+{
+    "output": {
+        "pipeline_version": "1.0",
+        "pathogen": "rsv",
+        "sampleId": "SRR27383066_pass",
+        "timestamp": "2025-09-24T15:17:44",
+        "ExecutionDir_dir": "/mnt/raid/michall/RSV/",
+        "sequencing_summary_data": [
+            {
+                "status": "tak",
+                "file_name": "SRR27383066_pass_1.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 1070780,
+                "number_of_bases_value": 120300000,
+                "reads_median_length_value": 2.0,
+                "reads_min_length_value": 35,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 33.0,
+                "reads_quality_histogram_file": "results/SRR27383066_pass/QC/SRR27383066_pass_1_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383066_pass/QC/SRR27383066_pass_1_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383066_pass/QC/SRR27383066_pass_1_fastqc_position_quality_plot.csv",
+                "gc_content_value": 46.0
+            },
+            {
+                "status": "tak",
+                "file_name": "SRR27383066_pass_2.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 1070780,
+                "number_of_bases_value": 120300000,
+                "reads_median_length_value": 2.0,
+                "reads_min_length_value": 35,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 33.0,
+                "reads_quality_histogram_file": "results/SRR27383066_pass/QC/SRR27383066_pass_2_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383066_pass/QC/SRR27383066_pass_2_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383066_pass/QC/SRR27383066_pass_2_fastqc_position_quality_plot.csv",
+                "gc_content_value": 46.0
+            },
+            {
+                "status": "tak",
+                "file_name": "forward_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "number_of_reads_value": 727832,
+                "number_of_bases_value": 98400000,
+                "reads_median_length_value": 0.0,
+                "reads_min_length_value": 90,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 33.0,
+                "reads_quality_histogram_file": "results/SRR27383066_pass/QC/forward_paired_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383066_pass/QC/forward_paired_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383066_pass/QC/forward_paired_fastqc_position_quality_plot.csv",
+                "gc_content_value": 45.0
+            },
+            {
+                "status": "tak",
+                "file_name": "reverse_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "number_of_reads_value": 727832,
+                "number_of_bases_value": 98500000,
+                "reads_median_length_value": 0.0,
+                "reads_min_length_value": 90,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 33.0,
+                "reads_quality_histogram_file": "results/SRR27383066_pass/QC/reverse_paired_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383066_pass/QC/reverse_paired_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383066_pass/QC/reverse_paired_fastqc_position_quality_plot.csv",
+                "gc_content_value": 45.0
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "tak",
+                "main_genus_name": "Homo",
+                "secondary_genus_name": "Corynebacterium",
+                "main_species_name": "Homo sapiens",
+                "secondary_species_name": "Escherichia coli",
+                "main_genus_value": 95.18,
+                "secondary_genus_value": 0.23,
+                "main_species_value": 95.18,
+                "secondary_species_value": 0.03
+            }
+        ],
+        "dehumanized_data": {
+            "status": "tak",
+            "dehumanized_fastq_file_list": [
+                "results/SRR27383066_pass/./SRR27383066_pass_forward_paired_nohuman.fastq.gz",
+                "results/SRR27383066_pass/./SRR27383066_pass_reverse_paired_nohuman.fastq.gz"
+            ]
+        },
+        "freyja_data": {
+            "status": "blad",
+            "error_message": "Średnie pokrycie dla tej próbki: 11, jest poniżej zalecanego progu przez Freya"
+        },
+        "structural_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "viral_classification_data": [
+            {
+                "status": "nie",
+                "sequence_source": "full_genome",
+                "database_name": "Pangolin",
+                "error_message": "Ten moduł jest przeznaczony wylacznie do analizy wirusa SARS-CoV-2."
+            },
+            {
+                "status": "nie",
+                "sequence_source": "full_genome",
+                "database_name": "Nextclade",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "rsv_data": {
+            "type": "unk"
+        },
+        "viral_genome_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości.",
+            "total_length_value": 0,
+            "number_of_Ns_value": 0
+        },
+        "genome_files_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "viral_mutation_data": [],
+        "viral_mapping_data": {
+            "status": "tak",
+            "mapped_reads_number": 8146
+        }
+    }
+}

@@ -1,0 +1,2491 @@
+{
+    "output": {
+        "pipeline_version": "1.0",
+        "pathogen": "rsv",
+        "sampleId": "SRR27383087_pass",
+        "timestamp": "2025-09-24T15:52:01",
+        "ExecutionDir_dir": "/mnt/raid/michall/RSV/",
+        "sequencing_summary_data": [
+            {
+                "status": "tak",
+                "file_name": "SRR27383087_pass_1.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 1579086,
+                "number_of_bases_value": 176000000,
+                "reads_median_length_value": 2.0,
+                "reads_min_length_value": 35,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 34.0,
+                "reads_quality_histogram_file": "results/SRR27383087_pass/QC/SRR27383087_pass_1_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383087_pass/QC/SRR27383087_pass_1_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383087_pass/QC/SRR27383087_pass_1_fastqc_position_quality_plot.csv",
+                "gc_content_value": 38.0
+            },
+            {
+                "status": "tak",
+                "file_name": "SRR27383087_pass_2.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 1579086,
+                "number_of_bases_value": 176200000,
+                "reads_median_length_value": 2.0,
+                "reads_min_length_value": 35,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 34.0,
+                "reads_quality_histogram_file": "results/SRR27383087_pass/QC/SRR27383087_pass_2_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383087_pass/QC/SRR27383087_pass_2_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383087_pass/QC/SRR27383087_pass_2_fastqc_position_quality_plot.csv",
+                "gc_content_value": 38.0
+            },
+            {
+                "status": "tak",
+                "file_name": "forward_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "number_of_reads_value": 1069511,
+                "number_of_bases_value": 143600000,
+                "reads_median_length_value": 0.0,
+                "reads_min_length_value": 90,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 34.0,
+                "reads_quality_histogram_file": "results/SRR27383087_pass/QC/forward_paired_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383087_pass/QC/forward_paired_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383087_pass/QC/forward_paired_fastqc_position_quality_plot.csv",
+                "gc_content_value": 38.0
+            },
+            {
+                "status": "tak",
+                "file_name": "reverse_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "number_of_reads_value": 1069511,
+                "number_of_bases_value": 143700000,
+                "reads_median_length_value": 0.0,
+                "reads_min_length_value": 90,
+                "reads_max_length_value": 148,
+                "reads_median_quality_value": 33.0,
+                "reads_quality_histogram_file": "results/SRR27383087_pass/QC/reverse_paired_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results/SRR27383087_pass/QC/reverse_paired_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results/SRR27383087_pass/QC/reverse_paired_fastqc_position_quality_plot.csv",
+                "gc_content_value": 38.0
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "tak",
+                "main_genus_name": "Orthopneumovirus",
+                "secondary_genus_name": "Homo",
+                "main_species_name": "Orthopneumovirus hominis",
+                "secondary_species_name": "Homo sapiens",
+                "main_genus_value": 63.27,
+                "secondary_genus_value": 23.62,
+                "main_species_value": 63.25,
+                "secondary_species_value": 23.62
+            }
+        ],
+        "dehumanized_data": {
+            "status": "tak",
+            "dehumanized_fastq_file_list": [
+                "results/SRR27383087_pass/./SRR27383087_pass_forward_paired_nohuman.fastq.gz",
+                "results/SRR27383087_pass/./SRR27383087_pass_reverse_paired_nohuman.fastq.gz"
+            ]
+        },
+        "freyja_data": {
+            "status": "tak",
+            "freyja_lineage1_name": "A.D.5.2",
+            "freyja_lineage2_name": "unk",
+            "freyja_lineage1_abundance": 1.0,
+            "freyja_lineage2_abundance": 0
+        },
+        "structural_data": {
+            "status": "tak",
+            "protein_structure_data": [
+                {
+                    "protein_name": "F",
+                    "pdb_file": "results/SRR27383087_pass/SRR27383087_pass_F.pdb"
+                },
+                {
+                    "protein_name": "G",
+                    "pdb_file": "results/SRR27383087_pass/SRR27383087_pass_G.pdb"
+                }
+            ]
+        },
+        "viral_classification_data": [
+            {
+                "status": "nie",
+                "sequence_source": "full_genome",
+                "database_name": "Pangolin",
+                "error_message": "Ten moduł jest przeznaczony wylacznie do analizy wirusa SARS-CoV-2."
+            },
+            {
+                "status": "tak",
+                "database_name": "Nextclade",
+                "database_version": "2025-08-23",
+                "program_name": "Nextclade",
+                "program_version": "3.9.1",
+                "variant_name": "A.D.5.2",
+                "variant_qc_status": "pass",
+                "sequence_source": "full_genome"
+            }
+        ],
+        "rsv_data": {
+            "type": "A"
+        },
+        "viral_genome_data": {
+            "status": "tak",
+            "average_coverage_value": 227.72,
+            "coverage_histogram_file": "results/SRR27383087_pass//SRR27383087_pass_coverage_histogram.csv",
+            "coverage_barplot_data": [
+                {
+                    "segment_name": "hRSV/A/England/397/2017",
+                    "segment_file": "results/SRR27383087_pass//SRR27383087_pass_coverage_barplot_hRSV_A_England_397_2017.csv"
+                }
+            ],
+            "primer_usage_data": [
+                {
+                    "segment_name": "hRSV/A/England/397/2017",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 333
+                        },
+                        {
+                            "primer_name": "2",
+                            "primer_usage": 450
+                        },
+                        {
+                            "primer_name": "3",
+                            "primer_usage": 470
+                        },
+                        {
+                            "primer_name": "4",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "5",
+                            "primer_usage": 223
+                        },
+                        {
+                            "primer_name": "6",
+                            "primer_usage": 435
+                        },
+                        {
+                            "primer_name": "7",
+                            "primer_usage": 434
+                        },
+                        {
+                            "primer_name": "8",
+                            "primer_usage": 391
+                        },
+                        {
+                            "primer_name": "9",
+                            "primer_usage": 411
+                        },
+                        {
+                            "primer_name": "10",
+                            "primer_usage": 440
+                        },
+                        {
+                            "primer_name": "11",
+                            "primer_usage": 368
+                        },
+                        {
+                            "primer_name": "12",
+                            "primer_usage": 400
+                        },
+                        {
+                            "primer_name": "13",
+                            "primer_usage": 437
+                        },
+                        {
+                            "primer_name": "14",
+                            "primer_usage": 359
+                        },
+                        {
+                            "primer_name": "15",
+                            "primer_usage": 435
+                        },
+                        {
+                            "primer_name": "16",
+                            "primer_usage": 350
+                        },
+                        {
+                            "primer_name": "17",
+                            "primer_usage": 362
+                        },
+                        {
+                            "primer_name": "18",
+                            "primer_usage": 474
+                        },
+                        {
+                            "primer_name": "19",
+                            "primer_usage": 433
+                        },
+                        {
+                            "primer_name": "20",
+                            "primer_usage": 368
+                        },
+                        {
+                            "primer_name": "21",
+                            "primer_usage": 448
+                        },
+                        {
+                            "primer_name": "22",
+                            "primer_usage": 431
+                        },
+                        {
+                            "primer_name": "23",
+                            "primer_usage": 403
+                        },
+                        {
+                            "primer_name": "24",
+                            "primer_usage": 304
+                        },
+                        {
+                            "primer_name": "25",
+                            "primer_usage": 374
+                        },
+                        {
+                            "primer_name": "26",
+                            "primer_usage": 339
+                        },
+                        {
+                            "primer_name": "27",
+                            "primer_usage": 390
+                        },
+                        {
+                            "primer_name": "28",
+                            "primer_usage": 426
+                        },
+                        {
+                            "primer_name": "29",
+                            "primer_usage": 390
+                        },
+                        {
+                            "primer_name": "30",
+                            "primer_usage": 246
+                        },
+                        {
+                            "primer_name": "31",
+                            "primer_usage": 381
+                        },
+                        {
+                            "primer_name": "32",
+                            "primer_usage": 373
+                        },
+                        {
+                            "primer_name": "33",
+                            "primer_usage": 42
+                        },
+                        {
+                            "primer_name": "34",
+                            "primer_usage": 393
+                        },
+                        {
+                            "primer_name": "35",
+                            "primer_usage": 121
+                        },
+                        {
+                            "primer_name": "36",
+                            "primer_usage": 409
+                        },
+                        {
+                            "primer_name": "37",
+                            "primer_usage": 355
+                        },
+                        {
+                            "primer_name": "38",
+                            "primer_usage": 432
+                        },
+                        {
+                            "primer_name": "39",
+                            "primer_usage": 429
+                        },
+                        {
+                            "primer_name": "40",
+                            "primer_usage": 415
+                        },
+                        {
+                            "primer_name": "41",
+                            "primer_usage": 130
+                        },
+                        {
+                            "primer_name": "42",
+                            "primer_usage": 402
+                        },
+                        {
+                            "primer_name": "43",
+                            "primer_usage": 437
+                        },
+                        {
+                            "primer_name": "44",
+                            "primer_usage": 434
+                        },
+                        {
+                            "primer_name": "45",
+                            "primer_usage": 19
+                        },
+                        {
+                            "primer_name": "46",
+                            "primer_usage": 98
+                        },
+                        {
+                            "primer_name": "47",
+                            "primer_usage": 425
+                        },
+                        {
+                            "primer_name": "48",
+                            "primer_usage": 307
+                        },
+                        {
+                            "primer_name": "49",
+                            "primer_usage": 281
+                        },
+                        {
+                            "primer_name": "50",
+                            "primer_usage": 353
+                        }
+                    ]
+                }
+            ],
+            "total_length_value": 15233,
+            "number_of_Ns_value": 924
+        },
+        "genome_files_data": {
+            "status": "tak",
+            "file_data": [
+                {
+                    "segment_name": "hRSV/A/England/397/2017",
+                    "segment_file": "results/SRR27383087_pass/output_hRSV_A_England_397_2017.fasta"
+                }
+            ]
+        },
+        "viral_mutation_data": [
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 90,
+                "gene_name": "NS1",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser7Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 370,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 183,
+                "gene_name": "NS1",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr38Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 639,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 192,
+                "gene_name": "NS1",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu41Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 630,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 246,
+                "gene_name": "NS1",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Val59Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 509,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 548,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 514,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 697,
+                "gene_name": "NS2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asp33Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 425,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 709,
+                "gene_name": "NS2",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.His37His",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 383,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 940,
+                "gene_name": "NS2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Thr114Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 478,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1009,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 480,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1012,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 472,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1021,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 453,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1028,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 440,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1048,
+                "gene_name": ".",
+                "reference_allele_name": "TG",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 281,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1051,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "AC",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 265,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1359,
+                "gene_name": "N",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu83Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 265,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1368,
+                "gene_name": "N",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala86Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 291,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1380,
+                "gene_name": "N",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Val90Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 326,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1422,
+                "gene_name": "N",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile104Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 437,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1443,
+                "gene_name": "N",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Phe111Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 438,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1581,
+                "gene_name": "N",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly157Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 372,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1677,
+                "gene_name": "N",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val189Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 632,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1788,
+                "gene_name": "N",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe226Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 511,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 1806,
+                "gene_name": "N",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser232Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 470,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 2064,
+                "gene_name": "N",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Pro318Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 539,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 2165,
+                "gene_name": "N",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Val352Ala",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 385,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 2392,
+                "gene_name": "P",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys25Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 644,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 2481,
+                "gene_name": "P",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu55Pro",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 530,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 2509,
+                "gene_name": "P",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn64Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 474,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 2523,
+                "gene_name": "P",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr69Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 428,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 2695,
+                "gene_name": "P",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln126Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 335,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3004,
+                "gene_name": "P",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly229Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 560,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3061,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 483,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3109,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 736,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3136,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 558,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3163,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 578,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3168,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 579,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3176,
+                "gene_name": ".",
+                "reference_allele_name": "GCT",
+                "sample_allele_name": "GCCA",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 545,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3180,
+                "gene_name": ".",
+                "reference_allele_name": "CT",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 534,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3184,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 535,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3306,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp27Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 512,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3423,
+                "gene_name": "M",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys66Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 864,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3442,
+                "gene_name": "M",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Met73Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 711,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3483,
+                "gene_name": "M",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser86Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 588,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3564,
+                "gene_name": "M",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys113Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 443,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3624,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr133Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 457,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3642,
+                "gene_name": "M",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro139Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 527,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3714,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Tyr163Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 413,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3807,
+                "gene_name": "M",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile194Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 520,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3825,
+                "gene_name": "M",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Leu200Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 502,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3909,
+                "gene_name": "M",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ala228Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 317,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 3927,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser234Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 430,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4020,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 446,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4028,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 431,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4037,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 416,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4056,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 652,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4065,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 610,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4080,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 548,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4090,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 366,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4136,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 416,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4168,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 389,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4198,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 345,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4208,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 335,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4244,
+                "gene_name": ".",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 339,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4361,
+                "gene_name": "SH",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile32Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 932,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4400,
+                "gene_name": "SH",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Cys45Cys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 570,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4440,
+                "gene_name": "SH",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg59Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 576,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4486,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 457,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4497,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 424,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4521,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 413,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4524,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 401,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4536,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 396,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4546,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 391,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4568,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 412,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4586,
+                "gene_name": ".",
+                "reference_allele_name": "TA",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 353,
+                "mutation_usage_value": 0.97
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4718,
+                "gene_name": "G",
+                "reference_allele_name": "CTA",
+                "sample_allele_name": "TTG",
+                "mutation_effect": "p.24",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 591,
+                "mutation_usage_value": 0.67
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4821,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala57Val",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 478,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4863,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro71Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 479,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4919,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.His90Tyr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 566,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4936,
+                "gene_name": "G",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Pro95Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 529,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 4952,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu101Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 512,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5020,
+                "gene_name": "G",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu123Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 559,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5052,
+                "gene_name": "G",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ile134Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 615,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5203,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala184Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 348,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5268,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Pro206Gln",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1001,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5277,
+                "gene_name": "G",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys209Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1040,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5322,
+                "gene_name": "G",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly224Glu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 967,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5368,
+                "gene_name": "G",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Thr239Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 487,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5374,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr241Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 473,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5379,
+                "gene_name": "G",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser243Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 479,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5393,
+                "gene_name": "G",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu248Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 450,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5429,
+                "gene_name": "G",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ser260Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 489,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5435,
+                "gene_name": "G",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys262Glu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 507,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5444,
+                "gene_name": "G",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile265Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 492,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5460,
+                "gene_name": "G",
+                "reference_allele_name": "CC",
+                "sample_allele_name": "TA",
+                "mutation_effect": "p.Ser270Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 471,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5479,
+                "gene_name": "G",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro276Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 468,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5491,
+                "gene_name": "G",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Tyr280Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 855,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5502,
+                "gene_name": "G",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asp284Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 821,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5512,
+                "gene_name": "G",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu287Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 843,
+                "mutation_usage_value": 0.92
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5538,
+                "gene_name": "G",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly296Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 799,
+                "mutation_usage_value": 0.91
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5559,
+                "gene_name": "G",
+                "reference_allele_name": "TCT",
+                "sample_allele_name": "CCC",
+                "mutation_effect": "p.ValTyr303AlaHis",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 912,
+                "mutation_usage_value": 0.56
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5580,
+                "gene_name": "G",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu310Pro",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 433,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5607,
+                "gene_name": "G",
+                "reference_allele_name": "CAA",
+                "sample_allele_name": "TAG",
+                "mutation_effect": "p.ThrThr319IleAla",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 508,
+                "mutation_usage_value": 0.66
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5647,
+                "gene_name": ".",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 540,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5682,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 518,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 5780,
+                "gene_name": "F",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ile28Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 484,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 6003,
+                "gene_name": "F",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala103Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 446,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 6059,
+                "gene_name": "F",
+                "reference_allele_name": "CA",
+                "sample_allele_name": "TG",
+                "mutation_effect": "p.Thr122Ala",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 370,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 6101,
+                "gene_name": "F",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Arg135Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 871,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 6329,
+                "gene_name": "F",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser211Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 463,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 6431,
+                "gene_name": "F",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr245Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 603,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 6668,
+                "gene_name": "F",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Thr324Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 442,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 6716,
+                "gene_name": "F",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gly340Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 875,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7007,
+                "gene_name": "F",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn437Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 772,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7313,
+                "gene_name": "F",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Leu539Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 887,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7396,
+                "gene_name": "F",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile567Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 673,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7400,
+                "gene_name": "F",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn568Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 655,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7403,
+                "gene_name": "F",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn569Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 639,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7468,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 573,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7487,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 611,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7511,
+                "gene_name": ".",
+                "reference_allele_name": "CTTCA",
+                "sample_allele_name": "CT",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 592,
+                "mutation_usage_value": 0.01
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7529,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 623,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7542,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 573,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7560,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 489,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7807,
+                "gene_name": "M2-1",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr56Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 816,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7835,
+                "gene_name": "M2-1",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu66Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 803,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7897,
+                "gene_name": "M2-1",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser86Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 881,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7945,
+                "gene_name": "M2-1",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu102Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 661,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7978,
+                "gene_name": "M2-1",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Lys113Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 652,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 7987,
+                "gene_name": "M2-1",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asp116Asp",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 645,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8081,
+                "gene_name": "M2-1",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu148Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 389,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8165,
+                "gene_name": "M2-1",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser176Pro",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 349,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8214,
+                "gene_name": "M2-1",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Asp192Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 744,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8329,
+                "gene_name": "M2-2",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ser44Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 534,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8345,
+                "gene_name": "M2-2",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro49Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 634,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8476,
+                "gene_name": ".",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 283,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8480,
+                "gene_name": ".",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 282,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8488,
+                "gene_name": ".",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "upstream_gene_variant",
+                "mutation_coverage_value": 566,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 8828,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ser99Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 550,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9015,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu162Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 301,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9043,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro171Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 252,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9068,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr179Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 195,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9119,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Ser196Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 691,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9228,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Leu233Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 492,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9298,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg256Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 493,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9323,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr264Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 510,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9422,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys297Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 763,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9521,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Tyr330Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 308,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9596,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg355Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 374,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9923,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ala464Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 104,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9938,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ile469Ile",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 83,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 9956,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn475Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 75,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 10151,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Lys540Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 523,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 10208,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro559Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 555,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 10323,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Tyr598His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 595,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 10328,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn599Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 565,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 10358,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn609Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 23,
+                "mutation_usage_value": 0.83
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 10910,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Leu793Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 846,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 10958,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asn809Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 651,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11093,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys854Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 502,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11105,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Thr858Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 506,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11123,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Arg864Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 547,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11135,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Phe868Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 538,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11465,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Tyr978Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 326,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11666,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr1045Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 331,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11780,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Glu1083Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 362,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 11921,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro1130Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 682,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12119,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Asn1196Asn",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 517,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12146,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Tyr1205Tyr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 224,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12161,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser1210Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 228,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12173,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ser1214Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 271,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12653,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu1374Glu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 491,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12683,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val1384Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 459,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12710,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu1393Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 425,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12844,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu1438Gln",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 531,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12890,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu1453Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 405,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 12968,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala1479Ala",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 318,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13079,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys1516Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 866,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13169,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.His1546His",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 668,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13313,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln1594Gln",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 594,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13698,
+                "gene_name": "L",
+                "reference_allele_name": "AA",
+                "sample_allele_name": "GG",
+                "mutation_effect": "p.Asn1723Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 203,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13705,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Glu1725Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 211,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13723,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly1731Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 207,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13793,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ser1754Ser",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 259,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 13799,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Thr1756Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 259,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14123,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val1864Val",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 384,
+                "mutation_usage_value": 0.99
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14359,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Val1943Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 641,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14408,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Cys1959Cys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 383,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14411,
+                "gene_name": "L",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Lys1960Lys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 381,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14417,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Cys1962Cys",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 354,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14522,
+                "gene_name": "L",
+                "reference_allele_name": "T",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Gly1997Gly",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 662,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14630,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr2033Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 477,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14714,
+                "gene_name": "L",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Pro2061Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 421,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "hRSV/A/England/397/2017",
+                "position_value": 14873,
+                "gene_name": "L",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Leu2114Leu",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1541,
+                "mutation_usage_value": 1.0
+            }
+        ],
+        "viral_mapping_data": {
+            "status": "tak",
+            "mapped_reads_number": 1627362
+        }
+    }
+}

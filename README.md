@@ -3,7 +3,7 @@ PZH phylogenetic pipeline
 
 This project is part of [PleEpiSeq](https://www.pzh.gov.pl/projekty-i-programy/plepiseq/) project, co-funded by the European Union.
 
-This repository contains a Nextflow pipeline for phylogenetic analysis of viral sequences. The pipeline is designed to be modular and can be easily extended to include additional steps or tools.
+This repository contains a Nextflow pipeline for phylogenetic analysis of viral and bcterial genomes. The pipeline is designed to be modular and can be easily extended to include additional steps or tools.
 
 Pipeline overview
 -----------------
@@ -31,7 +31,7 @@ Quick start
    cp nextflow.config.template nextflow.config
    ```
    **Important**: adjust the content of this file to you particular environment and needs.
-7. [Obsolete] Run one or more example scripts to test the pipeline:
+7. [Optional] Run one or more example scripts to test the pipeline:
    ```bash
    ./run_example_sars-cov-2.sh
    ./run_example_influenza.sh
@@ -44,8 +44,6 @@ Related projects
 The pipeline loosely originates from [NextStrain Zika Tutorial](https://github.com/nextstrain/zika-tutorial)
 
 Another project related to PleEpiSeq is [Sequnecing pipline](https://github.com/mkadlof/pzh_pipeline_viral)
-
-To execute bacterial pipeline type
 
 -----------------------------------------------------------------
 
@@ -181,3 +179,37 @@ Input files must be provided in either **FASTA** or **GFF** format.
 **Example**:  
 For a file named `ERRXYZ.fasta`, the corresponding `strain` value in the metadata file must be `ERRXYZ`.
 
+
+-----------
+
+# WGS2phylo
+
+
+A helper script to prepare metadata file based on the results of our [Sequnecing pipline](https://github.com/mkadlof/plepiseq-wgs-pipeline). With `--with-fasta` a phylogentic pipeline ready fasta input can also be repared. Use `--without-fasta` to skip fasta file processing.
+
+## Example data 
+- [WGS output for bacterial](data/example_data/WGS2phylo/)
+
+## Execution
+
+### Campylobacter 
+```
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --with-fasta --output-prefix metadata_out/metadata_required_Campylobacter
+
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_Campylobacter/ --organism campylobacter --supplemental-file data/example_data/WGS2phylo/metadata_input_Campylobacter.txt --with-fasta --extra-fields --output-prefix metadata_out/metadata_expanded_Campylobacter
+
+```
+
+### RSV
+
+```
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --with-fasta --output-prefix metadata_out/metadata_required_rsv
+
+python3 bin/WGS2Phylo.py --output_dir data/example_data/WGS2phylo/results_rsv/ --organism rsv --supplemental-file data/example_data/WGS2phylo/metadata_input_rsv.txt --with-fasta --extra-fields --output-prefix metadata_out/metadata_expanded_rsv
+```
+
+## Tests
+Go to tests/WGS2Phylo and execute:
+```
+pytest test_WGS2Phylo.py --data-dir ../../data/example_data/WGS2phylo/unit_tests/ -v
+``` 

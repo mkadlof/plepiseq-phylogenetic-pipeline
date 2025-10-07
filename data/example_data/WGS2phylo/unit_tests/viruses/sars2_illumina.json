@@ -1,0 +1,852 @@
+{
+    "output": {
+        "pipeline_version": "1.0",
+        "pathogen": "sars2",
+        "sampleId": "ESIB_EQA_2025_SARS2_11",
+        "timestamp": "2025-07-15T14:00:52",
+        "ExecutionDir_dir": "/mnt/raid/michall/EQA2025/SARS/SARS2/",
+        "sequencing_summary_data": [
+            {
+                "status": "tak",
+                "file_name": "ESIB_EQA_2025_SARS2_11_1.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 80751,
+                "number_of_bases_value": 9900000,
+                "reads_median_length_value": 150.0,
+                "reads_min_length_value": 50,
+                "reads_max_length_value": 151,
+                "reads_median_quality_value": 39.0,
+                "reads_quality_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/ESIB_EQA_2025_SARS2_11_1_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/ESIB_EQA_2025_SARS2_11_1_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/ESIB_EQA_2025_SARS2_11_1_fastqc_position_quality_plot.csv",
+                "gc_content_value": 42.0
+            },
+            {
+                "status": "tak",
+                "file_name": "ESIB_EQA_2025_SARS2_11_2.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 80751,
+                "number_of_bases_value": 9900000,
+                "reads_median_length_value": 150.0,
+                "reads_min_length_value": 50,
+                "reads_max_length_value": 151,
+                "reads_median_quality_value": 39.0,
+                "reads_quality_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/ESIB_EQA_2025_SARS2_11_2_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/ESIB_EQA_2025_SARS2_11_2_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/ESIB_EQA_2025_SARS2_11_2_fastqc_position_quality_plot.csv",
+                "gc_content_value": 42.0
+            },
+            {
+                "status": "tak",
+                "file_name": "forward_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "number_of_reads_value": 60025,
+                "number_of_bases_value": 8700000,
+                "reads_median_length_value": 150.0,
+                "reads_min_length_value": 90,
+                "reads_max_length_value": 151,
+                "reads_median_quality_value": 39.0,
+                "reads_quality_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/forward_paired_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/forward_paired_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/forward_paired_fastqc_position_quality_plot.csv",
+                "gc_content_value": 42.0
+            },
+            {
+                "status": "tak",
+                "file_name": "reverse_paired.fastq.gz",
+                "step_name": "post-filtering",
+                "number_of_reads_value": 60025,
+                "number_of_bases_value": 8700000,
+                "reads_median_length_value": 150.0,
+                "reads_min_length_value": 90,
+                "reads_max_length_value": 151,
+                "reads_median_quality_value": 39.0,
+                "reads_quality_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/reverse_paired_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/reverse_paired_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "results_newjson/ESIB_EQA_2025_SARS2_11/QC/reverse_paired_fastqc_position_quality_plot.csv",
+                "gc_content_value": 42.0
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "tak",
+                "main_genus_name": "Betacoronavirus",
+                "secondary_genus_name": "Homo",
+                "main_species_name": "Severe acute respiratory syndrome-related coronavirus",
+                "secondary_species_name": "Homo sapiens",
+                "main_genus_value": 46.22,
+                "secondary_genus_value": 40.32,
+                "main_species_value": 46.07,
+                "secondary_species_value": 40.32
+            }
+        ],
+        "dehumanized_data": {
+            "status": "tak",
+            "dehumanized_fastq_file_list": [
+                "results_newjson/ESIB_EQA_2025_SARS2_11/./ESIB_EQA_2025_SARS2_11_forward_paired_nohuman.fastq.gz",
+                "results_newjson/ESIB_EQA_2025_SARS2_11/./ESIB_EQA_2025_SARS2_11_reverse_paired_nohuman.fastq.gz"
+            ]
+        },
+        "sars_data": {
+            "coinfection_status": "tak",
+            "coinfection_result": "nie",
+            "coinfection_pvalue": 0.0,
+            "coinfection_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11/ESIB_EQA_2025_SARS2_11_allele_usage_histogram.txt"
+        },
+        "freyja_data": {
+            "status": "tak",
+            "freyja_lineage1_name": "NH.3",
+            "freyja_lineage2_name": "KP.3.1.1",
+            "freyja_lineage1_abundance": 0.01,
+            "freyja_lineage2_abundance": 0.01
+        },
+        "structural_data": {
+            "status": "tak",
+            "protein_structure_data": [
+                {
+                    "protein_name": "Spike",
+                    "pdb_file": "results_newjson/ESIB_EQA_2025_SARS2_11/ESIB_EQA_2025_SARS2_11_spike.pdb"
+                }
+            ]
+        },
+        "viral_classification_data": [
+            {
+                "status": "tak",
+                "database_name": "Pangolin",
+                "database_version": "4.3.1",
+                "program_name": "scorpion",
+                "program_version": "0.3.19",
+                "variant_name": "Unassigned",
+                "variant_qc_status": "fail",
+                "sequence_source": "full_genome"
+            },
+            {
+                "status": "tak",
+                "database_name": "Nextclade",
+                "database_version": "2025-06-09",
+                "program_name": "Nextclade",
+                "program_version": "3.9.1",
+                "variant_name": "24A",
+                "variant_qc_status": "warning",
+                "sequence_source": "full_genome"
+            }
+        ],
+        "viral_genome_data": {
+            "status": "tak",
+            "average_coverage_value": 22.09,
+            "coverage_histogram_file": "results_newjson/ESIB_EQA_2025_SARS2_11//ESIB_EQA_2025_SARS2_11_coverage_histogram.csv",
+            "coverage_barplot_data": [
+                {
+                    "segment_name": "MN908947.3",
+                    "segment_file": "results_newjson/ESIB_EQA_2025_SARS2_11//ESIB_EQA_2025_SARS2_11_coverage_barplot_MN908947_3.csv"
+                }
+            ],
+            "primer_usage_data": [
+                {
+                    "segment_name": "MN908947.3",
+                    "primer_data": [
+                        {
+                            "primer_name": "1",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "2",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "3",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "4",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "5",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "6",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "7",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "8",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "9",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "10",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "11",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "12",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "13",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "14",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "15",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "16",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "17",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "18",
+                            "primer_usage": 2
+                        },
+                        {
+                            "primer_name": "19",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "20",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "21",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "22",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "23",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "24",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "25",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "26",
+                            "primer_usage": 1
+                        },
+                        {
+                            "primer_name": "27",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "28",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "29",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "30",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "31",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "32",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "33",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "34",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "35",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "36",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "37",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "38",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "39",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "40",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "41",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "42",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "43",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "44",
+                            "primer_usage": 1
+                        },
+                        {
+                            "primer_name": "45",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "46",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "47",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "48",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "49",
+                            "primer_usage": 1
+                        },
+                        {
+                            "primer_name": "50",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "51",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "52",
+                            "primer_usage": 2
+                        },
+                        {
+                            "primer_name": "53",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "54",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "55",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "56",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "57",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "58",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "59",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "60",
+                            "primer_usage": 595
+                        },
+                        {
+                            "primer_name": "61",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "62",
+                            "primer_usage": 1
+                        },
+                        {
+                            "primer_name": "63",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "64",
+                            "primer_usage": 1
+                        },
+                        {
+                            "primer_name": "65",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "66",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "67",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "68",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "69",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "70",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "71",
+                            "primer_usage": 65
+                        },
+                        {
+                            "primer_name": "72",
+                            "primer_usage": 2
+                        },
+                        {
+                            "primer_name": "73",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "74",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "75",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "76",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "77",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "78",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "79",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "80",
+                            "primer_usage": 3
+                        },
+                        {
+                            "primer_name": "81",
+                            "primer_usage": 8
+                        },
+                        {
+                            "primer_name": "82",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "83",
+                            "primer_usage": 140
+                        },
+                        {
+                            "primer_name": "84",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "85",
+                            "primer_usage": 10
+                        },
+                        {
+                            "primer_name": "86",
+                            "primer_usage": 93
+                        },
+                        {
+                            "primer_name": "87",
+                            "primer_usage": 648
+                        },
+                        {
+                            "primer_name": "88",
+                            "primer_usage": 8
+                        },
+                        {
+                            "primer_name": "89",
+                            "primer_usage": 56
+                        },
+                        {
+                            "primer_name": "90",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "91",
+                            "primer_usage": 3
+                        },
+                        {
+                            "primer_name": "92",
+                            "primer_usage": 0
+                        },
+                        {
+                            "primer_name": "93",
+                            "primer_usage": 434
+                        },
+                        {
+                            "primer_name": "94",
+                            "primer_usage": 398
+                        },
+                        {
+                            "primer_name": "95",
+                            "primer_usage": 426
+                        },
+                        {
+                            "primer_name": "96",
+                            "primer_usage": 482
+                        }
+                    ]
+                }
+            ],
+            "total_length_value": 29871,
+            "number_of_Ns_value": 26313
+        },
+        "genome_files_data": {
+            "status": "tak",
+            "file_data": [
+                {
+                    "segment_name": "MN908947.3",
+                    "segment_file": "results_newjson/ESIB_EQA_2025_SARS2_11/output_MN908947_3.fasta"
+                }
+            ]
+        },
+        "viral_mutation_data": [
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 18492,
+                "gene_name": "orf1ab",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Pro6076Pro",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 388,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21941,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Val127Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 83,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21987,
+                "gene_name": "S",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gly142Asp",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 105,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 21989,
+                "gene_name": "S",
+                "reference_allele_name": "GTTTA",
+                "sample_allele_name": "GT",
+                "mutation_effect": "p.Tyr145del",
+                "mutation_type_name": "disruptive_inframe_deletion",
+                "mutation_coverage_value": 106,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22003,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Lys147Asn",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 108,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22030,
+                "gene_name": "S",
+                "reference_allele_name": "GT",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Phe157fs",
+                "mutation_type_name": "frameshift_variant",
+                "mutation_coverage_value": 99,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22034,
+                "gene_name": "S",
+                "reference_allele_name": "A",
+                "sample_allele_name": "AG",
+                "mutation_effect": "p.Val159fs",
+                "mutation_type_name": "frameshift_variant",
+                "mutation_coverage_value": 77,
+                "mutation_usage_value": 0.03
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22192,
+                "gene_name": "S",
+                "reference_allele_name": "TAATT",
+                "sample_allele_name": "TA",
+                "mutation_effect": "p.Asn211_Leu212delinsIle",
+                "mutation_type_name": "disruptive_inframe_deletion",
+                "mutation_coverage_value": 88,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22200,
+                "gene_name": "S",
+                "reference_allele_name": "T",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Val213Gly",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 46,
+                "mutation_usage_value": 0.98
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 22208,
+                "gene_name": "S",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Leu216Phe",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 46,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 25584,
+                "gene_name": "ORF3a",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr64Thr",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 73,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26270,
+                "gene_name": "E",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Thr9Ile",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 19,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26529,
+                "gene_name": "M",
+                "reference_allele_name": "G",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Asp3His",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 77,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26577,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Gln19Glu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 62,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26610,
+                "gene_name": "M",
+                "reference_allele_name": "A",
+                "sample_allele_name": "G",
+                "mutation_effect": "p.Thr30Ala",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 55,
+                "mutation_usage_value": 0.8
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26681,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe53Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 1017,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26709,
+                "gene_name": "M",
+                "reference_allele_name": "G",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Ala63Thr",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1028,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26833,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Ala104Val",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 597,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 26858,
+                "gene_name": "M",
+                "reference_allele_name": "C",
+                "sample_allele_name": "T",
+                "mutation_effect": "p.Phe112Phe",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 777,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 27259,
+                "gene_name": "ORF6",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Arg20Arg",
+                "mutation_type_name": "synonymous_variant",
+                "mutation_coverage_value": 116,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 27381,
+                "gene_name": "ORF6",
+                "reference_allele_name": "TGAT",
+                "sample_allele_name": "TCTC",
+                "mutation_effect": "p.Asp61Leu",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 315,
+                "mutation_usage_value": 0.94
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28881,
+                "gene_name": "N",
+                "reference_allele_name": "GGG",
+                "sample_allele_name": "AAC",
+                "mutation_effect": "p.ArgGly203LysArg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 0,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 28958,
+                "gene_name": "N",
+                "reference_allele_name": "C",
+                "sample_allele_name": "A",
+                "mutation_effect": "p.Gln229Lys",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 676,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 29510,
+                "gene_name": "N",
+                "reference_allele_name": "A",
+                "sample_allele_name": "C",
+                "mutation_effect": "p.Ser413Arg",
+                "mutation_type_name": "missense_variant",
+                "mutation_coverage_value": 1096,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 29729,
+                "gene_name": ".",
+                "reference_allele_name": "TCACCGAGGC",
+                "sample_allele_name": "T",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 618,
+                "mutation_usage_value": 0.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 29741,
+                "gene_name": ".",
+                "reference_allele_name": "CGCGGAGTACGATCG",
+                "sample_allele_name": "CCTAC",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 561,
+                "mutation_usage_value": 1.0
+            },
+            {
+                "segment_name": "MN908947.3",
+                "position_value": 29759,
+                "gene_name": ".",
+                "reference_allele_name": "GTACAGTGAAC",
+                "sample_allele_name": "GAAT",
+                "mutation_effect": ".",
+                "mutation_type_name": "downstream_gene_variant",
+                "mutation_coverage_value": 562,
+                "mutation_usage_value": 1.0
+            }
+        ],
+        "viral_mapping_data": {
+            "status": "tak",
+            "mapped_reads_number": 63172
+        }
+    }
+}

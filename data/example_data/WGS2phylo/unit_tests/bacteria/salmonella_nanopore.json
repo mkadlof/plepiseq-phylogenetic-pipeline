@@ -1,0 +1,130 @@
+{
+    "output": {
+        "pathogen": "bacteria",
+        "pathogen_predicted_genus": "Salmonella",
+        "pathogen_predicted_species": "Salmonella enterica",
+        "ExecutionDir_dir": "/mnt/raid/michall/test_inter_gdansk/pzh_nanopore_2/",
+        "timestamp": "2025-08-05T16:39:04",
+        "pipeline_version": "1.0",
+        "genome_files_data": {
+            "status": "nie",
+            "error_message": "This module was eneterd with failed QC and poduced no valid output",
+            "file_data": []
+        },
+        "sequencing_summary_data": [
+            {
+                "status": "tak",
+                "file_name": "barcode49.fastq.gz",
+                "step_name": "pre-filtering",
+                "number_of_reads_value": 39514,
+                "number_of_bases_value": 88900000,
+                "reads_median_length_value": 0.0,
+                "reads_min_length_value": 5,
+                "reads_max_length_value": 53254,
+                "reads_median_quality_value": 40.0,
+                "reads_quality_histogram_file": "./results/barcode49/QC/barcode49_fastqc_reads_quality_histogram.csv",
+                "reads_length_histogram_file": "./results/barcode49/QC/barcode49_fastqc_reads_length_histogram.csv",
+                "position_quality_plot_file": "./results/barcode49/QC/barcode49_fastqc_position_quality_plot.csv",
+                "gc_content_value": 51.0
+            }
+        ],
+        "contamination_data": [
+            {
+                "program_name": "kraken2",
+                "status": "blad",
+                "error_message": "Ta próbka nie przeszła podstawowej kontroli jakości w tym module. Przewidywane teoretyczne pokrycie 16.463 jest poniżej progu 20"
+            },
+            {
+                "program_name": "kmerfinder",
+                "status": "blad",
+                "error_message": "Ta próbka nie przeszła podstawowej kontroli jakości w tym module. Przewidywane teoretyczne pokrycie 16.463 jest poniżej progu 20"
+            }
+        ],
+        "initial_mlst_data": {
+            "scheme_name": "MLST_cge",
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "bacterial_genome_data": [
+            {
+                "step_name": "pre-filtering",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            },
+            {
+                "step_name": "post-filtering",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "prokka_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "antigenic_data": [
+            {
+                "program_name": "sistr",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            },
+            {
+                "program_name": "seqsero",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            },
+            {
+                "program_name": "ectyper",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "virulence_islands_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "structural_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "virulence_genes_data": [
+            {
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości.",
+                "program_name": "Virulencefinder"
+            },
+            {
+                "status": "nie",
+                "program_name": "VFDB",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "plasmids_data": {
+            "status": "nie",
+            "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+        },
+        "drug_resistance_data": [
+            {
+                "program_name": "AMRFinderPlus",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            },
+            {
+                "program_name": "ResFinder/PointFinder",
+                "status": "nie",
+                "error_message": "Ten moduł został uruchomiony na próbce, która nie przeszła kontroli jakości."
+            }
+        ],
+        "mlst_data": [
+            {
+                "scheme_name": "MLST",
+                "status": "nie",
+                "error_message": "This module was eneterd with failed QC and poduced no valid output"
+            },
+            {
+                "scheme_name": "cgMLST",
+                "status": "nie",
+                "error_message": "This module was eneterd with failed QC and poduced no valid output"
+            }
+        ]
+    }
+}

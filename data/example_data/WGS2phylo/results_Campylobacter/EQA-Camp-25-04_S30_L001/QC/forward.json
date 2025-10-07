@@ -1,0 +1,17 @@
+[
+    {
+        "status": "tak",
+        "file_name": "EQA-Camp-25-04_S30_L001_R1_001.fastq.gz",
+        "step_name": "pre-filtering",
+        "number_of_reads_value": 656657,
+        "number_of_bases_value": 96000000,
+        "reads_median_length_value": 150.0,
+        "reads_min_length_value": 35,
+        "reads_max_length_value": 151,
+        "reads_median_quality_value": 37.0,
+        "reads_quality_histogram_file": "./results/EQA-Camp-25-04_S30_L001/QC/EQA-Camp-25-04_S30_L001_R1_001_fastqc_reads_quality_histogram.csv",
+        "reads_length_histogram_file": "./results/EQA-Camp-25-04_S30_L001/QC/EQA-Camp-25-04_S30_L001_R1_001_fastqc_reads_length_histogram.csv",
+        "position_quality_plot_file": "./results/EQA-Camp-25-04_S30_L001/QC/EQA-Camp-25-04_S30_L001_R1_001_fastqc_position_quality_plot.csv",
+        "gc_content_value": 30.0
+    }
+]

@@ -1,0 +1,1 @@
+Strain_id	Country	Year	ST
