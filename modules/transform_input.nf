@@ -25,3 +25,64 @@ process transform_input {
     done
     """
 }
+
+process transform_input_novel {
+    container  = params.main_image
+    cpus 1
+    memory "30 GB"
+    time "1h"
+    input:
+    path input_dir
+
+    output:
+    path "*.fasta", emit: fastas
+
+    script:
+    """
+
+    # Copy all gzipped FASTA files from input_dir into the local workdir
+    cp ${input_dir}/*.fasta.gz .
+
+    # Decompress all .fasta.gz files
+    for f in *.fasta.gz; do
+        gunzip "\$f"
+    done
+
+    # original data are stored in samples dir
+    mkdir samples
+    mv *.fasta samples/ || true
+
+    # Collect segment names from the first decompressed sample
+    cd samples
+    first_sample=\$(ls *.fasta | head -1)
+    segments=\$(grep "^>" "\$first_sample" | sed 's/>//' | cut -d'|' -f1 | sort | uniq)
+    cd ..
+
+    # Initialize empty FASTA files for each segment
+    for seg in \$segments; do
+        seg_name=\$(echo \$seg | sed 's/^chr[0-9]_//')
+        touch \${seg_name}.fasta
+    done
+
+    # Append sequences for each segment from each sample
+    for f in samples/*.fasta; do
+        sample_id=\$(basename "\$f" .fasta)
+
+        awk -v sid="\$sample_id" '
+    /^>/ {
+        seg=\$0
+        sub("^>chr[0-9]_","",seg)
+        sub("\\|.*","",seg)
+        out=seg ".fasta"
+        print \$0 >> out
+        next
+    }
+    { print >> out }
+' "\$f"
+
+    done
+
+    rm -rf samples
+
+    """
+}
