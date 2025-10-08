@@ -6,6 +6,7 @@ from typing import Dict
 import glob
 from pathlib import Path
 import gzip
+import shutil
 
 ### Helper functions to extract specific info from JSON files ###
 
@@ -385,8 +386,7 @@ def get_fastqc_stats(json_data, direction):
 @click.option('--organism', type=click.Choice(['sars-cov-2', 'influenza', 'rsv', 'salmonella', 'escherichia', 'campylobacter']), required=True,
               help="Name of the organism for which WGS sequencing was carried out.")
 @click.option("--with-fasta/--without-fasta", default=True,
-              help="Create fasta file directory used as an input for phylogentic pipline. Use --without-fasta to skip fasta creation"
-)
+              help="Create fasta file directory used as an input for phylogentic pipline. Use --without-fasta to skip fasta creation")
 def generate_metadata(output_dir, supplemental_file, id_column, output_prefix, extra_fields, organism, with_fasta):
     """
     Generate a phylogenetic metadata TSV from pipeline JSON outputs.
@@ -794,36 +794,30 @@ def generate_metadata(output_dir, supplemental_file, id_column, output_prefix, e
 
             if with_fasta:
                 # for viruses there might be one or many fasta files (depending on number of segments)
-                fasta_files = glob.glob(os.path.join(sample_dir, "*.fasta"))
+                # phylo pipeline now simply requires a gzip fasta file with one-or-many sequences
 
-                # ensure output dir exists
-                if organism == "influenza":
-                    out_dir_for_fastas = Path(out_dir) / sample_id
-                    out_dir_for_fastas.mkdir(parents=True, exist_ok=True)
+                fasta_files = sorted(glob.glob(os.path.join(sample_dir, "*.fasta")))
 
-                    # Copy each fasta into the sample's subfolder
+                if not fasta_files:
+                    drop_log.write(f"{sample_id} - no FASTA files found in {sample_dir}\n")
+                    continue
+
+                # Put output of this script in output_dir/fastas to avoid mixing with metadata
+                out_dir_for_fastas = Path(out_dir) / "fastas"
+                out_dir_for_fastas.mkdir(parents=True, exist_ok=True)
+
+                # Define gzipped output file
+                out_fasta_file = out_dir_for_fastas / f"{sample_id}.fasta.gz"
+
+                # Merge all FASTAs into one gzipped file
+                with gzip.open(out_fasta_file, "wt") as f_out:
                     for fasta_file in fasta_files:
-                        fasta_name = Path(fasta_file).name  # just "file.fasta"
-                        out_file = out_dir_for_fastas / fasta_name
-                        with open(fasta_file, "r") as f_in, open(out_file, "w") as f_out:
-                            for line in f_in:
-                                if ">" in line:
-                                    line = ">" + line.split('|')[-1]
-                                f_out.write(line)
+                        with open(fasta_file, "r") as f_in:
+                            shutil.copyfileobj(f_in, f_out)
 
-                else:
-                    out_dir_for_fastas = Path(out_dir)
-                    out_dir_for_fastas.mkdir(parents=True, exist_ok=True)
-
-                    merged_file = out_dir_for_fastas / "merged_fastas.fasta"
-                    with open(merged_file, "a") as f_out:
-                        for fasta_file in fasta_files:
-                            with open(fasta_file, "r") as f_in:
-                                for line in f_in:
-                                    if ">" in line:
-                                        line = ">" + line.split('|')[-1]
-                                    f_out.write(line)
-
+                # Optional: verify compression worked (not required but clean)
+                if not out_fasta_file.exists():
+                    drop_log.write(f"{sample_id} - failed to write {out_fasta_file}\n")
 
     # Close output files
     agg_file.close()

@@ -3,7 +3,7 @@ PZH phylogenetic pipeline
 
 This project is part of [PleEpiSeq](https://www.pzh.gov.pl/projekty-i-programy/plepiseq/) project, co-funded by the European Union.
 
-This repository contains a Nextflow pipeline for phylogenetic analysis of viral and bcterial genomes. The pipeline is designed to be modular and can be easily extended to include additional steps or tools.
+This repository contains a Nextflow pipeline for phylogenetic analysis of viral and bacterial genomes. The pipeline is designed to be modular and can be easily extended to include additional steps or tools.
 
 Pipeline overview
 -----------------
@@ -51,11 +51,53 @@ Another project related to PleEpiSeq is [Sequnecing pipline](https://github.com/
 
 This pipeline constructs viral phylogenies using raw FASTA files only.
 
+## Input
+
+The phylogenetic pipeline requires two types of input:
+1. A tab-separated metadata file (see example below).
+2. A directory containing full genomic sequences of analyzed samples in FASTA format.  
+
+### Input directory example
+Each genome must be stored in a **separate gzipped FASTA file (`.fasta.gz`)**.  
+For multi-segment viruses (e.g. *Influenza*), all genomic segments must be included in a **single FASTA file per sample**.
+
+Example directory layout:
+```
+/some/path/
+├── Sample1.fasta.gz
+├── Sample2.fasta.gz
+└── Sample3.fasta.gz
+```
+
+See `data/example_data/` for reference examples.
+
+### FASTA headers
+FASTA headers **must** follow the standardized format established in the WGS pipeline:
+> Segment_name|Sample_name
+
+Where: 
+- `segment_name` – identifier of the genomic segment (e.g., `chr1_PB2`, `MN908947.3`).  
+  For single-segment viruses such as *SARS-CoV-2* or *RSV*, this usually corresponds to the reference sequence identifier.
+- `sample_name` – unique sample identifier; must also appear in the metadata file under the `strain` column.
+
+For example:
+```
+>chr4_HA|Influenza_sample2
+ATGGAGAAA...
+>chr6_NA|Influenza_sample2
+ATAAAAGCC
+```
+
+### Metadata linkage
+The `sample_name` must appear in the metadata file (in the `strain` column).  
+Only this portion (after the `|` character) is matched against the metadata.
+
+
 ## Minimal Execution
 
 1. Create a working directory where you want to store the results.
 2. Copy the `nf_pipeline_viral_phylo.sh` script from the repository’s root directory into your working directory.
-3. (Optional) Copy valid metadata anf fasta file from `/data/example_data/SPECIES/` into the working directory. Use data from viral species.
+3. (Optional) Copy valid metadata and fasta file from `/data/example_data/SPECIES/` into the working directory. Use data from viral species.
 
 Call the wrapper script
 
@@ -63,11 +105,11 @@ Call the wrapper script
 bash nf_pipeline_viral_phylo.sh -i PATH_TO_FASTA_FILE \ 
                                 -m PATH_TO_METADATA_FILE 
                                 -g SELECTED_SPECIES 
-                                -p MY_AWSOME_PROJECT 
+                                -p MY_AWESOME_PROJECT 
                                 -f PATH_TO_REPOSITORY
 ```
 
-e.g. if one downloaded data from `/data/example_data/sars-cov-2` to a working dorectory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
+e.g. if one downloaded data from `/data/example_data/sars-cov-2` to a working directory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
 
 ```bash
 bash nf_pipeline_viral_phylo.sh -i sars-cov-2.fasta \
@@ -87,7 +129,7 @@ bash nf_pipeline_viral_phylo.sh -h
 
 The metadata file must be a tab-separated file with the following required columns:
 
-- `strain` – Sample identifier (must match the filename, excluding extension)
+- `strain` – Sample identifier (must match the filename, excluding extension). Sample identifier must be a part of a header in FASTA file
 - `virus` - Virus name (sars-cov-2, influenza, or rsv)
 - `date` – Collection date in `YYYY-MM-DD` format
 - `country` – Country name (e.g., `France`)
@@ -112,6 +154,30 @@ Depending on the configured safeguard level, the pipeline will not execute if:
 # Bacterial Phylogenetic Pipeline
 
 This pipeline constructs bacterial phylogenies using annotated assemblies or raw FASTA files.
+
+## Input
+
+Like the viral counterpart the bacterial phylogenetic pipeline also requires two types of input:
+1. A tab-separated metadata file (see example below).
+2. A directory containing genomic assemblies of analyzed isolates in FASTA format.
+
+### Input directory example
+Each isolate must be represented by a **single gzipped FASTA file (`.fasta.gz`)** containing all assembled contigs for that sample.
+Example directory layout:
+
+```
+/some/path/
+├── Sample1.fasta.gz
+├── Sample2.fasta.gz
+└── Sample3.fasta.gz
+```
+
+### FASTA headers
+Unlike viral genomes, the **FASTA headers are not relevant** for bacterial input.  
+Only the **file names** are used to identify samples and link them to metadata.  
+Each `.fasta.gz` file should therefore include all contigs for a single isolate.
+
+> **Tip:** The filenames (without the `.fasta.gz` extension) must match the `strain` column in the metadata file.
 
 ## Minimal Execution
 
@@ -184,8 +250,9 @@ For a file named `ERRXYZ.fasta`, the corresponding `strain` value in the metadat
 
 # WGS2phylo
 
-
-A helper script to prepare metadata file based on the results of our [Sequnecing pipline](https://github.com/mkadlof/plepiseq-wgs-pipeline). With `--with-fasta` a phylogentic pipeline ready fasta input can also be repared. Use `--without-fasta` to skip fasta file processing.
+A helper script to prepare metadata file based on the results of our [Sequnecing pipline](https://github.com/mkadlof/plepiseq-wgs-pipeline). 
+With `--with-fasta` a phylogenetic pipeline-ready fasta input can also be prepared. The generated FASTA files and metadata are directly compatible with the viral and bacterial phylogenetic pipelines described above.
+Use `--without-fasta` to skip fasta file processing.
 
 ## Example data 
 - [WGS output for bacterial](data/example_data/WGS2phylo/)

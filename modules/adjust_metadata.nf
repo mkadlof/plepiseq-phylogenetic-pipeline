@@ -8,10 +8,11 @@ process adjust_metadata {
     path metadata
 
     output:
-    path "influenza_metadata_adjusted.tsv", emit: adjusted_metadata
+    path "metadata_adjusted.tsv", emit: adjusted_metadata
 
     script:
     """
-    adjust_metadata.py ${metadata}
+    cp ${metadata} metadata_adjusted.tsv
+    # adjust_metadata.py ${metadata}
     """
 }

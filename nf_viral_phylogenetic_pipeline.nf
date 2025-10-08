@@ -7,7 +7,7 @@ ExecutionDir = new File('.').absolutePath
 // 1. A single FASTA file containing sequences - for single segment viruses like SARS-CoV-2
 // 2. A directory containing multiple FASTA files - for multi-segment viruses like Influenza
 
-input_fasta_g = file(params.input_fasta) // This var is overloaded (dir or file)
+
 metadata = file(params.metadata)
 organism = params.organism
 
@@ -62,6 +62,7 @@ include { generate_colors_for_features } from "${modules}/generate_colors_for_fe
 
 // influenza specific modules
 include { transform_input } from "${modules}/transform_input.nf"
+include { transform_input_novel } from "${modules}/transform_input.nf"
 include { adjust_metadata } from "${modules}/adjust_metadata.nf"
 include { metadata_for_microreact } from "${modules}/metadata_for_microreact.nf"
 
@@ -102,13 +103,15 @@ workflow core {
 def transformed
 
 workflow {
-    if (organism.toLowerCase() in ['sars-cov-2', 'rsv']) {
-        ch = Channel.fromPath(input_fasta_g).map { file -> tuple(file.baseName, file) }
-//        input_fasta_g = input_fasta_g.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
-        core(ch, metadata)
-    }
-    else if (organism.toLowerCase() in ['influenza']) {
-        transformed = transform_input(input_fasta_g).fastas.flatten().map { file -> tuple(file.baseName, file) } // Channel of tuples of (segmentId, fasta) (Channel<Tuple<String, Path>>)
+    input_fasta_path = file(params.input_fasta) // create path like object
+
+    if (organism.toLowerCase() in ['influenza' , ['sars-cov-2', 'rsv' ]) {
+
+        transformed = transform_input_novel(input_fasta_path)
+                      .fastas
+                      .flatten()
+                      .map { file -> tuple(file.baseName, file) }
+
         adjusted_metadata = adjust_metadata(metadata)
         core(transformed, adjusted_metadata)
     }
