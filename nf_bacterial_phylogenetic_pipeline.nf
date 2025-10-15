@@ -42,6 +42,8 @@ if ( !workflow.profile || ( workflow.profile != "slurm" && workflow.profile != "
 params.threshold_Ns = ""
 params.threshold_ambiguities = ""
 
+// Path to databases (required for MST)
+params.db_absolute_path_on_host= ""
 
 // Processes 
 
@@ -548,6 +550,45 @@ process prepare_microreact_json {
 
 }
 
+process prepare_MST {
+    container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_MST.html"
+    containerOptions "--volume ${params.db_absolute_path_on_host}:/db"
+
+    tag "Preparing minimum spanning tree"
+    cpus { params.threads > 10 ? 10 : params.threads }
+    memory "120 GB" 
+    time "30m"
+    input:
+    path(metadata)
+    output:
+    path("${params.results_prefix}_MST.html")
+    script:
+    """
+    if [[ "${params.genus}" == *"Salmo"* ]]; then
+      profile_public_path="/db/cgmlst/Salmonella/profiles.list"
+      profile_local_path="/db/cgmlst/Salmonella/local/profiles_local.list"
+    elif [[ "${params.genus}" == *"Escher"* ]]; then
+      profile_public_path="/db/cgmlst/Escherichia/profiles.list"
+      profile_local_path="/db/cgmlst/Escherichia/local/profiles_local.list"
+    elif [ "${params.genus}" == "Campylobacter" ]; then
+      profile_public_path="/db/cgmlst/Campylobacter/jejuni/profiles.list"
+      profile_local_path="/db/cgmlst/Campylobacter/jejuni/local/profiles_local.list"  
+    fi
+
+    python3 /opt/docker/custom_scripts/calculate_allelic_distance_and_plot_MST.py --metadata ${metadata} \
+                                                                                  --profiles \${profile_public_path} \
+                                                                                  --local-profiles \${profile_local_path} \
+                                                                                  --plot ${params.results_prefix}_MST.html \
+                                                                                  --output ${params.results_prefix}_distance.tsv \
+                                                                                  --threads ${task.cpus} \
+                                                                                  --color-by "HC5"
+
+    """
+
+}
+
+
 process save_input_to_log {
   tag "Dummy process"
   cpus 1
@@ -620,4 +661,9 @@ visualize_tree_out_2 = visualize_tree_2(add_dummy_data_out, generate_colors_for_
 // save_input_to_log(gff_input)
 
 prepare_microreact_json_out = prepare_microreact_json(metadata_for_microreact_out, add_temporal_data_out.to_microreact)
+
+// create MST
+
+prepare_MST(metadata_channel)
+
 }
