@@ -253,7 +253,9 @@ def visualize_mst(edges: np.ndarray, counts: dict[str, int],
         mnode_x.append(mx)
         mnode_y.append(my)
         w = data.get("true_weight", 0)
-        mnode_text.append(f"{u}–{v}: {w} allelic differences (edges with allelic distance above 50 have identical length)")
+        #mnode_text.append(f"{u}–{v}: {w} allelic differences (edges with allelic distance above 50 have identical length)")
+        mnode_text.append(f"{w} allelic differences")
+
 
     mnode_trace = go.Scatter(
         x=mnode_x,
@@ -262,14 +264,20 @@ def visualize_mst(edges: np.ndarray, counts: dict[str, int],
         showlegend=False,
         hoverinfo="text",
         hovertext=mnode_text,
+        # marker=dict(
+        #     size=12,  # larger circle
+        #     color="rgba(255,255,255,0)",  # transparent fill
+        #     line=dict(
+        #         width=2.5,
+        #         color="rgba(100,100,100,0.5)"  # soft gray outer rim
+        #     ),
+        #     symbol="circle"
+        # ),
         marker=dict(
-            size=12,  # larger circle
-            color="rgba(255,255,255,0)",  # transparent fill
-            line=dict(
-                width=2.5,
-                color="rgba(100,100,100,0.5)"  # soft gray outer rim
-            ),
-            symbol="circle"
+            size=10,
+            symbol="line-ns",  # “north–south” line
+            color="rgba(100,100,100,0.6)",
+            line=dict(width=2, color="rgba(80,80,80,0.8)")
         )
     )
 
@@ -292,6 +300,66 @@ def visualize_mst(edges: np.ndarray, counts: dict[str, int],
         )
     )
 
+    # --- Create toggleable edge label annotations ---
+    offset_scale = 0.03  # how far to offset labels perpendicular to edge
+    annotations = []
+
+    for u, v, data in G.edges(data=True):
+        # edge direction and midpoint
+        x_u, y_u = pos[u]
+        x_v, y_v = pos[v]
+        dx, dy = x_v - x_u, y_v - y_u
+        length = np.hypot(dx, dy) or 1.0
+        mx, my = (x_u + x_v) / 2, (y_u + y_v) / 2
+
+        # perpendicular unit vector
+        pos_x, pos_y = -dy / length, dx / length
+
+        # flip side deterministically (helps when multiple edges share similar orientation)
+        if hash(u) % 2 == 0:
+            pos_x, pos_y = -pos_x, -pos_y
+
+        # offset midpoint slightly
+        mx_shift = mx + pos_x * offset_scale
+        my_shift = my + pos_y * offset_scale
+
+        annotations.append(
+            dict(
+                x=mx_shift,
+                y=my_shift,
+                text=f"{data.get('true_weight', 0)} allelic differences",
+                showarrow=False,
+                font=dict(size=12, color="gray"),
+                bgcolor="rgba(245,245,245,0.6)",
+                bordercolor="rgba(180,180,180,1)",
+                borderpad=2,
+                opacity=0.9
+            )
+        )
+
+    # --- Add interactive buttons ---
+    fig.update_layout(
+        updatemenus=[{
+            "buttons": [
+                {
+                    "label": "Show Edge Labels",
+                    "method": "relayout",
+                    "args": [{"annotations": annotations}]
+                },
+                {
+                    "label": "Hide Edge Labels",
+                    "method": "relayout",
+                    "args": [{"annotations": []}]
+                }
+            ],
+            "direction": "down",
+            "x": 1.05,
+            "y": 1.0,
+            "showactive": True,
+            "xanchor": "left",
+            "yanchor": "top"
+        }]
+    )
 
     if output_html:
         fig.write_html(output_html, auto_open=True)
