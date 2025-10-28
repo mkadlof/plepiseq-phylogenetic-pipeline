@@ -28,6 +28,8 @@ err() {
 
 # required to run .nf script + "modules" should be a subdirectory
 projectDir="" # location of main project
+db_absolute_path_on_host="/mnt/raid/external_databases"
+
 
 # docker images required to execute this pipeline
 main_image="pzh_pipeline-phylo:latest" # main image used by phylogenetic pipeline
@@ -63,7 +65,7 @@ map_detail="city"  #  poziom hierarchii na mapie przypisany próbce. Możliwe wa
 
 # Usage function to display help
 usage() {
-    echo "Użycie: $0 --input_dir ŚCIEŻKA --input_type TYP --results_dir ŚCIEŻKA --profile NAZWA --metadata metadata.txt --genus Salmonella --results_prefix prefiks"
+    echo "Użycie: $0 --input_dir ŚCIEŻKA --input_type TYP --results_dir ŚCIEŻKA --db SCIEZKA --profile NAZWA --metadata metadata.txt --genus Salmonella --results_prefix prefiks"
     echo
     echo "Skrypt uruchamia bakteryjny pipeline filogenetyczny oparty na danych SNP."
     echo
@@ -74,6 +76,7 @@ usage() {
     echo "  -g, --genus NAZWA                 Rodzaj bakterii: Salmonella, Escherichia lub Campylobacter (WYMAGANE)"
     echo "  -p, --results_prefix PREFIKS      Prefiks dodawany do wszystkich plików wynikowych (WYMAGANE)"
     echo "  -d, --projectDir ŚCIEŻKA          Ścieżka do lokalnej wersji repozytorium (WYMAGANE)"
+    echo "  --db ŚCIEŻKA                      Sciezka do katalogu z pobranymi zewnetrznymi bazami (WYMAGANE)"
     echo
     echo "Opcjonalne parametry:"
     echo "  -o, --results_dir ŚCIEŻKA         Katalog wynikowy (domyślnie: ./results)"
@@ -96,7 +99,7 @@ usage() {
 
 # Parse arguments using GNU getopt
 TEMP=$(getopt -o hm:i:t:g:p:d:o:x:r: \
---long metadata:,inputDir:,inputType:,genus:,results_prefix:,projectDir:,results_dir:,profile:,clockrate:,model:,starting_trees:,bootstrap:,min_support:,threads:,thresholdN:,thresholdAmbiguous:,main_image:,prokka_image:,map_detail:,help \
+--long metadata:,inputDir:,inputType:,genus:,results_prefix:,projectDir:,results_dir:,profile:,clockrate:,model:,starting_trees:,bootstrap:,min_support:,threads:,thresholdN:,thresholdAmbiguous:,main_image:,prokka_image:,map_detail:,db:,help \
 -n "$0" -- "$@")
 
 if [ $? != 0 ]; then usage; fi
@@ -124,6 +127,7 @@ while true; do
     --main_image) main_image="$2"; shift 2 ;;
     --prokka_image) prokka_image="$2"; shift 2 ;;
     --map_detail) map_detail="$2"; shift 2 ;;
+    --db) db_absolute_path_on_host="$2"; shift 2;; 
     -h|--help) usage; exit 0 ;;
     --) shift; break ;;
     *) echo "Unknown option: $1"; exit 1 ;;
@@ -148,6 +152,10 @@ if [ ! -d "$inputDir" ]; then
 fi
 if [ ! -d "$projectDir" ]; then
     echo "Błąd: katalog projektu '$projectDir' nie istnieje."; exit 1
+fi
+
+if [ ! -d "${db_absolute_path_on_host}" ]; then
+    echo "Błąd: katalog z zewnetrznymi bazami '$db_absolute_path_on_host' nie istnieje."; exit 1
 fi
 
 # 2. Check if Docker images exist locally
@@ -237,22 +245,23 @@ fi
 
 # ---------- Run Nextflow ----------
 args=(
-  "--input_dir"             "$inputDir"
-  "--metadata"              "$metadata"
-  "--input_type"            "$inputType"
-  "--genus"                 "$genus"
-  "--results_prefix"        "$results_prefix"
-  "--model"                 "$model"
-  "--starting_trees"        "$starting_trees"
-  "--bootstrap"             "$bootstrap"
-  "--min_support"           "$min_support"
-  "--threshold_Ns"          "$thresholdN"
-  "--threshold_ambiguities" "$thresholdAmbiguous"
-  "--main_image"            "$main_image"
-  "--prokka_image"          "$prokka_image"
-  "--results_dir"           "$results_dir"
-  "--threads"               "$threads"
-  "--map_detail"            "${map_detail}"
+  "--input_dir"                "$inputDir"
+  "--metadata"                 "$metadata"
+  "--input_type"               "$inputType"
+  "--genus"                    "$genus"
+  "--results_prefix"           "$results_prefix"
+  "--model"                    "$model"
+  "--starting_trees"           "$starting_trees"
+  "--bootstrap"                "$bootstrap"
+  "--min_support"              "$min_support"
+  "--threshold_Ns"             "$thresholdN"
+  "--threshold_ambiguities"    "$thresholdAmbiguous"
+  "--main_image"               "$main_image"
+  "--prokka_image"             "$prokka_image"
+  "--results_dir"              "$results_dir"
+  "--threads"                  "$threads"
+  "--map_detail"               "${map_detail}"
+  "--db_absolute_path_on_host" "${db_absolute_path_on_host}"
 
 )
 

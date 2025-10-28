@@ -160,7 +160,7 @@ This pipeline constructs bacterial phylogenies using annotated assemblies or raw
 Like the viral counterpart the bacterial phylogenetic pipeline also requires two types of input:
 1. A tab-separated metadata file (see example below).
 2. A directory containing genomic assemblies of analyzed isolates in FASTA format.
-
+3. A path to external databases. Consult MST Tree section below.
 ### Input directory example
 Each isolate must be represented by a **single gzipped FASTA file (`.fasta.gz`)** containing all assembled contigs for that sample.
 Example directory layout:
@@ -197,11 +197,13 @@ bash nf_pipeline_bacterial_phylo.sh -m metadata_salmonella.txt \
                                     -p Salmonella_dummy \
                                     -d PATH_TO_CLONED_REPO \
                                     -z RESULTS_PREFIX
+                                    --db PATH_TO_EXTRNAL_DATABASES
                                     --threads 48
 ```
 
 Replace `PATH_TO_CLONED_REPO` with the absolute path to your cloned copy of this repository.
 Replace `RESULTS_PREFIX` with any string. All pipeline produced files will start with this string
+Replace `PATH_TO_EXTRNAL_DATABASES` with the absolute path to directory with cgMLST schema
 
 To see all available options and customize your run, use:
 
@@ -280,3 +282,63 @@ Go to tests/WGS2Phylo and execute:
 ```
 pytest test_WGS2Phylo.py --data-dir ../../data/example_data/WGS2phylo/unit_tests/ -v
 ``` 
+
+-----------
+
+# MST Tree
+
+The bacterial pipeline produces an interactive **Minimum Spanning Tree (MST)** in HTML format for all samples listed in the metadata file.  
+The MST is constructed based on allelic differences observed between profiles, adjusted for missing loci (following the pHierCC methodology).
+
+As a result, the `--db` argument **must** be specified in the bacterial pipeline shell wrapper to provide information about alleles identified at each locus for a given Sequence Type (ST) in the cgMLST schema.
+
+## External Database Structure
+
+The external database directory must contain cgMLST profile definitions for supported species.  
+Each species directory includes:
+- a main `profiles.list` file (publicly released cgMLST profiles)
+- a `local/profiles_local.list` file (internal or temporary profiles, optional)
+
+### Expected layout
+
+External datases strucutre is predefined and described in details in our [Sequnecing pipline](https://github.com/mkadlof/pzh_pipeline_viral), however the only requiered
+files are one with profiles information for supported species. Follwoing structure of PATH_TO_EXTRNAL_DATABASES must be respected
+
+```
+
+PATH_TO_EXTERNAL_DATABASES/
+├── cgmlst/
+│   ├── Salmonella/
+│   │   ├── profiles.list
+│   │   └── local/
+│   │       └── profiles_local.list
+│   │
+│   ├── Escherichia/
+│   │   ├── profiles.list
+│   │   └── local/
+│   │       └── profiles_local.list
+│   │
+│   └── Campylobacter/
+│       └── jejuni/
+│           ├── profiles.list
+│           └── local/
+│               └── profiles_local.list
+
+```
+
+`profiles_local.list` includes additional profiles that might not be present in "main" file (e.g. temporal identifier, private STs etc.)
+
+## Execution
+
+Plotting of the MST is integrated*into the bacterial pipeline.No additional steps are required.  
+The resulting HTML file will be saved in the pipeline’s output directory.
+
+## Tests
+
+Go to `tests/MST_bacteria` and execute:
+```bash
+pytest test_MST_bacteria.py -v
+```
+
+Dependencies: numpy, and pandas
+

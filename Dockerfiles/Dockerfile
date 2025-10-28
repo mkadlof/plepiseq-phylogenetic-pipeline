@@ -16,7 +16,7 @@ RUN apt update && apt install -y software-properties-common && \
     python3.11 python3.11-distutils \
     curl unzip git gcc wget \
     zlib1g-dev libbz2-dev libcurl4-gnutls-dev libssl-dev liblzma-dev \
-    python3-pycurl mash seqtk roary bison flex default-jre cmake npm seqkit 
+    python3-pycurl mash seqtk roary bison flex default-jre cmake npm seqkit vim 
 
 # mafft (fixed veriosn)
 RUN wget https://mafft.cbrc.jp/alignment/software/mafft_7.520-1_amd64.deb && \
@@ -39,7 +39,8 @@ RUN pip install ete3==3.1.3 \
                 click==8.1.8 \
                 requests==2.32.3 \
                 Biopython==1.85 \
-                pandas==2.3.0
+                pandas==2.3.0 \
+                plotly==6.3.0
 
 WORKDIR /usr/bin
 RUN ln -s python3 python
