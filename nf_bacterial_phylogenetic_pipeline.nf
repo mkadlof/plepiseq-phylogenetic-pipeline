@@ -45,6 +45,17 @@ params.threshold_ambiguities = ""
 // Path to databases (required for MST)
 params.db_absolute_path_on_host= ""
 
+// for json aggregator
+params.subcategory_organism = "" // introduced to meet output schema
+params.safeguards_status = "" // "tak" or "nie" if "nie" it will not execute pipeline but produce valid json schema
+
+
+// modules used by json aggregator
+params.projectDir = ""
+modules = "${params.projectDir}/modules"
+include { create_input_params_json } from "${modules}/create_input_params_json.nf"
+
+
 // Processes 
 
 
@@ -124,6 +135,7 @@ process augur_index_sequences {
 
 process augur_filter_sequences {
     container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "sequence_filtering_data.json"
     tag "Filtering out sequences with augur"
     cpus 1
     memory "30 GB"
@@ -135,6 +147,7 @@ process augur_filter_sequences {
     output:
     tuple path("valid_sequences.fasta"), path(embl), emit: to_SNPs_alignment
     tuple path("valid_sequences.fasta"), path(metadata), emit: alignment_and_metadata
+    path("sequence_filtering_data.json"), emit: json
 
     script:
     """
@@ -143,7 +156,8 @@ process augur_filter_sequences {
     python /opt/docker/custom_scripts/identify_low_quality_sequences.py --output_dir . \
                                                                         --threshold_Ns ${params.threshold_Ns} \
                                                                         --threshold_ambiguities ${params.threshold_ambiguities} \
-                                                                        $index
+                                                                        --json_out sequence_filtering_data.json \
+                                                                        --input $index
     # TO DO add a script that can retain only biologically valid entries from a set of sequences
     # This should be based on specific REQUIRED column in metadata file ( our NGS pipeline return this info)
     # Salmonella - predicted serovar level (e.g. only Montevideo)
@@ -197,6 +211,7 @@ process prepare_SNPs_alignment {
 process identify_identical_sequences {
     container  = params.main_image
     tag "Preparing SNPs alignment"
+    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "alignment_SNPs_sequence_clustering_data.json"
     cpus params.threads
     memory "10 GB"
     time "2h"
@@ -205,16 +220,23 @@ process identify_identical_sequences {
     tuple path(fasta), path(partition)
     output:
     tuple path("alignment_SNPs_unique.fasta"), path(partition),  emit: to_raxml
-    path("alignment_SNPs_ident_seq.csv"), emit: identical_sequences_mapping 
+    path("alignment_SNPs_ident_seq.csv"), emit: identical_sequences_mapping
+    path('alignment_SNPs_sequence_clustering_data.json'), emit: json
     script:
     """
-    python /opt/docker/custom_scripts/find_identical_sequences.py -i ${fasta} -o .
+    python /opt/docker/custom_scripts/find_identical_sequences.py --input ${fasta} \
+                                                                   --output_dir . \
+                                                                   --output_prefix alignment_SNPs \
+                                                                   --threshold 1 \
+                                                                   --segment_name bacterial_genome
+
     """
 
 }
 
 process run_raxml {
     container  = params.main_image
+    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "filogram_data.json"
     tag "Calculating SNPs tree"
     cpus params.threads
     memory "10 GB"
@@ -223,6 +245,7 @@ process run_raxml {
     tuple path(fasta), path(partition)
     output:
     path("tree.raxml.support"), emit: tree
+    path("filogram_data.json")
     script:
     def ntrees = params.starting_trees
     def nboots = params.bootstrap
@@ -247,6 +270,25 @@ process run_raxml {
              --force \\
              --workers \${WORKERS} \\
              --brlen scaled
+
+    ID=`grep ">" ${fasta} | sed s'|>||g' | tr "\\n" ","`
+    VERSION=`raxml-ng --version | awk '/RAxML-NG v/ {print \$3; exit}'`
+    MODEL=`cat partition.txt | cut -d'{' -f1 | cut -d',' -f1`
+    echo "
+    {'bacterial_genome' : {
+    'id_filogram':'\${ID}',
+    'program_name':'raxml-ng',
+    'program_version' : '\${VERSION}'
+    'phylogenetic_model' : '\${MODEL}',
+    'phylogenetic_bootstrap' : ${params.bootstrap},
+    'phylogenetic_min_support' : ${params.min_support},
+    'phylogenetic_starting_trees' : ${params.starting_trees}
+    }
+    }
+    " >> filogram_data.json
+
+    cat filogram_data.json |  tr "\\'" "\\"" > tmp
+    mv tmp filogram_data.json
     """  
 }
 
@@ -284,6 +326,7 @@ process add_temporal_data {
     // Be aware that poor data with poor temporal signal might result in an incorrect tree
     container  = params.main_image
     tag "Adding temporal data to tree"
+    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "chronogram_data.json"
     cpus 1
     memory "20 GB"
     time "5h"
@@ -292,7 +335,8 @@ process add_temporal_data {
     tuple path(alignment), path(metadata)// SNPs alignment would confuse timetree when estimating clock we are using initial full alignment
     output:
     tuple path("tree3_timetree.nwk"), path("branch_lengths.json"), path("traits.json"), emit: to_auspice
-    tuple path(tree), path("tree3_rescaled.nwk"), emit: to_microreact 
+    tuple path(tree), path("tree3_rescaled.nwk"), emit: to_microreact
+    path('chronogram_data.json'), emit: json
     script:
     """
 
@@ -319,20 +363,28 @@ process add_temporal_data {
        # use user provided parameters for treetime overwrites all safeguards
        run_augur ${params.clockrate}
 
+       # this will be passed to json
+       CORRELATION="-1"
+       CLOCK=${params.clockrate}
     else
      
       # Estimate clock rate if correlation is poor use predefined values for a provided genus ... better than nothing i guess
       cat $metadata | tr "\\t" "," >> metadata.csv
       /usr/local/bin/treetime clock --tree $tree --aln $alignment --dates metadata.csv >> log 2>&1
       CORRELATION=`cat log  | grep "r^2" | awk '{print \$2}'`
+      CLOCK=`cat log  | grep -w "\\-\\-rate"  | awk '{print \$2}'`
+
       if awk "BEGIN {if (\${CORRELATION} < 0.5) exit 0; else exit 1}"; then
         # We have poor fitness of our data we provide treetime with own set of parameters ...
         if [ ${params.genus}  == 'Salmonella' ]; then
           clockrate="2e-6"
+          CLOCK=\${clockrate}
         elif [ ${params.genus}  == 'Escherichia' ]; then
           clockrate="8e-9"
+          CLOCK=\${clockrate}
         elif [ ${params.genus} == 'Campylobacter']; then
           clockrate="6e-6"
+          CLOCK=\${clockrate}
         fi
         run_augur \${clockrate}
       else
@@ -350,7 +402,8 @@ process add_temporal_data {
                     --precision 3 \\
                     --max-iter 10  \\
                     --gen-per-year 250 \\
-                    --keep-polytomies 
+                    --keep-polytomies
+
       fi  # End for CORRELATION estimation
     
     fi # End for user provided clockrate
@@ -366,6 +419,24 @@ process add_temporal_data {
     
     # modify tree3_timetree.nwk by replacing branches length with "time distance" predicted for each leaf and internal node with timetree
     python /opt/docker/custom_scripts/convert_nwk_to_timetree.py --tree tree3_timetree.nwk --branches branch_lengths.json --output tree3_rescaled.nwk
+
+
+    # create json
+    AUGUR_VERSION=`augur version | awk '{print \$2}'`
+    TREETIME_VERSION=`treetime version |awk '{print \$2}'`
+    ID=`grep ">" ${alignment} | sed s'|>||g' | tr "\\n" ","`
+
+    echo "{'bacterial_genome' :
+        {'id_chronogram':'\${ID}',
+        'augur_version':'\${AUGUR_VERSION}',
+        'treetime_version' : '\${TREETIME_VERSION}',
+        'clockrate_value' : \${CLOCK},
+        'clockrate_correlation' : \${CORRELATION}}
+        }" >> chronogram_data.json
+
+    cat chronogram_data.json |  tr "\\'" "\\"" > tmp
+    mv tmp chronogram_data.json
+
     """
 }
 
@@ -607,9 +678,14 @@ process save_input_to_log {
 // MAIN WORKFLOW //
 
 workflow {
+
+
+
 Channel
     .fromPath("${params.metadata}")
     .set {metadata_channel}
+
+initial_params = create_input_params_json(metadata_channel, ExecutionDir)
 
 // Prepare gff input
 
@@ -665,5 +741,9 @@ prepare_microreact_json_out = prepare_microreact_json(metadata_for_microreact_ou
 // create MST
 
 prepare_MST(metadata_channel)
+
+// json aggegator
+
+ // chanel_to_json = initial_params.out.json
 
 }
