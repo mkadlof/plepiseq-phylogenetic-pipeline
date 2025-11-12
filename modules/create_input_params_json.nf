@@ -68,7 +68,7 @@ process create_input_params_json {
     else
         echo "
         {'pathogen':'${organism}',
-         'subcategory_organism':'${params.safegurads_status}',
+         'subcategory_organism':'${params.safeguards_status }',
          'main_image':'${params.main_image}',
          'data_uruchomienia':'\${DATA_URUCHOMIENIA}',
          'pipeline_version' : '\${VERSION}',
