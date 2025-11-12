@@ -6,6 +6,7 @@ ExecutionDir = new File('.').absolutePath
 // input can be one of the following:
 // 1. A single FASTA file containing sequences - for single segment viruses like SARS-CoV-2
 // 2. A directory containing multiple FASTA files - for multi-segment viruses like Influenza
+params.input_dir = ""
 
 
 metadata = file(params.metadata)
@@ -39,7 +40,13 @@ params.threads = ""
 
 src_dir = "${baseDir}/src"
 
+// Pipeline is executed with violated safegurads levels (e.g. samples from viruses from different species )
+// To create valid json schema we need to pass information from shell wrapper here
+params.subcategory_organism = "" // introduced to meet output schema
+params.safeguards_status  = "" // "tak" or "nie" if "nie" it will not execute pipeline but produce valid json schema
 
+params.input_type = "" // dummy value NOT used by this script
+params.prokka_image = "" // dummy value NOT used by this script
 // Core modules imports
 
 include { augur_index_sequences } from "${modules}/augur_index_sequences.nf"
@@ -66,6 +73,9 @@ include { transform_input_novel } from "${modules}/transform_input.nf"
 include { adjust_metadata } from "${modules}/adjust_metadata.nf"
 include { metadata_for_microreact } from "${modules}/metadata_for_microreact.nf"
 
+// json_input
+include { create_input_params_json } from "${modules}/create_input_params_json.nf"
+
 workflow core {
     take:
     input_fasta
@@ -73,15 +83,15 @@ workflow core {
 
     main:
     augur_index_sequences(input_fasta)
-    identify_low_quality_sequences(augur_index_sequences.out)
-    c1 = input_fasta.join(augur_index_sequences.out.sequence_index).join(identify_low_quality_sequences.out)
-    augur_filter_sequences(c1, metadata)
-    find_identical_sequences(augur_filter_sequences.out)
-    augur_align(find_identical_sequences.out.uniq_fasta)
-    iqtree(augur_align.out)
-    c2 = iqtree.out.join(find_identical_sequences.out.duplicated_ids)
+    identify_low_quality_sequences_out = identify_low_quality_sequences(augur_index_sequences.out)
+    c1 = input_fasta.join(augur_index_sequences.out.sequence_index).join(identify_low_quality_sequences_out.out)
+    augur_filter_sequences_out = augur_filter_sequences(c1, metadata)
+    find_identical_sequences_out = find_identical_sequences(augur_filter_sequences_out.out)
+    augur_align(find_identical_sequences_out.uniq_fasta)
+    iqtree_out = iqtree(augur_align.out)
+    c2 = iqtree_out.out.join(find_identical_sequences_out.duplicated_ids)
     insert_duplicates_into_tree(c2)
-    c3 = augur_align.out.join(find_identical_sequences.out.duplicated_ids)
+    c3 = augur_align.out.join(find_identical_sequences_out.duplicated_ids)
     insert_duplicates_into_alignment(c3)
     c4 = insert_duplicates_into_alignment.out.join(insert_duplicates_into_tree.out)
     treetime_out = treetime(c4, metadata)
@@ -100,12 +110,15 @@ workflow core {
 
 }
 
-def transformed
+// def transformed
 
 workflow {
-    input_fasta_path = file(params.input_fasta) // create path like object
+    input_fasta_path = file(params.input_dir) // create path like object
 
-    if (organism.toLowerCase() in ['influenza' , ['sars-cov-2', 'rsv' ]) {
+    initial_params = create_input_params_json(metadata, ExecutionDir)
+
+    if (organism.toLowerCase() in ['influenza' , 'sars-cov-2', 'rsv' ]) {
+
 
         transformed = transform_input_novel(input_fasta_path)
                       .fastas
@@ -114,6 +127,11 @@ workflow {
 
         adjusted_metadata = adjust_metadata(metadata)
         core(transformed, adjusted_metadata)
+
+    // json aggegator
+
+    // chanel_to_json = initial_params.out.json
+
     }
     else {
         error "Organism not supported. Please use 'sars-cov-2', 'influenza' or 'rsv'."
