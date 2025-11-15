@@ -10,5 +10,6 @@ bash nf_pipeline_viral_phylo.sh -i ./data/example_data/influenza/ \
 				-g influenza \
 			       	-p test_influenza \
 				-d . \
+				--threshold_Ns 0.05 \
 				-x slurm 
 
