@@ -75,6 +75,9 @@ include { metadata_for_microreact } from "${modules}/metadata_for_microreact.nf"
 
 // json_input
 include { create_input_params_json } from "${modules}/create_input_params_json.nf"
+include {merge_jsons} from "${modules}/merge_jsons.nf"
+include {json_aggregator} from "${modules}/json_aggregator.nf"
+
 
 workflow core {
     take:
@@ -107,6 +110,11 @@ workflow core {
     metadata_for_microreact(generate_colors_for_features.out, metadata)
     prepare_microreact_json(metadata_for_microreact.out, c5)
 
+    emit:
+    identify_low_quality_sequences_out.json
+    find_identical_sequences_out.json
+    iqtree_out.json
+    treetime_out.json
 
 }
 
@@ -115,7 +123,7 @@ workflow core {
 workflow {
     input_fasta_path = file(params.input_dir) // create path like object
 
-    initial_params = create_input_params_json(metadata, ExecutionDir)
+    create_input_params_json_out = create_input_params_json(metadata, ExecutionDir)
 
     if (organism.toLowerCase() in ['influenza' , 'sars-cov-2', 'rsv' ]) {
 
@@ -126,11 +134,31 @@ workflow {
                       .map { file -> tuple(file.baseName, file) }
 
         adjusted_metadata = adjust_metadata(metadata)
-        core(transformed, adjusted_metadata)
+        // core(transformed, adjusted_metadata)
+        (identify_low_quality_channel, find_identical_sequences_channel, iqtree_channel, treetime_channel) = core(transformed, adjusted_metadata)
 
-    // json aggegator
 
-    // chanel_to_json = initial_params.out.json
+        // merge results for each segment
+        identify_low_quality_collect = identify_low_quality_channel.map{id, file -> file }.collect()
+        find_identical_sequences_collect  = find_identical_sequences_channel.map{id, file -> file }.collect()
+        iqtree_collect = iqtree_channel.map{id, file -> file }.collect()
+        treetime_collect = treetime_channel.map{id, file -> file }.collect()
+
+        // add tag
+        identify_low_quality_t = identify_low_quality_collect.map { files -> tuple('identify_low_quality', files)}
+        find_identical_sequences_t = find_identical_sequences_collect.map { files -> tuple('find_identical_sequences', files)}
+        iqtree_t = iqtree_collect.map { files -> tuple('iqtree', files)}
+        treetime_t = treetime_collect.map { files ->tuple('treetime', files)}
+
+        pair_ch = identify_low_quality_t.concat(find_identical_sequences_t, iqtree_t, treetime_t)
+
+
+        meged_jsons_out  = merge_jsons(pair_ch)
+
+        // combine results into one channele
+        meged_jsons_collcet = meged_jsons_out.collect()
+        to_json_aggergator = create_input_params_json_out.json.concat(meged_jsons_collcet.flatten()).collect()
+        json_aggregator(to_json_aggergator, ExecutionDir)
 
     }
     else {

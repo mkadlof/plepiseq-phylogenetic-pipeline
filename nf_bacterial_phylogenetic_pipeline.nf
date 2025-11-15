@@ -54,6 +54,7 @@ params.safeguards_status = "" // "tak" or "nie" if "nie" it will not execute pip
 params.projectDir = ""
 modules = "${params.projectDir}/modules"
 include { create_input_params_json } from "${modules}/create_input_params_json.nf"
+include {json_aggregator} from "${modules}/json_aggregator.nf"
 
 
 // Processes 
@@ -80,9 +81,9 @@ process run_prokka {
     fi
 
     prokka --metagenome --cpus ${task.cpus} --outdir prokka_out --prefix prokka_out --compliant --kingdom Bacteria \${fasta}
-    echo -e "{\\"status\\": \\"tak\\", \
-              \\"prokka_gff\\": \\"${params.results_dir}/${x}/${x}_prokka.gff\\", \
-              \\"prokka_ffn\\": \\"${params.results_dir}/${x}/${x}_prokka.ffn\\"}" >> prokka.json
+    # echo -e "{\\"status\\": \\"tak\\", \
+    #          \\"prokka_gff\\": \\"${params.results_dir}/${x}/${x}_prokka.gff\\", \
+    #          \\"prokka_ffn\\": \\"${params.results_dir}/${x}/${x}_prokka.ffn\\"}" >> prokka.json
     # Following files are useful for phylogenetic analysis
     mv prokka_out/prokka_out.gff ${x}.gff
     mv prokka_out/prokka_out.ffn ${x}.ffn
@@ -245,7 +246,7 @@ process run_raxml {
     tuple path(fasta), path(partition)
     output:
     path("tree.raxml.support"), emit: tree
-    path("filogram_data.json")
+    path("filogram_data.json"), emit: json
     script:
     def ntrees = params.starting_trees
     def nboots = params.bootstrap
@@ -278,7 +279,7 @@ process run_raxml {
     {'bacterial_genome' : {
     'id_filogram':'\${ID}',
     'program_name':'raxml-ng',
-    'program_version' : '\${VERSION}'
+    'program_version' : '\${VERSION}',
     'phylogenetic_model' : '\${MODEL}',
     'phylogenetic_bootstrap' : ${params.bootstrap},
     'phylogenetic_min_support' : ${params.min_support},
@@ -659,7 +660,6 @@ process prepare_MST {
 
 }
 
-
 process save_input_to_log {
   tag "Dummy process"
   cpus 1
@@ -679,14 +679,12 @@ process save_input_to_log {
 
 workflow {
 
-
-
 Channel
     .fromPath("${params.metadata}")
     .set {metadata_channel}
 
-initial_params = create_input_params_json(metadata_channel, ExecutionDir)
 
+create_input_params_json_out = create_input_params_json(metadata_channel, ExecutionDir)
 // Prepare gff input
 
 if (params.input_type == 'fasta') {
@@ -744,6 +742,12 @@ prepare_MST(metadata_channel)
 
 // json aggegator
 
- // chanel_to_json = initial_params.out.json
+
+pair_ch = create_input_params_json_out.json.concat(augur_filter_sequences_out.json, identify_identical_sequences_out.json, run_raxml_out.json, add_temporal_data_out.json)
+pair_ch = pair_ch.collect()
+pair_ch.view()
+
+json_aggregator_out = json_aggregator(pair_ch, ExecutionDir)
+
 
 }
