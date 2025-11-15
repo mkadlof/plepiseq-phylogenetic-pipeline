@@ -179,7 +179,7 @@ shopt -u nocasematch
 # 5) Integers
 [[ "$bootstrap" =~ ^[0-9]+$ ]]     || err "--bootstrap must be integer"
 [[ "$min_support" =~ ^[0-9]+$ ]]    || err "--min_support must be integer"
-min_support=`echo ${min_support} | awk '{print $0/100}'` # iq-tree want float for support
+min_support=$(echo ${min_support} | awk '{print $0/100}') # iq-tree want float for support
 [[ "$starting_trees" =~ ^[0-9]+$ ]] || err "--starting_trees must be integer"
 [[ "$threads" =~ ^[0-9]+$ ]]       || err "--threads must be integer"
 
@@ -227,7 +227,7 @@ if [ -z "$virus_col" ]; then
 fi
 
 type_col=$(get_col_idx "type" "$header")
-if [ -z "type_col" ]; then
+if [ -z "${type_col}" ]; then
     echo "Błąd: Kolumna 'type' nie znaleziona w metadanych."; exit 1
 fi
 
