@@ -26,6 +26,7 @@ def main(input_params, sequence_filtering_data, sequence_clustering_data, filogr
          executiondir, results_prefix, results_dir):
 
     out_dict = {}
+    out_dict['output'] = {}
     with open(input_params) as f:
         input_params = json.load(f)
 
@@ -41,24 +42,25 @@ def main(input_params, sequence_filtering_data, sequence_clustering_data, filogr
     with open(chronogram_data) as f:
         chronogram_data = json.load(f)
 
-    out_dict['input_params_data'] = input_params
-    out_dict['chronogram_data'] = chronogram_data
-    out_dict['sequence_filtering_data'] = sequence_filtering_data
-    out_dict['sequence_clustering_data'] = sequence_clustering_data
-    out_dict['filogram_data'] = filogram_data
-    out_dict['input_params_data'] = input_params
+    out_dict['output']['input_params_data'] = input_params
+    out_dict['output']['chronogram_data'] = chronogram_data
+    out_dict['output']['sequence_filtering_data'] = sequence_filtering_data
+    out_dict['output']['sequence_clustering_data'] = sequence_clustering_data
+    out_dict['output']['filogram_data'] = filogram_data
+    out_dict['output']['input_params_data'] = input_params
 
-    out_dict['pathogen'] = input_params['pathogen']
-    out_dict['ExecutionDir_dir'] = executiondir
-    out_dict['pipeline_version'] = input_params['pipeline_version']
-    out_dict['status'] = "tak"
-    out_dict['title'] = results_prefix
+    out_dict['output']['pathogen'] = input_params['pathogen']
+    out_dict['output']['ExecutionDir_dir'] = executiondir
+    out_dict['output']['pipeline_version'] = input_params['pipeline_version']
+    out_dict['output']['status'] = "tak"
+    out_dict['output']['title'] = results_prefix
+    out_dict['output']['data_uruchomienia'] = input_params['data_uruchomienia']
 
     if input_params['pathogen'] in ["Salmonella", "Escherichia", "Campylobacter"]:
-        out_dict['mst_html'] = f"{results_dir}/${results_prefix}_MST.html"
-        out_dict['chronogram_nwk'] = {'bacterial_genome' : '/some/path'}
-        out_dict['microreact_json'] = {'bacterial_genome' : 'some/path'}
-        out_dict['filogram_nwk'] = {'bacterial_genome' : '/some/path'}
+        out_dict['output']['mst_html'] = f"{results_dir}/${results_prefix}_MST.html"
+        out_dict['output']['chronogram_nwk'] = {'bacterial_genome' : 'some/path.nwk'}
+        out_dict['output']['microreact_json'] = {'bacterial_genome' : 'some/path.json'}
+        out_dict['output']['filogram_nwk'] = {'bacterial_genome' : 'some/path.nwk'}
     else:
         chronogram_nwk = {}
         microreact_json = {}
@@ -66,13 +68,14 @@ def main(input_params, sequence_filtering_data, sequence_clustering_data, filogr
         lista_segmentow = sequence_filtering_data.keys()
 
         for segment in lista_segmentow:
-            chronogram_nwk[segment] = '/some/path'
-            microreact_json[segment] = '/some/path'
-            filogram_nwk[segment] = '/some/path'
+            chronogram_nwk[segment] = 'some/path.nwk'
+            microreact_json[segment] = 'some/path.json'
+            filogram_nwk[segment] = 'some/path.nwk'
 
-        out_dict['chronogram_nwk'] = chronogram_nwk
-        out_dict['microreact_json'] = microreact_json
-        out_dict['filogram_nwk'] = filogram_nwk
+        out_dict['output']['chronogram_nwk'] = chronogram_nwk
+        out_dict['output']['microreact_json'] = microreact_json
+        out_dict['output']['filogram_nwk'] = filogram_nwk
+
 
     out = Path(f"{results_prefix}.json")
 
