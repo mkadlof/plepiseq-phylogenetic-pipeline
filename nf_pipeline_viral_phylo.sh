@@ -143,11 +143,36 @@ done
 
 
 # 2) Paths
-[ -e "$metadata" ]        || err "Metadata not found: $metadata"
-[ -e "$inputDir" ]       || err "Input FASTA path not found: $inputDir"
-[ -d "$results_dir" ]     || mkdir -p "$results_dir"
-[ -d "$projectDir" ]      || err "Program dir not found: $projectDir"
 
+if [ ! -f "$metadata" ]; then
+    echo "Błąd: plik metadata '$metadata' nie istnieje."; exit 1
+else
+    metadata=$(realpath $metadata)
+    header=$(head -n 1 "$metadata")
+fi
+
+
+if [ ! -d "$inputDir" ]; then
+    echo "Błąd: katalog wejściowy '$inputDir' nie istnieje."; exit 1
+else
+  inputDir=$(realpath -- $inputDir)
+fi
+
+if [ ! -d "$projectDir" ]; then
+    echo "Błąd: katalog projektu '$projectDir' nie istnieje."; exit 1
+else
+  projectDir=$(realpath -- "$projectDir") || {
+  echo "Błąd: nie mogę wyznaczyć ścieżki absolutnej dla '$projectDir'." >&2
+  exit 1
+}
+fi
+
+if [ -d "$results_dir" ]; then
+  results_dir=$(realpath ${results_dir})
+else
+  mkdir -p -- "$results_dir" || { echo "Nie mogę utworzyć katalogu: $results_dir" >&2; exit 1; }
+  results_dir=$(realpath -- "$results_dir")
+fi
 
 # 3) Profile
 case "$profile" in
@@ -212,10 +237,11 @@ fi
 
 # Determine the safeguard level
 safeguard_level="type"
-header=$(head -n 1 "$metadata")
+
 
 # Find virus column
 #  --- Required metadata columns per README ---
+# header is defined earlier in metadata eval block
 strain_col=$(get_col_idx "strain" "$header")
 if [ -z "$strain_col" ]; then
     echo "Błąd: Kolumna 'strain' nie znaleziona w metadanych."; exit 1
