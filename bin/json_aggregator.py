@@ -43,6 +43,13 @@ def main(input_params, sequence_filtering_data, sequence_clustering_data, filogr
         chronogram_data = json.load(f)
 
     out_dict['output']['input_params_data'] = input_params
+    out_dict['output']['input_params_data']['input_ids'] = out_dict['output']['input_params_data']['input_ids'] .split(',')[:-1]
+
+    try:
+        out_dict['output']['input_params_data']['clockrate'] = round(float(out_dict['output']['input_params_data']['clockrate']), 6)
+    except ValueError:
+        out_dict['output']['input_params_data']['clockrate'] = out_dict['output']['input_params_data']['clockrate']
+
     out_dict['output']['chronogram_data'] = chronogram_data
     out_dict['output']['sequence_filtering_data'] = sequence_filtering_data
     out_dict['output']['sequence_clustering_data'] = sequence_clustering_data
@@ -56,11 +63,11 @@ def main(input_params, sequence_filtering_data, sequence_clustering_data, filogr
     out_dict['output']['title'] = results_prefix
     out_dict['output']['data_uruchomienia'] = input_params['data_uruchomienia']
 
-    if input_params['pathogen'] in ["Salmonella", "Escherichia", "Campylobacter"]:
-        out_dict['output']['mst_html'] = f"{results_dir}/${results_prefix}_MST.html"
-        out_dict['output']['chronogram_nwk'] = {'bacterial_genome' : 'some/path.nwk'}
-        out_dict['output']['microreact_json'] = {'bacterial_genome' : 'some/path.json'}
-        out_dict['output']['filogram_nwk'] = {'bacterial_genome' : 'some/path.nwk'}
+    if input_params['pathogen'] in ["salmonella", "escherichia", "campylobacter"]:
+        out_dict['output']['mst_html'] = {'bacterial_genome':f'{results_prefix}/{results_prefix}_MST.html'}
+        out_dict['output']['chronogram_nwk'] = {'bacterial_genome' : f'{results_prefix}/{results_prefix}_chronogram.nwk' }
+        out_dict['output']['microreact_json'] = {'bacterial_genome' : f'{results_prefix}/{results_prefix}_microreactproject.microreact'}
+        out_dict['output']['filogram_nwk'] = {'bacterial_genome' : f'{results_prefix}/{results_prefix}_filogram.nwk'}
     else:
         chronogram_nwk = {}
         microreact_json = {}
@@ -68,9 +75,9 @@ def main(input_params, sequence_filtering_data, sequence_clustering_data, filogr
         lista_segmentow = sequence_filtering_data.keys()
 
         for segment in lista_segmentow:
-            chronogram_nwk[segment] = 'some/path.nwk'
-            microreact_json[segment] = 'some/path.json'
-            filogram_nwk[segment] = 'some/path.nwk'
+            chronogram_nwk[segment] = f'{results_prefix}/{results_prefix}_{segment}_chronogram.nwk'
+            microreact_json[segment] = f'{results_prefix}/{results_prefix}_{segment}_microreactproject.microreact'
+            filogram_nwk[segment] = f'{results_prefix}/{results_prefix}_{segment}_filogram.nwk'
 
         out_dict['output']['chronogram_nwk'] = chronogram_nwk
         out_dict['output']['microreact_json'] = microreact_json
