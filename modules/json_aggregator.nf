@@ -19,8 +19,7 @@ process json_aggregator {
                                                         --filogram_data ${phylogentics_json} \
                                                         --chronogram_data ${chronomgram_json} \
                                                         --executiondir ${ExecutionDir} \
-                                                        --results_prefix ${params.results_prefix} \
-                                                        --results_dir ${params.results_dir}
+                                                        --results_prefix ${params.results_prefix}
 
   """
 
