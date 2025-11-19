@@ -136,7 +136,7 @@ process augur_index_sequences {
 
 process augur_filter_sequences {
     container  = params.main_image
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "sequence_filtering_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "sequence_filtering_data.json"
     tag "Filtering out sequences with augur"
     cpus 1
     memory "30 GB"
@@ -212,7 +212,7 @@ process prepare_SNPs_alignment {
 process identify_identical_sequences {
     container  = params.main_image
     tag "Preparing SNPs alignment"
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "alignment_SNPs_sequence_clustering_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "alignment_SNPs_sequence_clustering_data.json"
     cpus params.threads
     memory "10 GB"
     time "2h"
@@ -237,7 +237,7 @@ process identify_identical_sequences {
 
 process run_raxml {
     container  = params.main_image
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "filogram_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "filogram_data.json"
     tag "Calculating SNPs tree"
     cpus params.threads
     memory "10 GB"
@@ -296,7 +296,7 @@ process run_raxml {
 process restore_identical_sequences {
     // Reroot initial tree, collapse poorly supported nodes
     // Reintroduce identical sequences that were removed prior to tree calculation
-    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_classical_tree.nwk"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_filogram.nwk"
     container  = params.main_image
     tag "Refining initial tree"
     cpus 1
@@ -307,7 +307,7 @@ process restore_identical_sequences {
     path(identical_sequences_mapping) 
     output:
     path("tree2_reintroduced_identical_sequences.nwk"), emit: tree
-    path("${params.results_prefix}_classical_tree.nwk"), emit: to_publishdir
+    path("${params.results_prefix}_filogram.nwk"), emit: to_publishdir
     script:
     """
     python /opt/docker/custom_scripts/root_collapse_and_add_identical_seq_to_tree.py --input_mapping ${identical_sequences_mapping} \\
@@ -316,7 +316,7 @@ process restore_identical_sequences {
                                                                                      --root \\
                                                                                      --collapse \\
                                                                                      --output_prefix tree2
-    cp tree2_reintroduced_identical_sequences.nwk ${params.results_prefix}_classical_tree.nwk
+    cp tree2_reintroduced_identical_sequences.nwk ${params.results_prefix}_filogram.nwk
     """
     
 }
@@ -327,7 +327,8 @@ process add_temporal_data {
     // Be aware that poor data with poor temporal signal might result in an incorrect tree
     container  = params.main_image
     tag "Adding temporal data to tree"
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "chronogram_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "chronogram_data.json"
+    publishDir "${params.results_dir}/${params.results_prefix}",  mode: 'copy', pattern: "${params.results_prefix}_chronogram.nwk"
     cpus 1
     memory "20 GB"
     time "5h"
@@ -337,6 +338,7 @@ process add_temporal_data {
     output:
     tuple path("tree3_timetree.nwk"), path("branch_lengths.json"), path("traits.json"), emit: to_auspice
     tuple path(tree), path("tree3_rescaled.nwk"), emit: to_microreact
+    path("${params.results_prefix}_chronogram.nwk"), emit: to_results
     path('chronogram_data.json'), emit: json
     script:
     """
@@ -420,6 +422,7 @@ process add_temporal_data {
     
     # modify tree3_timetree.nwk by replacing branches length with "time distance" predicted for each leaf and internal node with timetree
     python /opt/docker/custom_scripts/convert_nwk_to_timetree.py --tree tree3_timetree.nwk --branches branch_lengths.json --output tree3_rescaled.nwk
+    cp tree3_rescaled.nwk ${params.results_prefix}_chronogram.nwk
 
 
     # create json
@@ -730,8 +733,10 @@ add_dummy_data_out = run_dummy_refine(restore_identical_sequences_out.tree, augu
 
 metadata_for_microreact_out = metadata_for_microreact(generate_colors_for_features_out, metadata_channel)
 
-visualize_tree_out_1 = visualize_tree_1(add_temporal_data_out.to_auspice, generate_colors_for_features_out, metadata_channel, "timetree")
-visualize_tree_out_2 = visualize_tree_2(add_dummy_data_out, generate_colors_for_features_out, metadata_channel, "regulartree")
+// Here we can switch back visualization with auspice
+
+// visualize_tree_out_1 = visualize_tree_1(add_temporal_data_out.to_auspice, generate_colors_for_features_out, metadata_channel, "timetree")
+// visualize_tree_out_2 = visualize_tree_2(add_dummy_data_out, generate_colors_for_features_out, metadata_channel, "regulartree")
 // save_input_to_log(gff_input)
 
 prepare_microreact_json_out = prepare_microreact_json(metadata_for_microreact_out, add_temporal_data_out.to_microreact)
@@ -745,7 +750,6 @@ prepare_MST(metadata_channel)
 
 pair_ch = create_input_params_json_out.json.concat(augur_filter_sequences_out.json, identify_identical_sequences_out.json, run_raxml_out.json, add_temporal_data_out.json)
 pair_ch = pair_ch.collect()
-pair_ch.view()
 
 json_aggregator_out = json_aggregator(pair_ch, ExecutionDir)
 
