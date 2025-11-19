@@ -1,6 +1,6 @@
 process identify_low_quality_sequences {
     tag "identify low quality sequence for ${segmentId}"
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_sequence_filtering_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_sequence_filtering_data.json"
     container  = params.main_image
     cpus 1
     memory "30 GB"

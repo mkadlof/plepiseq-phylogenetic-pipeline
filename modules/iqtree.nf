@@ -1,6 +1,6 @@
 process iqtree {
     container  = params.main_image
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_filogram_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_filogram_data.json"
     tag "Creating filogram for ${segmentId}"
     cpus params.threads
     memory "50 GB"

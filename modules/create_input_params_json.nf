@@ -5,7 +5,7 @@ process create_input_params_json {
     cpus 1
     memory "1 GB"
     time "5m"
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "input_params.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "input_params.json"
     input:
     path metadata
     val(ExecutionDir)
@@ -14,8 +14,8 @@ process create_input_params_json {
     env(QC_status), emit: initial_qc
     script:
     ExecutionDir = ExecutionDir.replace(".", "")
-    if (params.organism == null) {organism = params.genus} else {organism = params.organism}
-    if (params.genus == null) {genus = params.organism} else {genus = params.genus}
+    def organism = (params.organism ?: params.genus ?: '').toString().toLowerCase()
+    def genus    = (params.genus    ?: params.organism ?: '').toString().toLowerCase()
     """
 
     get_col_idx() {
@@ -38,7 +38,7 @@ process create_input_params_json {
     DATA_URUCHOMIENIA=`date '+%F %H:%M'`
     VERSION=\$(cat /opt/docker/VERSION)
 
-    bacteria=("Salmonella" "Escherichia" "Campylobacter")
+    bacteria=("salmonella" "escherichia" "campylobacter")
     if [[ ${genus} =~ "\${bacteria}" ]]; then
 
         echo "
@@ -51,13 +51,13 @@ process create_input_params_json {
         'input_data' : '${params.input_dir}',
         'input_metadata' : '${params.metadata}',
         'results_dir' : '${params.results_dir}/${params.results_prefix}',
-        'threshold_Ns' : '${params.threshold_Ns}',
-        'threshold_ambiguities' : '${params.threshold_ambiguities}',
+        'threshold_Ns' : ${params.threshold_Ns},
+        'threshold_ambiguities' : ${params.threshold_ambiguities},
         'map_detail' : '${params.map_detail}',
         'phylogenetic_model' : '${params.model}'  ,
-        'phylogenetic_bootstrap' : '${params.bootstrap}',
-        'phylogenetic_min_support' : '${params.min_support}',
-        'phylogenetic_starting_trees' : '${params.starting_trees}',
+        'phylogenetic_bootstrap' : ${params.bootstrap},
+        'phylogenetic_min_support' : ${params.min_support},
+        'phylogenetic_starting_trees' : ${params.starting_trees},
         'clockrate'  : '${params.clockrate}',
         'input_ids' : '\${LIST_OF_IDS}',
         'input_type_bacteria' : '${params.input_type}',

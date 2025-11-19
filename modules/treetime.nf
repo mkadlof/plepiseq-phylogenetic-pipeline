@@ -6,7 +6,7 @@ process treetime {
     tag "Adding temporal data to tree for segment: ${segmentId}"
     container  = params.main_image
     publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${segmentId}_timetree.nwk"
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_chronogram_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_chronogram_data.json"
     cpus 1
     memory "30 GB"
     time "4h"
