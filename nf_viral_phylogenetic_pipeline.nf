@@ -102,7 +102,8 @@ workflow core {
 
     c5 = insert_duplicates_into_tree.out.join(rescale_timetree.out)
 
-    augur_export(treetime_out.to_auspice)
+    // Here one can switch back auspice
+    // augur_export(treetime_out.to_auspice)
 
     // Transforming metadata and prepare .microreact JSON
     find_country_coordinates(metadata)
