@@ -1,7 +1,7 @@
 process find_identical_sequences {
     container  = params.main_image
     tag "Identifying samples with identical sequences for ${segmentId}"
-    publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_valid_strains_sequence_clustering_data.json"
+    // publishDir "${params.results_dir}/${params.results_prefix}/subschemas", mode: 'copy', pattern: "${segmentId}_valid_strains_sequence_clustering_data.json"
     cpus 1
     memory "30 GB"
     time "1h"
