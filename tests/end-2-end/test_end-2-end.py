@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 import os
 import pytest
-from ete3 import Tree
 import functools, requests
 import fastjsonschema
 
@@ -477,8 +476,9 @@ def test_filogram_data(json_file, json_field):
 
         assert observed == expected,  f"{json_file.name} mismatch in filogram_data for segment: {segment} for field {json_field}"
 
-
+@pytest.mark.filterwarnings("ignore")
 def test_tree_topology(tree_file):
+    from ete3 import Tree
     # We allow 1 different split in trees
     expected = Tree(GOLDENS[tree_file.name], format=1)
     # observed = Tree(open(tree_file, "r").readline(), format=1)
