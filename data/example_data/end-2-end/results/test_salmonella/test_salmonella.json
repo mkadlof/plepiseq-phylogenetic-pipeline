@@ -1,0 +1,387 @@
+{
+    "output": {
+        "input_params_data": {
+            "pathogen": "salmonella",
+            "subcategory_organism": "TBD",
+            "main_image": "pzh_pipeline-phylo:latest",
+            "data_uruchomienia": "2025-11-25 12:35",
+            "pipeline_version": "0.0.1",
+            "input_data": "data/example_data/salmonella/fastas",
+            "input_metadata": "data/example_data/salmonella/metadata_salmonella.txt",
+            "results_dir": "results/test_salmonella",
+            "threshold_Ns": 0.02,
+            "threshold_ambiguities": 0,
+            "map_detail": "city",
+            "phylogenetic_model": "GTR+G",
+            "phylogenetic_bootstrap": 200,
+            "phylogenetic_min_support": 70,
+            "phylogenetic_starting_trees": 10,
+            "clockrate": "",
+            "input_ids": [
+                "ERR13711462",
+                "SRR10032843",
+                "SRR10049737",
+                "SRR10084868",
+                "SRR10084881",
+                "SRR10222053",
+                "SRR10235805",
+                "SRR10236686",
+                "SRR10314911",
+                "SRR10404589",
+                "SRR14766386",
+                "SRR16216494",
+                "SRR2096548",
+                "SRR22230307",
+                "SRR23721562",
+                "SRR27592486",
+                "SRR28412153",
+                "SRR29209733",
+                "SRR3097404",
+                "SRR5742498",
+                "SRR5815675",
+                "SRR5883584",
+                "SRR6029164",
+                "SRR6107159",
+                "SRR6663496",
+                "SRR7011956",
+                "SRR7890524",
+                "SRR8207016",
+                "SRR8782323"
+            ],
+            "input_type_bacteria": "fasta",
+            "prokka_image": "staphb/prokka:latest"
+        },
+        "chronogram_data": {
+            "bacterial_genome": {
+                "id_chronogram": [
+                    "ERR13711462",
+                    "SRR10032843",
+                    "SRR10049737",
+                    "SRR10084868",
+                    "SRR10084881",
+                    "SRR10222053",
+                    "SRR10235805",
+                    "SRR10236686",
+                    "SRR10314911",
+                    "SRR10404589",
+                    "SRR14766386",
+                    "SRR16216494",
+                    "SRR2096548",
+                    "SRR22230307",
+                    "SRR23721562",
+                    "SRR27592486",
+                    "SRR28412153",
+                    "SRR29209733",
+                    "SRR3097404",
+                    "SRR5742498",
+                    "SRR5815675",
+                    "SRR5883584",
+                    "SRR6029164",
+                    "SRR6107159",
+                    "SRR6663496",
+                    "SRR7011956",
+                    "SRR7890524",
+                    "SRR8207016",
+                    "SRR8782323"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-06,
+                "clockrate_correlation": 0.11
+            }
+        },
+        "sequence_filtering_data": {
+            "bacterial_genome": {
+                "ERR13711462": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10032843": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10049737": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10084868": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10084881": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10222053": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10235805": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10236686": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10314911": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR10404589": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR14766386": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR16216494": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR2096548": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR22230307": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR23721562": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR27592486": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR28412153": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR29209733": {
+                    "number_of_N": 42,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR3097404": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR5742498": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR5815675": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR5883584": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR6029164": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR6107159": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR6663496": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR7011956": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR7890524": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR8207016": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SRR8782323": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            }
+        },
+        "sequence_clustering_data": {
+            "bacterial_genome": {
+                "threshold": 1.0,
+                "clusters": {
+                    "SRR10049737": [
+                        "SRR10049737",
+                        "SRR10084868"
+                    ],
+                    "SRR10314911": [
+                        "SRR10314911",
+                        "SRR10404589"
+                    ],
+                    "SRR6029164": [
+                        "SRR6029164",
+                        "SRR6107159"
+                    ],
+                    "ERR13711462": [
+                        "ERR13711462"
+                    ],
+                    "SRR10032843": [
+                        "SRR10032843"
+                    ],
+                    "SRR10084881": [
+                        "SRR10084881"
+                    ],
+                    "SRR10222053": [
+                        "SRR10222053"
+                    ],
+                    "SRR10235805": [
+                        "SRR10235805"
+                    ],
+                    "SRR10236686": [
+                        "SRR10236686"
+                    ],
+                    "SRR14766386": [
+                        "SRR14766386"
+                    ],
+                    "SRR16216494": [
+                        "SRR16216494"
+                    ],
+                    "SRR2096548": [
+                        "SRR2096548"
+                    ],
+                    "SRR22230307": [
+                        "SRR22230307"
+                    ],
+                    "SRR23721562": [
+                        "SRR23721562"
+                    ],
+                    "SRR27592486": [
+                        "SRR27592486"
+                    ],
+                    "SRR28412153": [
+                        "SRR28412153"
+                    ],
+                    "SRR29209733": [
+                        "SRR29209733"
+                    ],
+                    "SRR3097404": [
+                        "SRR3097404"
+                    ],
+                    "SRR5742498": [
+                        "SRR5742498"
+                    ],
+                    "SRR5815675": [
+                        "SRR5815675"
+                    ],
+                    "SRR5883584": [
+                        "SRR5883584"
+                    ],
+                    "SRR6663496": [
+                        "SRR6663496"
+                    ],
+                    "SRR7011956": [
+                        "SRR7011956"
+                    ],
+                    "SRR7890524": [
+                        "SRR7890524"
+                    ],
+                    "SRR8207016": [
+                        "SRR8207016"
+                    ],
+                    "SRR8782323": [
+                        "SRR8782323"
+                    ]
+                }
+            }
+        },
+        "filogram_data": {
+            "bacterial_genome": {
+                "id_filogram": [
+                    "ERR13711462",
+                    "SRR10032843",
+                    "SRR10049737",
+                    "SRR10084881",
+                    "SRR10222053",
+                    "SRR10235805",
+                    "SRR10236686",
+                    "SRR10314911",
+                    "SRR14766386",
+                    "SRR16216494",
+                    "SRR2096548",
+                    "SRR22230307",
+                    "SRR23721562",
+                    "SRR27592486",
+                    "SRR28412153",
+                    "SRR29209733",
+                    "SRR3097404",
+                    "SRR5742498",
+                    "SRR5815675",
+                    "SRR5883584",
+                    "SRR6029164",
+                    "SRR6663496",
+                    "SRR7011956",
+                    "SRR7890524",
+                    "SRR8207016",
+                    "SRR8782323"
+                ],
+                "program_name": "raxml-ng",
+                "program_version": "1.2.2-master",
+                "phylogenetic_model": "GTR+G+ASC_STAM",
+                "phylogenetic_bootstrap": 200,
+                "phylogenetic_min_support": 70,
+                "phylogenetic_starting_trees": 10
+            }
+        },
+        "pathogen": "salmonella",
+        "ExecutionDir_dir": "data/example_data/end-2-end/",
+        "pipeline_version": "0.0.1",
+        "status": "tak",
+        "title": "test_salmonella",
+        "data_uruchomienia": "2025-11-25 12:35",
+        "mst_html": {
+            "bacterial_genome": "results/test_salmonella/test_salmonella_MST.html"
+        },
+        "chronogram_nwk": {
+            "bacterial_genome": "results/test_salmonella/test_salmonella_chronogram.nwk"
+        },
+        "microreact_json": {
+            "bacterial_genome": "results/test_salmonella/test_salmonella_microreactproject.microreact"
+        },
+        "filogram_nwk": {
+            "bacterial_genome": "results/test_salmonella/test_salmonella_filogram.nwk"
+        }
+    }
+}

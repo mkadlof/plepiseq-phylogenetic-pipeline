@@ -1,0 +1,426 @@
+{
+    "charts": {},
+    "datasets": {
+        "dataset-1": {
+            "id": "dataset-1",
+            "file": "sib4",
+            "idFieldName": "strain"
+        }
+    },
+    "files": {
+        "sib4": {
+            "id": "sib4",
+            "type": "data",
+            "name": "olszyn-analysis-2025-metadata-microreact.tsv",
+            "format": "text/csv",
+            "blob": "data:application/octet-stream;base64, c3RyYWluCXZpcnVzCWRhdGUJY291bnRyeQljaXR5CXR5cGUJbGF0aXR1ZGUJbG9uZ2l0dWRlCXllYXIJbW9udGgJZGF5CkVTSUJfRVFBXzIwMjUuSU5GTDIuMDEJaW5mbHVlbnphCTIwMDgtMDktMTkJUG9sc2thCUJ5ZGdvc3pjeglIMU4xCTUzLjEyMTk2NDgJMTguMDAwMjUyOQkyMDA4CTkJMTkKRVNJQl9FUUFfMjAyNS5JTkZMMi4wMglpbmZsdWVuemEJMTk4Ny0wNi0xNAlQb2xza2EJT3BvbGUJSDFOMQk1MC42NjY4MTg0CTE3LjkyMzY0MDgJMTk4Nwk2CTE0CkVTSUJfRVFBXzIwMjUuSU5GTDIuMDMJaW5mbHVlbnphCTIwMjMtMTEtMjkJTmllbWN5CUvDtmxuCUgxTjEJNTAuOTM4MzYxCTYuOTU5OTc0CTIwMjMJMTEJMjkKRVNJQl9FUUFfMjAyNS5JTkZMMi4wNAlpbmZsdWVuemEJMTk5My0xMS0yNwlDemVjaHkJUGlsem5vCUgxTjEJNDkuNzQ3NzQxNQkxMy4zNzc1MjQ5CTE5OTMJMTEJMjcKRVNJQl9FUUFfMjAyNS5JTkZMMi4wNQlpbmZsdWVuemEJMjAyMC0xMi0wOAlQb2xza2EJS3Jha8OzdwlIMU4xCTUwLjA2MTk0NzQJMTkuOTM2ODU2NAkyMDIwCTEyCTgKRVNJQl9FUUFfMjAyNS5JTkZMMi4wNglpbmZsdWVuemEJMjAxOC0wMi0xMwlOaWVtY3kJQmVybGluCUgxTjEJNTIuNTE3Mzg4NQkxMy4zOTUxMzA5CTIwMTgJMgkxMwpFU0lCX0VRQV8yMDI1LklORkwyLjA3CWluZmx1ZW56YQkyMDAxLTAzLTAyCVBvbHNrYQlTemN6ZWNpbglIMU4xCTUzLjQzMDE4MTgJMTQuNTUwOTYyMwkyMDAxCTMJMgpFU0lCX0VRQV8yMDI1LklORkwyLjA4CWluZmx1ZW56YQkyMDI0LTA4LTEwCUN6ZWNoeQlCcm5vCUgxTjEJNDkuMTkyMjQ0MwkxNi42MTEzMzgyCTIwMjQJOAkxMApFU0lCX0VRQV8yMDI1LklORkwyLjA5CWluZmx1ZW56YQkyMDEyLTA1LTA2CUN6ZWNoeQlQYXJkdWJpY2UJSDFOMQk1MC4wMzg1ODEyCTE1Ljc3OTEzNTYJMjAxMgk1CTYKRVNJQl9FUUFfMjAyNS5JTkZMMi4xMAlpbmZsdWVuemEJMjAxNi0xMC0yNAlOaWVtY3kJRnJhbmtmdXJ0CUgxTjEJNTAuMTEwNjQ0NAk4LjY4MjA5MTcJMjAxNgkxMAkyNApFU0lCX0VRQV8yMDI1LklORkwyLjExCWluZmx1ZW56YQkyMDIyLTA0LTIxCVBvbHNrYQnFgcOzZMW6CUgxTjEJNTEuNzY4NzMyMwkxOS40NTY5OTExCTIwMjIJNAkyMQpFU0lCX0VRQV8yMDI1LklORkwyLjEyCWluZmx1ZW56YQkyMDE5LTA3LTMwCUN6ZWNoeQlQcmFnYQlIMU4xCTUwLjA4NzQ2NTQJMTQuNDIxMjUzNQkyMDE5CTcJMzAK"
+        },
+        "a8f0": {
+            "id": "a8f0",
+            "type": "tree",
+            "name": "clasical_tree.nwk",
+            "format": "text/x-nh",
+            "blob": "data:application/octet-stream;base64, KEVTSUJfRVFBXzIwMjUuSU5GTDIuMDE6MC4wMDIzMTI5LEVTSUJfRVFBXzIwMjUuSU5GTDIuMDU6MC4wMDExNTQ1OCxFU0lCX0VRQV8yMDI1LklORkwyLjA0OjAuMDAyMzE0MDIsRVNJQl9FUUFfMjAyNS5JTkZMMi4wMjowLjAwMTE1NDkyLEVTSUJfRVFBXzIwMjUuSU5GTDIuMDM6MC4wMDM0NzI1OCwoKEVTSUJfRVFBXzIwMjUuSU5GTDIuMDY6MC4xMTM1ODcsKChFU0lCX0VRQV8yMDI1LklORkwyLjA3OjIuNTI1OWUtMDYsRVNJQl9FUUFfMjAyNS5JTkZMMi4wODowLjAwMjMwMzU0LEVTSUJfRVFBXzIwMjUuSU5GTDIuMDk6MC4wMDIzMDY3NCk5ODowLjAwMjgzNDAyLEVTSUJfRVFBXzIwMjUuSU5GTDIuMTA6MC4wMDQxMjgzNyk5NjowLjEwNzkxMyk4MDowLjA5NzIyNTUsKEVTSUJfRVFBXzIwMjUuSU5GTDIuMTE6MC4wMDk5MTc2OCxFU0lCX0VRQV8yMDI1LklORkwyLjEyOjAuMDMyODg0NikxMDA6Mi41Mzg5Nik5NDowLjA2NzA0Myk7"
+        },
+        "ecd0": {
+            "blob": "data:application/octet-stream;base64, KChFU0lCX0VRQV8yMDI1LklORkwyLjExOjEwNjIuOTc4NDEsRVNJQl9FUUFfMjAyNS5JTkZMMi4xMjoxMDYwLjI1MjM4KU5PREVfMDAwMDAwMjo2NDc4OC4yMTk0MCwoKEVTSUJfRVFBXzIwMjUuSU5GTDIuMDE6MTA0Ljc1OTMyLEVTSUJfRVFBXzIwMjUuSU5GTDIuMDU6MTE2Ljk3NzkwLEVTSUJfRVFBXzIwMjUuSU5GTDIuMDQ6ODkuOTQ3NTgsRVNJQl9FUUFfMjAyNS5JTkZMMi4wMjo4My40OTI3OSxFU0lCX0VRQV8yMDI1LklORkwyLjAzOjExOS45NTMwNilOT0RFXzAwMDAwMDA6NTM1My4wNTE0MiwoRVNJQl9FUUFfMjAyNS5JTkZMMi4wNjozNjYyLjIyNzUzLChFU0lCX0VRQV8yMDI1LklORkwyLjEwOjExMS44NzU4NCwoRVNJQl9FUUFfMjAyNS5JTkZMMi4wNzoyNy4zODMzMSxFU0lCX0VRQV8yMDI1LklORkwyLjA4OjUwLjgyNTQ4LEVTSUJfRVFBXzIwMjUuSU5GTDIuMDk6MzguNTYzMTgpTk9ERV8wMDAwMDA1OjY4Ljg0NTQ0KU5PREVfMDAwMDAwNDozNTQ5LjA0NTM1KU5PREVfMDAwMDAwMzoxODA0Ljk4NTE3KU5PREVfMDAwMDAwMTo2MDM3OS44MDE1NSlOT0RFXzAwMDAwMDY6MC4wMDEwMDsK",
+            "format": "text/x-nh",
+            "id": "ecd0",
+            "name": "rescaled_tree.nwk",
+            "type": "tree"
+        }
+    },
+    "filters": {
+        "paneFilters": [],
+        "dataFilters": [],
+        "chartFilters": [],
+        "searchOperator": "includes",
+        "searchValue": "",
+        "selection": [],
+        "selectionBreakdownField": null
+    },
+    "matrices": {},
+    "maps": {
+        "map-1": {
+            "controls": false,
+            "dataType": "geographic-coordinates",
+            "grouped": true,
+            "groupMarkersByRegion": false,
+            "lasso": false,
+            "markersOpacity": 100,
+            "maxNodeSize": 64,
+            "minNodeSize": 4,
+            "nodeSize": 14,
+            "path": null,
+            "regionsColourField": null,
+            "regionsColourMethod": "entries",
+            "regionsColourOpacity": 100,
+            "regionsColourPalette": "ColorBrewer YlOrBr-2",
+            "scaleMarkers": false,
+            "scaleType": "logarithmic",
+            "showMarkers": true,
+            "showRegionOutlines": true,
+            "showRegions": true,
+            "style": "",
+            "tileLayerDialog": false,
+            "tileLayerOpts": null,
+            "tileLayerUrl": null,
+            "trackViewport": false,
+            "type": "mapbox",
+            "title": "Map",
+            "coordinateUnit": "decimal-degrees",
+            "latitudeField": "latitude",
+            "longitudeField": "longitude",
+            "viewport": {
+                "longitude": 14.304040114527055,
+                "latitude": 51.791182372161046,
+                "zoom": 4.163130664792186,
+                "pitch": 0,
+                "bearing": 0,
+                "padding": {
+                    "top": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0
+                }
+            }
+        }
+    },
+    "meta": {
+        "name": "test_influenza",
+        "timestamp": "2025-11-25T12:31:26.347Z",
+        "description": ""
+    },
+    "networks": {},
+    "notes": {},
+    "panes": {
+        "model": {
+            "global": {
+                "splitterSize": 2,
+                "tabEnableClose": false,
+                "tabSetHeaderHeight": 1,
+                "tabSetTabStripHeight": 1,
+                "tabSetMinWidth": 160,
+                "tabSetMinHeight": 160,
+                "borderMinSize": 160,
+                "borderBarSize": 20,
+                "borderEnableDrop": false
+            },
+            "borders": [
+                {
+                    "type": "border",
+                    "size": 240,
+                    "location": "right",
+                    "children": [
+                        {
+                            "type": "tab",
+                            "id": "--mr-legend-pane",
+                            "name": "Legend",
+                            "component": "Legend",
+                            "enableClose": false,
+                            "enableDrag": false
+                        },
+                        {
+                            "type": "tab",
+                            "id": "--mr-selection-pane",
+                            "name": "Selection",
+                            "component": "Selection",
+                            "enableClose": false,
+                            "enableDrag": false
+                        },
+                        {
+                            "type": "tab",
+                            "id": "--mr-history-pane",
+                            "name": "History",
+                            "component": "History",
+                            "enableClose": false,
+                            "enableDrag": false
+                        },
+                        {
+                            "type": "tab",
+                            "id": "--mr-views-pane",
+                            "name": "Views",
+                            "component": "Views",
+                            "enableClose": false,
+                            "enableDrag": false
+                        }
+                    ]
+                }
+            ],
+            "layout": {
+                "type": "row",
+                "id": "#ce7ba5b6-abbd-474b-a0d0-77a81473d0ea",
+                "children": [
+                    {
+                        "type": "row",
+                        "id": "#6197b964-68d1-4657-8214-64e1c98162d4",
+                        "children": [
+                            {
+                                "type": "row",
+                                "id": "#9da8cfd7-e574-4291-96ea-121b77f21f0e",
+                                "weight": 64,
+                                "children": [
+                                    {
+                                        "type": "tabset",
+                                        "id": "#b327f2ad-23e4-44a9-abce-7b3dba969790",
+                                        "children": [
+                                            {
+                                                "type": "tab",
+                                                "id": "map-1",
+                                                "name": "Map",
+                                                "component": "Map"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "row",
+                                        "id": "#70cb4fad-2e23-4630-b95f-7ff2ed8745d2",
+                                        "children": [
+                                            {
+                                                "type": "tabset",
+                                                "id": "#5d6de66a-d7ae-49d3-9961-c87452e7f176",
+                                                "weight": 50,
+                                                "children": [
+                                                    {
+                                                        "type": "tab",
+                                                        "id": "tree-1",
+                                                        "name": "Tree",
+                                                        "component": "Tree"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "tabset",
+                                                "id": "#39010d69-620b-479e-a254-32ff97f6fb05",
+                                                "weight": 50,
+                                                "children": [
+                                                    {
+                                                        "type": "tab",
+                                                        "id": "tree-2",
+                                                        "name": "Tree",
+                                                        "component": "Tree"
+                                                    }
+                                                ],
+                                                "active": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "tabset",
+                                "id": "#270b0312-71cb-454c-a541-855b87c344c2",
+                                "weight": 48,
+                                "children": [
+                                    {
+                                        "type": "tab",
+                                        "id": "timeline-1",
+                                        "name": "Timeline",
+                                        "component": "Timeline"
+                                    },
+                                    {
+                                        "type": "tab",
+                                        "id": "table-1",
+                                        "name": "Metadata",
+                                        "component": "Table"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "slicers": {},
+    "styles": {
+        "coloursField": "city",
+        "colourPalettes": [],
+        "defaultColour": "transparent",
+        "defaultShape": "circle",
+        "colourSettings": {},
+        "labelsField": null,
+        "legendDirection": "row",
+        "shapesField": null,
+        "shapePalettes": []
+    },
+    "tables": {
+        "table-1": {
+            "displayMode": "cosy",
+            "hideUnselected": false,
+            "title": "Metadata",
+            "paneId": "table-1",
+            "columns": [
+                {
+                    "field": "strain",
+                    "fixed": false
+                },
+                {
+                    "field": "Serovar",
+                    "fixed": false
+                },
+                {
+                    "field": "MLST",
+                    "fixed": false
+                },
+                {
+                    "field": "cgMLST",
+                    "fixed": false
+                },
+                {
+                    "field": "HC5",
+                    "fixed": false
+                },
+                {
+                    "field": "HC10",
+                    "fixed": false
+                },
+                {
+                    "field": "region",
+                    "fixed": false
+                },
+                {
+                    "field": "country",
+                    "fixed": false
+                },
+                {
+                    "field": "division",
+                    "fixed": false
+                },
+                {
+                    "field": "city",
+                    "fixed": false
+                },
+                {
+                    "field": "date",
+                    "fixed": false
+                },
+                {
+                    "field": "latitude",
+                    "fixed": false
+                },
+                {
+                    "field": "longitude",
+                    "fixed": false
+                },
+                {
+                    "field": "year",
+                    "fixed": false
+                },
+                {
+                    "field": "month",
+                    "fixed": false
+                },
+                {
+                    "field": "day",
+                    "fixed": false
+                }
+            ],
+            "file": "sib4"
+        }
+    },
+    "timelines": {
+        "timeline-1": {
+            "bounds": null,
+            "controls": false,
+            "nodeSize": 14,
+            "playing": false,
+            "speed": 1,
+            "laneField": null,
+            "style": "bar",
+            "unit": null,
+            "viewport": null,
+            "title": "Timeline",
+            "dataType": "year-month-day",
+            "yearField": "year",
+            "monthField": "month",
+            "dayField": "day"
+        }
+    },
+    "trees": {
+        "tree-1": {
+            "alignLabels": true,
+            "blockHeaderFontSize": 13,
+            "blockPadding": 0,
+            "blocks": [],
+            "blockSize": 14,
+            "branchLengthsDigits": 4,
+            "controls": false,
+            "fontSize": 16,
+            "hideOrphanDataRows": false,
+            "ids": null,
+            "internalLabelsFilterRange": [
+                0,
+                100
+            ],
+            "internalLabelsFontSize": 13,
+            "lasso": false,
+            "nodeSize": 14,
+            "path": null,
+            "roundBranchLengths": true,
+            "scaleLineAlpha": true,
+            "showBlockHeaders": true,
+            "showBlockLabels": false,
+            "showBranchLengths": false,
+            "showEdges": true,
+            "showInternalLabels": false,
+            "showLabels": true,
+            "showLeafLabels": false,
+            "showPiecharts": true,
+            "showShapeBorders": true,
+            "showShapes": true,
+            "styleLeafLabels": false,
+            "styleNodeEdges": false,
+            "subtreeIds": null,
+            "type": "rc",
+            "title": "Tree",
+            "labelField": "strain",
+            "file": "a8f0",
+            "highlightedId": null,
+            "fixedScale": null,
+            "zoom": 0
+        },
+        "tree-2": {
+            "alignLabels": true,
+            "blockHeaderFontSize": 13,
+            "blockPadding": 0,
+            "blocks": [],
+            "blockSize": 14,
+            "branchLengthsDigits": 4,
+            "controls": false,
+            "fontSize": 16,
+            "hideOrphanDataRows": false,
+            "ids": null,
+            "internalLabelsFilterRange": [
+                0,
+                100
+            ],
+            "internalLabelsFontSize": 13,
+            "lasso": false,
+            "nodeSize": 14,
+            "path": null,
+            "roundBranchLengths": true,
+            "scaleLineAlpha": true,
+            "showBlockHeaders": true,
+            "showBlockLabels": false,
+            "showBranchLengths": false,
+            "showEdges": true,
+            "showInternalLabels": false,
+            "showLabels": true,
+            "showLeafLabels": false,
+            "showPiecharts": true,
+            "showShapeBorders": true,
+            "showShapes": true,
+            "styleLeafLabels": false,
+            "styleNodeEdges": false,
+            "subtreeIds": null,
+            "type": "rc",
+            "title": "Tree",
+            "labelField": "strain",
+            "file": "ecd0",
+            "highlightedId": null
+        }
+    },
+    "views": [],
+    "schema": "https://microreact.org/schema/v1.json"
+}

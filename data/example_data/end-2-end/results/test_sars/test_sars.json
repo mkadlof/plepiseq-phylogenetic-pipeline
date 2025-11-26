@@ -1,0 +1,267 @@
+{
+    "output": {
+        "input_params_data": {
+            "pathogen": "sars-cov-2",
+            "subcategory_organism": "tak",
+            "main_image": "pzh_pipeline-phylo:latest",
+            "data_uruchomienia": "2025-11-25 12:34",
+            "pipeline_version": "0.0.1",
+            "input_data": "data/example_data/sars-cov-2",
+            "input_metadata": "data/example_data/sars-cov-2/sars-cov-2_metadata.tsv",
+            "results_dir": "data/example_data/end-2-end/",
+            "threshold_Ns": 0.02,
+            "threshold_ambiguities": 0,
+            "map_detail": "city",
+            "phylogenetic_model": "GTR+G",
+            "phylogenetic_bootstrap": 1000,
+            "phylogenetic_min_support": 0.75,
+            "phylogenetic_starting_trees": 10,
+            "clockrate": "",
+            "input_ids": [
+                "SARS3_01",
+                "SARS3_02",
+                "SARS3_03",
+                "SARS3_04",
+                "SARS3_05",
+                "SARS3_06",
+                "SARS3_07",
+                "SARS3_08",
+                "SARS3_09",
+                "SARS3_10",
+                "SARS3_11",
+                "SARS3_12",
+                "SARS3_13",
+                "SARS3_14",
+                "SARS3_15",
+                "SARS3_16",
+                "SARS3_17",
+                "SARS3_18",
+                "SARS3_19",
+                "SARS3_20"
+            ]
+        },
+        "chronogram_data": {
+            "MN908947.3": {
+                "id_chronogram": [
+                    "SARS3_01",
+                    "SARS3_07",
+                    "SARS3_10",
+                    "SARS3_17",
+                    "SARS3_18",
+                    "SARS3_15",
+                    "SARS3_16",
+                    "SARS3_02",
+                    "SARS3_03",
+                    "SARS3_20",
+                    "SARS3_04",
+                    "SARS3_09",
+                    "SARS3_19",
+                    "SARS3_06",
+                    "SARS3_11",
+                    "SARS3_14"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 0.00112,
+                "clockrate_correlation": 0.3
+            }
+        },
+        "sequence_filtering_data": {
+            "MN908947.3": {
+                "SARS3_01": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_02": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_03": {
+                    "number_of_N": 307,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_04": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_05": {
+                    "number_of_N": 23340,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 23340, with total length os a sequence is 29894 that number exceeds threshold of 0.02"
+                },
+                "SARS3_06": {
+                    "number_of_N": 568,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_07": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_08": {
+                    "number_of_N": 121,
+                    "number_of_ambiguous": 26,
+                    "status": "nie",
+                    "error_message": "Number of ambiguous characters in a sequence is 26, with total length os a sequence is 29869 that number exceeds threshold of 0.0"
+                },
+                "SARS3_09": {
+                    "number_of_N": 568,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_10": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_11": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_12": {
+                    "number_of_N": 5190,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 5190, with total length os a sequence is 29847 that number exceeds threshold of 0.02"
+                },
+                "SARS3_13": {
+                    "number_of_N": 12414,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 12414, with total length os a sequence is 29850 that number exceeds threshold of 0.02"
+                },
+                "SARS3_14": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_15": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_16": {
+                    "number_of_N": 507,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_17": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_18": {
+                    "number_of_N": 126,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_19": {
+                    "number_of_N": 307,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "SARS3_20": {
+                    "number_of_N": 307,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            }
+        },
+        "sequence_clustering_data": {
+            "MN908947.3": {
+                "threshold": 1.0,
+                "clusters": {
+                    "SARS3_03": [
+                        "SARS3_03",
+                        "SARS3_20"
+                    ],
+                    "SARS3_10": [
+                        "SARS3_10",
+                        "SARS3_17",
+                        "SARS3_18"
+                    ],
+                    "SARS3_01": [
+                        "SARS3_01"
+                    ],
+                    "SARS3_02": [
+                        "SARS3_02"
+                    ],
+                    "SARS3_04": [
+                        "SARS3_04"
+                    ],
+                    "SARS3_06": [
+                        "SARS3_06"
+                    ],
+                    "SARS3_07": [
+                        "SARS3_07"
+                    ],
+                    "SARS3_09": [
+                        "SARS3_09"
+                    ],
+                    "SARS3_11": [
+                        "SARS3_11"
+                    ],
+                    "SARS3_14": [
+                        "SARS3_14"
+                    ],
+                    "SARS3_15": [
+                        "SARS3_15"
+                    ],
+                    "SARS3_16": [
+                        "SARS3_16"
+                    ],
+                    "SARS3_19": [
+                        "SARS3_19"
+                    ]
+                }
+            }
+        },
+        "filogram_data": {
+            "MN908947.3": {
+                "id_filogram": [
+                    "SARS3_01",
+                    "SARS3_07",
+                    "SARS3_10",
+                    "SARS3_15",
+                    "SARS3_16",
+                    "SARS3_02",
+                    "SARS3_03",
+                    "SARS3_04",
+                    "SARS3_09",
+                    "SARS3_19",
+                    "SARS3_06",
+                    "SARS3_11",
+                    "SARS3_14"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            }
+        },
+        "pathogen": "sars-cov-2",
+        "ExecutionDir_dir": "data/example_data/end-2-end/",
+        "pipeline_version": "0.0.1",
+        "status": "tak",
+        "title": "test_sars",
+        "data_uruchomienia": "2025-11-25 12:34",
+        "chronogram_nwk": {
+            "MN908947.3": "results/test_sars/test_sars_MN908947.3_chronogram.nwk"
+        },
+        "microreact_json": {
+            "MN908947.3": "results/test_sars/test_sars_MN908947.3_microreactproject.microreact"
+        },
+        "filogram_nwk": {
+            "MN908947.3": "results/test_sars/test_sars_MN908947.3_filogram.nwk"
+        }
+    }
+}
