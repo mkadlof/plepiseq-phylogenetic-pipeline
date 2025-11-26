@@ -30,13 +30,30 @@ Quick start
    ```bash
    cp nextflow.config.template nextflow.config
    ```
-   **Important**: adjust the content of this file to you particular environment and needs.
-7. [Optional] Run one or more example scripts to test the pipeline:
+   **Important**: adjust the content of this file to your particular environment and needs.
+7. [Optional] Run example scripts to test the pipeline:
    ```bash
    ./run_example_sars-cov-2.sh
    ./run_example_influenza.sh
    ./run_example_salmonella.sh
+   ./run_example_rsv.sh   
     ```
+   Expected outputs of these scripts can also be found under: `data/example_data/end-2-end/`   
+
+7a. [Optional] Validate example outputs with pytest. Default outputs of the example scripts are in `results/test_*` directories.
+   ```
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_sars
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_influenza
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_rsv
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_salmonella
+   ```
+   or using pre-prepared goldens (e.g. for sars-cov-2):
+
+   ```
+   pytest tests/end-2-end/test_end-2-end.py --data-dir data/example_data/end-2-end/result/test_sars
+   ```
+
+   Dependencies: pytest, ete3, fastjsonschema, requests
 
 Related projects
 ----------------
