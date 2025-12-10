@@ -119,21 +119,21 @@ Only this portion (after the `|` character) is matched against the metadata.
 Call the wrapper script
 
 ```bash
-bash nf_pipeline_viral_phylo.sh -i PATH_TO_DIRECTORY_WITH_FASTAS \ 
-                                -m PATH_TO_METADATA_FILE 
-                                -g SELECTED_SPECIES 
-                                -p MY_AWESOME_PROJECT 
-                                -f PATH_TO_REPOSITORY
+bash nf_pipeline_viral_phylo.sh --inputDir PATH_TO_DIRECTORY_WITH_FASTAS \ 
+                                --metadata PATH_TO_METADATA_FILE 
+                                --organism SELECTED_SPECIES 
+                                --results_prefix MY_AWESOME_PROJECT 
+                                --projectDir PATH_TO_REPOSITORY
 ```
 
-e.g. if one downloaded data from `/data/example_data/sars-cov-2` to a working directory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
+e.g. if one copy data from `/data/example_data/sars-cov-2` to a working directory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
 
 ```bash
-bash nf_pipeline_viral_phylo.sh -i sars-cov-2 \
-                                -m sars-cov-2_metadata.tsv \
-                                -g sars-cov-2 \
-                                -p sars_example \
-                                -f /home/my_user/plepiseq-phylogenetic-pipeline
+bash nf_pipeline_viral_phylo.sh --inputDir sars-cov-2 \
+                                --metadata sars-cov-2_metadata.tsv \
+                                --organism sars-cov-2 \
+                                --results_prefix sars_example \
+                                --projectDir /home/my_user/plepiseq-phylogenetic-pipeline
 ```
 
 To see all available options and customize your run, use:
