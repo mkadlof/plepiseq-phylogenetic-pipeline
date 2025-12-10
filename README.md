@@ -122,7 +122,7 @@ Call the wrapper script
 bash nf_pipeline_viral_phylo.sh --inputDir PATH_TO_DIRECTORY_WITH_FASTAS \ 
                                 --metadata PATH_TO_METADATA_FILE 
                                 --organism SELECTED_SPECIES 
-                                --results_prefix MY_AWESOME_PROJECT 
+                                --results_prefix PROJECT_NAME 
                                 --projectDir PATH_TO_REPOSITORY
 ```
 
@@ -130,7 +130,7 @@ e.g. if one copy data from `/data/example_data/sars-cov-2` to a working director
 
 ```bash
 bash nf_pipeline_viral_phylo.sh --inputDir sars-cov-2 \
-                                --metadata sars-cov-2_metadata.tsv \
+                                --metadata sars-cov-2/sars-cov-2_metadata.tsv \
                                 --organism sars-cov-2 \
                                 --results_prefix sars_example \
                                 --projectDir /home/my_user/plepiseq-phylogenetic-pipeline
@@ -204,22 +204,18 @@ Follow these steps to run the pipeline with minimal setup:
 2. Copy the `nf_pipeline_bacterial_phylo.sh` script from the repository’s root directory into your working directory.
 3. (Optional) Copy a valid metadata file e.g. `metadata_salmonella.txt` file and a `fastas/` directory with uncompressed genome FASTA files into the working directory.  Example files are available in the `data/example_data/salmonella` directory of the repository.
 
-Assuming your working directory contains `metadata_salmonella.txt` and a `fastas/` directory, and you’ve built/pulled the required Docker images as described above, run:
+Assuming your working directory contains `metadata_salmonella.txt` and a `fastas/` directory, cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, and you’ve built/pulled the required Docker images as described in Quick Start section, run:
 
 ```bash
-bash nf_pipeline_bacterial_phylo.sh -m metadata_salmonella.txt \
-                                    -i fastas/ \
-                                    -t fasta \
-                                    -g Salmonella \
-                                    -p Salmonella_dummy \
-                                    -d PATH_TO_CLONED_REPO \
-                                    -z RESULTS_PREFIX
+bash nf_pipeline_bacterial_phylo.sh --metadata metadata_salmonella.txt \
+                                    --inputDir fastas/ \
+                                    --inputType fasta \
+                                    --genus Salmonella \
+                                    --projectDir /home/my_user/plepiseq-phylogenetic-pipeline \
+                                    --results_prefix Salmonella_test \
                                     --db PATH_TO_EXTRNAL_DATABASES
-                                    --threads 48
 ```
 
-Replace `PATH_TO_CLONED_REPO` with the absolute path to your cloned copy of this repository.
-Replace `RESULTS_PREFIX` with any string. All pipeline produced files will start with this string
 Replace `PATH_TO_EXTRNAL_DATABASES` with the absolute path to directory with cgMLST schema
 
 To see all available options and customize your run, use:
