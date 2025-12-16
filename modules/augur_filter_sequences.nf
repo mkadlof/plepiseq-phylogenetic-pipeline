@@ -9,7 +9,7 @@ process augur_filter_sequences {
     path metadata
 
     output:
-    tuple val(segmentId), path("valid_strains.fasta")
+    tuple val(segmentId), path("valid_strains.fasta"), emit: out
 
     script:
     """

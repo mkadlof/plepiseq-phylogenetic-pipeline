@@ -16,7 +16,7 @@ RUN apt update && apt install -y software-properties-common && \
     python3.11 python3.11-distutils \
     curl unzip git gcc wget \
     zlib1g-dev libbz2-dev libcurl4-gnutls-dev libssl-dev liblzma-dev \
-    python3-pycurl mash seqtk roary bison flex default-jre cmake npm seqkit vim 
+    python3-pycurl mash seqtk roary bison flex default-jre cmake npm seqkit vim jq 
 
 # mafft (fixed veriosn)
 RUN wget https://mafft.cbrc.jp/alignment/software/mafft_7.520-1_amd64.deb && \
@@ -93,6 +93,7 @@ COPY config/* /opt/docker/config/
 COPY bin/* /opt/scripts/
 COPY data/auspice_config.json /etc/auspice/auspice_config.json
 COPY data/microreact_config_bacteria.microreact /opt/docker/config/microreact_config_bacteria.microreact
+COPY VERSION /opt/docker/
 
 CMD ["/bin/bash"]
 

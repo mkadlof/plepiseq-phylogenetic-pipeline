@@ -58,8 +58,8 @@ min_support=70 # Minimum support for a branch to keep it in a tree
 clockrate="" # User can still override any built-in and estimated values fron the alignment. If empty data derived
 threads=36 # ilość wątków używanych maksymalnie przez pipeline
 # QC params
-thresholdN=1.0 # Maksymalny odsetek N w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
-thresholdAmbiguous=1.0 # Maksymalny odsetek symboli niejednoznacznych w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
+thresholdN=0.02 # Maksymalny odsetek N w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
+thresholdAmbiguous=0 # Maksymalny odsetek symboli niejednoznacznych w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
 # Visualization
 map_detail="city"  #  poziom hierarchii na mapie przypisany próbce. Możliwe wartości to country lub city.
 
@@ -87,8 +87,8 @@ usage() {
     echo "  --bootstrap LICZBA                Liczba replikacji bootstrap dla RAxML (domyślnie: 200)"
     echo "  --min_support LICZBA               Minimalne wsparcie gałęzi, by pozostała w końcowym drzewie (domyślnie: 70)"
     echo "  --threads LICZBA                  Liczba rdzeni CPU do wykorzystania (domyślnie: 36, wielkość musi byc iloczynem 12)"
-    echo "  --thresholdN LICZBA               Maksymalny odsetek N w genomie (float z przedziału [0, 1]) (domyślnie: 1.0)"
-    echo "  --thresholdAmbiguous LICZBA       Maksymalny odsetek symboli niejednoznacznych w genomie (float z przedziału [0, 1]) (domyślnie: 1.0)"
+    echo "  --thresholdN LICZBA               Maksymalny odsetek N w genomie (float z przedziału [0, 1]) (domyślnie: 0.02)"
+    echo "  --thresholdAmbiguous LICZBA       Maksymalny odsetek symboli niejednoznacznych w genomie (float z przedziału [0, 1]) (domyślnie: 0)"
     echo "  --main_image NAZWA:TAG            Obraz Docker zawierający narzędzia używane przez pipeline"
     echo "  --prokka_image NAZWA:TAG          Obraz Docker z oprogramowaniem Prokka"
     echo "  --map_detail STR                  Informacja czy na mapie próbka przypisana jest do poziomu kraju czy miasta"
@@ -144,14 +144,30 @@ fi
 if [ ! -f "$metadata" ]; then
     echo "Błąd: plik metadata '$metadata' nie istnieje."; exit 1
 else
+    metadata=$(realpath $metadata)
     header=$(head -n 1 "$metadata")
 fi
 
 if [ ! -d "$inputDir" ]; then
     echo "Błąd: katalog wejściowy '$inputDir' nie istnieje."; exit 1
+else
+  inputDir=$(realpath -- $inputDir)
 fi
+
 if [ ! -d "$projectDir" ]; then
     echo "Błąd: katalog projektu '$projectDir' nie istnieje."; exit 1
+else
+  projectDir=$(realpath -- "$projectDir") || {
+  echo "Błąd: nie mogę wyznaczyć ścieżki absolutnej dla '$projectDir'." >&2
+  exit 1
+}
+fi
+
+if [ -d "$results_dir" ]; then
+  results_dir=$(realpath ${results_dir})
+else
+  mkdir -p -- "$results_dir" || { echo "Nie mogę utworzyć katalogu: $results_dir" >&2; exit 1; }
+  results_dir=$(realpath -- "$results_dir")
 fi
 
 if [ ! -d "${db_absolute_path_on_host}" ]; then
@@ -262,7 +278,7 @@ args=(
   "--threads"                  "$threads"
   "--map_detail"               "${map_detail}"
   "--db_absolute_path_on_host" "${db_absolute_path_on_host}"
-
+  "--projectDir"               "$projectDir"
 )
 
 # Append optional clockrate only if set

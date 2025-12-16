@@ -55,7 +55,7 @@ process transform_input_novel {
     # Collect segment names from the first decompressed sample
     cd samples
     first_sample=\$(ls *.fasta | head -1)
-    segments=\$(grep "^>" "\$first_sample" | sed 's/>//' | cut -d'|' -f1 | sort | uniq)
+    segments=\$(grep "^>" "\$first_sample" | sed 's/>//' | cut -d'|' -f1 | sed s'|/|_|g' | sort | uniq)
     cd ..
 
     # Initialize empty FASTA files for each segment
@@ -72,6 +72,7 @@ process transform_input_novel {
             /^>/ {
                 split(\$0, parts, "|")
                 seg = substr(parts[1], 2)
+                gsub("/", "_", seg)
                 out = seg ".fasta"
                 print ">" sid >> out
                 next

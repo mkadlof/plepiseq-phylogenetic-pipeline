@@ -1,7 +1,7 @@
 process insert_duplicates_into_tree {
     tag "Refining initial tree for ${segmentId}"
     container  = params.main_image
-    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_${segmentId}_classical_tree.nwk"
+    publishDir "${params.results_dir}/${params.results_prefix}/", mode: 'copy', pattern: "${params.results_prefix}_${segmentId}_filogram.nwk"
     cpus 1
     memory "10 GB"
     time "10m"
@@ -9,7 +9,7 @@ process insert_duplicates_into_tree {
     tuple val(segmentId), path(tree), path(ids)
 
     output:
-    tuple val(segmentId), path("${params.results_prefix}_${segmentId}_classical_tree.nwk")
+    tuple val(segmentId), path("${params.results_prefix}_${segmentId}_filogram.nwk")
 
     script:
     """
@@ -21,7 +21,7 @@ process insert_duplicates_into_tree {
                                                                                      --collapse_value \${MIN_SUPPORT} \\
                                                                                      --collapse \\
                                                                                      --output_prefix tree2
-    cp tree2_reintroduced_identical_sequences.nwk ${params.results_prefix}_${segmentId}_classical_tree.nwk
+    cp tree2_reintroduced_identical_sequences.nwk ${params.results_prefix}_${segmentId}_filogram.nwk
 
     """
 }

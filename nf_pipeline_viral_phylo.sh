@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 # A function used to determine which column in metadatafile has a specific header
 get_col_idx() {
     local col_name=$1
@@ -39,7 +37,7 @@ projectDir=""
 profile="local"
 
 # location of input data - USER-provided no defaults
-input_fasta=""
+inputDir=""
 metadata=""
 organism="" # analyzed genus only Salmonella Escherichia and Campylobacter are currently supported
 
@@ -50,7 +48,7 @@ results_prefix=""
 
 # Pipeline-specific parameters with defaults
 # Defaults are hardcoded in this script NOT in the .nf file
-threshold_Ns="" # Maksymalny odsetek N w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
+threshold_Ns='0.02' # Maksymalny odsetek N w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
 threshold_ambiguities=0 # Maksymalny odsetek symboli niejednoznacznych w genomie (liczba zmiennoprzecinkowa z przedziału [0, 1])
 # Visualization
 map_detail="city"  #  poziom hierarchii na mapie przypisany próbce. Możliwe wartości to country lub city.
@@ -69,12 +67,12 @@ clockrate="" #
 
 # Usage function to display help
 usage() {
-    echo "Użycie: $0 --input_fasta ŚCIEŻKA --results_dir ŚCIEŻKA --results_prefix PREFIX --profile NAZWA --metadata metadata.txt --organism NAZWA --projectDir SCIEZKA "
+    echo "Użycie: $0 --inputDir ŚCIEŻKA --results_dir ŚCIEŻKA --results_prefix PREFIX --profile NAZWA --metadata metadata.txt --organism NAZWA --projectDir SCIEZKA "
     echo
     echo "Skrypt uruchamia pipeline filogenetyczny dla pelnogenomowych sekwncji wybrnaych wirusow"
     echo
     echo "Wymagane parametry:"
-    echo "  -i, --input_fasta ŚCIEŻKA       Ścieżka do katalogu z danymi wejściowymi w postaci plikow fasta Fasta LUB sciezka do pliku fasta z wielomasekwencjami (WYMAGANE)"
+    echo "  -i, --inputDir ŚCIEŻKA         Ścieżka do katalogu z danymi wejściowymi w postaci plikow fasta Fasta LUB sciezka do pliku fasta z wielomasekwencjami (WYMAGANE)"
     echo "  -m, --metadata ŚCIEŻKA          Ścieżka do pliku z metadanymi (WYMAGANE)"
     echo "  -g, --organism NAZWA            Rodzaj wirusa: sars-cov-2, influenza, rsv (WYMAGANE)"
     echo "  -p, --results_prefix PREFIX     Prefiks dodawany do wszystkich plików wynikowych (WYMAGANE)"
@@ -104,7 +102,7 @@ fi
 
 # Parse arguments using GNU getopt
 TEMP=$(getopt -o hi:m:g:o:x:p:d: \
-  --long help,input_fasta:,metadata:,organism:,results_dir:,profile:,results_prefix:,projectDir:,\
+  --long help,inputDir:,metadata:,organism:,results_dir:,profile:,results_prefix:,projectDir:,\
 model:,bootstrap:,min_support:,starting_trees:,threads:,threshold_Ns:,threshold_ambiguities:,\
 main_image:,map_detail:,clockrate: -n "$0" -- "$@") || { usage; exit 1; }
 
@@ -114,7 +112,7 @@ eval set -- "$TEMP"
 while true; do
   case "$1" in
     -h|--help) usage; exit 0 ;;
-    -i|--input_fasta)         input_fasta="$2"; shift 2 ;;
+    -i|--inputDir)            inputDir="$2"; shift 2 ;;
     -m|--metadata)            metadata="$2"; shift 2 ;;
     -g|--organism)            organism="$2"; shift 2 ;;
     -o|--results_dir)         results_dir="$2"; shift 2 ;;
@@ -136,7 +134,7 @@ while true; do
   esac
 done
 # 1) Required presence
-[ -n "$input_fasta" ]     || err "Missing --input_fasta"
+[ -n "$inputDir" ]        || err "Missing --inputDir"
 [ -n "$metadata" ]        || err "Missing --metadata"
 [ -n "$organism" ]        || err "Missing --organism"
 [ -n "$results_prefix" ]  || err "Missing --results_prefix"
@@ -145,11 +143,36 @@ done
 
 
 # 2) Paths
-[ -e "$metadata" ]        || err "Metadata not found: $metadata"
-[ -e "$input_fasta" ]     || err "Input FASTA path not found: $input_fasta"
-[ -d "$results_dir" ]     || mkdir -p "$results_dir"
-[ -d "$projectDir" ]      || err "Program dir not found: $projectDir"
 
+if [ ! -f "$metadata" ]; then
+    echo "Błąd: plik metadata '$metadata' nie istnieje."; exit 1
+else
+    metadata=$(realpath $metadata)
+    header=$(head -n 1 "$metadata")
+fi
+
+
+if [ ! -d "$inputDir" ]; then
+    echo "Błąd: katalog wejściowy '$inputDir' nie istnieje."; exit 1
+else
+  inputDir=$(realpath -- $inputDir)
+fi
+
+if [ ! -d "$projectDir" ]; then
+    echo "Błąd: katalog projektu '$projectDir' nie istnieje."; exit 1
+else
+  projectDir=$(realpath -- "$projectDir") || {
+  echo "Błąd: nie mogę wyznaczyć ścieżki absolutnej dla '$projectDir'." >&2
+  exit 1
+}
+fi
+
+if [ -d "$results_dir" ]; then
+  results_dir=$(realpath ${results_dir})
+else
+  mkdir -p -- "$results_dir" || { echo "Nie mogę utworzyć katalogu: $results_dir" >&2; exit 1; }
+  results_dir=$(realpath -- "$results_dir")
+fi
 
 # 3) Profile
 case "$profile" in
@@ -181,7 +204,7 @@ shopt -u nocasematch
 # 5) Integers
 [[ "$bootstrap" =~ ^[0-9]+$ ]]     || err "--bootstrap must be integer"
 [[ "$min_support" =~ ^[0-9]+$ ]]    || err "--min_support must be integer"
-min_support=`echo ${min_support} | awk '{print $0/100}'` # iq-tree want float for support
+min_support=$(echo ${min_support} | awk '{print $0/100}') # iq-tree want float for support
 [[ "$starting_trees" =~ ^[0-9]+$ ]] || err "--starting_trees must be integer"
 [[ "$threads" =~ ^[0-9]+$ ]]       || err "--threads must be integer"
 
@@ -214,10 +237,11 @@ fi
 
 # Determine the safeguard level
 safeguard_level="type"
-header=$(head -n 1 "$metadata")
+
 
 # Find virus column
 #  --- Required metadata columns per README ---
+# header is defined earlier in metadata eval block
 strain_col=$(get_col_idx "strain" "$header")
 if [ -z "$strain_col" ]; then
     echo "Błąd: Kolumna 'strain' nie znaleziona w metadanych."; exit 1
@@ -229,7 +253,7 @@ if [ -z "$virus_col" ]; then
 fi
 
 type_col=$(get_col_idx "type" "$header")
-if [ -z "type_col" ]; then
+if [ -z "${type_col}" ]; then
     echo "Błąd: Kolumna 'type' nie znaleziona w metadanych."; exit 1
 fi
 
@@ -253,25 +277,33 @@ fi
 if [ "$safeguard_level" = "virus" ]; then
   unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
   if [ "${unique_virus}" -gt 1 ]; then
-      echo "Błąd: Wykryto wiele identyfikatorow wirusa w metadanych. Program sluzy do analizy probek tego samego wirusa."; exit 1
+      # echo "Błąd: Wykryto wiele identyfikatorow wirusa w metadanych. Program sluzy do analizy probek tego samego wirusa."; exit 1
+      # safeguards_status == nie will terminate pipeline but still produce valid json schema / direcotries etc
+      safeguards_status="nie"
   fi
+
+  safeguards_status="tak"
+  unique_type_id=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq)
 elif [ "$safeguard_level" = "type" ]; then
   unique_virus=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
   unique_type=$(awk -v col="${type_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq | wc -l)
   if [[ "${unique_virus}" -gt 1 || "${unique_type}" -gt 1  ]]; then
-    echo "Błąd: Wykryto wiele identyfikatorow wirusa lub jego typow w metadanych. \
-    Program sluzy do analizy probek tego samego wirusa."; exit 1
+    #echo "Błąd: Wykryto wiele identyfikatorow wirusa lub jego typow w metadanych. \
+    #Program sluzy do analizy probek tego samego wirusa."; exit 1
+    safeguards_status="nie"
   fi
+  safeguards_status="tak"
+  unique_type_id=$(awk -v col="${virus_col}" -F'\t' 'NR>1 {print $col}' "$metadata" | sort | uniq)
 fi
 
 
 # ---------- Run Nextflow ----------
 args=(
-  "--input_fasta"           "$input_fasta"
+  "--input_dir"             "$inputDir"
   "--metadata"              "$metadata"
   "--organism"              "$organism"
   "--results_dir"           "$results_dir"
-  "--results_prefix"         "$results_prefix"
+  "--results_prefix"        "$results_prefix"
   "--projectDir"            "$projectDir"
   "--model"                 "$model"
   "--bootstrap"             "$bootstrap"
@@ -282,6 +314,8 @@ args=(
   "--threshold_ambiguities" "$threshold_ambiguities"
   "--main_image"            "$main_image"
   "--map_detail"            "$map_detail"
+  "--subcategory_organism"  "$unique_type_id"
+  "--safeguards_status"     "$safeguards_status"
 )
 
 # Append optional clockrate only if set

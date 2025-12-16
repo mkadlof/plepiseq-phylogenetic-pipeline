@@ -102,7 +102,7 @@ Only this portion (after the `|` character) is matched against the metadata.
 Call the wrapper script
 
 ```bash
-bash nf_pipeline_viral_phylo.sh -i PATH_TO_FASTA_FILE \ 
+bash nf_pipeline_viral_phylo.sh -i PATH_TO_DIRECTORY_WITH_FASTAS \ 
                                 -m PATH_TO_METADATA_FILE 
                                 -g SELECTED_SPECIES 
                                 -p MY_AWESOME_PROJECT 
@@ -112,7 +112,7 @@ bash nf_pipeline_viral_phylo.sh -i PATH_TO_FASTA_FILE \
 e.g. if one downloaded data from `/data/example_data/sars-cov-2` to a working directory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
 
 ```bash
-bash nf_pipeline_viral_phylo.sh -i sars-cov-2.fasta \
+bash nf_pipeline_viral_phylo.sh -i sars-cov-2 \
                                 -m sars-cov-2_metadata.tsv \
                                 -g sars-cov-2 \
                                 -p sars_example \

@@ -14,5 +14,5 @@ bash nf_pipeline_bacterial_phylo.sh --metadata data/example_data/salmonella/meta
 				    --projectDir `pwd` \
 				    -x "local" \
 				    --db "${PATH_TO_EXTERNAL_DATABASES}" \
-				    --results_prefix ./results_tests
-
+				    --results_prefix test_salmonella \
+				    --results_dir results
