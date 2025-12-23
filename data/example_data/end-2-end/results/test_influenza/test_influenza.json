@@ -1,0 +1,1212 @@
+{
+    "output": {
+        "input_params_data": {
+            "pathogen": "influenza",
+            "subcategory_organism": "tak",
+            "main_image": "pzh_pipeline-phylo:latest",
+            "data_uruchomienia": "2025-11-25 12:29",
+            "pipeline_version": "0.0.1",
+            "input_data": "data/example_data/influenza",
+            "input_metadata": "data/example_data/influenza/influenza_metadata.tsv",
+            "results_dir": "data/example_data/end-2-end/test_influenza",
+            "threshold_Ns": 0.05,
+            "threshold_ambiguities": 0,
+            "map_detail": "city",
+            "phylogenetic_model": "GTR+G",
+            "phylogenetic_bootstrap": 1000,
+            "phylogenetic_min_support": 0.75,
+            "phylogenetic_starting_trees": 10,
+            "clockrate": "",
+            "input_ids": [
+                "ESIB_EQA_2025.INFL2.01",
+                "ESIB_EQA_2025.INFL2.02",
+                "ESIB_EQA_2025.INFL2.03",
+                "ESIB_EQA_2025.INFL2.04",
+                "ESIB_EQA_2025.INFL2.05",
+                "ESIB_EQA_2025.INFL2.06",
+                "ESIB_EQA_2025.INFL2.07",
+                "ESIB_EQA_2025.INFL2.08",
+                "ESIB_EQA_2025.INFL2.09",
+                "ESIB_EQA_2025.INFL2.10",
+                "ESIB_EQA_2025.INFL2.11",
+                "ESIB_EQA_2025.INFL2.12"
+            ]
+        },
+        "chronogram_data": {
+            "chr8_NS": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.11
+            },
+            "chr2_PB1": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.04
+            },
+            "chr4_HA": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.03
+            },
+            "chr1_PB2": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.09
+            },
+            "chr3_PA": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.06
+            },
+            "chr7_MP": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.02
+            },
+            "chr5_NP": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.03
+            },
+            "chr6_NA": {
+                "id_chronogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 2e-05,
+                "clockrate_correlation": 0.06
+            }
+        },
+        "sequence_filtering_data": {
+            "chr8_NS": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 23,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 23,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 23,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 35,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 35,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            },
+            "chr4_HA": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 1777,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 1777, with total length os a sequence is 1777 that number exceeds threshold of 0.05"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 24,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            },
+            "chr2_PB1": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 29,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 2341,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 2341, with total length os a sequence is 2341 that number exceeds threshold of 0.05"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 1,
+                    "status": "nie",
+                    "error_message": "Number of ambiguous characters in a sequence is 1, with total length os a sequence is 2338 that number exceeds threshold of 0.0"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            },
+            "chr7_MP": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 24,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 35,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 35,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            },
+            "chr5_NP": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            },
+            "chr6_NA": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 27,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 27,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            },
+            "chr3_PA": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 2,
+                    "status": "nie",
+                    "error_message": "Number of ambiguous characters in a sequence is 2, with total length os a sequence is 2232 that number exceeds threshold of 0.0"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 21,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            },
+            "chr1_PB2": {
+                "ESIB_EQA_2025.INFL2.01": {
+                    "number_of_N": 1626,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 1626, with total length os a sequence is 2341 that number exceeds threshold of 0.05"
+                },
+                "ESIB_EQA_2025.INFL2.02": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.03": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.04": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.05": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.06": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.07": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 1,
+                    "status": "nie",
+                    "error_message": "Number of ambiguous characters in a sequence is 1, with total length os a sequence is 2341 that number exceeds threshold of 0.0"
+                },
+                "ESIB_EQA_2025.INFL2.08": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.09": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 2,
+                    "status": "nie",
+                    "error_message": "Number of ambiguous characters in a sequence is 2, with total length os a sequence is 2341 that number exceeds threshold of 0.0"
+                },
+                "ESIB_EQA_2025.INFL2.10": {
+                    "number_of_N": 25,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.11": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "ESIB_EQA_2025.INFL2.12": {
+                    "number_of_N": 32,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            }
+        },
+        "sequence_clustering_data": {
+            "chr7_MP": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.01": [
+                        "ESIB_EQA_2025.INFL2.01"
+                    ],
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.07": [
+                        "ESIB_EQA_2025.INFL2.07"
+                    ],
+                    "ESIB_EQA_2025.INFL2.08": [
+                        "ESIB_EQA_2025.INFL2.08"
+                    ],
+                    "ESIB_EQA_2025.INFL2.09": [
+                        "ESIB_EQA_2025.INFL2.09"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            },
+            "chr4_HA": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.07": [
+                        "ESIB_EQA_2025.INFL2.07"
+                    ],
+                    "ESIB_EQA_2025.INFL2.08": [
+                        "ESIB_EQA_2025.INFL2.08"
+                    ],
+                    "ESIB_EQA_2025.INFL2.09": [
+                        "ESIB_EQA_2025.INFL2.09"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            },
+            "chr8_NS": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.01": [
+                        "ESIB_EQA_2025.INFL2.01"
+                    ],
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.07": [
+                        "ESIB_EQA_2025.INFL2.07"
+                    ],
+                    "ESIB_EQA_2025.INFL2.08": [
+                        "ESIB_EQA_2025.INFL2.08"
+                    ],
+                    "ESIB_EQA_2025.INFL2.09": [
+                        "ESIB_EQA_2025.INFL2.09"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            },
+            "chr2_PB1": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.01": [
+                        "ESIB_EQA_2025.INFL2.01"
+                    ],
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.07": [
+                        "ESIB_EQA_2025.INFL2.07"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            },
+            "chr5_NP": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.01": [
+                        "ESIB_EQA_2025.INFL2.01"
+                    ],
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.07": [
+                        "ESIB_EQA_2025.INFL2.07"
+                    ],
+                    "ESIB_EQA_2025.INFL2.08": [
+                        "ESIB_EQA_2025.INFL2.08"
+                    ],
+                    "ESIB_EQA_2025.INFL2.09": [
+                        "ESIB_EQA_2025.INFL2.09"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            },
+            "chr6_NA": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.01": [
+                        "ESIB_EQA_2025.INFL2.01"
+                    ],
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.07": [
+                        "ESIB_EQA_2025.INFL2.07"
+                    ],
+                    "ESIB_EQA_2025.INFL2.08": [
+                        "ESIB_EQA_2025.INFL2.08"
+                    ],
+                    "ESIB_EQA_2025.INFL2.09": [
+                        "ESIB_EQA_2025.INFL2.09"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            },
+            "chr3_PA": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.01": [
+                        "ESIB_EQA_2025.INFL2.01"
+                    ],
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.07": [
+                        "ESIB_EQA_2025.INFL2.07"
+                    ],
+                    "ESIB_EQA_2025.INFL2.08": [
+                        "ESIB_EQA_2025.INFL2.08"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            },
+            "chr1_PB2": {
+                "threshold": 1.0,
+                "clusters": {
+                    "ESIB_EQA_2025.INFL2.02": [
+                        "ESIB_EQA_2025.INFL2.02"
+                    ],
+                    "ESIB_EQA_2025.INFL2.03": [
+                        "ESIB_EQA_2025.INFL2.03"
+                    ],
+                    "ESIB_EQA_2025.INFL2.04": [
+                        "ESIB_EQA_2025.INFL2.04"
+                    ],
+                    "ESIB_EQA_2025.INFL2.05": [
+                        "ESIB_EQA_2025.INFL2.05"
+                    ],
+                    "ESIB_EQA_2025.INFL2.06": [
+                        "ESIB_EQA_2025.INFL2.06"
+                    ],
+                    "ESIB_EQA_2025.INFL2.08": [
+                        "ESIB_EQA_2025.INFL2.08"
+                    ],
+                    "ESIB_EQA_2025.INFL2.10": [
+                        "ESIB_EQA_2025.INFL2.10"
+                    ],
+                    "ESIB_EQA_2025.INFL2.11": [
+                        "ESIB_EQA_2025.INFL2.11"
+                    ],
+                    "ESIB_EQA_2025.INFL2.12": [
+                        "ESIB_EQA_2025.INFL2.12"
+                    ]
+                }
+            }
+        },
+        "filogram_data": {
+            "chr4_HA": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            },
+            "chr8_NS": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            },
+            "chr2_PB1": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            },
+            "chr1_PB2": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            },
+            "chr5_NP": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            },
+            "chr3_PA": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            },
+            "chr7_MP": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            },
+            "chr6_NA": {
+                "id_filogram": [
+                    "ESIB_EQA_2025.INFL2.01",
+                    "ESIB_EQA_2025.INFL2.03",
+                    "ESIB_EQA_2025.INFL2.05",
+                    "ESIB_EQA_2025.INFL2.04",
+                    "ESIB_EQA_2025.INFL2.02",
+                    "ESIB_EQA_2025.INFL2.06",
+                    "ESIB_EQA_2025.INFL2.07",
+                    "ESIB_EQA_2025.INFL2.08",
+                    "ESIB_EQA_2025.INFL2.09",
+                    "ESIB_EQA_2025.INFL2.10",
+                    "ESIB_EQA_2025.INFL2.11",
+                    "ESIB_EQA_2025.INFL2.12"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            }
+        },
+        "pathogen": "influenza",
+        "ExecutionDir_dir": "data/example_data/end-2-end/",
+        "pipeline_version": "0.0.1",
+        "status": "tak",
+        "title": "test_influenza",
+        "data_uruchomienia": "2025-11-25 12:29",
+        "chronogram_nwk": {
+            "chr8_NS": "results/test_influenza/test_influenza_chr8_NS_chronogram.nwk",
+            "chr4_HA": "results/test_influenza/test_influenza_chr4_HA_chronogram.nwk",
+            "chr2_PB1": "results/test_influenza/test_influenza_chr2_PB1_chronogram.nwk",
+            "chr7_MP": "results/test_influenza/test_influenza_chr7_MP_chronogram.nwk",
+            "chr5_NP": "results/test_influenza/test_influenza_chr5_NP_chronogram.nwk",
+            "chr6_NA": "results/test_influenza/test_influenza_chr6_NA_chronogram.nwk",
+            "chr3_PA": "results/test_influenza/test_influenza_chr3_PA_chronogram.nwk",
+            "chr1_PB2": "results/test_influenza/test_influenza_chr1_PB2_chronogram.nwk"
+        },
+        "microreact_json": {
+            "chr8_NS": "results/test_influenza/test_influenza_chr8_NS_microreactproject.microreact",
+            "chr4_HA": "results/test_influenza/test_influenza_chr4_HA_microreactproject.microreact",
+            "chr2_PB1": "results/test_influenza/test_influenza_chr2_PB1_microreactproject.microreact",
+            "chr7_MP": "results/test_influenza/test_influenza_chr7_MP_microreactproject.microreact",
+            "chr5_NP": "results/test_influenza/test_influenza_chr5_NP_microreactproject.microreact",
+            "chr6_NA": "results/test_influenza/test_influenza_chr6_NA_microreactproject.microreact",
+            "chr3_PA": "results/test_influenza/test_influenza_chr3_PA_microreactproject.microreact",
+            "chr1_PB2": "results/test_influenza/test_influenza_chr1_PB2_microreactproject.microreact"
+        },
+        "filogram_nwk": {
+            "chr8_NS": "results/test_influenza/test_influenza_chr8_NS_filogram.nwk",
+            "chr4_HA": "results/test_influenza/test_influenza_chr4_HA_filogram.nwk",
+            "chr2_PB1": "results/test_influenza/test_influenza_chr2_PB1_filogram.nwk",
+            "chr7_MP": "results/test_influenza/test_influenza_chr7_MP_filogram.nwk",
+            "chr5_NP": "results/test_influenza/test_influenza_chr5_NP_filogram.nwk",
+            "chr6_NA": "results/test_influenza/test_influenza_chr6_NA_filogram.nwk",
+            "chr3_PA": "results/test_influenza/test_influenza_chr3_PA_filogram.nwk",
+            "chr1_PB2": "results/test_influenza/test_influenza_chr1_PB2_filogram.nwk"
+        }
+    }
+}

@@ -1,0 +1,261 @@
+{
+    "output": {
+        "input_params_data": {
+            "pathogen": "rsv",
+            "subcategory_organism": "tak",
+            "main_image": "pzh_pipeline-phylo:latest",
+            "data_uruchomienia": "2025-11-26 13:09",
+            "pipeline_version": "0.0.1",
+            "input_data": "data/example_data/rsv",
+            "input_metadata": "data/example_data/rsv/rsv_a_metadata.tsv",
+            "results_dir": "data/example_data/end-2-end/test_rsv",
+            "threshold_Ns": 0.02,
+            "threshold_ambiguities": 0,
+            "map_detail": "city",
+            "phylogenetic_model": "GTR+G",
+            "phylogenetic_bootstrap": 1000,
+            "phylogenetic_min_support": 0.75,
+            "phylogenetic_starting_trees": 10,
+            "clockrate": "",
+            "input_ids": [
+                "EPI_ISL_19685832",
+                "EPI_ISL_19685833",
+                "EPI_ISL_19685836",
+                "EPI_ISL_19687296",
+                "EPI_ISL_19687297",
+                "EPI_ISL_19687298",
+                "EPI_ISL_19687299",
+                "EPI_ISL_19689070",
+                "EPI_ISL_19689072",
+                "EPI_ISL_19693731",
+                "EPI_ISL_19693732",
+                "EPI_ISL_19693741",
+                "EPI_ISL_19693743",
+                "EPI_ISL_19693744",
+                "EPI_ISL_19693745",
+                "EPI_ISL_19709602",
+                "EPI_ISL_19725090",
+                "EPI_ISL_19725092",
+                "EPI_ISL_19725390"
+            ]
+        },
+        "chronogram_data": {
+            "hRSV_A_England_397_2017": {
+                "id_chronogram": [
+                    "EPI_ISL_19685832",
+                    "EPI_ISL_19689072",
+                    "EPI_ISL_19687298",
+                    "EPI_ISL_19693741",
+                    "EPI_ISL_19693731",
+                    "EPI_ISL_19693743",
+                    "EPI_ISL_19725092",
+                    "EPI_ISL_19693744",
+                    "EPI_ISL_19709602",
+                    "EPI_ISL_19693732",
+                    "EPI_ISL_19689070",
+                    "EPI_ISL_19693745",
+                    "EPI_ISL_19725090",
+                    "EPI_ISL_19725390"
+                ],
+                "augur_version": "30.0.0",
+                "treetime_version": "0.11.4",
+                "clockrate_value": 0.00112,
+                "clockrate_correlation": 0.06
+            }
+        },
+        "sequence_filtering_data": {
+            "hRSV_A_England_397_2017": {
+                "EPI_ISL_19685832": {
+                    "number_of_N": 76,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19685833": {
+                    "number_of_N": 581,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 581, with total length os a sequence is 15202 that number exceeds threshold of 0.02"
+                },
+                "EPI_ISL_19685836": {
+                    "number_of_N": 5311,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 5311, with total length os a sequence is 15173 that number exceeds threshold of 0.02"
+                },
+                "EPI_ISL_19687296": {
+                    "number_of_N": 1570,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 1570, with total length os a sequence is 15225 that number exceeds threshold of 0.02"
+                },
+                "EPI_ISL_19687297": {
+                    "number_of_N": 2302,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 2302, with total length os a sequence is 15224 that number exceeds threshold of 0.02"
+                },
+                "EPI_ISL_19687298": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19687299": {
+                    "number_of_N": 972,
+                    "number_of_ambiguous": 0,
+                    "status": "nie",
+                    "error_message": "Number of Ns in a sequence is 972, with total length os a sequence is 15223 that number exceeds threshold of 0.02"
+                },
+                "EPI_ISL_19689070": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19689072": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19693731": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19693732": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19693741": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19693743": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19693744": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19693745": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19709602": {
+                    "number_of_N": 0,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19725090": {
+                    "number_of_N": 173,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19725092": {
+                    "number_of_N": 12,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                },
+                "EPI_ISL_19725390": {
+                    "number_of_N": 145,
+                    "number_of_ambiguous": 0,
+                    "status": "tak"
+                }
+            }
+        },
+        "sequence_clustering_data": {
+            "hRSV_A_England_397_2017": {
+                "threshold": 1.0,
+                "clusters": {
+                    "EPI_ISL_19685832": [
+                        "EPI_ISL_19685832"
+                    ],
+                    "EPI_ISL_19687298": [
+                        "EPI_ISL_19687298"
+                    ],
+                    "EPI_ISL_19689070": [
+                        "EPI_ISL_19689070"
+                    ],
+                    "EPI_ISL_19689072": [
+                        "EPI_ISL_19689072"
+                    ],
+                    "EPI_ISL_19693731": [
+                        "EPI_ISL_19693731"
+                    ],
+                    "EPI_ISL_19693732": [
+                        "EPI_ISL_19693732"
+                    ],
+                    "EPI_ISL_19693741": [
+                        "EPI_ISL_19693741"
+                    ],
+                    "EPI_ISL_19693743": [
+                        "EPI_ISL_19693743"
+                    ],
+                    "EPI_ISL_19693744": [
+                        "EPI_ISL_19693744"
+                    ],
+                    "EPI_ISL_19693745": [
+                        "EPI_ISL_19693745"
+                    ],
+                    "EPI_ISL_19709602": [
+                        "EPI_ISL_19709602"
+                    ],
+                    "EPI_ISL_19725090": [
+                        "EPI_ISL_19725090"
+                    ],
+                    "EPI_ISL_19725092": [
+                        "EPI_ISL_19725092"
+                    ],
+                    "EPI_ISL_19725390": [
+                        "EPI_ISL_19725390"
+                    ]
+                }
+            }
+        },
+        "filogram_data": {
+            "hRSV_A_England_397_2017": {
+                "id_filogram": [
+                    "EPI_ISL_19685832",
+                    "EPI_ISL_19689072",
+                    "EPI_ISL_19687298",
+                    "EPI_ISL_19693741",
+                    "EPI_ISL_19693731",
+                    "EPI_ISL_19693743",
+                    "EPI_ISL_19725092",
+                    "EPI_ISL_19693744",
+                    "EPI_ISL_19709602",
+                    "EPI_ISL_19693732",
+                    "EPI_ISL_19689070",
+                    "EPI_ISL_19693745",
+                    "EPI_ISL_19725090",
+                    "EPI_ISL_19725390"
+                ],
+                "program_name": "iqtree2",
+                "program_version": "2.4.0",
+                "phylogenetic_model": "GTR+G",
+                "phylogenetic_bootstrap": 1000,
+                "phylogenetic_min_support": 0.75,
+                "phylogenetic_starting_trees": 10
+            }
+        },
+        "pathogen": "rsv",
+        "ExecutionDir_dir": "data/example_data/end-2-end/",
+        "pipeline_version": "0.0.1",
+        "status": "tak",
+        "title": "test_rsv",
+        "data_uruchomienia": "2025-11-26 13:09",
+        "chronogram_nwk": {
+            "hRSV_A_England_397_2017": "results/test_rsv/test_rsv_hRSV_A_England_397_2017_chronogram.nwk"
+        },
+        "microreact_json": {
+            "hRSV_A_England_397_2017": "results/test_rsv/test_rsv_hRSV_A_England_397_2017_microreactproject.microreact"
+        },
+        "filogram_nwk": {
+            "hRSV_A_England_397_2017": "results/test_rsv/test_rsv_hRSV_A_England_397_2017_filogram.nwk"
+        }
+    }
+}

@@ -30,13 +30,30 @@ Quick start
    ```bash
    cp nextflow.config.template nextflow.config
    ```
-   **Important**: adjust the content of this file to you particular environment and needs.
-7. [Optional] Run one or more example scripts to test the pipeline:
+   **Important**: adjust the content of this file to your particular environment and needs.
+7. [Optional] Run example scripts to test the pipeline:
    ```bash
    ./run_example_sars-cov-2.sh
    ./run_example_influenza.sh
    ./run_example_salmonella.sh
+   ./run_example_rsv.sh   
     ```
+   Expected outputs of these scripts can also be found under: `data/example_data/end-2-end/`   
+
+7a. [Optional] Validate example outputs with pytest. Default outputs of the example scripts are in `results/test_*` directories.
+   ```
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_sars
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_influenza
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_rsv
+   pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_salmonella
+   ```
+   or using pre-prepared goldens (e.g. for sars-cov-2):
+
+   ```
+   pytest tests/end-2-end/test_end-2-end.py --data-dir data/example_data/end-2-end/result/test_sars
+   ```
+
+   Dependencies: pytest, ete3, fastjsonschema, requests
 
 Related projects
 ----------------
@@ -102,21 +119,21 @@ Only this portion (after the `|` character) is matched against the metadata.
 Call the wrapper script
 
 ```bash
-bash nf_pipeline_viral_phylo.sh -i PATH_TO_DIRECTORY_WITH_FASTAS \ 
-                                -m PATH_TO_METADATA_FILE 
-                                -g SELECTED_SPECIES 
-                                -p MY_AWESOME_PROJECT 
-                                -f PATH_TO_REPOSITORY
+bash nf_pipeline_viral_phylo.sh --inputDir PATH_TO_DIRECTORY_WITH_FASTAS \ 
+                                --metadata PATH_TO_METADATA_FILE 
+                                --organism SELECTED_SPECIES 
+                                --results_prefix PROJECT_NAME 
+                                --projectDir PATH_TO_REPOSITORY
 ```
 
-e.g. if one downloaded data from `/data/example_data/sars-cov-2` to a working directory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
+e.g. if one copy data from `/data/example_data/sars-cov-2` to a working directory, and cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, the command would be
 
 ```bash
-bash nf_pipeline_viral_phylo.sh -i sars-cov-2 \
-                                -m sars-cov-2_metadata.tsv \
-                                -g sars-cov-2 \
-                                -p sars_example \
-                                -f /home/my_user/plepiseq-phylogenetic-pipeline
+bash nf_pipeline_viral_phylo.sh --inputDir sars-cov-2 \
+                                --metadata sars-cov-2/sars-cov-2_metadata.tsv \
+                                --organism sars-cov-2 \
+                                --results_prefix sars_example \
+                                --projectDir /home/my_user/plepiseq-phylogenetic-pipeline
 ```
 
 To see all available options and customize your run, use:
@@ -187,22 +204,18 @@ Follow these steps to run the pipeline with minimal setup:
 2. Copy the `nf_pipeline_bacterial_phylo.sh` script from the repository’s root directory into your working directory.
 3. (Optional) Copy a valid metadata file e.g. `metadata_salmonella.txt` file and a `fastas/` directory with uncompressed genome FASTA files into the working directory.  Example files are available in the `data/example_data/salmonella` directory of the repository.
 
-Assuming your working directory contains `metadata_salmonella.txt` and a `fastas/` directory, and you’ve built/pulled the required Docker images as described above, run:
+Assuming your working directory contains `metadata_salmonella.txt` and a `fastas/` directory, cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, and you’ve built/pulled the required Docker images as described in Quick Start section, run:
 
 ```bash
-bash nf_pipeline_bacterial_phylo.sh -m metadata_salmonella.txt \
-                                    -i fastas/ \
-                                    -t fasta \
-                                    -g Salmonella \
-                                    -p Salmonella_dummy \
-                                    -d PATH_TO_CLONED_REPO \
-                                    -z RESULTS_PREFIX
+bash nf_pipeline_bacterial_phylo.sh --metadata metadata_salmonella.txt \
+                                    --inputDir fastas/ \
+                                    --inputType fasta \
+                                    --genus Salmonella \
+                                    --projectDir /home/my_user/plepiseq-phylogenetic-pipeline \
+                                    --results_prefix Salmonella_test \
                                     --db PATH_TO_EXTRNAL_DATABASES
-                                    --threads 48
 ```
 
-Replace `PATH_TO_CLONED_REPO` with the absolute path to your cloned copy of this repository.
-Replace `RESULTS_PREFIX` with any string. All pipeline produced files will start with this string
 Replace `PATH_TO_EXTRNAL_DATABASES` with the absolute path to directory with cgMLST schema
 
 To see all available options and customize your run, use:
