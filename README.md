@@ -38,9 +38,12 @@ Quick start
    ./run_example_salmonella.sh
    ./run_example_rsv.sh   
     ```
-   Expected outputs of these scripts can also be found under: `data/example_data/end-2-end/`   
+   Expected outputs of these scripts can also be found under: `data/example_data/end-2-end/`. 
 
-7a. [Optional] Validate example outputs with pytest. Default outputs of the example scripts are in `results/test_*` directories.
+   Note: `run_example_influenza.sh` and `run_example_rsv.sh` use `slurm` executor, modify these files if you want to use `local` executor. For `run_example_salmonella.sh` the variable PATH_TO_EXTERNAL_DATABASES must be set manually.
+   
+
+8. [Optional] Validate example outputs with pytest. Default outputs of the example scripts are in `results/test_*` directories.
    ```
    pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_sars
    pytest tests/end-2-end/test_end-2-end.py --data-dir result/test_influenza
@@ -204,7 +207,7 @@ Follow these steps to run the pipeline with minimal setup:
 2. Copy the `nf_pipeline_bacterial_phylo.sh` script from the repository’s root directory into your working directory.
 3. (Optional) Copy a valid metadata file e.g. `metadata_salmonella.txt` file and a `fastas/` directory with uncompressed genome FASTA files into the working directory.  Example files are available in the `data/example_data/salmonella` directory of the repository.
 
-Assuming your working directory contains `metadata_salmonella.txt` and a `fastas/` directory, cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, and you’ve built/pulled the required Docker images as described in Quick Start section, run:
+Assuming your working directory contains `metadata_salmonella.txt` and a `fastas/` directory, cloned this repo to `/home/my_user/plepiseq-phylogenetic-pipeline`, and you’ve built/pulled the required Docker images as described in Quick Start section, and external databases are located in `/mnt/external_databases` run:
 
 ```bash
 bash nf_pipeline_bacterial_phylo.sh --metadata metadata_salmonella.txt \
@@ -213,10 +216,8 @@ bash nf_pipeline_bacterial_phylo.sh --metadata metadata_salmonella.txt \
                                     --genus Salmonella \
                                     --projectDir /home/my_user/plepiseq-phylogenetic-pipeline \
                                     --results_prefix Salmonella_test \
-                                    --db PATH_TO_EXTRNAL_DATABASES
+                                    --db /mnt/external_databases
 ```
-
-Replace `PATH_TO_EXTRNAL_DATABASES` with the absolute path to directory with cgMLST schema
 
 To see all available options and customize your run, use:
 
